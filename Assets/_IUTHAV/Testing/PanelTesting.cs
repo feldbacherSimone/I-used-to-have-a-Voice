@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _IUTHAV.Testing;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -18,50 +19,54 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private float zPadding = 1;
 
     [SerializeField] private GameObject cmCamGameObject;
+    [SerializeField] private Transform camTarget; 
     private CinemachineFollow cmFollow;
 
     private bool panelIsActive;
     private ScrollRect scrollRect;
     private RectTransform _rectTransform;
-    private float scrollAmount = 0; 
-    [SerializeField] private float _returnSpeed = 2;
+    private float scrollAmount = 0;
 
     private void Start()
     {
         if (cmCamGameObject == null){
             DebugPrint("No cmCam assigned in PanelManager", true);
-        return;
+            return;
         }
-
+        cmFollow = cmCamGameObject.GetComponent<CinemachineFollow>();
+        defaultPos = camTarget.position; 
+        
         _rectTransform = GetComponent<RectTransform>();
         scrollRect = transform.parent.parent.GetComponent<ScrollRect>();
-        cmFollow = cmCamGameObject.GetComponent<CinemachineFollow>();
-        defaultPos = cmFollow.FollowOffset; 
+        CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
     }
 
     private void Update()
     {
-        if (panelIsActive)
-        {
-            MoveParalax();
-        }
-        else if(Vector3.Distance(cmFollow.FollowOffset, defaultPos) > 0.1)
-        {
-            cmFollow.FollowOffset = Vector3.MoveTowards(cmFollow.FollowOffset, defaultPos, _returnSpeed * Time.deltaTime);
-        }
+       MoveParalax();
     }
 
     private void MoveParalax()
     {
-        Vector3 relativeMousePos = GetRelativeMousePos();
-        DebugPrint($"Current mouse position: {relativeMousePos}");
+        var resetPosition = CameraMovement.ResetCamera(camTarget, defaultPos);
+        if (panelIsActive)
+        {
+            Vector3 relativeMousePos = GetRelativeMousePos();
+            DebugPrint($"Current mouse position: {relativeMousePos}");
 
-        scrollAmount = Mathf.Clamp(Input.mouseScrollDelta.y + scrollAmount, -zPadding, zPadding);
+            scrollAmount = Mathf.Clamp(Input.mouseScrollDelta.y + scrollAmount, -zPadding, zPadding);
 
-        Vector3 posDelta = new Vector3(xPadding * relativeMousePos.x + defaultPos.x,
-            yPadding * relativeMousePos.y + defaultPos.y, scrollAmount + defaultPos.z);
+            Vector3 posDelta = new Vector3(
+                xPadding * -relativeMousePos.x, 
+                yPadding * -relativeMousePos.y, 
+                scrollAmount);
 
-        cmFollow.FollowOffset = posDelta;
+            camTarget.position = CameraMovement.GetMovementAmount(posDelta);
+        }
+        else if (resetPosition != null)
+        {
+            camTarget.position = (Vector3)resetPosition; 
+        }
     }
 
     private Vector2 GetRelativeMousePos()
@@ -82,6 +87,9 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         scrollRect.enabled = false;
         panelIsActive = true;
+        
+        CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
+        
         this.GetComponent<RawImage>().color = new Color(0.9f, 0.9f, 1f);
     }
 
@@ -89,13 +97,15 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         scrollRect.enabled = true;
         panelIsActive = false;
-        GetComponent<RawImage>().color = Color.white;
         
-        scrollAmount = 0; 
+        GetComponent<RawImage>().color = Color.white;
+        scrollAmount = 0;
     }
 
     private void DebugPrint(string msg, bool error = false)
     {
+        if(!debug) return;
+        
         if(!error) Debug.Log(msg, this);
         else Debug.LogError(msg, this);
     }
