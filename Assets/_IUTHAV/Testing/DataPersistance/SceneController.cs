@@ -1,19 +1,15 @@
+using System.Collections;
 using System.Collections.Generic;
+using _IUTHAV.Core_Programming.Gamemode;
+using _IUTHAV.Core_Programming.Page;
+using _IUTHAV.Core_Programming.Scenemanagement;
+using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace _IUTHAV.Testing.DataPersistance {
     
-    [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/SceneController", order = 2)]
-    public class SceneController : ScriptableObject {
-
-        public List<Scene> scenes;
-        
-        public static void OpenScene(string scene) {
-            SceneManager.LoadScene(scene);
-        }
-        
-    }
+    
     
 }

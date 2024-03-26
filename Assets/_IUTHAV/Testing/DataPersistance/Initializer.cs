@@ -1,4 +1,5 @@
 using System;
+using _IUTHAV.Core_Programming.Scenemanagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,10 +8,13 @@ namespace _IUTHAV.Testing.DataPersistance {
 
         [SerializeField] private DataTest sessionData;
         [SerializeField] private DataTest backupData;
-        [SerializeField] private string startScene;
+        [SerializeField] private SceneType startScene;
+        
         private void Awake() {
+        
             sessionData.highscore = backupData.highscore;
-            SceneManager.LoadScene(startScene);
+            
+            SceneManager.LoadScene(startScene.ToString());
         }
     }
 }
