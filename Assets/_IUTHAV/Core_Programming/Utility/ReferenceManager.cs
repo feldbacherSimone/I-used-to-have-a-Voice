@@ -1,28 +1,28 @@
 using _IUTHAV.Core_Programming.Gamemode;
-using _IUTHAV.Core_Programming.Page;
-using _IUTHAV.Core_Programming.Scene;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace _IUTHAV.Core_Programming.Utility {
     public class ReferenceManager : MonoBehaviour {
 
         public static ReferenceManager Instance;
+
+        private GameManager _gameManager;
+        private GameObject _singletonContainer;
+        private Object[] _sessionDependables;
         
-        [SerializeField] private GameManager gameManager;
-        [SerializeField] private GameObject singletonContainer;
+        private static GameManager _mGameManager;
 
-        [SerializeField] private bool isDebug;
- 
-        private static GameManager _gameManager;
-        private static SceneController _sceneController;
-        private static PageController _pageController;
-
-        private static bool _isDebug;
+        private const bool IsDebug = true;
 
 #region Unity Functions
 
         private void Awake() {
             Configure();
+        }
+
+        private void OnDestroy() {
+            DisposeObjects();
         }
 
 #endregion
@@ -34,34 +34,12 @@ namespace _IUTHAV.Core_Programming.Utility {
         /// </summary>
         /// <returns>May return null</returns>
         public static GameManager GameManager() {
-            if (_gameManager == null) {
+            if (_mGameManager == null) {
                 LogWarning("No GameManager found!");
             }
-            return _gameManager;
-        }
-        
-        /// <summary>
-        /// Gives the current reference to this sessions Object "SceneController"
-        /// </summary>
-        /// <returns>May return null</returns>
-        public static SceneController SceneController() {
-            if (_sceneController == null) {
-                LogWarning("No SceneController found!");
-            }
-            return _sceneController;
+            return _mGameManager;
         }
 
-        /// <summary>
-        /// Gives the current reference to this sessions Object "PageController"
-        /// </summary>
-        /// <returns>May return null</returns>
-        public static PageController PageController() {
-            if (_pageController == null) {
-                LogWarning("No PageController found!");
-            }
-            return _pageController;
-        }
-        
 #endregion
         
 #region Private Functions
@@ -72,8 +50,8 @@ namespace _IUTHAV.Core_Programming.Utility {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
                 AddSingletons();
-                ConfigureStaticReferences();
-                GameManager().Enable();
+                AddSessionDependables();
+                EnableScriptableObjects();
             }
             else {
                 Destroy(gameObject);
@@ -82,21 +60,43 @@ namespace _IUTHAV.Core_Programming.Utility {
         }
 
         private void AddSingletons() {
-
-            GameObject obj = Instantiate(singletonContainer);
+            _singletonContainer = Resources.Load<GameObject>("PersistentObjects/SingletonContainer");
+            GameObject obj = Instantiate(_singletonContainer);
             DontDestroyOnLoad(obj);
         }
 
-        private void ConfigureStaticReferences() {
-            _gameManager = gameManager;
-            _sceneController = Scene.SceneController.Instance;
-            _pageController = Page.PageController.Instance;
-            _isDebug = isDebug;
+        private void AddSessionDependables() {
+
+            _sessionDependables = Resources.LoadAll("PersistentObjects", typeof(ISessionDependable));
+            
+            
+            
+            foreach (var o in _sessionDependables) {
+                if (o is GameManager obj) {
+                    _mGameManager = obj;
+                    return;
+                }
+            }
+            LogWarning("No GameManager found in SessionDependables!");
+        }
+
+        private void EnableScriptableObjects() {
+            foreach (var o in _sessionDependables) {
+                var obj = (ISessionDependable)o;
+                obj.Enable();
+            }
+        }
+
+        private void DisposeObjects() {
+            foreach (var o in _sessionDependables) {
+                var obj = (ISessionDependable)o;
+                obj.Reset();
+            }
         }
 
         private static void LogWarning(string msg) {
-            if (!_isDebug) return;
-            Debug.LogWarning("[SessionObjects] " + msg);
+           
+            if (IsDebug) Debug.LogWarning("[SessionObjects] " + msg);
         }
         
 #endregion
