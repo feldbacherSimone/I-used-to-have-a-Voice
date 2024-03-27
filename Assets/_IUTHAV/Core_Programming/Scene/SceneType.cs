@@ -1,14 +1,16 @@
-namespace _IUTHAV.Core_Programming.Scenemanagement {
+using System;
 
+namespace _IUTHAV.Core_Programming.Scene {
+
+    [Serializable]
     public enum SceneType {
         
         None,
-        
-        SceneZero,
         MainMenu,
         Car,
         Train,
-        Message
+        Message,
+        Credits,
 
     }
 }

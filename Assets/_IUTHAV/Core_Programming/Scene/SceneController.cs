@@ -2,15 +2,13 @@ using System;
 using System.Collections;
 using System.Threading.Tasks;
 using _IUTHAV.Core_Programming.Page;
-using _IUTHAV.Core_Programming.Scenemanagement;
 using _IUTHAV.Core_Programming.Utility;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace _IUTHAV.Core_Programming.Scene {
-    public class SceneController : MonoBehaviour {
     
-        public delegate void SceneLoadDelegate(SceneType scene);
+    public class SceneController : MonoBehaviour {
 
         public static SceneController Instance;
 
@@ -20,9 +18,9 @@ namespace _IUTHAV.Core_Programming.Scene {
         
         private SceneType _mTargetScene;
         private PageType _mLoadingPage;
-        private SceneLoadDelegate _mSceneLoadDelegate;
         private bool _mIsSceneLoading;
         private PageController _pageController;
+        private LoadSceneMode _mLoadSceneMode;
         
         private string CurrentSceneName => SceneManager.GetActiveScene().name;
 
@@ -39,40 +37,38 @@ namespace _IUTHAV.Core_Programming.Scene {
 #endregion
 
 #region Public Functions
-        
+
         /// <summary>
         /// Load a desired scene, available by choice from the SceneType enum. Ensure it´s included in the Build settings
         /// </summary>
-        /// <param name="sceneType">Will be converted into a string and Loaded by Unitys SceneManager</param>
-        /// <param name="loadingPage">Optional loading Page that is blended between switching scenes</param>
-        /// <param name="reload">If you want to reload the current scene you're in, set this to true</param>
-        /// <param name="sceneLoadDelegate">Delegate, that is called once loading starts</param>
-        public void Load(SceneType sceneType, PageType loadingPage = PageType.None, bool reload = false, SceneLoadDelegate sceneLoadDelegate = null) {
+        /// <param name="loadParameters">Container of parameters, that handle the behaviour of the scene load</param>
+        public void Load(SceneLoadParameters loadParameters) {
 
-            if (loadingPage != PageType.None && ReferenceManager.PageController() != null) {
+            if (loadParameters.loadingPage != PageType.None && PageController.Instance != null) {
                 LogWarning("No PageController found when trying to load loadingscreen!");
                 return;
             }
-            if (!SceneCanBeLoaded(sceneType, reload)) {
+            if (!SceneCanBeLoaded(loadParameters.sceneType, loadParameters.reload)) {
                 return;
             }
 
             _mIsSceneLoading = true;
-            _mTargetScene = sceneType;
-            _mLoadingPage = loadingPage;
-            _mSceneLoadDelegate = sceneLoadDelegate;
+            _mTargetScene = loadParameters.sceneType;
+            _mLoadingPage = loadParameters.loadingPage;
+            _mLoadSceneMode = loadParameters.loadMode;
 
             StartCoroutine("LoadScene");
         }
 
-        public void Load(string sceneType, PageType loadingPage = PageType.None, bool reload = false, SceneLoadDelegate sceneLoadDelegate = null) {
-            if (Enum.TryParse(sceneType, out SceneType type)) {
-                Load(type, loadingPage, reload, sceneLoadDelegate);
-            }
-            else {
-                LogWarning("No scene of type [" + sceneType + "] found!");
-            }
+        public void UnloadScene(SceneType sceneType) {
+            SceneManager.UnloadSceneAsync(sceneType.ToString());
         }
+
+        public void UnloadScene(string sceneName) {
+            SceneManager.UnloadSceneAsync(sceneName);
+        }
+
+
 
 #endregion
 
@@ -81,6 +77,7 @@ namespace _IUTHAV.Core_Programming.Scene {
         private void Configure() {
             Instance = this;
             SceneManager.sceneLoaded += OnSceneLoaded;
+            Log("Configured and ready");
         }
 
         private async void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode) {
@@ -92,15 +89,6 @@ namespace _IUTHAV.Core_Programming.Scene {
             if (!Enum.TryParse(scene.name, out SceneType sceneType)) {
                 LogWarning("Loaded Scene is not a SceneType!");
                 return;
-            }
-
-            if (_mSceneLoadDelegate != null) {
-                try {
-                    _mSceneLoadDelegate(sceneType);
-                }
-                catch (SystemException) {
-                    LogWarning("Unable to respond with sceneLoadDelegate after scene ["+sceneType+"] loaded");
-                }
             }
 
             await Task.Delay(LoadTime);
@@ -131,11 +119,11 @@ namespace _IUTHAV.Core_Programming.Scene {
                 }
             }
 
-            SceneManager.LoadScene(_mTargetScene.ToString());
+            SceneManager.LoadScene(_mTargetScene.ToString(), _mLoadSceneMode);
         }
 
         private void Dispose() {
-            
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
         
         private void Log(string msg) {
@@ -149,6 +137,32 @@ namespace _IUTHAV.Core_Programming.Scene {
 
 #endregion
 
-
     }
+    
+#region Helper Classes
+
+        [Serializable]
+        public class SceneLoadParameters {
+        
+            public SceneType sceneType;
+            public PageType loadingPage = PageType.LoadingPage;
+            public LoadSceneMode loadMode = LoadSceneMode.Single;
+            public bool reload;
+
+            /// <summary>
+            /// Container to store parameters used to load a scene
+            /// </summary>
+            /// <param name="sceneType">Will be converted to a string and sent to SceneManager. Typename must match scenename!</param>
+            /// <param name="loadingPage">Page that will be turned on/off while loading the scene - can be PageType.None</param>
+            /// <param name="loadMode"></param>
+            /// <param name="reload">Use, if the sceneType you're loading matches the current scene you're in</param>
+            public SceneLoadParameters(SceneType sceneType, PageType loadingPage = PageType.LoadingPage, LoadSceneMode loadMode = LoadSceneMode.Single, bool reload = false) {
+                this.sceneType = sceneType;
+                this.loadingPage = loadingPage;
+                this.loadMode = loadMode;
+                this.reload = reload;
+            }
+        }
+
+#endregion
 }

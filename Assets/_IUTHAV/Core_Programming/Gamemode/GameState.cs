@@ -1,5 +1,5 @@
 using System;
-using _IUTHAV.Core_Programming.Scenemanagement;
+using _IUTHAV.Core_Programming.Scene;
 using UnityEngine;
 
 namespace _IUTHAV.Core_Programming.Gamemode {
@@ -8,13 +8,16 @@ namespace _IUTHAV.Core_Programming.Gamemode {
     public class StateData {
     
         public int currentPanelId;
-        
+        public float currentScrollHeight;
+
         /// <summary>
         /// Container for any State-specific data that must be saved within a session
         /// </summary>
         /// <param name="currentPanelId"></param>
-        public StateData(int currentPanelId) {
+        /// <param name="currentScrollHeight"></param>
+        public StateData(int currentPanelId, float currentScrollHeight) {
             this.currentPanelId = currentPanelId;
+            this.currentScrollHeight = this.currentScrollHeight;
         }
     }
 
