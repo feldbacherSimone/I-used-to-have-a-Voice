@@ -22,7 +22,6 @@ namespace _IUTHAV.Core_Programming.Page {
             else {
                 Destroy(gameObject);
             }
-            
         }
 
         private void OnDestroy() {
@@ -111,6 +110,7 @@ namespace _IUTHAV.Core_Programming.Page {
              Instance = this;
             _mPages = new Hashtable();
             RegisterAllPages();
+            Log("Configured and ready");
         }
         
         private void RegisterAllPages() {

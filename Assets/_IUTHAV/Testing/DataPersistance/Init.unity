@@ -163,10 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192b351520cc98e49a210df2a0953dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 11400000, guid: d161122f374d7584faf2adeedd1713d4, type: 2}
-  singletonContainer: {fileID: 4190178382348064838, guid: 0ba3209510e60e848b301710b4c82086,
-    type: 3}
-  isDebug: 1
 --- !u!1 &966435213
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,11 +765,11 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: d161122f374d7584faf2adeedd1713d4, type: 2}
-        m_TargetAssemblyTypeName: _IUTHAV.Core_Programming.Gamemode.GameManager,
+      - m_Target: {fileID: 11400000, guid: 0010ff8cf6125914987616dd751d58ec, type: 2}
+        m_TargetAssemblyTypeName: _IUTHAV.Core_Programming.Scene.SceneInterface,
           Assembly-CSharp
-        m_MethodName: GoToMainMenu
-        m_Mode: 1
+        m_MethodName: Load
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

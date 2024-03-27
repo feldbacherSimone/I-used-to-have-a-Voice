@@ -1,13 +1,12 @@
 using _IUTHAV.Core_Programming.Page;
 using _IUTHAV.Core_Programming.Scene;
-using _IUTHAV.Core_Programming.Scenemanagement;
 using _IUTHAV.Core_Programming.Utility;
 using UnityEngine;
 
 namespace _IUTHAV.Core_Programming.Gamemode {
     [CreateAssetMenu(fileName = "GameManager", menuName = "ScriptableObjects/GameManager", order = 2)]
 
-    public class GameManager : ScriptableObject {
+    public class GameManager : ScriptableObject, ISessionDependable {
     
         private bool _isGamePaused;
         public bool IsGamePaused => _isGamePaused;
@@ -28,11 +27,15 @@ namespace _IUTHAV.Core_Programming.Gamemode {
             Configure();
         }
 
-        public void LoadGame() {
+        public void Reset() {
+            throw new System.NotImplementedException();
+        }
+
+        public void LoadGameState() {
             
             if (currentState != null && currentState.StateType != StateType.None) {
                 Log("Starting Game with state [" + currentState.StateType + "] scene [" + currentState.SceneType + "]");
-                _sceneController.Load(currentState.SceneType);
+                _sceneController.Load(new SceneLoadParameters(currentState.SceneType));
             }
         }
 
@@ -72,7 +75,7 @@ namespace _IUTHAV.Core_Programming.Gamemode {
         }
 
         public void GoToMainMenu() {
-            _sceneController.Load(SceneType.MainMenu, PageType.LoadingPage);
+            _sceneController.Load(new SceneLoadParameters(SceneType.MainMenu));
         }
 
 #endregion
@@ -80,10 +83,12 @@ namespace _IUTHAV.Core_Programming.Gamemode {
 #region Private Functions
 
         private void Configure() {
-            _sceneController = ReferenceManager.SceneController();
-            _pageController = ReferenceManager.PageController();
+            _sceneController = SceneController.Instance;
+            _pageController = PageController.Instance;
 
             if (currentState == null) currentState = gameStates[0];
+            
+            Log("Configured and ready");
         }
 
         private GameState GetGameState(StateType stateType) {
