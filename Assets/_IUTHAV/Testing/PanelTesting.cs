@@ -19,7 +19,8 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private float zPadding = 1;
 
     [SerializeField] private GameObject cmCamGameObject;
-    [SerializeField] private Transform camTarget; 
+    [SerializeField] private Transform camTarget;
+    [SerializeField] private Camera panelCamera;
     private CinemachineFollow cmFollow;
 
     private bool panelIsActive;
@@ -27,6 +28,7 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private RectTransform _rectTransform;
     private float scrollAmount = 0;
 
+    private Vector2 panelSize; 
     private void Start()
     {
         if (cmCamGameObject == null){
@@ -39,13 +41,37 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         _rectTransform = GetComponent<RectTransform>();
         scrollRect = transform.parent.parent.GetComponent<ScrollRect>();
         CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
+
+        RawImage panelImage = GetComponent<RawImage>();
+        panelSize = new Vector2(panelImage.texture.width, panelImage.texture.height);
     }
 
     private void Update()
     {
        MoveParalax();
+       Raycast();
     }
 
+
+    private void Raycast()
+    {
+        if(!panelIsActive)
+            return;
+        Vector3 realivePos = GetRelativeMousePos();
+        Vector3 rayPos = new Vector3((realivePos.x + 0.5f), (1- (realivePos.y + 0.5f))  , 0);
+        DebugPrint($"rayPos: {rayPos}");
+        Ray screenRay = panelCamera.ViewportPointToRay(rayPos);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(screenRay, out hit, 1000f))
+        {
+            Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.green);
+            DebugPrint($"Raycast from {gameObject.name}, hit object: {hit.transform.gameObject.name}");
+        }
+        Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.red);
+
+    }
     private void MoveParalax()
     {
         var resetPosition = CameraMovement.ResetCamera(camTarget, defaultPos);

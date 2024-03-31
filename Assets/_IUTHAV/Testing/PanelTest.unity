@@ -344,9 +344,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1347.4783, y: -332}
+  m_AnchoredPosition: {x: 1097.4783, y: -132}
   m_SizeDelta: {x: 500, y: 400}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &247108878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +366,7 @@ MonoBehaviour:
   zPadding: 3
   cmCamGameObject: {fileID: 581787806}
   camTarget: {fileID: 1375277755}
+  panelCamera: {fileID: 894983378}
 --- !u!114 &247108879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,11 +500,18 @@ MonoBehaviour:
   zPadding: 1.18
   cmCamGameObject: {fileID: 629363267}
   camTarget: {fileID: 20032554}
+  panelCamera: {fileID: 1568453366}
 --- !u!1 &629363267 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2441945451447100801, guid: a8b7f8e8eca86e6409f66aa54e0f7e77,
     type: 3}
   m_PrefabInstance: {fileID: 4359696557320036103}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &894983378 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1164728990024076915, guid: a8b7f8e8eca86e6409f66aa54e0f7e77,
+    type: 3}
+  m_PrefabInstance: {fileID: 1515444047}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1060200755
 GameObject:
@@ -1240,6 +1248,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8b7f8e8eca86e6409f66aa54e0f7e77, type: 3}
+--- !u!20 &1568453366 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1164728990024076915, guid: a8b7f8e8eca86e6409f66aa54e0f7e77,
+    type: 3}
+  m_PrefabInstance: {fileID: 4359696557320036103}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1728845818
 GameObject:
   m_ObjectHideFlags: 0
