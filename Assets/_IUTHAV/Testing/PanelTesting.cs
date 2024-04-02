@@ -28,7 +28,9 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private RectTransform _rectTransform;
     private float scrollAmount = 0;
 
-    private Vector2 panelSize; 
+    private Vector2 panelSize;
+
+    private GameObject currentHitObject; 
     private void Start()
     {
         if (cmCamGameObject == null){
@@ -53,12 +55,14 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
 
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void Raycast()
     {
         if(!panelIsActive)
             return;
         Vector3 realivePos = GetRelativeMousePos();
         Vector3 rayPos = new Vector3((realivePos.x + 0.5f), (1- (realivePos.y + 0.5f))  , 0);
+        
         DebugPrint($"rayPos: {rayPos}");
         Ray screenRay = panelCamera.ViewportPointToRay(rayPos);
 
@@ -68,7 +72,22 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.green);
             DebugPrint($"Raycast from {gameObject.name}, hit object: {hit.transform.gameObject.name}");
+            
+            if (currentHitObject != hit.transform.gameObject)
+            {
+                currentHitObject?.GetComponent<ISelectable>()?.OnDeselect();
+                currentHitObject = hit.transform.gameObject;
+                currentHitObject.GetComponent<ISelectable>()?.OnSelect();
+            }
         }
+        else if (currentHitObject != null)
+        {
+            currentHitObject?.GetComponent<ISelectable>()?.OnDeselect();
+            currentHitObject = null; 
+        }
+
+       
+       
         Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.red);
 
     }
@@ -97,10 +116,15 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private Vector2 GetRelativeMousePos()
     {
+
+        float canvasScroll = transform.parent.GetComponent<RectTransform>().anchoredPosition.y;
+        DebugPrint($"Scroll Amount: {canvasScroll}");
+        
         Vector2 newMousePos = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+        DebugPrint($"new Mouse pos: {newMousePos}");
         
         newMousePos = new Vector2(newMousePos.x - _rectTransform.anchoredPosition.x,
-            newMousePos.y + _rectTransform.anchoredPosition.y);
+            newMousePos.y + _rectTransform.anchoredPosition.y + canvasScroll);
 
         Vector2 relativeMousePos = new Vector2(
             newMousePos.x / _rectTransform.rect.width - 0.5f,
