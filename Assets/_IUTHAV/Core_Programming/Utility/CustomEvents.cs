@@ -6,10 +6,10 @@ using Random = UnityEngine.Random;
 namespace _IUTHAV.Core_Programming.Utility {
     
     [Serializable]
-    public class GameStateEvent : UnityEvent<IFinishable> {}
+    public class GameStateDataEvent : UnityEvent<IFinishable, StateType> {}
 
-    public class StateDataEventArgs : EventArgs {
-        public IFinishable finishable;
-    }
+    public class GameStateEvent : UnityEvent<StateType> { }
+
+    public class StateDataEventArgs : EventArgs { public IFinishable Finishable; }
 
 }
