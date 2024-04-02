@@ -6,11 +6,10 @@ namespace _IUTHAV.Core_Programming.Gamemode {
     public enum StateType {
     
         None,
-        NewGame,
-        Act1,
-        Act2,
-        Act3,
-        Finish,
+        TestState1,
+        TestState2,
+        TestState3,
+        TestState4,
     
     }
 }
