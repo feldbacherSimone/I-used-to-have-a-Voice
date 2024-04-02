@@ -14,17 +14,25 @@ namespace _IUTHAV.Core_Programming.Scene {
         public static readonly string FLAG_NONE = "None";
 
         private static string _currentLoadingState = FLAG_NONE;
-        private static Dictionary<SceneType, LoadingParameters> _loadList;
+        private static Dictionary<string, LoadingParameters> _loadList;
         
         private const bool IsDebug = true;
+        private static bool IsReady;
 
 #region Public Functions
 
         public static void Enable() {
+
+            if (IsReady) return;
+
+            _loadList = new Dictionary<string, LoadingParameters>();
+            _loadList.Add(SceneManager.GetActiveScene().name, new LoadingParameters(PageType.None, LoadSceneMode.Single, 0));
             if (_currentLoadingState == FLAG_NONE) {
                 SceneManager.sceneLoaded += OnSceneLoaded;
                 _currentLoadingState = FLAG_OFF;
             }
+
+            IsReady = true;
         }
 
         public static void Disable() {
@@ -32,25 +40,20 @@ namespace _IUTHAV.Core_Programming.Scene {
             _currentLoadingState = FLAG_NONE;
         }
 
-        public static void LoadSingle(SceneType sceneType, PageType loadingPage = PageType.None, int loadTime = 600) {
-
-            if (!Enum.TryParse(SceneManager.GetActiveScene().name, out SceneType currentSceneType)) {
-                LogWarning("Loaded Scene is not a SceneType!");
-                return;
-            }
-            _loadList.Remove(currentSceneType);
-            _loadList.Add(sceneType, new LoadingParameters(loadingPage, LoadSceneMode.Single, loadTime));
+        public static void LoadSingle(string sceneType, PageType loadingPage = PageType.None, int loadTime = 600) {
             
+            _loadList.Remove(SceneManager.GetActiveScene().name);
+            _loadList.Add(sceneType, new LoadingParameters(loadingPage, LoadSceneMode.Single, loadTime));
             LoadScene(sceneType);
         }
 
-        public static void LoadAdditive(SceneType sceneType, PageType loadingPage = PageType.None, int loadTime = 600) {
+        public static void LoadAdditive(string sceneType, PageType loadingPage = PageType.None, int loadTime = 600) {
             
             _loadList.Add(sceneType, new LoadingParameters(loadingPage, LoadSceneMode.Additive, loadTime));
             LoadScene(sceneType);
         }
 
-        public static void UnloadScene(SceneType sceneType) {
+        public static void UnloadScene(string sceneType) {
 
             _loadList.Remove(sceneType);
             SceneManager.UnloadSceneAsync(sceneType.ToString());
@@ -58,7 +61,7 @@ namespace _IUTHAV.Core_Programming.Scene {
         
         public static void LogActiveSceneNames() {
             Log("Currently active scenes: ", true);
-            foreach (SceneType type in _loadList.Keys) {
+            foreach (string type in _loadList.Keys) {
                 Log(type.ToString() + " ", true);
             }
         }
@@ -67,7 +70,7 @@ namespace _IUTHAV.Core_Programming.Scene {
 
 #region Private Functions
 
-        private static void LoadScene(SceneType type) {
+        private static async void LoadScene(string type) {
         
             if (_currentLoadingState == FLAG_ON) {
                 LogWarning("Cannot load a scene while another is currently loading");
@@ -78,20 +81,19 @@ namespace _IUTHAV.Core_Programming.Scene {
             if (_loadList[type].loadingPage != PageType.None) {
                 PageController.Instance.TurnPageOn(_loadList[type].loadingPage);
             }
+            
+            await Task.Delay(_loadList[type].loadTime);
+            
             SceneManager.LoadScene(type.ToString(), _loadList[type].loadSceneMode);
         }
 
         private static async void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode) {
             
-            if (!Enum.TryParse(scene.name, out SceneType sceneType)) {
-                LogWarning("Loaded Scene is not a SceneType!");
-                _currentLoadingState = FLAG_OFF;
-                return;
-            }
-            await Task.Delay(_loadList[sceneType].loadTime);
+            Log("Awaiting load time of : " + scene.name.ToString() + ": " + _loadList[scene.name.ToString()].loadTime);
 
-            if (_loadList[sceneType].loadingPage != PageType.None) {
-                PageController.Instance.TurnPageOff(_loadList[sceneType].loadingPage);
+            Log("Load time completed");
+            if (_loadList[scene.name].loadingPage != PageType.None) {
+                PageController.Instance.TurnPageOff(_loadList[scene.name].loadingPage);
             }
             _currentLoadingState = FLAG_OFF;
         }

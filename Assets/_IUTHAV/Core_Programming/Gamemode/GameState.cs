@@ -9,13 +9,12 @@ namespace _IUTHAV.Core_Programming.Gamemode {
     [CreateAssetMenu(fileName = "GameStatesObject", menuName = "ScriptableObjects/GameStatesObject", order = 2)]
     public class GameStatesObject : ScriptableObject {
 
-        private void Awake() {
-            //set each gamestates type to the assigned type in the editor
-            
-        }
-
         [SerializeField] private GameState[] gameStates;
         public GameState[] GameStates => gameStates;
+
+        private void Awake() {
+            
+        }
 
     }
 
@@ -28,48 +27,59 @@ namespace _IUTHAV.Core_Programming.Gamemode {
         public delegate void DataChanged(GameState gameState);
         public event DataChanged OnDataChanged;
         [HideInInspector] public UnityEvent onStateCompleted;
-        [SerializeField] private IFinishable _stateData;
-        [SerializeField] private SerializableType type;
+        private IFinishable _stateData;
         public IFinishable StateData => _stateData;
         
-        [SerializeField] private bool persistState;
+        [SerializeField] private bool resetOnUnload = true;
 
-        private bool _isFinished;
-        public bool IsFinished => _isFinished;
+        [SerializeField] private bool isFinished;
+        public bool IsFinished => isFinished;
 
-        public void UpdateData(IFinishable data) {
-            if (!_isFinished) {
+        public void Enable() {
+            
+            InvokeDataChangedEvent();
+            if (isFinished) onStateCompleted.Invoke();
+        }
 
-                _stateData.UpdateData(data.GetData());
-                _stateData.CheckFinishCondition();
-                InvokeDataChangedEvent();
+        public void SetStateData(IFinishable finishable) {
+            _stateData = finishable;
+        }
+        public void UpdateData(object data) {
+            if (!isFinished) {
+
+                if (_stateData == null) return;
+                
+                _stateData.UpdateData(data);
+
+                isFinished = _stateData.CheckFinishCondition(); 
                 
                 //Check if state was set to finished by a condition
-                if (_isFinished) {
+                InvokeDataChangedEvent();
+                if (isFinished) {
                     onStateCompleted.Invoke();
                 }
             }
         }
         
         public void Finish() {
-            if (!_isFinished) {
-                _isFinished = true;
+            if (!isFinished) {
+                isFinished = true;
                 InvokeDataChangedEvent();
                 onStateCompleted.Invoke();
             }
         }
 
         public override string ToString() {
-            return (stateType.ToString() + " | " + OnDataChanged?.ToString() + " | " +
-                    onStateCompleted.GetPersistentMethodName(0) + " | " + _isFinished);
+            return (stateType + " | OnComplete Methodname: " +
+                    onStateCompleted?.GetPersistentMethodName(0) + " | StateData: " + StateData + " | isFinished: " + isFinished);
         }
 
-        public void Reset() {
+        public void Reset(bool forceReset = false) {
             onStateCompleted = new UnityEvent();
 
-            if (!persistState) {
-                _stateData = _stateData.Reset();
-                _isFinished = false;
+            if (resetOnUnload || forceReset) {
+                _stateData = _stateData?.Reset();
+                isFinished = false;
             }
         }
 
