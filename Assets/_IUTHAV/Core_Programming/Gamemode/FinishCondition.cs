@@ -31,9 +31,9 @@ namespace _IUTHAV.Core_Programming.Gamemode {
 
 #region Private Functions
 
-        private void CheckCondition(GameState state) {
+        private void CheckCondition(GameState state = null) {
             
-            Log("Observed change in [" + state.StateType + "], data is [" + state.StateData.ToString() + "]");
+            Log("Observed change in [" + state?.StateType + "], data is [" + state?.StateData + "]");
 
             bool met = true;
             foreach (GameState gameState in _mObservedStates.Values) {
@@ -58,6 +58,8 @@ namespace _IUTHAV.Core_Programming.Gamemode {
             foreach (GameState state in _mObservedStates.Values) {
                 state.OnDataChanged += CheckCondition;
             }
+            
+            CheckCondition();
         }
 
         private void Dispose() {

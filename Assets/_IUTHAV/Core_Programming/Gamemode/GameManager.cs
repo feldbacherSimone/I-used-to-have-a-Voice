@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using _IUTHAV.Core_Programming.Gamemode.CustomDataTypes;
 using _IUTHAV.Core_Programming.Page;
+using _IUTHAV.Core_Programming.Scene;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -64,9 +66,44 @@ namespace _IUTHAV.Core_Programming.Gamemode {
             return (GameState)_mStates[stateType];
         }
 
-        public void UpdateState(StateType stateType, IFinishable finishable) {
+        public void SetStateData(StateType stateType, IFinishable finishable) {
             GameState gameState = GetState(stateType);
-            if (gameState != null) gameState.UpdateData(finishable);
+
+            if (gameState?.StateData != null) {
+                LogWarning("Already assigned data to state [" + stateType + "]!");
+                return;
+            }
+            gameState?.SetStateData(finishable);
+        }
+
+        public void UpdateState(StateType stateType, object obj) {
+            GameState gameState = GetState(stateType);
+            if (gameState?.StateData == null) {
+                LogWarning("No data has been set to [" + stateType + "] yet. Using most generic class");
+                SetStateData(stateType, new ObjData(obj, null));
+            }
+            gameState?.UpdateData(obj);
+        }
+
+        public void FinishState(StateType stateType) {
+            GameState gameState = GetState(stateType);
+            if (gameState != null) {
+                gameState.Finish();
+                Log("Finishing State [" + stateType + "]");
+            }
+            else {
+                LogWarning("No GameState of Type [" + stateType + "] found!");
+            }
+            
+        }
+
+        public void FinishState(string stateType) {
+            if (Enum.TryParse(stateType, out StateType type)) {
+                FinishState(type);
+            }
+            else {
+                LogWarning("No GameState of Type [" + stateType + "] found!");
+            }
         }
 
         public void AddState(GameState state) {
@@ -86,12 +123,13 @@ namespace _IUTHAV.Core_Programming.Gamemode {
             PopulateStatesTable();
             AssignDelegates();
             LogStates();
+            SceneLoader.Enable();
         }
 
         private void PopulateStatesTable() {
             _mStates = new Hashtable();
             foreach (GameState state in gameStates.GameStates) {
-
+                
                 RegisterState(state);
             }
             
@@ -118,11 +156,14 @@ namespace _IUTHAV.Core_Programming.Gamemode {
         }
 
         private void AssignDelegates() {
+        
             foreach (GameStateBehaviour behaviour in gameStateBehaviours) {
                 //Does this work? Idunno, lets find out
-                ((GameState)_mStates[behaviour.stateType]).onStateCompleted = behaviour.onFinish;
-                Log(((GameState)_mStates[behaviour.stateType]).onStateCompleted.GetPersistentMethodName(0));
+                GameState state = (GameState)_mStates[behaviour.stateType];
+                state.onStateCompleted = behaviour.onFinish;
                 behaviour.onFinish = null;
+                
+                state.Enable();
             }
         }
 
@@ -140,7 +181,7 @@ namespace _IUTHAV.Core_Programming.Gamemode {
         private void LogStates() {
             Log("Current states: \n ------------");
             foreach (GameState state in _mStates.Values) {
-                Log("    " + state.ToString() + "\n");
+                Log("    " + state + "\n");
             }
         }
         

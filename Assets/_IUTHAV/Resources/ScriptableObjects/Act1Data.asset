@@ -13,24 +13,27 @@ MonoBehaviour:
   m_Name: Act1Data
   m_EditorClassIdentifier: Assembly-CSharp:_IUTHAV.Core_Programming.Gamemode:GameStatesObject
   gameStates:
+  - stateType: 0
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 1
+    isFinished: 0
   - stateType: 1
     onStateCompleted:
       m_PersistentCalls:
         m_Calls: []
-    type:
-      Identification: 
-    persistState: 0
+    resetOnUnload: 1
+    isFinished: 0
   - stateType: 2
     onStateCompleted:
       m_PersistentCalls:
         m_Calls: []
-    type:
-      Identification: 
-    persistState: 0
+    resetOnUnload: 1
+    isFinished: 0
   - stateType: 3
     onStateCompleted:
       m_PersistentCalls:
         m_Calls: []
-    type:
-      Identification: 
-    persistState: 0
+    resetOnUnload: 1
+    isFinished: 0

@@ -10,9 +10,7 @@ namespace _IUTHAV.Core_Programming.Page {
         [SerializeField] private bool isAnimated;
         public bool IsAnimated => isAnimated;
 
-        [SerializeField] private bool dontDestroyOnLoad;
-
-        private string _targetState;
+        [SerializeField] private string _targetState;
         public string TargetState => _targetState;
         
         [SerializeField] private bool isDebug;
@@ -64,10 +62,6 @@ namespace _IUTHAV.Core_Programming.Page {
                     LogWarning("Animator Component not found in this GameObject!");
                 }
             }
-
-            if (dontDestroyOnLoad) {
-                DontDestroyOnLoad(this.gameObject);
-            }
         }
 
         private IEnumerator AwaitAnimation(bool on) {
@@ -75,7 +69,7 @@ namespace _IUTHAV.Core_Programming.Page {
             while (!_mAnimator.GetCurrentAnimatorStateInfo(0).IsName(_targetState)) {
                 yield return null;
             }
-
+            
             while (_mAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
                 yield return null;
             }

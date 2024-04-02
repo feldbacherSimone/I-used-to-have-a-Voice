@@ -8,7 +8,7 @@ namespace _IUTHAV.Core_Programming.Page {
         public static PageController Instance;
 
         [SerializeField] private Page[] pages;
-
+        
         [SerializeField] private bool isDebug;
         
         private Hashtable _mPages;
@@ -25,7 +25,7 @@ namespace _IUTHAV.Core_Programming.Page {
         }
 
         private void OnDestroy() {
-            _mPages.Clear();
+            _mPages?.Clear();
         }
 
 #endregion
@@ -45,7 +45,15 @@ namespace _IUTHAV.Core_Programming.Page {
         }
 
         public void TurnPageOff(PageType offPageType) {
-            SwitchPages(offPageType, PageType.None, false);
+            if (!PageExists(offPageType)) {
+                LogWarning("[" + offPageType + "] does not exist!");
+                return;
+            }
+            Log("Turning [" + offPageType + "] off" );
+            Page off = GetPage(offPageType);
+            off.Animate(false);
+            StopCoroutine("WaitForScreenExit");
+            StartCoroutine(WaitForScreenExit(null, off));
         }
 
         public void SwitchPages(PageType offPageType, PageType onPageType, bool waitForExit = true) {
@@ -65,8 +73,9 @@ namespace _IUTHAV.Core_Programming.Page {
                 offPage.Animate(false);
             }
             
-            Log("Turning [" + onPageType + "] on");
+            
             if (onPageType != PageType.None) {
+                Log("Turning [" + onPageType + "] on");
                 Page onPage = GetPage(onPageType);
                 if (waitForExit) {
                     StopCoroutine("WaitForScreenExit");
@@ -83,7 +92,7 @@ namespace _IUTHAV.Core_Programming.Page {
                 Log("Page [" + pageType + "] does not exist");
                 return false;
             }
-            return true;
+            return GetPage(pageType).IsOn;
         }
 
         public void AddPage(Page page) {
@@ -111,6 +120,7 @@ namespace _IUTHAV.Core_Programming.Page {
             _mPages = new Hashtable();
             RegisterAllPages();
             Log("Configured and ready");
+            DontDestroyOnLoad(this);
         }
         
         private void RegisterAllPages() {
@@ -157,7 +167,8 @@ namespace _IUTHAV.Core_Programming.Page {
             while (off.TargetState != Page.FLAG_NONE) {
                 yield return null;
             }
-            TurnPageOn(on.PageType);
+            off.gameObject.SetActive(false);
+            if (on != null) TurnPageOn(on.PageType);
         }
 
         private void Log(string msg) {
