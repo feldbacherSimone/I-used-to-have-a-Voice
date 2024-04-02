@@ -1,13 +1,15 @@
 using System;
 using _IUTHAV.Core_Programming.Gamemode;
-using _IUTHAV.Core_Programming.Scene;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 namespace _IUTHAV.Core_Programming.Utility {
-    [Serializable]
-    public class SceneEvent : UnityEvent <SceneLoadParameters> {}
     
     [Serializable]
-    public class GameStateEvent : UnityEvent<StateData> {}
+    public class GameStateEvent : UnityEvent<IFinishable> {}
+
+    public class StateDataEventArgs : EventArgs {
+        public IFinishable finishable;
+    }
 
 }

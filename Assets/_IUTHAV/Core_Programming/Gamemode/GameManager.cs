@@ -1,43 +1,49 @@
+using System;
+using System.Collections;
 using _IUTHAV.Core_Programming.Page;
-using _IUTHAV.Core_Programming.Scene;
-using _IUTHAV.Core_Programming.Utility;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _IUTHAV.Core_Programming.Gamemode {
-    [CreateAssetMenu(fileName = "GameManager", menuName = "ScriptableObjects/GameManager", order = 2)]
+    
+#region Helper Classes
 
-    public class GameManager : ScriptableObject, ISessionDependable {
+    [Serializable]
+    public class GameStateBehaviour {
+        public StateType stateType;
+        public UnityEvent onFinish;
+    }
+
+#endregion
+
+    public class GameManager : MonoBehaviour {
     
         private bool _isGamePaused;
         public bool IsGamePaused => _isGamePaused;
+        
+        [SerializeField] private GameStatesObject gameStates;
 
-        [SerializeField] private GameState currentState;
-        public GameState CurrentState => currentState;
-
-        [SerializeField] private GameState[] gameStates;
-
+        [SerializeField] private GameStateBehaviour[] gameStateBehaviours;
+        
         [SerializeField] private bool isDebug;
 
-        private SceneController _sceneController;
         private PageController _pageController;
 
-#region Public Functions
+        private Hashtable _mStates;
 
-        public void Enable() {
+#region Unity Functions
+
+        private void Awake() {
             Configure();
         }
 
-        public void Reset() {
-            throw new System.NotImplementedException();
+        private void OnDestroy() {
+            Dispose();
         }
 
-        public void LoadGameState() {
-            
-            if (currentState != null && currentState.StateType != StateType.None) {
-                Log("Starting Game with state [" + currentState.StateType + "] scene [" + currentState.SceneType + "]");
-                _sceneController.Load(new SceneLoadParameters(currentState.SceneType));
-            }
-        }
+#endregion
+
+#region Public Functions
 
         public void PauseGame(bool pause) {
         
@@ -49,33 +55,26 @@ namespace _IUTHAV.Core_Programming.Gamemode {
             }
             _isGamePaused = pause;
         }
-
-        public void AdvanceState() {
         
-            if (currentState != null && currentState.StateType != StateType.None) {
-                currentState = GetGameState(currentState.Next);
+        public GameState GetState(StateType stateType) {
+            if (!StateExists(stateType)) {
+                LogWarning("State [" + stateType + "] does not exist!");
+                return null;
             }
-            else {
-                LogWarning("Cannot update, current state is null!");
-            }
+            return (GameState)_mStates[stateType];
         }
 
-        public void UpdateCurrentGameState(StateData stateData) {
-            if (currentState != null && currentState.StateType != StateType.None) {
-                currentState.stateData = stateData;
-            }
-            else {
-                LogWarning("Cannot update, current state is null!");
-            }
+        public void UpdateState(StateType stateType, IFinishable finishable) {
+            GameState gameState = GetState(stateType);
+            if (gameState != null) gameState.UpdateData(finishable);
         }
 
-        public void UpdateGameState(StateType stateType, StateData stateData) {
-            GameState gameState = GetGameState(stateType);
-            if (gameState != null) gameState.stateData = stateData;
+        public void AddState(GameState state) {
+            RegisterState(state);
         }
 
-        public void GoToMainMenu() {
-            _sceneController.Load(new SceneLoadParameters(SceneType.MainMenu));
+        public void RemoveState(StateType stateType) {
+            DeRegisterState(stateType);
         }
 
 #endregion
@@ -83,22 +82,66 @@ namespace _IUTHAV.Core_Programming.Gamemode {
 #region Private Functions
 
         private void Configure() {
-            _sceneController = SceneController.Instance;
             _pageController = PageController.Instance;
-
-            if (currentState == null) currentState = gameStates[0];
-            
-            Log("Configured and ready");
+            PopulateStatesTable();
+            AssignDelegates();
+            LogStates();
         }
 
-        private GameState GetGameState(StateType stateType) {
-            foreach (GameState gameState in gameStates) {
-                if (gameState.StateType == stateType) {
-                    return gameState;
-                }
+        private void PopulateStatesTable() {
+            _mStates = new Hashtable();
+            foreach (GameState state in gameStates.GameStates) {
+
+                RegisterState(state);
             }
-            LogWarning("No GameState of type [" + stateType + "] found!");
-            return null;
+            
+        }
+
+        private void RegisterState(GameState state) {
+            if (StateExists(state.StateType)) {
+                LogWarning("Cannot register [" + state.StateType + "] because it already exists!");
+            }
+            else {
+                _mStates.Add(state.StateType, state);
+                Log("Registered state [" + state.StateType + "]");
+            }
+        }
+        
+        private void DeRegisterState(StateType stateType) {
+            if (!StateExists(stateType)) {
+                LogWarning("Cannot delete [" + stateType +
+                           "] because it´s not registered");
+                return;
+            }
+            _mStates.Remove(stateType);
+            Log("Deleted state [" + stateType + "]");
+        }
+
+        private void AssignDelegates() {
+            foreach (GameStateBehaviour behaviour in gameStateBehaviours) {
+                //Does this work? Idunno, lets find out
+                ((GameState)_mStates[behaviour.stateType]).onStateCompleted = behaviour.onFinish;
+                Log(((GameState)_mStates[behaviour.stateType]).onStateCompleted.GetPersistentMethodName(0));
+                behaviour.onFinish = null;
+            }
+        }
+
+        private bool StateExists(StateType stateType) {
+            return _mStates.Contains(stateType);
+        }
+
+        private void Dispose() {
+
+            foreach (GameState state in gameStates.GameStates) {
+                state.Reset();
+            }
+        }
+
+        private void LogStates() {
+            Log("Current states: \n ------------");
+            foreach (GameState state in _mStates.Values) {
+                Log("    " + state.ToString() + "\n");
+            }
         }
         
         private void Log(string msg) {
