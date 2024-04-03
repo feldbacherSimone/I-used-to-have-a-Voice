@@ -1,21 +1,22 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace _IUTHAV.Core_Programming.Gamemode {
 
     [CreateAssetMenu(fileName = "GameStatesObject", menuName = "ScriptableObjects/GameStatesObject", order = 2)]
     public class GameStatesObject : ScriptableObject {
-
+        [SerializeField] private bool resetStatesOnUnload = true;
         [SerializeField] private GameState[] gameStates;
         public GameState[] GameStates => gameStates;
 
         private void Awake() {
-            
+            if (!resetStatesOnUnload) {
+                foreach (GameState state in gameStates) {
+                    state.resetOnUnload = false;
+                }
+            }
         }
-
     }
 
     [Serializable]
@@ -29,8 +30,8 @@ namespace _IUTHAV.Core_Programming.Gamemode {
         [HideInInspector] public UnityEvent onStateCompleted;
         private IFinishable _stateData;
         public IFinishable StateData => _stateData;
-        
-        [SerializeField] private bool resetOnUnload = true;
+
+        [HideInInspector] public bool resetOnUnload = true;
 
         [SerializeField] private bool isFinished;
         public bool IsFinished => isFinished;
