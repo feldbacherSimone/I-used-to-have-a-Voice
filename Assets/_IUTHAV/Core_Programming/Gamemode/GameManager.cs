@@ -5,6 +5,7 @@ using _IUTHAV.Core_Programming.Page;
 using _IUTHAV.Core_Programming.Scene;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace _IUTHAV.Core_Programming.Gamemode {
     
@@ -23,7 +24,8 @@ namespace _IUTHAV.Core_Programming.Gamemode {
         private bool _isGamePaused;
         public bool IsGamePaused => _isGamePaused;
         
-        [SerializeField] private GameStatesObject gameStates;
+        [SerializeField] private GameStatesObject sceneGameStatesObject;
+        [SerializeField] private GameStatesObject persistentGameStatesObject;
 
         [SerializeField] private GameStateBehaviour[] gameStateBehaviours;
         
@@ -128,9 +130,14 @@ namespace _IUTHAV.Core_Programming.Gamemode {
 
         private void PopulateStatesTable() {
             _mStates = new Hashtable();
-            foreach (GameState state in gameStates.GameStates) {
+            foreach (GameState state in sceneGameStatesObject.GameStates) {
                 
                 RegisterState(state);
+            }
+
+            foreach (GameState persistentState in persistentGameStatesObject.GameStates) {
+                
+                RegisterState(persistentState);
             }
             
         }
@@ -173,7 +180,7 @@ namespace _IUTHAV.Core_Programming.Gamemode {
 
         private void Dispose() {
 
-            foreach (GameState state in gameStates.GameStates) {
+            foreach (GameState state in sceneGameStatesObject.GameStates) {
                 state.Reset();
             }
         }

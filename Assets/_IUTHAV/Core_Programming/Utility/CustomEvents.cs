@@ -1,7 +1,6 @@
 using System;
 using _IUTHAV.Core_Programming.Gamemode;
 using UnityEngine.Events;
-using Random = UnityEngine.Random;
 
 namespace _IUTHAV.Core_Programming.Utility {
     
@@ -10,6 +9,6 @@ namespace _IUTHAV.Core_Programming.Utility {
 
     public class GameStateEvent : UnityEvent<StateType> { }
 
-    public class StateDataEventArgs : EventArgs { public IFinishable Finishable; }
+    public class StateDataEventArgs : EventArgs { public IFinishable finishable; }
 
 }
