@@ -23,4 +23,13 @@ namespace _IUTHAV.Core_Programming.Gamemode {
         SC3_State1 = 300,
     
     }
+
+    [Serializable]
+    public enum DataType {
+        None,
+        Persistent,
+        Scene1,
+        Scene2,
+        Scene3,
+    }
 }

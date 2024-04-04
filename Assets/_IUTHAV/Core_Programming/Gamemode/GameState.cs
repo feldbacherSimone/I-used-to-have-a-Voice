@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Unity.IntegerTime;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,15 +8,49 @@ namespace _IUTHAV.Core_Programming.Gamemode {
 
     [CreateAssetMenu(fileName = "GameStatesObject", menuName = "ScriptableObjects/GameStatesObject", order = 2)]
     public class GameStatesObject : ScriptableObject {
+        [Space(10)]
         [SerializeField] private bool resetStatesOnUnload = true;
-        [SerializeField] private GameState[] gameStates;
-        public GameState[] GameStates => gameStates;
+        [SerializeField] private DataType dataType;
+        [Space(10)]
+        [SerializeField] private List<GameState> gameStates;
+        [Space(10)]
+        [SerializeField] private bool regenerateList;
+        public List<GameState> GameStates => gameStates;
 
-        private void Awake() {
-            if (!resetStatesOnUnload) {
-                foreach (GameState state in gameStates) {
-                    state.resetOnUnload = false;
+        private void OnValidate() {
+            if (regenerateList) {
+                GenerateList();
+                regenerateList = false;
+            }
+        }
+
+        public void GenerateList() {
+            
+            gameStates.Clear();
+            
+            string idString = "PER";
+                switch (dataType) {
+                    case DataType.Persistent:
+                        idString = "PER";
+                        break;
+                    case DataType.Scene1:
+                        idString = "SC1";
+                        break;
+                    case DataType.Scene2:
+                        idString = "SC2";
+                        break;
+                    case DataType.Scene3:
+                        idString = "SC3";
+                        break;
                 }
+
+            foreach (StateType type in Enum.GetValues(typeof(StateType))) {
+
+                if (type.ToString().StartsWith(idString)) {
+                
+                    gameStates.Add(new GameState(type, resetStatesOnUnload));
+                }
+
             }
         }
     }
@@ -35,6 +71,11 @@ namespace _IUTHAV.Core_Programming.Gamemode {
 
         [SerializeField] private bool isFinished;
         public bool IsFinished => isFinished;
+
+        public GameState(StateType stateType, bool resetOnUnload) {
+            this.stateType = stateType;
+            this.resetOnUnload = resetOnUnload;
+        }
 
         public void Enable() {
             

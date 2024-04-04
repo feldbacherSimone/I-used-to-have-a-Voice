@@ -1,6 +1,7 @@
+using _IUTHAV.Core_Programming.Gamemode.CustomDataTypes;
 using UnityEngine;
 
-namespace _IUTHAV.Core_Programming.Gamemode.CustomDataTypes {
+namespace _IUTHAV.Core_Programming.Gamemode.Conditions {
     public class TransformData : MonoBehaviour {
 
         [SerializeField] private StateType stateType;
@@ -8,14 +9,14 @@ namespace _IUTHAV.Core_Programming.Gamemode.CustomDataTypes {
         [SerializeField] private Vector3 targetTransform;
         [SerializeField] private VectorType vectorType;
         [SerializeField] private CompareType compareType;
-
+        
         private void Start() {
         
             GameManager gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
 
             float floatData = transformData.position.x;
             float targetData = targetTransform.x;
-
+            
             switch (vectorType) {
                 case VectorType.x:
                     floatData = transformData.position.x;
@@ -32,6 +33,7 @@ namespace _IUTHAV.Core_Programming.Gamemode.CustomDataTypes {
             }
             
             gameManager.SetStateData(stateType, new FloatData(
+            
                 floatData, targetData, compareType
                 
             ));
