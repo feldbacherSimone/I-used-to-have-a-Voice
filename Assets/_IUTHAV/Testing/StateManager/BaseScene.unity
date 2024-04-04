@@ -1709,7 +1709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9b8f1e602d5f946aec30b8ae4e3162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateType: 0
+  stateType: 100
 --- !u!4 &1521453174
 Transform:
   m_ObjectHideFlags: 0
@@ -1737,7 +1737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9b8f1e602d5f946aec30b8ae4e3162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateType: 1
+  stateType: 101
 --- !u!114 &1521453176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1750,7 +1750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9b8f1e602d5f946aec30b8ae4e3162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateType: 2
+  stateType: 102
 --- !u!1 &1593965362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,8 +2157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc3eee8a9fdad34b8f9390306c63c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  observedStates: 000000000100000002000000
-  affectedState: 3
+  observedStates: 640000006500000066000000
+  affectedState: 103
   isDebug: 0
 --- !u!114 &2026770158
 MonoBehaviour:
@@ -2172,9 +2172,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2563bde6ee0584286a6fc0457234f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStates: {fileID: 11400000, guid: c7695d3ff9c9914458e7636d9d3b8dcb, type: 2}
+  sceneGameStatesObject: {fileID: 11400000, guid: c7695d3ff9c9914458e7636d9d3b8dcb,
+    type: 2}
+  persistentGameStatesObject: {fileID: 11400000, guid: c0cfd6acf6240cd4bac98ba0dd943bba,
+    type: 2}
   gameStateBehaviours:
-  - stateType: 0
+  - stateType: 100
     onFinish:
       m_PersistentCalls:
         m_Calls:
@@ -2190,7 +2193,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - stateType: 1
+  - stateType: 101
     onFinish:
       m_PersistentCalls:
         m_Calls:
@@ -2206,7 +2209,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - stateType: 2
+  - stateType: 102
     onFinish:
       m_PersistentCalls:
         m_Calls:
@@ -2222,7 +2225,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - stateType: 3
+  - stateType: 103
     onFinish:
       m_PersistentCalls:
         m_Calls:

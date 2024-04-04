@@ -10,30 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Act1Data
+  m_Name: PersistentData
   m_EditorClassIdentifier: Assembly-CSharp:_IUTHAV.Core_Programming.Gamemode:GameStatesObject
+  resetStatesOnUnload: 0
+  dataType: 1
   gameStates:
-  - stateType: 0
-    onStateCompleted:
-      m_PersistentCalls:
-        m_Calls: []
-    resetOnUnload: 1
-    isFinished: 0
   - stateType: 1
     onStateCompleted:
       m_PersistentCalls:
         m_Calls: []
-    resetOnUnload: 1
+    resetOnUnload: 0
     isFinished: 0
-  - stateType: 2
-    onStateCompleted:
-      m_PersistentCalls:
-        m_Calls: []
-    resetOnUnload: 1
-    isFinished: 0
-  - stateType: 3
-    onStateCompleted:
-      m_PersistentCalls:
-        m_Calls: []
-    resetOnUnload: 1
-    isFinished: 0
+  regenerateList: 0
