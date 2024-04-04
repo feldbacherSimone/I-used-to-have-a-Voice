@@ -10,12 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Scene3Data
+  m_Name: SC1_Data
   m_EditorClassIdentifier: Assembly-CSharp:_IUTHAV.Core_Programming.Gamemode:GameStatesObject
   resetStatesOnUnload: 1
-  dataType: 4
+  statePrefix: 2
   gameStates:
-  - stateType: 300
+  - stateType: 100
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 1
+    isFinished: 0
+  - stateType: 101
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 1
+    isFinished: 0
+  - stateType: 102
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 1
+    isFinished: 0
+  - stateType: 103
     onStateCompleted:
       m_PersistentCalls:
         m_Calls: []

@@ -1,7 +1,8 @@
+using _IUTHAV.Core_Programming.Gamemode;
 using _IUTHAV.Core_Programming.Gamemode.CustomDataTypes;
 using UnityEngine;
 
-namespace _IUTHAV.Core_Programming.Gamemode.Conditions {
+namespace _IUTHAV.BehaviourScripts.Conditions {
     public class TransformData : MonoBehaviour {
 
         [SerializeField] private StateType stateType;

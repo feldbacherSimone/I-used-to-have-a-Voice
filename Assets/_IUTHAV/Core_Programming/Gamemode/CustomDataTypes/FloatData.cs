@@ -33,14 +33,14 @@ namespace _IUTHAV.Core_Programming.Gamemode.CustomDataTypes {
             switch (_compareType) {
                 case CompareType.LowerThan:
                     return _floatData < _targetData;
-                    break;
+                
                 case CompareType.Equal:
                     return Math.Abs(_floatData - _targetData) < 0.1f;
-                    break;
+                
                     
                 case CompareType.BiggerThan:
                     return _floatData > _targetData;
-                    break;
+                
                 default:
                     return false;
             }

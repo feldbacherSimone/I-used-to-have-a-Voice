@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using Unity.IntegerTime;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace _IUTHAV.Core_Programming.Gamemode {
+
+#region ScriptableObject Implementation
 
     [CreateAssetMenu(fileName = "GameStatesObject", menuName = "ScriptableObjects/GameStatesObject", order = 2)]
     public class GameStatesObject : ScriptableObject {
         [Space(10)]
         [SerializeField] private bool resetStatesOnUnload = true;
-        [SerializeField] private DataType dataType;
+        [FormerlySerializedAs("prefix")] [FormerlySerializedAs("dataType")] [SerializeField] private StatePrefix statePrefix;
+        public StatePrefix StatePrefix => statePrefix;
         [Space(10)]
         [SerializeField] private List<GameState> gameStates;
         [Space(10)]
@@ -29,17 +33,17 @@ namespace _IUTHAV.Core_Programming.Gamemode {
             gameStates.Clear();
             
             string idString = "PER";
-                switch (dataType) {
-                    case DataType.Persistent:
+                switch (statePrefix) {
+                    case StatePrefix.PER:
                         idString = "PER";
                         break;
-                    case DataType.Scene1:
+                    case StatePrefix.SC1:
                         idString = "SC1";
                         break;
-                    case DataType.Scene2:
+                    case StatePrefix.SC2:
                         idString = "SC2";
                         break;
-                    case DataType.Scene3:
+                    case StatePrefix.SC3:
                         idString = "SC3";
                         break;
                 }
@@ -55,6 +59,8 @@ namespace _IUTHAV.Core_Programming.Gamemode {
         }
     }
 
+#endregion
+    
     [Serializable]
     public class GameState {
 
@@ -68,10 +74,11 @@ namespace _IUTHAV.Core_Programming.Gamemode {
         public IFinishable StateData => _stateData;
 
         [HideInInspector] public bool resetOnUnload = true;
+        [HideInInspector] public bool isFreeze;
 
         [SerializeField] private bool isFinished;
         public bool IsFinished => isFinished;
-
+        
         public GameState(StateType stateType, bool resetOnUnload) {
             this.stateType = stateType;
             this.resetOnUnload = resetOnUnload;
@@ -108,12 +115,29 @@ namespace _IUTHAV.Core_Programming.Gamemode {
                 isFinished = true;
                 InvokeDataChangedEvent();
                 onStateCompleted.Invoke();
+
+                if (isFreeze) {
+                    _stateData = null;
+                }
+                
+            }
+        }
+
+        public void UnFinish() {
+            if (isFinished && !isFreeze) {
+                isFinished = false;
+                InvokeDataChangedEvent();
             }
         }
 
         public override string ToString() {
+
+            string eventListener = (onStateCompleted?.GetPersistentEventCount() > 0)
+                ? onStateCompleted.GetPersistentMethodName(0)
+                : "None";
+                
             return (stateType + " | OnComplete Methodname: " +
-                    onStateCompleted?.GetPersistentMethodName(0) + " | StateData: " + StateData + " | isFinished: " + isFinished);
+                    eventListener + " | StateData: " + StateData + " | isFinished: " + isFinished);
         }
 
         public void Reset(bool forceReset = false) {
