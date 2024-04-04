@@ -15,6 +15,8 @@ namespace _IUTHAV.Core_Programming.Gamemode {
     public class GameStateBehaviour {
         public StateType stateType;
         public UnityEvent onFinish;
+        [Header("Finish Behaviours")]
+        [Tooltip("Will set any Data assigned to this state to null")] public bool isFreeze;
     }
 
 #endregion
@@ -23,10 +25,10 @@ namespace _IUTHAV.Core_Programming.Gamemode {
     
         private bool _isGamePaused;
         public bool IsGamePaused => _isGamePaused;
-        
+
         [SerializeField] private GameStatesObject sceneGameStatesObject;
         [SerializeField] private GameStatesObject persistentGameStatesObject;
-
+        
         [SerializeField] private GameStateBehaviour[] gameStateBehaviours;
         
         [SerializeField] private bool isDebug;
@@ -41,6 +43,10 @@ namespace _IUTHAV.Core_Programming.Gamemode {
             Configure();
         }
 
+        private void Start() {
+            LogStates();
+        }
+
         private void OnDestroy() {
             Dispose();
         }
@@ -48,6 +54,10 @@ namespace _IUTHAV.Core_Programming.Gamemode {
 #endregion
 
 #region Public Functions
+
+        public StatePrefix GetCurrentSceneType() {
+            return sceneGameStatesObject.StatePrefix;
+        }
 
         public void PauseGame(bool pause) {
         
@@ -78,7 +88,7 @@ namespace _IUTHAV.Core_Programming.Gamemode {
             gameState?.SetStateData(finishable);
         }
 
-        public void UpdateState(StateType stateType, object obj) {
+        public void UpdateStateData(StateType stateType, object obj) {
             GameState gameState = GetState(stateType);
             if (gameState?.StateData == null) {
                 LogWarning("No data has been set to [" + stateType + "] yet. Using most generic class");
@@ -124,7 +134,6 @@ namespace _IUTHAV.Core_Programming.Gamemode {
             _pageController = PageController.Instance;
             PopulateStatesTable();
             AssignDelegates();
-            LogStates();
             SceneLoader.Enable();
         }
 
@@ -169,7 +178,8 @@ namespace _IUTHAV.Core_Programming.Gamemode {
                 GameState state = (GameState)_mStates[behaviour.stateType];
                 state.onStateCompleted = behaviour.onFinish;
                 behaviour.onFinish = null;
-                
+                state.isFreeze = behaviour.isFreeze;
+
                 state.Enable();
             }
         }

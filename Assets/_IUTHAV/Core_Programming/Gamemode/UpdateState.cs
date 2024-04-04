@@ -13,16 +13,14 @@ namespace _IUTHAV.Core_Programming.Gamemode {
             _gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         }
 
-        public void IncrementFloatState(int value) {
-            if (_gameManager.GetState(stateType).StateData == null) {
-                _gameManager.SetStateData(stateType, new FloatData(0, 5f));
-            }
-            _gameManager.UpdateState(stateType, ((float)_gameManager.GetState(stateType).StateData.GetData()) + value);
-        }
-
         public void FinishState() {
         
             _gameManager.FinishState(stateType);
+        }
+
+        public void UnFinishState() {
+            
+            _gameManager.GetState(stateType).UnFinish();
         }
         
     }

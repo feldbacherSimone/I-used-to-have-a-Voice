@@ -87,7 +87,7 @@ namespace _IUTHAV.Core_Programming.Scene {
             SceneManager.LoadScene(type.ToString(), _loadList[type].loadSceneMode);
         }
 
-        private static async void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode) {
+        private static void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode) {
             
             Log("Awaiting load time of : " + scene.name.ToString() + ": " + _loadList[scene.name.ToString()].loadTime);
 
@@ -103,8 +103,7 @@ namespace _IUTHAV.Core_Programming.Scene {
         }
         
         private static void LogWarning(string msg) {
-            if (!IsDebug) return;
-            Debug.LogWarning("[SceneLoader] " + msg);
+            if (IsDebug)Debug.LogWarning("[SceneLoader] " + msg);
         }
 
 #endregion

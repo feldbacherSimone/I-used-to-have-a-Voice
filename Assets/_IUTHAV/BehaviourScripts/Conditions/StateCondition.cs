@@ -1,8 +1,9 @@
 using System.Collections;
+using _IUTHAV.Core_Programming.Gamemode;
 using UnityEngine;
 
-namespace _IUTHAV.Core_Programming.Gamemode {
-    public class FinishCondition : MonoBehaviour {
+namespace _IUTHAV.BehaviourScripts.Conditions {
+    public class StateCondition : MonoBehaviour {
         
         [SerializeField] private StateType[] observedStates;
         [SerializeField] private StateType affectedState;
