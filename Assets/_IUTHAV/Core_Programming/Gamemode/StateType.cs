@@ -14,7 +14,7 @@ namespace _IUTHAV.Core_Programming.Gamemode {
     /// Example: SC1_ACTFINISHED**_1**
     ///
     /// Not all States need a Suffix. If their behaviour is unique, ommit the suffix entirely
-    /// Example: SC1_ReachedScrollTrigger
+    /// Example: SC1_ScrollTrigger
     ///
     /// This is used so states can be trimmed using '_' and their pre/suffixes can be changed
     /// </summary>
@@ -27,16 +27,21 @@ namespace _IUTHAV.Core_Programming.Gamemode {
         PER_State_1 = 1,
         
         //SCENE 1 States
-        SC1_ReachedScrollTrigger = 100,
+        SC1_ScrollTrigger = 100,
         SC1_ActFinished_0,
         SC1_ActFinished_1,
         SC1_ActFinished_2,
+        
+        SC1_SphereAppears = 130,
 
         //SCENE 2 States
-        SC2_ReachedScrollEnd = 200,
+        SC2_ScrollTrigger = 200,
+        SC2_ActFinished_0,
+        SC2_ActFinished_1,
+        SC2_ActFinished_2,
         
         //SCENE 3 States
-        SC3_ReachedScrollEnd = 300,
+        SC3_NextActTrigger = 300,
     
     }
 

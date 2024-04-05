@@ -195,7 +195,7 @@ namespace _IUTHAV.Core_Programming.Gamemode {
             }
         }
 
-        private void LogStates() {
+        public void LogStates() {
             Log("Current states: \n ------------");
             foreach (GameState state in _mStates.Values) {
                 Log("    " + state + "\n");
