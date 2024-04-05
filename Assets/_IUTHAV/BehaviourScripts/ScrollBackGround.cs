@@ -3,6 +3,8 @@ using _IUTHAV.Core_Programming.Gamemode;
 using _IUTHAV.Core_Programming.Gamemode.CustomDataTypes;
 using _IUTHAV.Core_Programming.Utility;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _IUTHAV.BehaviourScripts {
@@ -11,9 +13,9 @@ namespace _IUTHAV.BehaviourScripts {
     
     [Serializable]
     public class Bookmark {
-        public float trigger;
+        public float triggerPoint;
         public float endpoint;
-        [Tooltip("Set to make the trigger finish a specified state. Will FREEZE that state upon finish!")]
+        [Tooltip("Set to make the trigger finish a specified state. Will FREEZE that state upon finish!\n Choosing 'None' will set the 'SCX_ScrollTrigger' State to 'finished' until the next bookmark is active OR the user scrolls outside the triggerzone")]
         public StateType customState = StateType.None;
         
     }
@@ -39,22 +41,29 @@ namespace _IUTHAV.BehaviourScripts {
         private void OnDrawGizmos() {
 
             Gizmos.matrix = canvasRect.localToWorldMatrix;
+            var rect = bgRect.rect;
+            var localPosition = bgRect.localPosition;
             
             Gizmos.color = Color.red;
             foreach (var f in bookmarks) {
-                var localPosition = bgRect.localPosition;
-                var rect = bgRect.rect;
                 Gizmos.DrawLine(new Vector3(-rect.width/2, -f.endpoint + localPosition.y), new Vector3(rect.width/2, -f.endpoint + localPosition.y));
             }
-            Gizmos.color = Color.yellow;
-            foreach (var f in bookmarks) {
-                var localPosition = bgRect.localPosition;
-                var rect = bgRect.rect;
-                Gizmos.DrawLine(new Vector3(-rect.width/2, -f.trigger + localPosition.y), new Vector3(-rect.width/2.5f, -f.trigger + localPosition.y));
-                Gizmos.DrawLine(new Vector3(rect.width/2.5f, -f.trigger + localPosition.y), new Vector3(rect.width/2, -f.trigger + localPosition.y));
-            }
-
             
+            foreach (var f in bookmarks) {
+                
+                if (f.customState != StateType.None) {
+                    Gizmos.color = Color.yellow;
+                }
+                else {
+                    Gizmos.color = Color.white;
+                }
+                Gizmos.DrawLine(new Vector3(-rect.width/2, -f.triggerPoint + localPosition.y), new Vector3(-rect.width/2.5f, -f.triggerPoint + localPosition.y));
+                Gizmos.DrawLine(new Vector3(rect.width/2.5f, -f.triggerPoint + localPosition.y), new Vector3(rect.width/2, -f.triggerPoint + localPosition.y));
+            }
+            Gizmos.color = Color.magenta;
+            float currentBmF = bookmarks[currentBmIndex].triggerPoint;
+            Gizmos.DrawLine(new Vector3(-rect.width/3, -currentBmF + localPosition.y), new Vector3(rect.width/3, -currentBmF + localPosition.y));
+
         }
 
         private void Start() {
@@ -84,8 +93,6 @@ namespace _IUTHAV.BehaviourScripts {
 
         public void NextBookmark() {
 
-            FinishCurrentActState();
-
             if (currentBmIndex < bookmarks.Length - 1) {
                 _mCurrentTriggeredState.UnFinish();
                 currentBmIndex++;
@@ -103,17 +110,22 @@ namespace _IUTHAV.BehaviourScripts {
 #region Private Functions
 
         private void SetTriggeredStateData() {
-            if (bookmarks[currentBmIndex].customState == StateType.None) {
-                StateType contextSensitiveState = Typeconverter.ChangePreAndSuffix(_mGameManager.GetCurrentSceneType(), StateType.SC1_ReachedScrollTrigger);
+
+            bool isScrollTrigger = bookmarks[currentBmIndex].customState == StateType.None;
+            
+            if (isScrollTrigger) {
+                StateType contextSensitiveState = Typeconverter.ChangePreAndSuffix(_mGameManager.GetCurrentSceneType(), StateType.SC1_ScrollTrigger);
                 _mCurrentTriggeredState = _mGameManager.GetState(contextSensitiveState);
             }
             else {
                 _mCurrentTriggeredState = _mGameManager.GetState(bookmarks[currentBmIndex].customState);
                 _mCurrentTriggeredState.isFreeze = true;
+                Log("Next bookmark is a frozen Trigger of type [" + _mCurrentTriggeredState.StateType + "]");
             }
+            
             _mCurrentTriggeredState.SetStateData(new FloatData(
                 bgRect.localPosition.y,
-                bookmarks[currentBmIndex].trigger - _mBgOffset
+                bookmarks[currentBmIndex].triggerPoint - _mBgOffset
                 ));
         }
 
@@ -122,31 +134,14 @@ namespace _IUTHAV.BehaviourScripts {
             _mCurrentTriggeredState.UpdateData(bgRect.localPosition.y);
         }
 
-        private void FinishCurrentActState() {
-
-            Log("Finishing current Act [" + (currentBmIndex) + "]");
-            
-            StateType contextSensitiveState = Typeconverter.ChangePreAndSuffix(
-                _mGameManager.GetCurrentSceneType(), 
-                StateType.SC1_ActFinished_0,
-                currentBmIndex
-            );
-            
-            _mGameManager.GetState(contextSensitiveState).Finish();
-        }
-
         private void StrechBackground() {
 
-            bgRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, bookmarks[currentBmIndex].endpoint + 1);
+            bgRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, bookmarks[currentBmIndex].endpoint);
         }
 
         private void Log(string msg) {
             if (!isDebug) return;
             Debug.Log("[ScrollBackground] " + msg);
-        }
-        private void LogWarning(string msg) {
-            if (!isDebug) return;
-            Debug.LogWarning("[ScrollBackground] " + msg);
         }
 
 #endregion
