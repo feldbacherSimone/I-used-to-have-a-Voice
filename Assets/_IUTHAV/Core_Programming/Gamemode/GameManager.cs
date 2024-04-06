@@ -6,6 +6,7 @@ using _IUTHAV.Core_Programming.Scene;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using Yarn.Unity;
 
 namespace _IUTHAV.Core_Programming.Gamemode {
     
@@ -108,7 +109,7 @@ namespace _IUTHAV.Core_Programming.Gamemode {
             }
             
         }
-
+        
         public void FinishState(string stateType) {
             if (Enum.TryParse(stateType, out StateType type)) {
                 FinishState(type);
