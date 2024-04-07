@@ -1,0 +1,52 @@
+﻿title: Scene1TestDialogue
+tags:
+---
+
+//====ACT1====
+
+Fabian: Bla bla 
+Em_Past: Mhm.
+Fabian: Bla bla bla bla
+Em_Past: Jap.
+Fabian: bla bla bla bla bla
+Em_Past: Ja, versteh ich.
+Fabian: Bla bla bla! Bla blu blib bla
+Fabian: Blemi?
+Fabian: Emmi?
+
+//====ACT2====
+
+Fabian: Und Emmi, bist du schon aufgeregt?
+-> Em_Past: (gähn) für solche Gefühle ist es noch zu früh
+    Fabian: Weniger Zeit mit hübschmachen verbringen, dann kannst ausschlafen.
+
+-> Em_Past: Ein kleines bisschen, aber das ist ja normal
+    Fabian: Hah! Das sagt der Bursch auch immer
+    Fabian: Das vergeht sicher, so was schweres geb ich dir eh nicht auf
+
+//TODO: Seperate Ems questions with a more elegant solution than Fabian saying "..."
+
+Fabian: ...
+-> Em_Past: Michi ist also krank?
+    Fabian: Nein, nein der junge hat heute Führerscheinprüfung
+    Fabian: Von einer Erkältung würd der sich nicht unterkriegen lassen
+-> Em_Past: Warum nimmst du mich so spontan mit.
+    Fabian: Der Bursch, unser Lehrling, kann leider nicht mit.
+    Fabian: Und für dich ist es ja auch keine schlechte Übung.
+
+Fabian: Du bist ja erst seit einer Woche da
+-> Em_Past: Eigentlich schon 3, erinnerst du dich nicht
+    Fabian: ahhh, ja bei uns ist grad viel los, da vergisst man leicht
+-> Em_Past: ... ja so in etwa
+
+Fabian: Das ist eine tolle Gelegenheit, dann verbringst du dein ganzes Praktikum nicht nur in der Firma.
+
+Em_Past: Der Chef gibt mir ja immer so trockene Büroarbeit auf-
+Fabian: So ordentlich wie du das alles machst, der Bursch könnt das gar nicht. Der ist besser im Hand anlegen.
+-> Em_Past: Equipment einladen schaff ich auch noch.
+    Em_Past: Das Ganze Kamerazeug
+-> Em_Past: So ordentlich bin ich ja gar nicht...
+
+Fabian: ...
+
+===
