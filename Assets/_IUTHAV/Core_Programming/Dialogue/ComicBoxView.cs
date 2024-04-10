@@ -5,9 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
 using Yarn.Unity;
-using ColorUtility = Unity.VisualScripting.ColorUtility;
 
 namespace _IUTHAV.Core_Programming.Dialogue {
 
@@ -17,27 +15,34 @@ namespace _IUTHAV.Core_Programming.Dialogue {
     public class CharacterBox {
 
         public string name;
-        public GameObject characterBox;
+        public GameObject currentCBoxTransform;
         public GameObject characterBoxPrefab;
-        public Transform[] boxPositions;
         
+        [SerializeField] private Transform[] boxTransforms;
         private int _mIndex;
+        private GameObject _mClonedBox;
 
+        public void SetClonedBox(GameObject box) {
+            _mClonedBox = box;
+        }
+        public void ShowClonedBox(bool show) {
+            _mClonedBox.SetActive(show);
+        }
         public void NextPosition() {
-            if (_mIndex < boxPositions.Length - 1) _mIndex++;
-            characterBox.GetComponent<Transform>().SetPositionAndRotation(
-                boxPositions[_mIndex].position,
-                boxPositions[_mIndex].rotation
+            if (_mIndex < boxTransforms.Length - 1) _mIndex++;
+            currentCBoxTransform.GetComponent<Transform>().SetPositionAndRotation(
+                boxTransforms[_mIndex].position,
+                boxTransforms[_mIndex].rotation
             );
         }
 
         public Transform CurrentTransform() {
-            return boxPositions[_mIndex];
+            return boxTransforms[_mIndex];
         }
     }
 
 #endregion
-    public class ComicBubbleView : DialogueViewBase {
+    public class ComicBoxView : DialogueViewBase {
         
 #region Yarn LineView Params
 
@@ -100,26 +105,25 @@ namespace _IUTHAV.Core_Programming.Dialogue {
         /// </summary>
         Effects.CoroutineInterruptToken currentStopToken = new Effects.CoroutineInterruptToken();
 #endregion
-        
-        [Header("ComicBubble Parameters")]
+
+        [FormerlySerializedAs("panelManager")]
+        [Header("ComicBox Parameters")] 
+        [SerializeField] private TempPanelManager tempPanelManager;
         [SerializeField] private CharacterBox[] characterBoxes;
+        [SerializeField] private bool cloneBoxes;
+        [SerializeField] private bool hideBoxesAfterPanelSwitch;
+        [SerializeField] private ContinueMode continueMode;
 
-        [SerializeField] private bool hideBoxAfterPanelSwitch;
-        [Tooltip("This is the chat message bubble UI object (what we are cloning for each message!)... NOT the container group for all chat bubbles")]
-
-        private bool _mIsFirstMessage = true;
         private Dictionary<string, CharacterBox> _mCharacterBoxes;
-        private string _mCharacterName;
+        private string _mCurrentCharacter;
 
-        private void Awake()
-        {
+        private void Awake() {
             canvasGroup.alpha = 0;
             canvasGroup.blocksRaycasts = false;
             Configure();
         }
 
-        private void Reset()
-        {
+        private void Reset() {
             canvasGroup = GetComponentInParent<CanvasGroup>();
         }
         
@@ -190,7 +194,9 @@ namespace _IUTHAV.Core_Programming.Dialogue {
 
         /// <inheritdoc/>
         public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished) {
-            _mCharacterName = dialogueLine.CharacterName;
+        
+            SetCurrentCharacter(dialogueLine.CharacterName);
+            
             // Stop any coroutines currently running on this line view (for
             // example, any other RunLine that might be running)
             StopAllCoroutines();
@@ -493,33 +499,69 @@ namespace _IUTHAV.Core_Programming.Dialogue {
         }
 #endregion
 
+#region Public Functions
+
         [YarnCommand("nextPanel")]
-        public void ContinueNextPanel() {
+        public void NextPanel() {
             
-            
+            UpdateCharacterBoxes();
+            tempPanelManager.NextPanel();
+            UpdateCharacterBoxPositions();
             
         }
 
         public string GetCurrentCharacter() {
-            return _mCharacterName;
+            return _mCurrentCharacter;
         }
         
-        public void CloneMessageBoxToHistory(string cName) {
-            // if this isn't the very first message, then clone current message box and move it up
-            if ( _mIsFirstMessage == false ) {
-                GameObject box = _mCharacterBoxes[cName].characterBoxPrefab;
-                var oldClone = Instantiate( 
-                    box,
+#endregion
+
+#region Private Functions
+        private void UpdateCharacterBoxes() {
+
+            if (hideBoxesAfterPanelSwitch) {
+                foreach (string cName in tempPanelManager.GetCurrentPanel().panelCharacters) {
+                    _mCharacterBoxes[cName].ShowClonedBox(false);
+                }
+            }
+            
+        }
+
+        private void UpdateCharacterBoxPositions() {
+        
+            foreach (string cName in tempPanelManager.GetCurrentPanel().panelCharacters) {
+                _mCharacterBoxes[cName].NextPosition();
+            }
+            
+        }
+
+        private void SetCurrentCharacter(string newCharacter) {
+        
+            if (!newCharacter.Equals(_mCurrentCharacter)) {
+                //Clone a Characters box, when another conversant starts speaking
+                CloneCharacterBox(_mCurrentCharacter);
+                _mCurrentCharacter = newCharacter;
+            }
+            else {
+                //Hide box, when a new one would arrive
+                _mCharacterBoxes[_mCurrentCharacter].ShowClonedBox(false);
+            }
+            
+        }
+        
+        private void CloneCharacterBox(string cName) {
+        
+            CharacterBox cBox = _mCharacterBoxes[cName];
+            
+            var oldClone = Instantiate( 
+                    cBox.characterBoxPrefab,
                     _mCharacterBoxes[cName].CurrentTransform().position,
                     _mCharacterBoxes[cName].CurrentTransform().rotation,
-                    _mCharacterBoxes[cName].characterBox.GetComponent<Transform>()
+                    _mCharacterBoxes[cName].currentCBoxTransform.GetComponent<Transform>()
                 );
-                
-            }
-            _mIsFirstMessage = false;
-
-            // reset message box and configure based on current settings
-            _mCharacterBoxes[cName].characterBox.SetActive(true);
+            cBox.SetClonedBox(oldClone);
+            cBox.ShowClonedBox(true);
+            
         }
 
         private void Configure() {
@@ -530,6 +572,7 @@ namespace _IUTHAV.Core_Programming.Dialogue {
             }
 
         }
+#endregion
     }
         
 }

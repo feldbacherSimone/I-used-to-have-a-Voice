@@ -11,7 +11,7 @@ namespace _IUTHAV.Core_Programming.Dialogue {
 
     public class Director : MonoBehaviour {
 
-        [SerializeField] private ComicBubbleView lineView;
+        [SerializeField] private ComicBoxView lineView;
         [SerializeField] private GameObject continueButton;
         [SerializeField] private CharacterBox[] characterBoxes;
 
