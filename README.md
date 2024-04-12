@@ -49,3 +49,14 @@ Dialogue
 End Refelection 
 - [ ] how will the text be displayed? Scroll, typewriter, handwritten look? 
 - [ ] Transition into main menue
+
+## Style Concept done 
+- [ ] Finished overall character concept 
+	- [ ] The Car 
+	- [ ] The Train 
+	- [ ] The Message
+- [ ] Define Character style in engine 
+- [ ] Define enviornment look 
+	- What kind of shading 
+	- [ ] Assetliste
+- [ ] Color Script for all 3 scenes + Main Menu
