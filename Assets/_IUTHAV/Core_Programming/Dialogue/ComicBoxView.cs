@@ -5,49 +5,17 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
+using Yarn.Markup;
 using Yarn.Unity;
 
 namespace _IUTHAV.Core_Programming.Dialogue {
-
-#region Helper Classes
-
-    [Serializable]
-    public class CharacterBox {
-
-        public string name;
-        public GameObject currentCBoxTransform;
-        public GameObject characterBoxPrefab;
-        
-        [SerializeField] private Transform[] boxTransforms;
-        private int _mIndex;
-        private GameObject _mClonedBox;
-
-        public void SetClonedBox(GameObject box) {
-            _mClonedBox = box;
-        }
-        public void ShowClonedBox(bool show) {
-            _mClonedBox.SetActive(show);
-        }
-        public void NextPosition() {
-            if (_mIndex < boxTransforms.Length - 1) _mIndex++;
-            currentCBoxTransform.GetComponent<Transform>().SetPositionAndRotation(
-                boxTransforms[_mIndex].position,
-                boxTransforms[_mIndex].rotation
-            );
-        }
-
-        public Transform CurrentTransform() {
-            return boxTransforms[_mIndex];
-        }
-    }
-
-#endregion
+    
     public class ComicBoxView : DialogueViewBase {
         
 #region Yarn LineView Params
-
-        [SerializeField]
-        internal CanvasGroup canvasGroup;
+        
+        private CanvasGroup _canvasGroup;
         
         [SerializeField]
         internal bool useFadeEffect = true;
@@ -108,23 +76,25 @@ namespace _IUTHAV.Core_Programming.Dialogue {
 
         [FormerlySerializedAs("panelManager")]
         [Header("ComicBox Parameters")] 
-        [SerializeField] private TempPanelManager tempPanelManager;
-        [SerializeField] private CharacterBox[] characterBoxes;
-        [SerializeField] private bool cloneBoxes;
-        [SerializeField] private bool hideBoxesAfterPanelSwitch;
+        [SerializeField] private ComicBox[] characterBoxes;
+        [SerializeField] private bool cloneBoxesAfterPanelSwitch;
+        [SerializeField] private bool cloneBoxesAfterCharacterSwitch;
         [SerializeField] private ContinueMode continueMode;
+        [Space(10)] [SerializeField] private bool isDebug;
 
-        private Dictionary<string, CharacterBox> _mCharacterBoxes;
+        private Dictionary<string, ComicBox> _mComicBoxes;
         private string _mCurrentCharacter;
+        private MarkupParseResult _mCurrentLine;
 
         private void Awake() {
-            canvasGroup.alpha = 0;
-            canvasGroup.blocksRaycasts = false;
+            _canvasGroup = characterBoxes[0].characterBoxPrefab.GetComponent<CanvasGroup>();
+            _canvasGroup.alpha = 0;
+            _canvasGroup.blocksRaycasts = false;
             Configure();
         }
 
         private void Reset() {
-            canvasGroup = GetComponentInParent<CanvasGroup>();
+            _canvasGroup = GetComponentInParent<CanvasGroup>();
         }
         
 #region Yarn Functions
@@ -140,20 +110,20 @@ namespace _IUTHAV.Core_Programming.Dialogue {
         {
             // disabling interaction temporarily while dismissing the line
             // we don't want people to interrupt a dismissal
-            var interactable = canvasGroup.interactable;
-            canvasGroup.interactable = false;
+            var interactable = _canvasGroup.interactable;
+            _canvasGroup.interactable = false;
 
             // If we're using a fade effect, run it, and wait for it to finish.
             if (useFadeEffect)
             {
-                yield return StartCoroutine(Effects.FadeAlpha(canvasGroup, 1, 0, fadeOutTime, currentStopToken));
+                yield return StartCoroutine(Effects.FadeAlpha(_canvasGroup, 1, 0, fadeOutTime, currentStopToken));
                 currentStopToken.Complete();
             }
             
-            canvasGroup.alpha = 0;
-            canvasGroup.blocksRaycasts = false;
+            _canvasGroup.alpha = 0;
+            _canvasGroup.blocksRaycasts = false;
             // turning interaction back on, if it needs it
-            canvasGroup.interactable = interactable;
+            _canvasGroup.interactable = interactable;
             
             if (onDismissalComplete != null)
             {
@@ -173,7 +143,7 @@ namespace _IUTHAV.Core_Programming.Dialogue {
             // for now we are going to just immediately show everything
             // later we will make it fade in
             lineText.gameObject.SetActive(true);
-            canvasGroup.gameObject.SetActive(true);
+            _canvasGroup.gameObject.SetActive(true);
 
             int length;
             
@@ -184,18 +154,23 @@ namespace _IUTHAV.Core_Programming.Dialogue {
             lineText.maxVisibleCharacters = length;
 
             // Make the canvas group fully visible immediately, too.
-            canvasGroup.alpha = 1;
+            _canvasGroup.alpha = 1;
 
-            canvasGroup.interactable = true;
-            canvasGroup.blocksRaycasts = true;
+            _canvasGroup.interactable = true;
+            _canvasGroup.blocksRaycasts = true;
 
             onInterruptLineFinished();
         }
 
         /// <inheritdoc/>
         public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished) {
-        
-            SetCurrentCharacter(dialogueLine.CharacterName);
+
+            
+            
+            if (dialogueLine.CharacterName != null) {
+                SetCurrentCharacterDialogue(dialogueLine.CharacterName);
+            }
+            SetCurrentLine(dialogueLine.TextWithoutCharacterName);
             
             // Stop any coroutines currently running on this line view (for
             // example, any other RunLine that might be running)
@@ -210,7 +185,7 @@ namespace _IUTHAV.Core_Programming.Dialogue {
             IEnumerator PresentLine()
             {
                 lineText.gameObject.SetActive(true);
-                canvasGroup.gameObject.SetActive(true);
+                _canvasGroup.gameObject.SetActive(true);
 
                 // Hide the continue button until presentation is complete (if
                 // we have one).
@@ -249,7 +224,7 @@ namespace _IUTHAV.Core_Programming.Dialogue {
                 // finish.
                 if (useFadeEffect)
                 {
-                    yield return StartCoroutine(Effects.FadeAlpha(canvasGroup, 0, 1, fadeInTime, currentStopToken));
+                    yield return StartCoroutine(Effects.FadeAlpha(_canvasGroup, 0, 1, fadeInTime, currentStopToken));
                     if (currentStopToken.WasInterrupted)
                     {
                         // The fade effect was interrupted. Stop this entire
@@ -265,9 +240,9 @@ namespace _IUTHAV.Core_Programming.Dialogue {
                     var pauses = LineView.GetPauseDurationsInsideLine(text);
 
                     // setting the canvas all back to its defaults because if we didn't also fade we don't have anything visible
-                    canvasGroup.alpha = 1f;
-                    canvasGroup.interactable = true;
-                    canvasGroup.blocksRaycasts = true;
+                    _canvasGroup.alpha = 1f;
+                    _canvasGroup.interactable = true;
+                    _canvasGroup.blocksRaycasts = true;
 
                     yield return StartCoroutine(Effects.PausableTypewriter(
                         lineText,
@@ -300,8 +275,8 @@ namespace _IUTHAV.Core_Programming.Dialogue {
             lineText.maxVisibleCharacters = int.MaxValue;
 
             // Our view should at be at full opacity.
-            canvasGroup.alpha = 1f;
-            canvasGroup.blocksRaycasts = true;
+            _canvasGroup.alpha = 1f;
+            _canvasGroup.blocksRaycasts = true;
 
             // Show the continue button, if we have one.
             if (continueButton != null)
@@ -501,12 +476,19 @@ namespace _IUTHAV.Core_Programming.Dialogue {
 
 #region Public Functions
 
-        [YarnCommand("nextPanel")]
-        public void NextPanel() {
-            
-            UpdateCharacterBoxes();
-            tempPanelManager.NextPanel();
-            UpdateCharacterBoxPositions();
+        [YarnCommand("nextBox")]
+        public void NextBox(string cName = "Fabian") {
+
+            if (cName.Equals("all")) {
+                foreach (ComicBox box in _mComicBoxes.Values) {
+                    box.NextPosition();
+                }
+            }
+
+            if (cloneBoxesAfterPanelSwitch) {
+                CloneNewCharacterBox(cName);
+            }
+            _mComicBoxes[cName].NextPosition();
             
         }
 
@@ -517,60 +499,113 @@ namespace _IUTHAV.Core_Programming.Dialogue {
 #endregion
 
 #region Private Functions
-        private void UpdateCharacterBoxes() {
 
-            if (hideBoxesAfterPanelSwitch) {
-                foreach (string cName in tempPanelManager.GetCurrentPanel().panelCharacters) {
-                    _mCharacterBoxes[cName].ShowClonedBox(false);
-                }
-            }
-            
+        private void SetCurrentLine(MarkupParseResult characterText) {
+            _mCurrentLine = characterText;
         }
 
-        private void UpdateCharacterBoxPositions() {
-        
-            foreach (string cName in tempPanelManager.GetCurrentPanel().panelCharacters) {
-                _mCharacterBoxes[cName].NextPosition();
-            }
-            
-        }
+        private void SetCurrentCharacterDialogue(string newCharacter) {
 
-        private void SetCurrentCharacter(string newCharacter) {
-        
+            if (!CharacterExists(newCharacter)) return;
+            
             if (!newCharacter.Equals(_mCurrentCharacter)) {
+                
+                
+                
+                _canvasGroup = _mComicBoxes[newCharacter].characterBoxPrefab.GetComponent<CanvasGroup>();
+                lineText = _mComicBoxes[newCharacter].characterBoxPrefab.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+                
+                
                 //Clone a Characters box, when another conversant starts speaking
-                CloneCharacterBox(_mCurrentCharacter);
+                if (cloneBoxesAfterCharacterSwitch) {
+                    CloneNewCharacterBox(_mCurrentCharacter);
+                }
                 _mCurrentCharacter = newCharacter;
             }
-            else {
-                //Hide box, when a new one would arrive
-                _mCharacterBoxes[_mCurrentCharacter].ShowClonedBox(false);
-            }
+            
+            _mComicBoxes[newCharacter].ShowClonedBox(false);
             
         }
         
-        private void CloneCharacterBox(string cName) {
-        
-            CharacterBox cBox = _mCharacterBoxes[cName];
+        private void CloneNewCharacterBox(string cName) {
+
+            if (!CharacterExists(cName)) return;
             
-            var oldClone = Instantiate( 
+            UpdateMessageBoxSettings(cName);
+            
+            ComicBox cBox = _mComicBoxes[cName];
+            
+             GameObject oldClone = Instantiate( 
                     cBox.characterBoxPrefab,
-                    _mCharacterBoxes[cName].CurrentTransform().position,
-                    _mCharacterBoxes[cName].CurrentTransform().rotation,
-                    _mCharacterBoxes[cName].currentCBoxTransform.GetComponent<Transform>()
+                    cBox.CurrentTransform().position,
+                    cBox.CurrentTransform().rotation,
+                    cBox.CurrentTransform()
                 );
+            cBox.ShowClonedBox(false);
             cBox.SetClonedBox(oldClone);
             cBox.ShowClonedBox(true);
             
         }
+        
+        void UpdateMessageBoxSettings(string cName) {
+        
+            if (!CharacterExists(cName)) return;
+            
+            GameObject cBoxPrefab = _mComicBoxes[cName].characterBoxPrefab;
+            var bg = cBoxPrefab.GetComponent<Image>();
+            var message = cBoxPrefab.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+            message.text = _mCurrentLine.Text;
+            //message.color = currentTextColor;
+
+            var layoutGroup = cBoxPrefab.GetComponent<VerticalLayoutGroup>();
+            if (_mComicBoxes[cName].CurrentAlignment()) {
+                layoutGroup.padding.left = 32;
+                layoutGroup.padding.right = 0;
+                bg.transform.SetAsLastSibling();
+            }
+            else {
+                layoutGroup.padding.left = 0;
+                layoutGroup.padding.right = 32;
+                bg.transform.SetAsFirstSibling();
+            }
+
+            var rectTransform = cBoxPrefab.GetComponent<RectTransform>();
+            Rect rect = _mComicBoxes[cName].CurrentTransform().rect;
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rect.width);
+        }
+        
+        private bool CharacterExists(string cName) {
+            if (_mComicBoxes.ContainsKey(cName)) {
+                return true;
+            }
+            else {
+                LogWarning("Character [" + cName + "] does not exist!");
+                return false;
+            }
+        }
 
         private void Configure() {
 
-            _mCharacterBoxes = new Dictionary<string, CharacterBox>();
-            foreach (CharacterBox box in characterBoxes) {
-                _mCharacterBoxes.Add(box.name, box);
+            _mComicBoxes = new Dictionary<string, ComicBox>();
+            foreach (ComicBox box in characterBoxes) {
+                _mComicBoxes.Add(box.cName, box);
             }
 
+            _mCurrentCharacter = "None";
+
+            foreach (ComicBox box in _mComicBoxes.Values) {
+                box.NextPosition(true);
+            }
+        }
+        
+        private void Log(string msg) {
+            if (!isDebug) return;
+            Debug.Log("[ComicBoxView] " + msg);
+        }
+        
+        private void LogWarning(string msg) {
+            if (!isDebug) return;
+            Debug.LogWarning("[ComicBoxView] " + msg);
         }
 #endregion
     }
