@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace _IUTHAV.Scripts.Dialogue {
         private int _mIndex;
         private GameObject _mClonedBox;
         private bool _mFreezeClone;
+        private MarkupParseResult _mLastLine;
         
         private bool _positionToggle;
         [HideInInspector] public bool dismissNextConversantClone;
@@ -65,10 +67,9 @@ namespace _IUTHAV.Scripts.Dialogue {
             
             if (_mIndex < _comicBoxes.Count) {
                 ApplyPrefabParameters();
+                _positionToggle = true;
             }
-
-            _positionToggle = true;
-
+            
         }
 
         public bool CheckPositionToggle() {
@@ -89,7 +90,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             ShowClonedBox(true);
             
         }
-        public void ShowClonedBox(bool show) {
+        public void ShowClonedBox(bool show, bool fade = false) {
         
             if (_mClonedBox == null) return;
             
@@ -98,8 +99,15 @@ namespace _IUTHAV.Scripts.Dialogue {
                 _mClonedBox.GetComponent<CanvasGroup>().alpha = 1;
             }
             else if (!_mFreezeClone) {
-                Destroy(_mClonedBox);
-                _mClonedBox = null;
+
+                if (fade) {
+                    StartCoroutine(FadeAndDestroyClonedBox());
+                }
+                else {
+                    Destroy(_mClonedBox);
+                    _mClonedBox = null;
+                }
+                
             }
         }
 
@@ -110,7 +118,13 @@ namespace _IUTHAV.Scripts.Dialogue {
         public Vector3 GetContinueButtonPosition() {
             Vector3[] v = new Vector3[4];
             characterBoxPrefab.GetComponent<RectTransform>().GetWorldCorners(v);
-            return v[3];
+
+            if (CurrentCharacterBox().IsRightAlignment) {
+                return v[0];
+            }
+            else {
+                return v[3];
+            }
         }
         
 #endregion
@@ -129,30 +143,29 @@ namespace _IUTHAV.Scripts.Dialogue {
         }
 
         private void ApplyPrefabParameters() {
+        
+            var message = CharacterBoxPrefab.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+            message.text = _mLastLine.Text;
+            
+            message.alignment = (CurrentCharacterBox().IsRightAlignment)
+                ? TextAlignmentOptions.Right
+                : TextAlignmentOptions.Left;
             
             var boxTransform = _comicBoxes[_mIndex].BoxRectTransform;
-
-                var rect1 = boxTransform.rect;
-                characterPositionEmpty.rect.Set(
-                    rect1.x,
-                    rect1.y,
-                    rect1.width,
-                    rect1.height
-                );
-                characterPositionEmpty.transform.SetPositionAndRotation(
-                    boxTransform.position,
-                    boxTransform.rotation
-                );
-                
-                boxTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rect1.width);
+            characterPositionEmpty.transform.SetPositionAndRotation(
+                boxTransform.position,
+                boxTransform.rotation
+            );
+            var rectTransform = CharacterBoxPrefab.GetComponent<RectTransform>();
+            Rect rect = CurrentCharacterBox().BoxRectTransform.rect;
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rect.width);
             
         }
 
         private void UpdatePrefabParameters(MarkupParseResult line) {
             
             var bg = CharacterBoxPrefab.GetComponent<Image>();
-            var message = CharacterBoxPrefab.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-            message.text = line.Text;
+            _mLastLine = line;
             //message.color = currentTextColor;
 
             var layoutGroup = CharacterBoxPrefab.GetComponent<VerticalLayoutGroup>();
@@ -166,10 +179,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                 layoutGroup.padding.right = 32;
                 bg.transform.SetAsFirstSibling();
             }
-
-            var rectTransform = CharacterBoxPrefab.GetComponent<RectTransform>();
-            Rect rect = CurrentCharacterBox().BoxRectTransform.rect;
-            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rect.width);
+            
         }
         
         private GameObject InstantiateBox() {
@@ -181,6 +191,22 @@ namespace _IUTHAV.Scripts.Dialogue {
                     CurrentCharacterBox().gameObject.transform
             );
             return oldClone;
+        }
+
+        private IEnumerator FadeAndDestroyClonedBox() {
+
+            CanvasGroup group = _mClonedBox.GetComponentInChildren<CanvasGroup>();
+
+            for (float i = 100; i > 0; i -= 10) {
+
+                group.alpha = i/100f;
+                
+                yield return new WaitForSeconds(0.001f);
+                
+            }
+            
+            Destroy(_mClonedBox);
+            _mClonedBox = null;
         }
 
 #endregion
