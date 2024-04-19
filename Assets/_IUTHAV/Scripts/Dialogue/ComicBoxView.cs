@@ -75,7 +75,7 @@ namespace _IUTHAV.Scripts.Dialogue {
         [Space(10)] [SerializeField] private bool isDebug;
 
         private Dictionary<string, CharacterBoxManager> _mComicBoxes;
-        public string _mCurrentCharacter;
+        private string _mCurrentCharacter;
         private string _mPreviousCharacter;
         private MarkupParseResult _mCurrentLine;
         private bool _mClickedContinue;

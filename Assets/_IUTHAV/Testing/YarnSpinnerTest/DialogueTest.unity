@@ -2327,10 +2327,9 @@ MonoBehaviour:
   characters:
   - {fileID: 626608796}
   - {fileID: 1032192450}
-  cloneBoxesAfterPanelSwitch: 0
+  cloneBoxesAfterPanelSwitch: 1
   cloneBoxesAfterCharacterSwitch: 1
   isDebug: 1
-  _mCurrentCharacter: 
 --- !u!1001 &1452210300
 PrefabInstance:
   m_ObjectHideFlags: 0
