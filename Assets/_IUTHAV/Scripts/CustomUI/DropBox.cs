@@ -1,23 +1,29 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace _IUTHAV.Scripts.CustomUI {
     public class DropBox : MonoBehaviour {
 
-
         [SerializeField] protected bool isDebug;
+
+        protected DragAndDropUIElement CurrentElement;
+        protected bool IsFull;
         
-        void Start() {
+        void Awake () {
             Configure();
+        }
+
+        private void OnDestroy() {
+            Dispose();
         }
 
         protected void OnCollisionEnter2D(Collision2D other) {
         
             if (other.gameObject.TryGetComponent(out DragAndDropUIElement dropElement)) {
-
-                dropElement.DropCallback += OnDropElementDropped;
-                Log("Something just collided with me... " + dropElement.gameObject.name);
+                
+                CurrentElement = dropElement;
+                CurrentElement.DropCallback += OnDropElementDropped;
+                Log("Something just collided with me... " + CurrentElement.gameObject.name);
             }
             
         }
@@ -32,12 +38,20 @@ namespace _IUTHAV.Scripts.CustomUI {
             
         }
 
-        protected void OnDropElementDropped(DragAndDropUIElement dropElement, PointerEventData data) {
-            
+        protected virtual void OnDropElementDropped(DragAndDropUIElement dropElement, PointerEventData data) {
+
+            if (IsFull) {
+                dropElement.StartInvalidDropPointSequence();
+            }
+            else {
+                IsFull = true;
             dropElement.SnapToTarget(transform.position, () => {
                 dropElement.currentflag = DragableUIElement.FLAG_LOCK;
+                dropElement.StartValidDropPointSequence();
             });
             Log("You dropped something: " + dropElement.gameObject.name);
+            }
+            
         }
         
         protected void ConfigureCollider2D() {
@@ -54,6 +68,10 @@ namespace _IUTHAV.Scripts.CustomUI {
         
         protected void Configure() {
             ConfigureCollider2D();
+        }
+
+        protected void Dispose() {
+            if (CurrentElement != null ) CurrentElement.DropCallback -= OnDropElementDropped;
         }
 
         protected void Log(string msg) {

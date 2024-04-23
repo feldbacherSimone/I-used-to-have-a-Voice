@@ -1,31 +1,50 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 namespace _IUTHAV.Scripts.CustomUI {
     public class DragAndDropUIElement : DragableUIElement {
-        
+
+        [SerializeField] protected UnityEvent onValidDropSequence;
+        [SerializeField] protected UnityEvent onInvalidDropSequence;
+        [SerializeField] protected UnityEvent onDestructionSequence;
         public delegate void DropDelegate(DragAndDropUIElement dragAndDropUIElement, PointerEventData data);
         public DropDelegate DropCallback;
         protected Vector2 startingPosition;
         
-        private void Start() {
+        private void Awake() {
             EventTrigger trigger = gameObject.GetOrAddComponent<EventTrigger>();
             Configure(trigger);
+        }
+
+        public virtual void StartValidDropPointSequence() {
+            Log("Starting ValidDrop Sequence");
+            onValidDropSequence?.Invoke();
+        }
+
+        public virtual void StartInvalidDropPointSequence() {
+            Log("Starting InvalidDrop Sequence");
+            onInvalidDropSequence?.Invoke();
+        }
+
+        public virtual void StartDestructionSequence() {
+            Log("Starting Destruction Sequence");
+            onDestructionSequence?.Invoke();
+        }
+
+        protected override void OnBeginDragDelegate(BaseEventData data) {
+            startingPosition = transform.position;
+            base.OnBeginDragDelegate(data);
+            
         }
 
         protected override void OnDropDelegate(BaseEventData data) {
             base.OnDropDelegate(data);
             SnapToTarget(startingPosition);
             DropCallback?.Invoke(this, (PointerEventData)data);
-        }
-        
-        public override void OnDragDelegate(BaseEventData data) {
-        
-            base.OnDragDelegate(data);
-            Debug.Log("Doing more specific stuff");
-
         }
 
         protected void ConfigureCollider2D() {
