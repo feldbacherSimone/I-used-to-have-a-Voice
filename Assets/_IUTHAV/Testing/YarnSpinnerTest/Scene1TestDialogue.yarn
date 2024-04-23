@@ -9,7 +9,14 @@ Em_Past: Mhm.
 Fabian: Bla bla bla bla
 Em_Past: Jap.
 Em_Past: *Summt vor sich hin*
+
+Fabian: Und Emmi, bist du schon aufgeregt?
+-> Em_Past: hahaha wie witzig...
+    Fabian: Weniger Zeit mit hübschmachen verbringen, dann kannst ausschlafen.
+-> Em_Past: ich hoffe du wirst ermordet von 100 kätzchen
+
 Fabian: bla bla bla bla bla
+<<nextOption OptionsView>>
 Em_Past: Ja, versteh ich.
 <<nextBox ComicBoxView Fabian>>
 Fabian: Bla bla bla! Bla blu blib bla
@@ -20,23 +27,15 @@ Em_Past: Hm? ... oh sry, bin etwas weggedöst 0-0
 
 //====ACT2====
 
-Fabian: Und Emmi, bist du schon aufgeregt?
--> Em_Past: (gähn) für solche Gefühle ist es noch zu früh
-    Fabian: Weniger Zeit mit hübschmachen verbringen, dann kannst ausschlafen.
 
--> Em_Past: Ein kleines bisschen, aber das ist ja normal
-    Fabian: Hah! Das sagt der Bursch auch immer
-    Fabian: Das vergeht sicher, so was schweres geb ich dir eh nicht auf
 
 //TODO: Seperate Ems questions with a more elegant solution than Fabian saying "..."
 
-Fabian: ...
--> Em_Past: Michi ist also krank?
-    Fabian: Nein, nein der junge hat heute Führerscheinprüfung
-    Fabian: Von einer Erkältung würd der sich nicht unterkriegen lassen
--> Em_Past: Warum nimmst du mich so spontan mit.
-    Fabian: Der Bursch, unser Lehrling, kann leider nicht mit.
-    Fabian: Und für dich ist es ja auch keine schlechte Übung.
+Fabian: EM, SCHNELL, WAS IST 3 + 4?
+-> Em_Past: Sieben?
+    Fabian: NEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEIN
+-> Em_Past: 42.
+    Fabian: Jap.
 
 Fabian: Du bist ja erst seit einer Woche da
 -> Em_Past: Eigentlich schon 3, erinnerst du dich nicht

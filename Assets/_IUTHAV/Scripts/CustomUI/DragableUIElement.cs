@@ -10,20 +10,24 @@ namespace _IUTHAV.Scripts.CustomUI {
     public class DragableUIElement : MonoBehaviour {
 
         [SerializeField] protected Canvas canvas;
-        public float initialSnapSpeed = 10.0f;
-        public string currentflag = FLAG_NONE;
+        
+        [SerializeField] protected bool isDebug;
+
+        [HideInInspector] public string currentflag = FLAG_NONE;
         public const string FLAG_LOCK = "FLAG_LOCK";
         public const string FLAG_DRAG = "FLAG_DRAG";
         public const string FLAG_NONE = "FLAG_NONE";
         public const string FLAG_MOVESELF = "FLAG_MOVESELF";
-
+        
         protected Vector2 _mTargetPosition;
+        
+        protected const float InitialSnapSpeed = 7.0f;
 
         public delegate void OnMoveCompleteDelegate();
 
 #region Unity Functions
 
-        private void Start() {
+        private void Awake() {
             EventTrigger trigger = gameObject.GetOrAddComponent<EventTrigger>();
             Configure(trigger);
         }
@@ -41,7 +45,7 @@ namespace _IUTHAV.Scripts.CustomUI {
             StartCoroutine(MoveTowardsTarget(onMoveCompleteDelegate));
         }
 
-        public virtual void OnBeginDragDelegate(BaseEventData data) {
+        protected virtual void OnBeginDragDelegate(BaseEventData data) {
 
             if (currentflag != FLAG_NONE) return;
             
@@ -51,7 +55,7 @@ namespace _IUTHAV.Scripts.CustomUI {
             }
         }
 
-        public virtual void OnDragDelegate(BaseEventData data) {
+        protected virtual void OnDragDelegate(BaseEventData data) {
 
             if (currentflag == FLAG_LOCK) return;
             
@@ -59,7 +63,7 @@ namespace _IUTHAV.Scripts.CustomUI {
             CalculateCurrentPointerToCanvasPosition(pointerData.position);
 
             if (currentflag != FLAG_MOVESELF) {
-                transform.position = _mTargetPosition;
+                ((RectTransform)transform).position = new Vector3(_mTargetPosition.x, _mTargetPosition.y, transform.position.z);
             }
             
         }
@@ -90,6 +94,10 @@ namespace _IUTHAV.Scripts.CustomUI {
             entry.callback.AddListener((data) => { OnDropDelegate((PointerEventData)data);});
             trigger.triggers.Add(entry);
             
+            if (canvas == null) {
+                canvas = GameObject.FindWithTag("MainCanvas").GetComponent<Canvas>();
+            }
+            
         }
 
         protected void RemoveListeners() {
@@ -116,16 +124,29 @@ namespace _IUTHAV.Scripts.CustomUI {
             currentflag = FLAG_MOVESELF;
 
             float acceleration = 1.1f;
-            float speed = initialSnapSpeed;
+            float speed = InitialSnapSpeed;
             while (Vector2.Distance(transform.position, _mTargetPosition) > 0.1f) {
                 speed *= acceleration;
-                transform.position =
-                    Vector3.MoveTowards(transform.position, _mTargetPosition, speed);
+                
+                Vector2 target = Vector2.MoveTowards(((RectTransform)transform).position, _mTargetPosition, speed);
+
+                ((RectTransform)transform).position = new Vector3(target.x, target.y, transform.position.z);
+                    
                 yield return null;
             }
             
             currentflag = FLAG_NONE;
             if (onFinishMove != null) onFinishMove();
+        }
+        
+        protected void Log(string msg) {
+            if (!isDebug) return;
+            Debug.Log("[DragableUIElement] [" + gameObject.name + "] " + msg);
+        }
+        
+        protected void LogWarning(string msg) {
+            if (!isDebug) return;
+            Debug.LogWarning("[DragableUIElement] [" + gameObject.name + "] " + msg);
         }
         
 #endregion
