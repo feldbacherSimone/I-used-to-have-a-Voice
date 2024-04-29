@@ -3,6 +3,7 @@ using Unity.Cinemachine;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _IUTHAV.Scripts.Utility {
@@ -18,11 +19,12 @@ namespace _IUTHAV.Scripts.Utility {
 
         [SerializeField] private int currentId = 0;
 
-        [SerializeField] private bool createTargetAndCamera = false;
+        [SerializeField] private bool createRenderTextureAndCamera = false;
 
         [SerializeField] private string panelName;
-        [Tooltip("Decide, which render texture should be displayed")][SerializeField] private int targetTextureId;
-        [SerializeField] private bool instantiatePanel = false;
+        [Tooltip("Decide which render texture should be displayed")]
+        [SerializeField] private int renderTextureTargetId;
+        [SerializeField] private bool createPanel = false;
 
         private const string CamPackageName = "CamPackage";
         private const string TextureName = "RenderTexture";
@@ -34,7 +36,7 @@ namespace _IUTHAV.Scripts.Utility {
 
         private void OnValidate() {
 
-            if (createTargetAndCamera || instantiatePanel) {
+            if (createRenderTextureAndCamera || createPanel) {
                 _mSceneName = SceneManager.GetActiveScene().name;
                 
                 //Set the path:
@@ -42,15 +44,15 @@ namespace _IUTHAV.Scripts.Utility {
                 
             }
 
-            if (createTargetAndCamera) {
-                createTargetAndCamera = false;
+            if (createRenderTextureAndCamera) {
+                createRenderTextureAndCamera = false;
                 
                 CreateRenderTexture();
                 CreateCamPackage();
             }
 
-            if (instantiatePanel) {
-                instantiatePanel = false;
+            if (createPanel) {
+                createPanel = false;
                 
                 CreatePanel();
             }
@@ -58,8 +60,12 @@ namespace _IUTHAV.Scripts.Utility {
         
         private void CreateRenderTexture() {
 
-            RenderTexture texture = new RenderTexture(renderTextureWidth, renderTextureHeight, renderTextureTemplate.graphicsFormat,
-                renderTextureTemplate.depthStencilFormat);
+            RenderTexture texture = new RenderTexture(
+                renderTextureWidth, 
+                renderTextureHeight, 
+                renderTextureTemplate.graphicsFormat,
+                renderTextureTemplate.depthStencilFormat
+            );
 
             AssetDatabase.CreateAsset(texture,
                 "Assets/_IUTHAV/Resources/" + _mRenderTexturePath + currentId + ".renderTexture");
@@ -92,6 +98,8 @@ namespace _IUTHAV.Scripts.Utility {
             CinemachineBrain cBrain = camObj.GetComponentInChildren<CinemachineBrain>();
             OutputChannels e = OutputChannels.Channel01;
             cBrain.ChannelMask = (OutputChannels)Enum.GetValues(e.GetType()).GetValue(currentId+1);
+            
+            LogWarning("Successfully created Camera and RenderTexture with id [" + currentId + "]");
         }
         
         
@@ -106,7 +114,7 @@ namespace _IUTHAV.Scripts.Utility {
                 return;
             }
             
-            RenderTexture texture = Resources.Load<RenderTexture>(_mRenderTexturePath + targetTextureId);
+            RenderTexture texture = Resources.Load<RenderTexture>(_mRenderTexturePath + renderTextureTargetId);
 
             if (texture == null) {
                 LogWarning("No RenderTexture with id [" + currentId + "] found! Check Resources/Panels!");
@@ -124,13 +132,15 @@ namespace _IUTHAV.Scripts.Utility {
             
             rImg.SetNativeSize();
 
-            GameObject camPackage = GameObject.Find("CamPackage_"+targetTextureId);
+            GameObject camPackage = GameObject.Find("CamPackage_"+renderTextureTargetId);
             PanelTesting panelC = panelObj.GetComponent<PanelTesting>();
                 panelC.SetReferences(
                 camPackage.transform.GetChild(0).gameObject,
                 camPackage.transform.GetChild(2).gameObject.transform,
                 camPackage.GetComponentInChildren<UnityEngine.Camera>()
             );
+            
+            LogWarning("Successfully created Panel [" + panelName + "]");
 
         }
 
