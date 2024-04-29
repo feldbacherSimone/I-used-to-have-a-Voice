@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4aa2b15b57a794d9c968859f2f8b91, type: 3}
+  m_Name: PanelMaker
+  m_EditorClassIdentifier: 
+  camPackagePrefab: {fileID: 713842067529633192, guid: 689505d0251489c4897c416cc82b7a5b,
+    type: 3}
+  renderTextureTemplate: {fileID: 8400000, guid: 369f739ca67ed47489ddcac66f26473a,
+    type: 2}
+  panelPrefab: {fileID: 6385227724739882469, guid: 9778dc1d60b77e94c875362c510de53c,
+    type: 3}
+  renderTextureWidth: 256
+  renderTextureHeight: 256
+  currentId: 5
+  createTargetAndCamera: 0
+  panelName: Car1
+  targetTextureId: 5
+  instantiatePanel: 0
