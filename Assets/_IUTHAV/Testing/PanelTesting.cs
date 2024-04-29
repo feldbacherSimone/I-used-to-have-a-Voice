@@ -1,13 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using _IUTHAV.Testing;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Unity.Cinemachine;
-using UnityEditor;
-using Object = System.Object;
 
 public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -135,7 +130,7 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        scrollRect.enabled = false;
+        //scrollRect.enabled = false;
         panelIsActive = true;
         
         CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
@@ -145,11 +140,17 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        scrollRect.enabled = true;
+        //scrollRect.enabled = true;
         panelIsActive = false;
         
         GetComponent<RawImage>().color = Color.white;
         scrollAmount = 0;
+    }
+
+    public void SetReferences(GameObject _cmCamGameObj, Transform _cmCamTarget, Camera _panelCamera) { 
+        cmCamGameObject = _cmCamGameObj;
+        camTarget = _cmCamTarget;
+        panelCamera = _panelCamera;
     }
 
     private void DebugPrint(string msg, bool error = false)

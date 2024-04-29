@@ -5,7 +5,7 @@ using _IUTHAV.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _IUTHAV.Scripts.Novel {
+namespace _IUTHAV.Scripts.CustomUI {
 
 #region Helper Classes
     
