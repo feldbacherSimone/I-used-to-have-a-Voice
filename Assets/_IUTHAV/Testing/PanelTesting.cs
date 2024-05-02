@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 
 public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -15,8 +16,11 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     [SerializeField] private GameObject cmCamGameObject;
     [SerializeField] private Transform camTarget;
+    
     [SerializeField] private Camera panelCamera;
     private CinemachineFollow cmFollow;
+
+    [HideInInspector] public bool isRendering;
 
     private bool panelIsActive;
     private ScrollRect scrollRect;
@@ -25,7 +29,13 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private Vector2 panelSize;
 
-    private GameObject currentHitObject; 
+    private GameObject currentHitObject;
+
+    private void Awake() {
+        
+        ConfigureCollider2D();
+        
+    }
     private void Start()
     {
         if (cmCamGameObject == null){
@@ -41,6 +51,9 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         RawImage panelImage = GetComponent<RawImage>();
         panelSize = new Vector2(panelImage.texture.width, panelImage.texture.height);
+        
+        //Set rendering to false by default
+        SetRendering(false);
     }
 
     private void Update()
@@ -136,6 +149,7 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
         
         this.GetComponent<RawImage>().color = new Color(0.9f, 0.9f, 1f);
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -145,12 +159,32 @@ public class PanelTesting : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         
         GetComponent<RawImage>().color = Color.white;
         scrollAmount = 0;
+        
+        currentHitObject?.GetComponent<ISelectable>()?.OnDeselect();
+        currentHitObject = null;
     }
 
     public void SetReferences(GameObject _cmCamGameObj, Transform _cmCamTarget, Camera _panelCamera) { 
         cmCamGameObject = _cmCamGameObj;
         camTarget = _cmCamTarget;
         panelCamera = _panelCamera;
+    }
+
+    public void SetRendering(bool enable) {
+        
+        GetComponent<RawImage>().enabled = enable;
+        panelCamera.enabled = enable;
+        isRendering = enable;
+
+    }
+    
+    private void ConfigureCollider2D() {
+        
+        BoxCollider2D coll = gameObject.AddComponent<BoxCollider2D>();
+        
+        Vector2 bounds = gameObject.GetComponent<RectTransform>().rect.size;
+        coll.size = bounds;
+        coll.offset = new Vector2(bounds.x / 2.0f, -bounds.y / 2.0f);
     }
 
     private void DebugPrint(string msg, bool error = false)

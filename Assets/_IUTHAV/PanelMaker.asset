@@ -20,8 +20,8 @@ MonoBehaviour:
     type: 3}
   renderTextureWidth: 256
   renderTextureHeight: 256
-  currentId: 5
-  createTargetAndCamera: 0
-  panelName: Car1
-  targetTextureId: 5
-  instantiatePanel: 0
+  currentId: 1
+  createRenderTextureAndCamera: 0
+  panelName: Car2
+  renderTextureTargetId: 0
+  createPanel: 0
