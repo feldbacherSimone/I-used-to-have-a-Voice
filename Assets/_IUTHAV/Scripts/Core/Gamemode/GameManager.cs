@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using _IUTHAV.Scripts.Core.Gamemode.CustomDataTypes;
+using _IUTHAV.Scripts.Core.Input;
 using _IUTHAV.Scripts.Core.Page;
 using _IUTHAV.Scripts.Core.Scene;
 using UnityEngine;
@@ -38,15 +39,21 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
 #region Unity Functions
 
         private void Awake() {
+            
             Configure();
         }
 
         private void Start() {
             LogStates();
+            InputController.Configure();
         }
 
         private void OnDestroy() {
             Dispose();
+        }
+
+        private void OnApplicationQuit() {
+            QuiteGame();
         }
 
 #endregion
@@ -66,6 +73,10 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
             }
 
             _isGamePaused = pause;
+        }
+
+        public void QuiteGame() {
+            InputController.Dispose();
         }
 
         public GameState GetState(StateType stateType) {

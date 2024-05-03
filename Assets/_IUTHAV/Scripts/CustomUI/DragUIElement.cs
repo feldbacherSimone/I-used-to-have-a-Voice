@@ -1,13 +1,11 @@
-using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 namespace _IUTHAV.Scripts.CustomUI {
     
-    public class DragableUIElement : MonoBehaviour {
+    public class DragUIElement : MonoBehaviour {
 
         [SerializeField] protected Canvas canvas;
         
@@ -38,17 +36,21 @@ namespace _IUTHAV.Scripts.CustomUI {
 
 #endregion
 
-#region protected Functions
+#region Public Functions
 
         public void SnapToTarget(Vector2 target, OnMoveCompleteDelegate onMoveCompleteDelegate = null) {
             _mTargetPosition = target;
             StartCoroutine(MoveTowardsTarget(onMoveCompleteDelegate));
         }
 
+#endregion
+
+#region protected Functions
+
         protected virtual void OnBeginDragDelegate(BaseEventData data) {
 
             if (currentflag != FLAG_NONE) return;
-            
+
             CalculateCurrentPointerToCanvasPosition(((PointerEventData)data).position);
             if (Vector2.Distance(transform.position, _mTargetPosition) > 0.5f) {
                 StartCoroutine(MoveTowardsTarget(() => { currentflag = FLAG_DRAG; }));
@@ -150,6 +152,7 @@ namespace _IUTHAV.Scripts.CustomUI {
         }
         
 #endregion
+
         
     }
 }

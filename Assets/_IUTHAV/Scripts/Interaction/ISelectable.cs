@@ -1,6 +1,4 @@
-﻿using Unity.VisualScripting;
-
-namespace _IUTHAV.Testing
+﻿namespace _IUTHAV.Scripts.Interaction
 {
     public interface ISelectable
     {
