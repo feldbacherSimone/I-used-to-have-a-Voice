@@ -1,8 +1,7 @@
-using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace _IUTHAV.Scripts.Camera {
+namespace _IUTHAV.Scripts.Panel {
     public class PanelManager : MonoBehaviour {
 
         [SerializeField][Range(0.5f, 2f)] private float renderBoundsFactor = 1.2f;
@@ -22,7 +21,7 @@ namespace _IUTHAV.Scripts.Camera {
 
         private void OnTriggerEnter2D(Collider2D other) {
 
-            if (other.gameObject.TryGetComponent(out PanelTesting panel)) {
+            if (other.gameObject.TryGetComponent(out Panel panel)) {
 
                 if (!panel.isRendering) {
                     panel.SetRendering(true);
@@ -35,7 +34,7 @@ namespace _IUTHAV.Scripts.Camera {
 
         private void OnTriggerExit2D(Collider2D other) {
             
-            if (other.gameObject.TryGetComponent(out PanelTesting panel)) {
+            if (other.gameObject.TryGetComponent(out Panel panel)) {
 
                 if (panel.isRendering) {
                     panel.SetRendering(false);
@@ -82,7 +81,7 @@ namespace _IUTHAV.Scripts.Camera {
 
             foreach (Collider2D other in collider2Ds) {
 
-                if (other.gameObject.TryGetComponent(out PanelTesting panel)) {
+                if (other.gameObject.TryGetComponent(out Panel panel)) {
                     
                     if (!panel.isRendering) panel.SetRendering(true);
                     Log("Enabling panel: " + other.gameObject.name);

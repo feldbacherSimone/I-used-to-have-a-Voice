@@ -1,7 +1,7 @@
-﻿using System;
+﻿using _IUTHAV.Testing;
 using UnityEngine;
 
-namespace _IUTHAV.Testing
+namespace _IUTHAV.Scripts.Interaction
 {
     public class SelectionMaterialChange : MonoBehaviour, ISelectable
     {

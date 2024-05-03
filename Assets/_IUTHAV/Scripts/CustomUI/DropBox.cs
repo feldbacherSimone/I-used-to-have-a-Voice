@@ -46,7 +46,7 @@ namespace _IUTHAV.Scripts.CustomUI {
             else {
                 IsFull = true;
             dropElement.SnapToTarget(transform.position, () => {
-                dropElement.currentflag = DragableUIElement.FLAG_LOCK;
+                dropElement.currentflag = DragUIElement.FLAG_LOCK;
                 dropElement.StartValidDropPointSequence();
             });
             Log("You dropped something: " + dropElement.gameObject.name);

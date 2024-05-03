@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _IUTHAV.Testing
+namespace _IUTHAV.Scripts.Panel
 {
     public static class CameraMovement 
     {

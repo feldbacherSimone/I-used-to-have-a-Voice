@@ -1,4 +1,5 @@
 using System;
+using _IUTHAV.Scripts.Panel;
 using Unity.Cinemachine;
 using UnityEditor;
 using UnityEngine;
@@ -133,7 +134,7 @@ namespace _IUTHAV.Scripts.Utility {
             rImg.SetNativeSize();
 
             GameObject camPackage = GameObject.Find("CamPackage_"+renderTextureTargetId);
-            PanelTesting panelC = panelObj.GetComponent<PanelTesting>();
+            Panel.Panel panelC = panelObj.GetComponent<Panel.Panel>();
                 panelC.SetReferences(
                 camPackage.transform.GetChild(0).gameObject,
                 camPackage.transform.GetChild(2).gameObject.transform,
