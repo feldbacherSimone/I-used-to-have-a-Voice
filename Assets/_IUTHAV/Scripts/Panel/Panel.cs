@@ -1,5 +1,4 @@
 using _IUTHAV.Scripts.Interaction;
-using _IUTHAV.Testing;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,12 +17,12 @@ namespace _IUTHAV.Scripts.Panel {
         [SerializeField] private GameObject cmCamGameObject;
         [SerializeField] private Transform camTarget;
     
-        [SerializeField] private UnityEngine.Camera panelCamera;
+        public Camera panelCamera;
         private CinemachineFollow cmFollow;
 
         [HideInInspector] public bool isRendering;
 
-        private bool panelIsActive;
+        public bool panelIsActive;
         private ScrollRect scrollRect;
         private RectTransform _rectTransform;
         private float scrollAmount = 0;
@@ -76,7 +75,8 @@ namespace _IUTHAV.Scripts.Panel {
             Ray screenRay = panelCamera.ViewportPointToRay(rayPos);
 
             RaycastHit hit;
-
+            Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.red);
+            
             if (Physics.Raycast(screenRay, out hit, 1000f))
             {
                 Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.green);
@@ -94,10 +94,6 @@ namespace _IUTHAV.Scripts.Panel {
                 IterateSelectables(currentHitObject, false);
                 currentHitObject = null; 
             }
-
-       
-       
-            Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.red);
 
         }
         private void MoveParalax()
@@ -123,7 +119,7 @@ namespace _IUTHAV.Scripts.Panel {
             }
         }
 
-        private Vector2 GetRelativeMousePos()
+        public Vector2 GetRelativeMousePos()
         {
 
             float canvasScroll = transform.parent.GetComponent<RectTransform>().anchoredPosition.y;
@@ -161,7 +157,7 @@ namespace _IUTHAV.Scripts.Panel {
             GetComponent<RawImage>().color = Color.white;
             scrollAmount = 0;
         
-            IterateSelectables(currentHitObject, false);
+            if (currentHitObject != null) IterateSelectables(currentHitObject, false);
             currentHitObject = null;
         }
 
@@ -193,7 +189,8 @@ namespace _IUTHAV.Scripts.Panel {
             foreach (ISelectable selectable in targetObj.GetComponents<ISelectable>()) {
 
                 if (enable) {
-                    selectable.OnSelect();
+                    
+                    selectable.OnSelect(new SelectionContext(this));
                 }
                 else {
                     selectable.OnDeselect();
@@ -202,7 +199,7 @@ namespace _IUTHAV.Scripts.Panel {
             }
 
         }
-
+        
         private void DebugPrint(string msg, bool error = false)
         {
             if(!debug) return;
