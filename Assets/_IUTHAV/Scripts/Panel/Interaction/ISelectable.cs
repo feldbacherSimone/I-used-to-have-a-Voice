@@ -1,13 +1,10 @@
-﻿using UnityEngine;
-using UnityEngine.Rendering;
-
-namespace _IUTHAV.Scripts.Interaction
+﻿namespace _IUTHAV.Scripts.Panel.Interaction
 {
     public struct SelectionContext {
     
-        public Panel.Panel Panel;
+        public Scripts.Panel.Panel Panel;
 
-        public SelectionContext(Panel.Panel panel) {
+        public SelectionContext(Scripts.Panel.Panel panel) {
             Panel = panel;
         }
     }

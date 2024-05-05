@@ -1,9 +1,7 @@
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
-namespace _IUTHAV.Scripts.Interaction {
+namespace _IUTHAV.Scripts.Panel.Interaction {
     public class DragAndRotateObject : ClickAndDragObject {
 
         [SerializeField][Range(0, 5f)] private float rotateSpeed = 1f;
@@ -17,7 +15,7 @@ namespace _IUTHAV.Scripts.Interaction {
 
             Gizmos.color = new Color(1, 0, 0, 0.3f);
 
-            if (IsDrag) {
+            if (currentFlag == FLAG_DRAG) {
             
                 Gizmos.DrawSphere(transform.position, 1f);
                 Gizmos.color = new Color(1, 0.5f, 0, 1);
@@ -81,8 +79,8 @@ namespace _IUTHAV.Scripts.Interaction {
 
         protected override void OnEndDrag(InputAction.CallbackContext context) {
         
-            if (IsDrag) {
-                IsDrag = false;
+            if (currentFlag == FLAG_DRAG) {
+                currentFlag = FLAG_NONE;
                 _mouseScreenStartPosition = Vector3.zero;
 
                 if (RBody != null) {
@@ -109,7 +107,7 @@ namespace _IUTHAV.Scripts.Interaction {
 
         private void UpdateRotation() {
 
-            if (IsDrag) {
+            if (currentFlag == FLAG_DRAG) {
                 
                 Vector3 rotation = CalculateRotationDelta() * rotateSpeed;
                 

@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using _IUTHAV.Scripts.Core.Gamemode;
 using _IUTHAV.Scripts.Core.Gamemode.CustomDataTypes;
 using _IUTHAV.Scripts.Utility;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _IUTHAV.Scripts.CustomUI {
@@ -15,7 +17,6 @@ namespace _IUTHAV.Scripts.CustomUI {
         public float endpoint;
         [Tooltip("Set to make the trigger finish a specified state. Will FREEZE that state upon finish!\n Choosing 'None' will set the 'SCX_ScrollTrigger' State to 'finished' until the next bookmark is active OR the user scrolls outside the triggerzone")]
         public StateType customState = StateType.None;
-        
     }
 
 #endregion
@@ -25,14 +26,19 @@ namespace _IUTHAV.Scripts.CustomUI {
         [SerializeField] private RectTransform canvasRect;
         [SerializeField] private ScrollRect scrollRect;
         [SerializeField] private RectTransform bgRect;
+        [SerializeField][Range(1, 15)] private float forceScrollSpeed = 4.0f;
+        [Space(10)]
         [SerializeField] private int currentBmIndex;
         [SerializeField] private Bookmark[] bookmarks;
 
         [Space(10)] [SerializeField] private bool isDebug;
 
+        
+
         private GameManager _mGameManager;
         private GameState _mCurrentTriggeredState;
         private float _mBgOffset;
+        private Vector2 _mTargetPosition;
 
 #region Unity Functions
 
@@ -103,6 +109,25 @@ namespace _IUTHAV.Scripts.CustomUI {
 
         }
 
+        public void ForceScroll(float yLocation) {
+
+            scrollRect.enabled = false;
+            _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, yLocation);
+            StartCoroutine(MoveToYLocation(false));
+        }
+        
+        public void ForceScrollAndLock(float yLocation) {
+
+            scrollRect.enabled = false;
+            _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, yLocation);
+            StartCoroutine(MoveToYLocation(true));
+        }
+
+        public void ToggleManualScroll(bool enable) {
+
+            scrollRect.enabled = enable;
+        }
+
 #endregion
 
 #region Private Functions
@@ -135,6 +160,27 @@ namespace _IUTHAV.Scripts.CustomUI {
         private void StrechBackground() {
 
             bgRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, bookmarks[currentBmIndex].endpoint);
+        }
+
+        private IEnumerator MoveToYLocation(bool lockOnFinish) {
+
+            scrollRect.enabled = false;
+
+            while (Vector2.Distance(bgRect.anchoredPosition, _mTargetPosition) > 0.1f) {
+                
+                var anchoredPosition = bgRect.anchoredPosition;
+                
+                Vector2 target = Vector2.MoveTowards(anchoredPosition, _mTargetPosition, forceScrollSpeed);
+                
+                anchoredPosition = new Vector3(anchoredPosition.x, target.y, anchoredPosition.x);
+                bgRect.anchoredPosition = anchoredPosition;
+
+                yield return null;
+            }
+
+            scrollRect.enabled = !lockOnFinish;
+            yield return null;
+
         }
 
         private void Log(string msg) {

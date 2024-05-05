@@ -1,10 +1,9 @@
-using System;
 using _IUTHAV.Scripts.Core.Input;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace _IUTHAV.Scripts.Interaction {
+namespace _IUTHAV.Scripts.Panel.Interaction {
     public class SelectAndClickObject : MonoBehaviour, IInteractable, ISelectable {
         
         
