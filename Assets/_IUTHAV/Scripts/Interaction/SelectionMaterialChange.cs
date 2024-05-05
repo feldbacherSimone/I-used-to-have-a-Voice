@@ -28,7 +28,7 @@ namespace _IUTHAV.Scripts.Interaction
 
         }
 
-        public void OnSelect()
+        public void OnSelect(SelectionContext context)
         {
             _meshRenderer.material = highlightMat;
         }

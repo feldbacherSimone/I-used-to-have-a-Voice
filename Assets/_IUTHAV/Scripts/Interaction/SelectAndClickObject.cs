@@ -33,11 +33,11 @@ namespace _IUTHAV.Scripts.Interaction {
             onClick.Invoke();
             Log("Interacted with Object!");
         }
-        public void OnSelect() {
+        public virtual void OnSelect(SelectionContext context) {
             IsSelected = true;
         }
 
-        public void OnDeselect() {
+        public virtual void OnDeselect() {
             IsSelected = false;
         }
 
