@@ -11,11 +11,11 @@ namespace _IUTHAV.Scripts.CustomUI {
         
         [SerializeField] protected bool isDebug;
 
-        [HideInInspector] public string currentflag = FLAG_NONE;
-        public const string FLAG_LOCK = "FLAG_LOCK";
-        public const string FLAG_DRAG = "FLAG_DRAG";
-        public const string FLAG_NONE = "FLAG_NONE";
-        public const string FLAG_MOVESELF = "FLAG_MOVESELF";
+        [HideInInspector] public int currentflag = FLAG_NONE;
+        public const int FLAG_LOCK = 3;
+        public const int FLAG_DRAG = 1;
+        public const int FLAG_NONE = 0;
+        public const int FLAG_MOVESELF = 2;
         
         protected Vector2 _mTargetPosition;
         

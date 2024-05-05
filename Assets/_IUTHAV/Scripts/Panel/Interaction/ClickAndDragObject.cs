@@ -3,15 +3,18 @@ using _IUTHAV.Scripts.Core.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _IUTHAV.Scripts.Interaction {
+namespace _IUTHAV.Scripts.Panel.Interaction {
     
     public class ClickAndDragObject : SelectAndClickObject {
 
         [SerializeField][Range(0, 40)] protected float throwSpeed = 20f;
 
-        protected Panel.Panel OriginPanel;
+        [HideInInspector] public short currentFlag = FLAG_NONE;
+        public const short FLAG_DRAG = 1;
+        public const short FLAG_NONE = 0;
+        
+        protected Scripts.Panel.Panel OriginPanel;
         private Vector3 _mouseStartPosition;
-        protected bool IsDrag;
         protected Rigidbody RBody;
 
         private Vector3 _mTargetPosition;
@@ -20,16 +23,16 @@ namespace _IUTHAV.Scripts.Interaction {
 
 #region Unity Functions
 
-        private void OnDrawGizmos() {
+        protected virtual void OnDrawGizmos() {
 
             Gizmos.color = new Color(1, 0, 0, 0.3f);
 
-            if (IsDrag) {
+            if (currentFlag == FLAG_DRAG) {
             
                 Gizmos.DrawSphere(_mTargetPosition, 1f);
                 Gizmos.color = new Color(1, 0.5f, 0, 1);
 
-                if (VQueue.Count != 0) {
+                if (RBody != null && VQueue?.Count != 0) {
                     Vector3 velocity = CalculateVelocity();
                     Gizmos.DrawRay(_mTargetPosition, velocity);
                     Gizmos.DrawSphere(_mTargetPosition + velocity, 0.1f);
@@ -68,9 +71,9 @@ namespace _IUTHAV.Scripts.Interaction {
 
 #region Private Functions
 
-        private void UpdatePosition() {
+        protected void UpdatePosition() {
             
-            if (IsDrag) {
+            if (currentFlag == FLAG_DRAG) {
 
                 _mTargetPosition = CalculatePosition();
 
@@ -113,7 +116,7 @@ namespace _IUTHAV.Scripts.Interaction {
             if (IsSelected) {
             
                 _mouseStartPosition = Input.mousePosition - GetObjScreenPos();
-                IsDrag = true;
+                currentFlag = FLAG_DRAG;
                 OnClicked(context);
                 
                 if (RBody != null) VQueue.Clear();
@@ -126,8 +129,8 @@ namespace _IUTHAV.Scripts.Interaction {
 
         protected virtual void OnEndDrag(InputAction.CallbackContext context) {
 
-            if (IsDrag) {
-                IsDrag = false;
+            if (currentFlag == FLAG_DRAG) {
+                currentFlag = FLAG_NONE;
                 _mouseStartPosition = Vector3.zero;
 
                 if (RBody != null) {

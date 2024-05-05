@@ -1,4 +1,4 @@
-using _IUTHAV.Scripts.Interaction;
+using _IUTHAV.Scripts.Panel.Interaction;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;

@@ -314,8 +314,9 @@ MonoBehaviour:
   onClick:
     m_PersistentCalls:
       m_Calls: []
-  isDebug: 1
+  isDebug: 0
   throwSpeed: 20
+  currentFlag: 0
 --- !u!54 &24814591
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -858,7 +859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   isDebug: 1
-  currentflag: FLAG_NONE
+  currentflag: 1
   onValidDrop:
     m_PersistentCalls:
       m_Calls: []
@@ -2616,6 +2617,7 @@ MonoBehaviour:
   canvasRect: {fileID: 1400949461}
   scrollRect: {fileID: 1253715773}
   bgRect: {fileID: 120702523}
+  forceScrollSpeed: 4
   currentBmIndex: 0
   bookmarks:
   - triggerPoint: 1229
@@ -2680,6 +2682,73 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRightAlignment: 1
+--- !u!1 &1287045534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1287045536}
+  - component: {fileID: 1287045535}
+  - component: {fileID: 1287045537}
+  m_Layer: 0
+  m_Name: DropLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1287045535
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287045534}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1287045536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287045534}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.06, y: 2.51, z: 2.43}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1287045537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287045534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85809b1c4ba4b0841a10c54226aff1ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDebug: 0
 --- !u!1 &1331122100
 GameObject:
   m_ObjectHideFlags: 0
@@ -3230,7 +3299,9 @@ GameObject:
   - component: {fileID: 1403800846}
   - component: {fileID: 1403800845}
   - component: {fileID: 1403800844}
+  - component: {fileID: 1403800849}
   - component: {fileID: 1403800847}
+  - component: {fileID: 1403800848}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -3339,6 +3410,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customMaterial: {fileID: 0}
+--- !u!114 &1403800848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403800842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c21aff36be70d4642ac7747e4ed8221f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  isDebug: 0
+  throwSpeed: 20
+  currentFlag: 0
+  onValidDrop:
+    m_PersistentCalls:
+      m_Calls: []
+  onInvalidDrop:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!54 &1403800849
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403800842}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1420759643
 GameObject:
   m_ObjectHideFlags: 0
@@ -3392,7 +3514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1400949460}
   isDebug: 1
-  currentflag: FLAG_NONE
+  currentflag: 1
   onValidDrop:
     m_PersistentCalls:
       m_Calls: []
@@ -3497,7 +3619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1400949460}
   isDebug: 1
-  currentflag: FLAG_NONE
+  currentflag: 1
   onValidDrop:
     m_PersistentCalls:
       m_Calls: []
@@ -4646,7 +4768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1400949460}
   isDebug: 1
-  currentflag: FLAG_NONE
+  currentflag: 1
   onValidDrop:
     m_PersistentCalls:
       m_Calls: []
@@ -5441,7 +5563,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064188454}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &2064188459
 Transform:
   m_ObjectHideFlags: 0
@@ -5451,7 +5573,7 @@ Transform:
   m_GameObject: {fileID: 2064188454}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.41, y: 1, z: 0.63}
+  m_LocalPosition: {x: -0.41, y: 1.82, z: 0.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5484,9 +5606,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onClick:
     m_PersistentCalls:
-      m_Calls: []
-  isDebug: 1
+      m_Calls:
+      - m_Target: {fileID: 1253715774}
+        m_TargetAssemblyTypeName: _IUTHAV.Scripts.CustomUI.ScrollBackGround, Assembly-CSharp
+        m_MethodName: ForceScroll
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1200
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  isDebug: 0
   throwSpeed: 20
+  currentFlag: 0
   rotateSpeed: 0.5
 --- !u!224 &2076734389 stripped
 RectTransform:
@@ -6050,6 +6185,7 @@ SceneRoots:
   - {fileID: 1478445953}
   - {fileID: 1746385303}
   - {fileID: 24814588}
+  - {fileID: 1287045536}
   - {fileID: 1403800843}
   - {fileID: 1212314387}
   - {fileID: 2064188459}
