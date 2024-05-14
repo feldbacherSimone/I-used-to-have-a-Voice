@@ -1102,19 +1102,7 @@ MonoBehaviour:
   bgRect: {fileID: 7689980352312226490}
   forceScrollSpeed: 4
   currentBmIndex: 0
-  bookmarks:
-  - triggerPoint: 1229
-    endpoint: 1357
-    customState: 0
-  - triggerPoint: 2109
-    endpoint: 2967
-    customState: 130
-  - triggerPoint: 2866
-    endpoint: 2967
-    customState: 0
-  - triggerPoint: 4110
-    endpoint: 4204
-    customState: 0
+  bookmarks: []
   isDebug: 1
 --- !u!1 &7840463161884843836
 GameObject:

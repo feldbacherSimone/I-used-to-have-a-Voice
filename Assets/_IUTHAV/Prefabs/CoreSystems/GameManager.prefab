@@ -44,72 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2563bde6ee0584286a6fc0457234f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneGameStatesObject: {fileID: 11400000, guid: 26901ba8c01b85241bbeebd72877948d,
-    type: 2}
+  sceneGameStatesObject: {fileID: 0}
   persistentGameStatesObject: {fileID: 11400000, guid: 75788891528c221418cfb1075bab2bf4,
     type: 2}
-  gameStateBehaviours:
-  - stateType: 101
-    onFinish:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: _IUTHAV.BehaviourScripts.ScrollBackGround, Assembly-CSharp
-          m_MethodName: NextBookmark
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-    isFreeze: 0
-  - stateType: 130
-    onFinish:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: _IUTHAV.BehaviourScripts.ScrollBackGround, Assembly-CSharp
-          m_MethodName: NextBookmark
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-    isFreeze: 1
-  - stateType: 102
-    onFinish:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: _IUTHAV.BehaviourScripts.ScrollBackGround, Assembly-CSharp
-          m_MethodName: NextBookmark
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-    isFreeze: 0
+  gameStateBehaviours: []
   isDebug: 0

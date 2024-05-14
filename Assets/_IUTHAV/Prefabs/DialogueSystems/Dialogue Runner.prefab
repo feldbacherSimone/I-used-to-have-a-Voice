@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8379411564229049142}
-  - component: {fileID: 3939001222766797744}
   - component: {fileID: 3826835643976076960}
   - component: {fileID: 4834351784159837988}
   m_Layer: 0
@@ -34,28 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3939001222766797744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714219287667071378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c863204dba8a21e4ba83c6f4e30f257c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allCharacters:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  playerCharacter: {fileID: 0}
-  canvas: {fileID: 0}
-  canvasScaler: {fileID: 0}
-  dialogueBubbleRect: {fileID: 0}
-  optionsBubbleRect: {fileID: 0}
-  bubbleMargin: -1
 --- !u!114 &3826835643976076960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +50,7 @@ MonoBehaviour:
   _variableStorage: {fileID: 4834351784159837988}
   dialogueViews:
   - {fileID: 0}
-  - {fileID: 3939001222766797744}
+  - {fileID: 0}
   - {fileID: 0}
   startNode: Scene1TestDialogue
   startAutomatically: 1

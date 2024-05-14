@@ -65,8 +65,11 @@ namespace _IUTHAV.Scripts.CustomUI {
                 Gizmos.DrawLine(new Vector3(rect.width/2.5f, -f.triggerPoint + localPosition.y), new Vector3(rect.width/2, -f.triggerPoint + localPosition.y));
             }
             Gizmos.color = Color.magenta;
-            float currentBmF = bookmarks[currentBmIndex].triggerPoint;
-            Gizmos.DrawLine(new Vector3(-rect.width/3, -currentBmF + localPosition.y), new Vector3(rect.width/3, -currentBmF + localPosition.y));
+            if (bookmarks.Length > 0) {
+                float currentBmF = bookmarks[currentBmIndex].triggerPoint;
+                Gizmos.DrawLine(new Vector3(-rect.width/3, -currentBmF + localPosition.y), new Vector3(rect.width/3, -currentBmF + localPosition.y));
+            }
+            
 
         }
 
