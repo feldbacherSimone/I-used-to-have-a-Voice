@@ -137,6 +137,7 @@ namespace _IUTHAV.Scripts.CustomUI {
             bool isScrollTrigger = bookmarks[currentBmIndex].customState == StateType.None;
             
             if (isScrollTrigger) {
+                
                 StateType contextSensitiveState = Typeconverter.ChangePreAndSuffix(_mGameManager.GetCurrentSceneType(), StateType.SC1_ScrollTrigger);
                 _mCurrentTriggeredState = _mGameManager.GetState(contextSensitiveState);
             }

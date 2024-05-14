@@ -4,13 +4,15 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace _IUTHAV.Scripts.Panel.Interaction {
     public class DragAndSnapObject : ClickAndDragObject {
 
+        [FormerlySerializedAs("_assignedDropLocation")]
         [Tooltip("If a droplocation is assigned, only that one will be snapped to")]
-        [CanBeNull] private Dropbox3D _assignedDropLocation;
-
+        [CanBeNull] [SerializeField] private Dropbox3D assignedDropLocation;
+ 
         private Vector3 _objectStartLocalPos;
         
         [SerializeField] protected UnityEvent onValidDrop;
@@ -68,7 +70,7 @@ namespace _IUTHAV.Scripts.Panel.Interaction {
 
         [CanBeNull]
         public Dropbox3D GetAssignedDropBox() {
-            return _assignedDropLocation;
+            return assignedDropLocation;
         }
 
         public virtual void StartValidDropPointSequence() {

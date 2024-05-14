@@ -60,8 +60,11 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
 
 #region Public Functions
 
-        public StatePrefix GetCurrentSceneType() {
-            return sceneGameStatesObject.StatePrefix;
+        public StatePrefix? GetCurrentSceneType() {
+            if (sceneGameStatesObject != null) {
+                return sceneGameStatesObject.StatePrefix;
+            }
+            return null;
         }
 
         public void PauseGame(bool pause) {
@@ -150,6 +153,9 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
 
         private void PopulateStatesTable() {
             _mStates = new Hashtable();
+            
+            if (sceneGameStatesObject == null) return;
+            
             foreach (GameState state in sceneGameStatesObject.GameStates) {
                 RegisterState(state);
             }
@@ -197,6 +203,9 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         }
 
         private void Dispose() {
+
+            if (sceneGameStatesObject == null) return;
+            
             foreach (GameState state in sceneGameStatesObject.GameStates) {
                 state.Reset();
             }
