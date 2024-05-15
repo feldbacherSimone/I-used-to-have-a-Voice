@@ -1,4 +1,4 @@
-﻿namespace _IUTHAV.Scripts.Panel.Interaction
+﻿namespace _IUTHAV.Scripts.ComicPanel.Interaction
 {
     public interface IInteractable {
         public void Interact();

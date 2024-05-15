@@ -119,12 +119,12 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
             
         }
         
-        private void Log(string msg) {
+        private new void Log(string msg) {
             if (!isDebug) return;
             Debug.Log("[DragUIElementOptionsManager] " + msg);
         }
         
-        private void LogWarning(string msg) {
+        private new void LogWarning(string msg) {
             if (!isDebug) return;
             Debug.LogWarning("[DragUIElementOptionsManager] " + msg);
         }

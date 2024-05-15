@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _IUTHAV.Scripts.Panel.Interaction
+namespace _IUTHAV.Scripts.ComicPanel.Interaction
 {
     public class SelectionMaterialChange : MonoBehaviour, ISelectable
     {

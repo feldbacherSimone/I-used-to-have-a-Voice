@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _IUTHAV.Scripts.Panel
+namespace _IUTHAV.Scripts.ComicPanel
 {
     public static class CameraMovement 
     {

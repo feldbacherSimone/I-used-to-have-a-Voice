@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _IUTHAV.Scripts.Panel.Interaction {
+namespace _IUTHAV.Scripts.ComicPanel.Interaction {
     public class DragAndRotateObject : ClickAndDragObject {
 
         [SerializeField][Range(0, 5f)] private float rotateSpeed = 1f;
