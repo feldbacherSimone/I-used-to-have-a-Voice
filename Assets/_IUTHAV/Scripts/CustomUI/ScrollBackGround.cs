@@ -136,13 +136,14 @@ namespace _IUTHAV.Scripts.CustomUI {
 #region Private Functions
 
         private void SetTriggeredStateData() {
-
-            bool isScrollTrigger = bookmarks[currentBmIndex].customState == StateType.None;
+            
+            bool isScrollTrigger = (bookmarks[currentBmIndex].customState == StateType.None);
             
             if (isScrollTrigger) {
                 
                 StateType contextSensitiveState = Typeconverter.ChangePreAndSuffix(_mGameManager.GetCurrentSceneType(), StateType.SC1_ScrollTrigger);
                 _mCurrentTriggeredState = _mGameManager.GetState(contextSensitiveState);
+                _mCurrentTriggeredState.onStateCompleted.AddListener(NextBookmark);
             }
             else {
                 _mCurrentTriggeredState = _mGameManager.GetState(bookmarks[currentBmIndex].customState);
@@ -162,7 +163,7 @@ namespace _IUTHAV.Scripts.CustomUI {
         }
 
         private void StrechBackground() {
-
+            
             bgRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, bookmarks[currentBmIndex].endpoint);
         }
 
@@ -196,7 +197,5 @@ namespace _IUTHAV.Scripts.CustomUI {
 
 
     }
-
-
-
+    
 }

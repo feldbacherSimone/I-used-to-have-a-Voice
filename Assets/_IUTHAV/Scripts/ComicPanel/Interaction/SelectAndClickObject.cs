@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace _IUTHAV.Scripts.Panel.Interaction {
+namespace _IUTHAV.Scripts.ComicPanel.Interaction {
     public class SelectAndClickObject : MonoBehaviour, IInteractable, ISelectable {
         
         

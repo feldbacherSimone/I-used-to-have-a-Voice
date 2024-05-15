@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-namespace _IUTHAV.Scripts.Panel.Interaction {
+namespace _IUTHAV.Scripts.ComicPanel.Interaction {
     public class DragAndSnapObject : ClickAndDragObject {
 
         [FormerlySerializedAs("_assignedDropLocation")]

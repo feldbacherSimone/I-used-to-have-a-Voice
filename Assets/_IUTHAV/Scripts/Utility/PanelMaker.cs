@@ -1,6 +1,9 @@
 using System;
-using _IUTHAV.Scripts.Panel;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,13 +21,15 @@ namespace _IUTHAV.Scripts.Utility {
         [SerializeField] [Range(10, 4000)] private int renderTextureWidth;
         [SerializeField] [Range(10, 4000)] private int renderTextureHeight;
 
-        [SerializeField] private int currentId = 0;
+        [SerializeField] private int cameraOutputMask = 0;
+
+        [SerializeField] private string shotName;
 
         [SerializeField] private bool createRenderTextureAndCamera = false;
-
-        [SerializeField] private string panelName;
+        [FormerlySerializedAs("renderTextureTargetId")]
         [Tooltip("Decide which render texture should be displayed")]
-        [SerializeField] private int renderTextureTargetId;
+        [SerializeField] private string renderTextureTargetName;
+        
         [SerializeField] private bool createPanel = false;
 
         private const string CamPackageName = "CamPackage";
@@ -41,7 +46,7 @@ namespace _IUTHAV.Scripts.Utility {
                 _mSceneName = SceneManager.GetActiveScene().name;
                 
                 //Set the path:
-                _mRenderTexturePath = "RenderTextures/" + _mSceneName + "_" + TextureName + "_";
+                _mRenderTexturePath = "RenderTextures/" + _mSceneName + "/";
                 
             }
 
@@ -57,6 +62,7 @@ namespace _IUTHAV.Scripts.Utility {
                 
                 CreatePanel();
             }
+            
         }
         
         private void CreateRenderTexture() {
@@ -67,15 +73,15 @@ namespace _IUTHAV.Scripts.Utility {
                 renderTextureTemplate.graphicsFormat,
                 renderTextureTemplate.depthStencilFormat
             );
-
+            
             AssetDatabase.CreateAsset(texture,
-                "Assets/_IUTHAV/Resources/" + _mRenderTexturePath + currentId + ".renderTexture");
+                "Assets/_IUTHAV/Resources/" + _mRenderTexturePath + TextureName + "_" + shotName + ".renderTexture");
             
         }
 
         private void CreateCamPackage() {
 
-            string camName = CamPackageName + "_" + currentId;
+            string camName = CamPackageName + "_" + shotName;
         
             if (GameObject.Find(camName) != null) {
                 
@@ -90,35 +96,41 @@ namespace _IUTHAV.Scripts.Utility {
             camObj.transform.parent = GameObject.FindWithTag("CamPackageContainer").transform;
 
             UnityEngine.Camera camera = camObj.GetComponentInChildren<UnityEngine.Camera>();
-            camera.gameObject.name = "C" + "_" + currentId;
+            camera.gameObject.name = "C" + "_" + shotName + "_" + cameraOutputMask;
             
-            RenderTexture texture = Resources.Load<RenderTexture>(_mRenderTexturePath + currentId);
+            RenderTexture texture = Resources.Load<RenderTexture>(_mRenderTexturePath + TextureName + "_" + shotName);
+
+            if (texture == null) {
+                LogWarning("No texture of name could be found!");
+                return;
+            }
             
             camera.targetTexture = texture;
 
             CinemachineBrain cBrain = camObj.GetComponentInChildren<CinemachineBrain>();
             OutputChannels e = OutputChannels.Channel01;
-            cBrain.ChannelMask = (OutputChannels)Enum.GetValues(e.GetType()).GetValue(currentId+1);
+            cBrain.ChannelMask = (OutputChannels)Enum.GetValues(e.GetType()).GetValue(cameraOutputMask+1);
             
-            LogWarning("Successfully created Camera and RenderTexture with id [" + currentId + "]");
+            LogWarning("Successfully created Camera and RenderTexture with id [" + cameraOutputMask + "]");
         }
         
         
 
         private void CreatePanel() {
         
-            string pName = PanelName + "_" + panelName;
+            string pName = PanelName + "_" + shotName;
         
             if (GameObject.Find(pName) != null) {
                 
                 LogWarning(pName + " already exists! Check your Hierarchy or try overriding it's id!");
                 return;
             }
-            
-            RenderTexture texture = Resources.Load<RenderTexture>(_mRenderTexturePath + renderTextureTargetId);
+
+            if (renderTextureTargetName == "") renderTextureTargetName = shotName;
+            RenderTexture texture = Resources.Load<RenderTexture>(_mRenderTexturePath + TextureName + "_" + renderTextureTargetName);
 
             if (texture == null) {
-                LogWarning("No RenderTexture with id [" + currentId + "] found! Check Resources/Panels!");
+                LogWarning("No RenderTexture with id [" + cameraOutputMask + "] found! Check Resources/Panels!");
                 return;
             }
 
@@ -132,16 +144,55 @@ namespace _IUTHAV.Scripts.Utility {
             rImg.texture = texture;
             
             rImg.SetNativeSize();
-
-            GameObject camPackage = GameObject.Find("CamPackage_"+renderTextureTargetId);
-            Panel.Panel panelC = panelObj.GetComponent<Panel.Panel>();
-                panelC.SetReferences(
-                camPackage.transform.GetChild(0).gameObject,
+            
+            if (renderTextureTargetName == "") renderTextureTargetName = shotName;
+            GameObject camPackage = GameObject.Find("CamPackage" + "_" + renderTextureTargetName);
+            
+            ComicPanel.Panel panelC = panelObj.GetOrAddComponent<ComicPanel.Panel>();
+                panelC.SetReferences(camPackage.transform.GetChild(0).gameObject,
                 camPackage.transform.GetChild(2).gameObject.transform,
                 camPackage.GetComponentInChildren<UnityEngine.Camera>()
             );
             
-            LogWarning("Successfully created Panel [" + panelName + "]");
+            LogWarning("Successfully created Panel [" + shotName + "]");
+
+        }
+
+        private void DeleteCamPackage(string camSuffix) {
+
+            var obj = GameObject.FindWithTag("CamPackageContainer");
+
+            try {
+                GameObject destroyObject = null;
+                for (int i = 0; i < obj.transform.childCount; i++) {
+
+                    if (obj.transform.GetChild(i).gameObject.name.EndsWith(camSuffix)) {
+
+                        destroyObject = obj.transform.GetChild(i).gameObject;
+
+                    }
+
+                }
+                
+                if (destroyObject != null) DestroyImmediate(destroyObject);
+            }
+            catch {
+                LogWarning("Error in deleting CamPackage with suffix " + camSuffix);
+            }
+
+            
+
+        }
+
+        private void DeletePanel(string panelSuffix) {
+
+            var obj = GameObject.Find(PanelName + "_" + panelSuffix);
+
+            if (obj.TryGetComponent(out ComicPanel.Panel panel)) {
+                
+                DestroyImmediate(obj);
+                
+            }
 
         }
 

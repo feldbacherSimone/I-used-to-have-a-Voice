@@ -3,7 +3,7 @@ using _IUTHAV.Scripts.Core.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _IUTHAV.Scripts.Panel.Interaction {
+namespace _IUTHAV.Scripts.ComicPanel.Interaction {
     
     public class ClickAndDragObject : SelectAndClickObject {
 
@@ -13,7 +13,7 @@ namespace _IUTHAV.Scripts.Panel.Interaction {
         public const short FLAG_DRAG = 1;
         public const short FLAG_NONE = 0;
         
-        protected Scripts.Panel.Panel OriginPanel;
+        protected ComicPanel.Panel OriginPanel;
         private Vector3 _mouseStartPosition;
         protected Rigidbody RBody;
 

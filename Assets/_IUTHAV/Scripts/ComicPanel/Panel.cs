@@ -1,14 +1,17 @@
-using _IUTHAV.Scripts.Panel.Interaction;
+using System;
+using _IUTHAV.Scripts.ComicPanel.Interaction;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace _IUTHAV.Scripts.Panel {
+namespace _IUTHAV.Scripts.ComicPanel {
     public class Panel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] private bool debug = true; 
-    
+        [SerializeField] private bool debug = true;
+        [Space(20)]
+        [SerializeField] private bool updateRenderTextureSize;
+        [Space(20)]
         [SerializeField] private Vector3 defaultPos;
         [SerializeField] private float xPadding = 1;
         [SerializeField] private float yPadding = 1;
@@ -30,6 +33,16 @@ namespace _IUTHAV.Scripts.Panel {
         private Vector2 panelSize;
 
         private GameObject currentHitObject;
+
+        private void OnValidate() {
+
+            if (updateRenderTextureSize) {
+                updateRenderTextureSize = false;
+            
+                UpdateRenderTexture();
+            }
+            
+        }
 
         private void Awake() {
         
@@ -168,8 +181,18 @@ namespace _IUTHAV.Scripts.Panel {
         }
 
         public void SetRendering(bool enable) {
-        
-            GetComponent<RawImage>().enabled = enable;
+            
+            if (enable) {
+                GetComponent<RawImage>().enabled = true;
+                RenderTexture tex = (RenderTexture)GetComponent<RawImage>().texture;
+                tex.Create();
+            }
+            else {
+                RenderTexture tex = (RenderTexture)GetComponent<RawImage>().texture;
+                tex.Release();
+                GetComponent<RawImage>().enabled = false;
+            }
+            
             if (panelCamera != null) panelCamera.enabled = enable;
             isRendering = enable;
 
@@ -197,6 +220,24 @@ namespace _IUTHAV.Scripts.Panel {
                 }
                 
             }
+
+        }
+
+        private void UpdateRenderTexture() {
+            
+            var img = gameObject.GetComponent<RawImage>();
+            RenderTexture tex = (RenderTexture)img.texture;
+            Rect rec = gameObject.GetComponent<RectTransform>().rect;
+            
+            int width = (int)rec.width;
+            int height = (int)rec.height;
+            gameObject.GetComponent<RectTransform>().rect.Set(rec.x, rec.y, width, height);
+            
+            //thank you @Mandoz on discussions.unity.com
+            tex.Release();
+            tex.width = width;
+            tex.height = height;
+            tex.Create();
 
         }
         

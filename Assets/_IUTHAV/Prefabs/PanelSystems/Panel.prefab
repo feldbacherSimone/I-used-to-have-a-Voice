@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5622904473281869429}
   - component: {fileID: 603061148176835456}
   - component: {fileID: 4676958556985342832}
-  - component: {fileID: 6228547593741705508}
+  - component: {fileID: 8254823183389079644}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -73,7 +73,7 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &6228547593741705508
+--- !u!114 &8254823183389079644
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,10 +86,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
+  updateRenderTextureSize: 0
   defaultPos: {x: 0, y: 0, z: 0}
-  xPadding: 4.33
-  yPadding: 5.39
-  zPadding: 1.18
+  xPadding: 1
+  yPadding: 1
+  zPadding: 1
   cmCamGameObject: {fileID: 0}
   camTarget: {fileID: 0}
   panelCamera: {fileID: 0}
+  isRendering: 0
+  panelIsActive: 0

@@ -1,10 +1,10 @@
-﻿namespace _IUTHAV.Scripts.Panel.Interaction
+﻿namespace _IUTHAV.Scripts.ComicPanel.Interaction
 {
     public struct SelectionContext {
     
-        public Scripts.Panel.Panel Panel;
+        public ComicPanel.Panel Panel;
 
-        public SelectionContext(Scripts.Panel.Panel panel) {
+        public SelectionContext(ComicPanel.Panel panel) {
             Panel = panel;
         }
     }
