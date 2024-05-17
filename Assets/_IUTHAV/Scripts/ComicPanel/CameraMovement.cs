@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Numerics;
+using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 namespace _IUTHAV.Scripts.ComicPanel
 {
@@ -13,9 +15,9 @@ namespace _IUTHAV.Scripts.ComicPanel
 
         public static void InitProjection(Transform camera, Vector3 defaultPos)
         {
-            resultZ = camera.transform.rotation * Vector3.forward;
-            resultY = camera.transform.rotation * Vector3.up;
-            resultX = camera.transform.rotation * Vector3.right;
+            resultZ = camera.transform.rotation * camera.forward;
+            resultY = camera.transform.rotation * camera.up;
+            resultX = camera.transform.rotation * camera.right;
 
             CameraMovement.defaultPos = defaultPos; 
         }
@@ -23,7 +25,7 @@ namespace _IUTHAV.Scripts.ComicPanel
         {
             Vector3 z = new Vector3(0, 0, position.z);
             Vector3 y = new Vector3(0, position.y, 0);
-            Vector3 x = new Vector3(position.x, 0,0);
+            Vector3 x = new Vector3(-position.x, 0,0);
 
             Vector3 output; 
             

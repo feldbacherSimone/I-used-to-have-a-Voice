@@ -571,8 +571,10 @@ namespace _IUTHAV.Scripts.Dialogue {
                 if (cloneBoxesAfterCharacterSwitch && 
                 !_mCurrentCharacter.Equals("None") && 
                 !_mComicBoxes[_mCurrentCharacter].dismissNextConversantClone) {
+                
                     _mComicBoxes[_mCurrentCharacter].CloneNewCharacterBox(_mCurrentLine);
                     _mComicBoxes[_mCurrentCharacter].dismissNextConversantClone = false;
+                    
                 }
                 _mCurrentCharacter = newCharacter;
             }
