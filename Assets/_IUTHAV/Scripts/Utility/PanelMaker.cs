@@ -110,7 +110,10 @@ namespace _IUTHAV.Scripts.Utility {
             CinemachineBrain cBrain = camObj.GetComponentInChildren<CinemachineBrain>();
             OutputChannels e = OutputChannels.Channel01;
             cBrain.ChannelMask = (OutputChannels)Enum.GetValues(e.GetType()).GetValue(cameraOutputMask+1);
-            
+
+            CinemachineCamera cCam = camObj.GetComponentInChildren<CinemachineCamera>();
+            cCam.OutputChannel = (OutputChannels)Enum.GetValues(e.GetType()).GetValue(cameraOutputMask+1);
+
             LogWarning("Successfully created Camera and RenderTexture with id [" + cameraOutputMask + "]");
         }
         

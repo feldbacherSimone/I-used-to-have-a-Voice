@@ -91,9 +91,9 @@ namespace Yarn.Unity.Example
             // Canvas "Overlay" mode is special case for ScreenPointToLocalPointInRectangle (see the Unity docs)
             if (canvas.renderMode == RenderMode.ScreenSpaceOverlay)
             {
-                canvasCamera = null; 
+                canvasCamera = null;
             }
-
+            
             RectTransformUtility.ScreenPointToLocalPointInRectangle( 
                 bubble.parent.GetComponent<RectTransform>(), // calculate local point inside parent... NOT inside the dialogue bubble itself
                 worldCamera.WorldToScreenPoint(worldPos), 

@@ -112,13 +112,15 @@ namespace _IUTHAV.Scripts.CustomUI {
 
         protected void CalculateCurrentPointerToCanvasPosition(Vector2 pointerPosition) {
         
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                (RectTransform)canvas.transform,
-                pointerPosition,
-                canvas.worldCamera,
-                out var position);
-
-            _mTargetPosition = canvas.transform.TransformPoint(position);
+            // Only important, if cameraSpace is used!
+            
+            //RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            //    (RectTransform)canvas.transform,
+            //    pointerPosition,
+            //    canvas.worldCamera,
+            //    out var position);
+            
+            _mTargetPosition = pointerPosition;
         }
 
         protected IEnumerator MoveTowardsTarget(OnMoveCompleteDelegate onFinishMove = null) {
