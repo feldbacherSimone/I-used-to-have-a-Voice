@@ -12,7 +12,7 @@ namespace _IUTHAV.Scripts.Utility {
 
     public static class Typeconverter {
         
-        public static StateType ChangePreAndSuffix(StatePrefix statePrefix, StateType exampleState, int suffix = -1) {
+        public static StateType ChangePreAndSuffix(StatePrefix? statePrefix, StateType exampleState, int suffix = -1) {
             
             string stateId = exampleState.ToString().Split("_")[1];
             string stateString = statePrefix + "_" + stateId;

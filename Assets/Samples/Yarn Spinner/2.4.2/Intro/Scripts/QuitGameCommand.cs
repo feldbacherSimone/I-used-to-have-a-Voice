@@ -17,7 +17,7 @@ public class QuitGameCommand : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FindObjectOfType<Yarn.Unity.DialogueRunner>().AddCommandHandler("quit", () => Quit());
+        //FindObjectOfType<Yarn.Unity.DialogueRunner>().AddCommandHandler("quit", () => Quit());
     }
 
     private void Quit()
