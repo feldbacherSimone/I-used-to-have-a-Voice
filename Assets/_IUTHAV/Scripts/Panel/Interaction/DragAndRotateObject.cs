@@ -11,7 +11,7 @@ namespace _IUTHAV.Scripts.Panel.Interaction {
 
 #region Unity Functions
 
-        private void OnDrawGizmos() {
+        protected override void OnDrawGizmos() {
 
             Gizmos.color = new Color(1, 0, 0, 0.3f);
 
@@ -23,7 +23,7 @@ namespace _IUTHAV.Scripts.Panel.Interaction {
                 if (VQueue.Count != 0) {
                     
                     Vector3 velocity = CalculateVelocity();
-                    Gizmos.DrawWireSphere(transform.position, velocity.magnitude / 4.0f);
+                    Gizmos.DrawWireSphere(transform.position, velocity.magnitude / 10.0f);
                 }
                 
             }
@@ -128,6 +128,7 @@ namespace _IUTHAV.Scripts.Panel.Interaction {
         private Vector3 CalculateRotationDelta() {
             
             //Flip x and y!
+            //Rotate only by 2 axis because simple and mouseinput only offers 2 floats
             float deltaX = (Input.mousePosition.y - _mouseScreenStartPosition.y) * -1;
             float deltaY = (Input.mousePosition.x - _mouseScreenStartPosition.x) * -1;
             float deltaZ = Input.mousePosition.z - _mouseScreenStartPosition.z;
