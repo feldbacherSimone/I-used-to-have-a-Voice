@@ -30,7 +30,7 @@ namespace _IUTHAV.Scripts.Dialogue {
         /// <summary>automatically called by YarnCharacter.Start() so that YarnCharacterView knows they exist</summary>
         public void RegisterYarnCharacter(YarnCharacter newCharacter)
         {
-            if (!YarnCharacterView.instance.allCharacters.Contains(newCharacter))
+            if (!YarnCharacterOverlayCanvasView.instance.allCharacters.Contains(newCharacter))
             {
                 allCharacters.Add(newCharacter);
             }
@@ -39,7 +39,7 @@ namespace _IUTHAV.Scripts.Dialogue {
         /// <summary>automatically called by YarnCharacter.OnDestroy() to clean-up</summary>
         public void ForgetYarnCharacter(YarnCharacter deletedCharacter)
         {
-            if (YarnCharacterView.instance.allCharacters.Contains(deletedCharacter))
+            if (YarnCharacterOverlayCanvasView.instance.allCharacters.Contains(deletedCharacter))
             {
                 allCharacters.Remove(deletedCharacter);
             }

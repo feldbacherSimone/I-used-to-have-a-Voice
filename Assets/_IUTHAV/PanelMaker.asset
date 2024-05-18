@@ -18,10 +18,10 @@ MonoBehaviour:
     type: 2}
   panelPrefab: {fileID: 6385227724739882469, guid: 9778dc1d60b77e94c875362c510de53c,
     type: 3}
-  renderTextureWidth: 875
-  renderTextureHeight: 586
-  cameraOutputMask: 1
-  shotName: POVEm1
+  renderTextureWidth: 1538
+  renderTextureHeight: 880
+  cameraOutputMask: 2
+  shotName: POVBackseatMid
   createRenderTextureAndCamera: 0
-  renderTextureTargetName: POVEm1
+  renderTextureTargetName: POVBackseatMid
   createPanel: 0
