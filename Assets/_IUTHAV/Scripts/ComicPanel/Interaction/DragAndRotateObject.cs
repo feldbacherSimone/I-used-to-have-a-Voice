@@ -50,7 +50,7 @@ namespace _IUTHAV.Scripts.ComicPanel.Interaction {
         public override void OnSelect(SelectionContext context) {
         
             base.OnSelect(context);
-            if (OriginPanel == null) OriginPanel = context.Panel;
+            if (OriginPanel == null) OriginPanel = context.panel;
 
         }
 
