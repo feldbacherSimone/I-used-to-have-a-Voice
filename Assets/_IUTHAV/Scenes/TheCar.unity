@@ -566,6 +566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7ca6eeb9de434fb06e1af6e9e033af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels:
+  - {fileID: 1210492086}
   customMaterial: {fileID: 2100000, guid: 39f2ff5f178d86e4f8b029002c325f73, type: 2}
 --- !u!114 &651037691
 MonoBehaviour:
@@ -579,7 +581,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab431cf0b9a4e949b7f23e51275dae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels:
+  - {fileID: 1210492086}
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
   onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselect:
     m_PersistentCalls:
       m_Calls: []
   isDebug: 0
@@ -1127,6 +1137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7ca6eeb9de434fb06e1af6e9e033af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels:
+  - {fileID: 1210492086}
   customMaterial: {fileID: 2100000, guid: 39f2ff5f178d86e4f8b029002c325f73, type: 2}
 --- !u!114 &1030000635
 MonoBehaviour:
@@ -1140,7 +1152,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab431cf0b9a4e949b7f23e51275dae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels:
+  - {fileID: 1210492086}
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
   onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselect:
     m_PersistentCalls:
       m_Calls: []
   isDebug: 0
@@ -1473,6 +1493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7ca6eeb9de434fb06e1af6e9e033af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels:
+  - {fileID: 1210492086}
   customMaterial: {fileID: 2100000, guid: 39f2ff5f178d86e4f8b029002c325f73, type: 2}
 --- !u!114 &1206680734
 MonoBehaviour:
@@ -1486,7 +1508,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab431cf0b9a4e949b7f23e51275dae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels:
+  - {fileID: 1210492086}
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
   onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselect:
     m_PersistentCalls:
       m_Calls: []
   isDebug: 0
@@ -1707,6 +1737,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1210492084}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1210492086 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1210492084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b529a047d499d1141b3eb724c2c14117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1277925741
 GameObject:
   m_ObjectHideFlags: 0
@@ -3000,6 +3042,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab431cf0b9a4e949b7f23e51275dae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels:
+  - {fileID: 1210492086}
+  onSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onClick:
     m_PersistentCalls:
       m_Calls:
@@ -3027,6 +3086,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDeselect:
+    m_PersistentCalls:
+      m_Calls: []
   isDebug: 0
 --- !u!114 &1765731747
 MonoBehaviour:
@@ -3040,6 +3102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7ca6eeb9de434fb06e1af6e9e033af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels:
+  - {fileID: 1210492086}
   customMaterial: {fileID: 2100000, guid: 39f2ff5f178d86e4f8b029002c325f73, type: 2}
 --- !u!65 &1765731748
 BoxCollider:
@@ -3184,6 +3248,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab431cf0b9a4e949b7f23e51275dae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels:
+  - {fileID: 1210492086}
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
   onClick:
     m_PersistentCalls:
       m_Calls:
@@ -3211,6 +3280,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDeselect:
+    m_PersistentCalls:
+      m_Calls: []
   isDebug: 0
 --- !u!114 &1809959617
 MonoBehaviour:
@@ -3224,6 +3296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7ca6eeb9de434fb06e1af6e9e033af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels:
+  - {fileID: 1210492086}
   customMaterial: {fileID: 2100000, guid: 39f2ff5f178d86e4f8b029002c325f73, type: 2}
 --- !u!65 &1809959618
 BoxCollider:
@@ -3711,6 +3785,12 @@ PrefabInstance:
       propertyPath: sceneGameStatesObject
       value: 
       objectReference: {fileID: 11400000, guid: 26901ba8c01b85241bbeebd72877948d,
+        type: 2}
+    - target: {fileID: 7380883785547979250, guid: df1f6baaf63d0084e9c4246ab204ed49,
+        type: 3}
+      propertyPath: persistentGameStatesObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 75788891528c221418cfb1075bab2bf4,
         type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
