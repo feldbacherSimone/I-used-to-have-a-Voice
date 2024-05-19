@@ -1,4 +1,6 @@
-﻿namespace _IUTHAV.Scripts.ComicPanel.Interaction {
+﻿using UnityEngine;
+
+namespace _IUTHAV.Scripts.ComicPanel.Interaction {
     public class SelectionContext {
         
         public readonly ComicPanel.Panel panel;

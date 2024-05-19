@@ -1,3 +1,4 @@
+using System.Collections;
 using _IUTHAV.Scripts.Core.Page;
 using UnityEngine;
 
@@ -10,7 +11,24 @@ namespace _IUTHAV.Scripts.Core.Scene {
         }
 
         public void LoadByString(string sceneName) {
-            SceneLoader.LoadSingle(sceneName, PageType.LoadingPage, 2000);
+            StartCoroutine(WaitAndLoadByString(sceneName));
+        }
+        
+        private IEnumerator WaitAndLoadByString(string sceneName) {
+            
+            if (PageController.Instance != null) {
+                PageController.Instance.TurnPageOn(PageType.LoadingPage);
+            }
+
+            yield return new WaitForSeconds(2.0f);
+            
+            SceneLoader.LoadSingle(sceneName, PageType.LoadingPage);
+            
+            if (PageController.Instance != null) {
+                PageController.Instance.TurnPageOff(PageType.LoadingPage);
+            }
+            
+            yield return null;
         }
         
     }

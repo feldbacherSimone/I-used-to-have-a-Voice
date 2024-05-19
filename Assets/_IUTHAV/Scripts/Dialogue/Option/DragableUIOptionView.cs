@@ -19,7 +19,7 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
 
         DialogueOption _option;
 
-        bool hasSubmittedOptionSelection = false;
+        //bool hasSubmittedOptionSelection = false;
         
         private void Awake() {
             EventTrigger trigger = gameObject.GetOrAddComponent<EventTrigger>();
@@ -38,7 +38,7 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
             {
                 _option = value;
 
-                hasSubmittedOptionSelection = false;
+                //hasSubmittedOptionSelection = false;
 
                 // When we're given an Option, use its text and update our
                 // interactibility.

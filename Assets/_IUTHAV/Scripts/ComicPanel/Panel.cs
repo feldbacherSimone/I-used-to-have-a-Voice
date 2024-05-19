@@ -3,6 +3,7 @@ using _IUTHAV.Scripts.ComicPanel.Interaction;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _IUTHAV.Scripts.ComicPanel {
@@ -26,7 +27,9 @@ namespace _IUTHAV.Scripts.ComicPanel {
         [HideInInspector] public bool isRendering;
 
         public bool panelIsActive;
-        private ScrollRect scrollRect;
+        private ScrollRect _scrollRect;
+        private RectTransform _backGroundTransform;
+        
         private RectTransform _rectTransform;
         private float scrollAmount = 0;
 
@@ -47,7 +50,7 @@ namespace _IUTHAV.Scripts.ComicPanel {
         private void Awake() {
         
             ConfigureCollider2D();
-        
+
         }
         private void Start()
         {
@@ -59,28 +62,30 @@ namespace _IUTHAV.Scripts.ComicPanel {
             defaultPos = camTarget.position; 
         
             _rectTransform = GetComponent<RectTransform>();
-            scrollRect = GameObject.FindWithTag("Scroll").GetComponent<ScrollRect>();
             CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
 
             RawImage panelImage = GetComponent<RawImage>();
             panelSize = new Vector2(panelImage.texture.width, panelImage.texture.height);
         
+            //ScrollRect Configuration
+            _scrollRect = GameObject.FindWithTag("Scroll").GetComponent<ScrollRect>();
+            _backGroundTransform = GameObject.FindWithTag("BG").GetComponent<RectTransform>();
+        
             //Set rendering to false by default
             SetRendering(false);
+            
         }
 
         private void Update()
         {
             MoveParalax();
-            Raycast();
+            if (panelIsActive) Raycast();
         }
 
 
         // ReSharper disable Unity.PerformanceAnalysis
         private void Raycast()
         {
-            if(!panelIsActive)
-                return;
             Vector3 realivePos = GetRelativeMousePos();
             Vector3 rayPos = new Vector3((realivePos.x + 0.5f), (1- (realivePos.y + 0.5f))  , 0);
         
@@ -135,7 +140,7 @@ namespace _IUTHAV.Scripts.ComicPanel {
         public Vector2 GetRelativeMousePos()
         {
 
-            float canvasScroll = transform.parent.GetComponent<RectTransform>().anchoredPosition.y;
+            float canvasScroll = _backGroundTransform.anchoredPosition.y;
             DebugPrint($"Scroll Amount: {canvasScroll}");
         
             Vector2 newMousePos = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
@@ -153,7 +158,7 @@ namespace _IUTHAV.Scripts.ComicPanel {
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            scrollRect.enabled = false;
+            _scrollRect.enabled = false;
             panelIsActive = true;
         
             CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
@@ -164,7 +169,7 @@ namespace _IUTHAV.Scripts.ComicPanel {
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            scrollRect.enabled = true;
+            _scrollRect.enabled = true;
             panelIsActive = false;
         
             GetComponent<RawImage>().color = Color.white;
@@ -186,11 +191,13 @@ namespace _IUTHAV.Scripts.ComicPanel {
                 GetComponent<RawImage>().enabled = true;
                 RenderTexture tex = (RenderTexture)GetComponent<RawImage>().texture;
                 tex.Create();
+                
             }
             else {
                 RenderTexture tex = (RenderTexture)GetComponent<RawImage>().texture;
                 tex.Release();
                 GetComponent<RawImage>().enabled = false;
+                
             }
             
             if (panelCamera != null) panelCamera.enabled = enable;
@@ -240,7 +247,7 @@ namespace _IUTHAV.Scripts.ComicPanel {
             tex.Create();
 
         }
-        
+
         private void DebugPrint(string msg, bool error = false)
         {
             if(!debug) return;
