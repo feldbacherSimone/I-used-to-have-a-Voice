@@ -97,14 +97,14 @@ namespace _IUTHAV.Scripts.ComicPanel {
             
                 if (currentHitObject != hit.transform.gameObject)
                 {
-                    if (currentHitObject != null) IterateSelectables(currentHitObject, false);
+                    if (currentHitObject != null) IterateSelectableComponents(currentHitObject, false);
                     currentHitObject = hit.transform.gameObject;
-                    IterateSelectables(currentHitObject, true);
+                    IterateSelectableComponents(currentHitObject, true);
                 }
             }
             else if (currentHitObject != null)
             {
-                IterateSelectables(currentHitObject, false);
+                IterateSelectableComponents(currentHitObject, false);
                 currentHitObject = null; 
             }
 
@@ -170,7 +170,7 @@ namespace _IUTHAV.Scripts.ComicPanel {
             GetComponent<RawImage>().color = Color.white;
             scrollAmount = 0;
         
-            if (currentHitObject != null) IterateSelectables(currentHitObject, false);
+            if (currentHitObject != null) IterateSelectableComponents(currentHitObject, false);
             currentHitObject = null;
         }
 
@@ -207,7 +207,7 @@ namespace _IUTHAV.Scripts.ComicPanel {
             coll.offset = new Vector2(bounds.x / 2.0f, -bounds.y / 2.0f);
         }
 
-        private void IterateSelectables(GameObject targetObj, bool enable) {
+        private void IterateSelectableComponents(GameObject targetObj, bool enable) {
 
             foreach (ISelectable selectable in targetObj.GetComponents<ISelectable>()) {
 

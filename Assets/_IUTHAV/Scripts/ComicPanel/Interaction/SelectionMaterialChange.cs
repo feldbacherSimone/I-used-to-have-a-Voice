@@ -4,6 +4,8 @@ namespace _IUTHAV.Scripts.ComicPanel.Interaction
 {
     public class SelectionMaterialChange : MonoBehaviour, ISelectable
     {
+        [Tooltip("Valid Panels, where Object can be selected. If none are selected, Object will be selectable everywhere")]
+        [SerializeField] protected Panel[] validPanels;
         [SerializeField] private Material customMaterial;
         private const string DEFAULT_MAT_PATH = "Materials/DefaultSelection";
         private Material highlightMat;
@@ -29,7 +31,9 @@ namespace _IUTHAV.Scripts.ComicPanel.Interaction
 
         public void OnSelect(SelectionContext context)
         {
-            _meshRenderer.material = highlightMat;
+            if (context.IsValidPanelExists(validPanels)) {
+                if (_meshRenderer != null) _meshRenderer.material = highlightMat;
+            }
         }
 
         public void OnDeselect()

@@ -5,9 +5,13 @@ using UnityEngine.InputSystem;
 
 namespace _IUTHAV.Scripts.ComicPanel.Interaction {
     public class SelectAndClickObject : MonoBehaviour, IInteractable, ISelectable {
-        
-        
+
+        [Tooltip("Valid Panels, where Object can be selected. If none are selected, Object will be selectable everywhere")]
+        [SerializeField] protected Panel[] validPanels;
+
+        [SerializeField] protected UnityEvent onSelect;
         [SerializeField] protected UnityEvent onClick;
+        [SerializeField] protected UnityEvent onDeselect;
         
         [SerializeField] protected bool isDebug;
         
@@ -33,11 +37,16 @@ namespace _IUTHAV.Scripts.ComicPanel.Interaction {
             Log("Interacted with Object!");
         }
         public virtual void OnSelect(SelectionContext context) {
-            IsSelected = true;
+
+            if (context.IsValidPanelExists(validPanels)) {
+                IsSelected = true;
+                onSelect?.Invoke();
+            }
         }
 
         public virtual void OnDeselect() {
             IsSelected = false;
+            onDeselect?.Invoke();
         }
 
 #endregion
