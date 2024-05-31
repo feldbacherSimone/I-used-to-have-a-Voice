@@ -84,7 +84,10 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
         public override void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected) {
             
             // If we don't already have enough option views, create more
-            if (_mDropBoxes[_mIndex] == null) return;
+            if (_mIndex >= _mDropBoxes.Count || _mDropBoxes[_mIndex] == null) {
+                LogWarning("Not enough questionDropBoxes have been assigned!");
+                return;
+            }
             
             while (dialogueOptions.Length > _mDropBoxes[_mIndex].GetOptionViewCount()) {
                 
