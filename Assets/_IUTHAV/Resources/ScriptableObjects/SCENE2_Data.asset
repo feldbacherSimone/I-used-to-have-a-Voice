@@ -13,6 +13,34 @@ MonoBehaviour:
   m_Name: SCENE2_Data
   m_EditorClassIdentifier: 
   resetStatesOnUnload: 1
-  statePrefix: 0
-  gameStates: []
+  statePrefix: 3
+  gameStates:
+  - stateType: 200
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 1
+    isFreeze: 0
+    isFinished: 0
+  - stateType: 201
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 1
+    isFreeze: 0
+    isFinished: 0
+  - stateType: 202
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 1
+    isFreeze: 0
+    isFinished: 0
+  - stateType: 203
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 1
+    isFreeze: 0
+    isFinished: 0
   regenerateList: 0

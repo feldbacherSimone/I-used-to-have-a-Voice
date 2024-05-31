@@ -41,7 +41,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         SC2_ActFinished_2,
         
         //SCENE 3 States
-        SC3_NextActTrigger = 300,
+        SC3_ScrollTrigger = 300,
     
     }
 
