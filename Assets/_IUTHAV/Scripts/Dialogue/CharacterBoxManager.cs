@@ -66,6 +66,9 @@ namespace _IUTHAV.Scripts.Dialogue {
             if (!silent) _mIndex++;
             
             if (_mIndex < _comicBoxes.Count) {
+            
+                CurrentCharacterBox().ToggleBubble(true);
+            
                 ApplyPrefabParameters();
                 _positionToggle = true;
             }
@@ -172,7 +175,7 @@ namespace _IUTHAV.Scripts.Dialogue {
 
         private void UpdatePrefabParameters(MarkupParseResult line) {
             
-            var bg = CharacterBoxPrefab.GetComponent<Image>();
+            //var bg = CharacterBoxPrefab.GetComponent<Image>();
             _mLastLine = line;
             //message.color = currentTextColor;
 
@@ -180,12 +183,12 @@ namespace _IUTHAV.Scripts.Dialogue {
             if (_comicBoxes.Count > _mIndex && _comicBoxes[_mIndex].IsRightAlignment) {
                 layoutGroup.padding.left = 32;
                 layoutGroup.padding.right = 0;
-                bg.transform.SetAsLastSibling();
+                CharacterBoxPrefab.transform.SetAsLastSibling();
             }
             else {
                 layoutGroup.padding.left = 0;
                 layoutGroup.padding.right = 32;
-                bg.transform.SetAsFirstSibling();
+                CharacterBoxPrefab.transform.SetAsFirstSibling();
             }
             
         }
@@ -200,6 +203,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                     CurrentCharacterBox().BoxRectTransform.rotation,
                     CurrentCharacterBox().gameObject.transform
             );
+            oldClone.transform.localScale = Vector3.one;
             return oldClone;
         }
 
