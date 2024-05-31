@@ -27,7 +27,7 @@ namespace _IUTHAV.Scripts.Core.Audio {
 #region Unity Functions
 
         private void Awake() {
-
+            
             Configure();
         }
 

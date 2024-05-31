@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 6d191b7558e1445980229a2daf226c1b, type: 3}
   m_Name: SCENE3_Data
-  m_EditorClassIdentifier: Assembly-CSharp:_IUTHAV.Scripts.Core.Gamemode:GameStatesObject
+  m_EditorClassIdentifier: 
   resetStatesOnUnload: 1
   statePrefix: 4
   gameStates:

@@ -72,6 +72,7 @@ namespace _IUTHAV.Scripts.Core.Audio
 
 #region Unity Functions
         private void Start() {
+
             Configure();
         }
         
@@ -174,6 +175,7 @@ namespace _IUTHAV.Scripts.Core.Audio
 
             audioTable = new Hashtable();
             _jobTable = new Hashtable();
+
             LoadMixerGroups();
             GenerateAudioTable(tracks);
             isReady = true;
@@ -181,8 +183,8 @@ namespace _IUTHAV.Scripts.Core.Audio
         
         protected void Dispose() {
             //Disable all coroutines
-            foreach (DictionaryEntry entry in _jobTable)
-            {
+            
+            foreach (DictionaryEntry entry in _jobTable) {
                 IEnumerator job = (IEnumerator)entry.Value;
                 StopCoroutine(job);
             }
@@ -248,7 +250,7 @@ namespace _IUTHAV.Scripts.Core.Audio
         }
 
         protected void LoadMixerGroups() {
-            AudioMixer mixer = (AudioMixer)Resources.Load("AudioMixer");
+            AudioMixer mixer = (AudioMixer)Resources.Load("Mixer");
             
             if (_masterGroup == null) _masterGroup = mixer.FindMatchingGroups("Master")[0];
             if (_musicGroup == null) _musicGroup = mixer.FindMatchingGroups(AudioGroupType.Music.ToString())[0];
