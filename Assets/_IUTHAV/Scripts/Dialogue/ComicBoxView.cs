@@ -81,9 +81,12 @@ namespace _IUTHAV.Scripts.Dialogue {
         private bool _mClickedContinue;
         
         private void Awake() {
-            _canvasGroup = characters[0].CharacterBoxPrefab.GetComponent<CanvasGroup>();
-            _canvasGroup.alpha = 0;
-            _canvasGroup.blocksRaycasts = false;
+            foreach (var c in characters) {
+                _canvasGroup = c.CharacterBoxPrefab.GetComponent<CanvasGroup>();
+                _canvasGroup.alpha = 0;
+                _canvasGroup.blocksRaycasts = false;
+            }
+            
             Configure();
         }
 
@@ -571,8 +574,10 @@ namespace _IUTHAV.Scripts.Dialogue {
                 if (cloneBoxesAfterCharacterSwitch && 
                 !_mCurrentCharacter.Equals("None") && 
                 !_mComicBoxes[_mCurrentCharacter].dismissNextConversantClone) {
+                
                     _mComicBoxes[_mCurrentCharacter].CloneNewCharacterBox(_mCurrentLine);
                     _mComicBoxes[_mCurrentCharacter].dismissNextConversantClone = false;
+                    
                 }
                 _mCurrentCharacter = newCharacter;
             }

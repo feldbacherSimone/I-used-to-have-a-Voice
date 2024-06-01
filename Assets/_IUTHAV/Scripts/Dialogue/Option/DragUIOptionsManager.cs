@@ -94,7 +94,7 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
                         IsFull = true;
                 
                         dropElement.SnapToTarget(transform.position, () => {
-                            dropElement.currentflag = DragableUIElement.FLAG_LOCK;
+                            dropElement.currentflag = DragUIElement.FLAG_LOCK;
                             this.InvokeOptionSelected();
                             dropElement.StartValidDropPointSequence();
                         });
@@ -104,7 +104,7 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
                     case OptionType.DestroyOnDrop:
                     
                         dropElement.SnapToTarget(transform.position, () => {
-                            dropElement.currentflag = DragableUIElement.FLAG_LOCK;
+                            dropElement.currentflag = DragUIElement.FLAG_LOCK;
                             dropElement.StartDestructionSequence();
                         });
                         Log("Chose Invalid Option");
@@ -119,12 +119,12 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
             
         }
         
-        private void Log(string msg) {
+        private new void Log(string msg) {
             if (!isDebug) return;
             Debug.Log("[DragUIElementOptionsManager] " + msg);
         }
         
-        private void LogWarning(string msg) {
+        private new void LogWarning(string msg) {
             if (!isDebug) return;
             Debug.LogWarning("[DragUIElementOptionsManager] " + msg);
         }

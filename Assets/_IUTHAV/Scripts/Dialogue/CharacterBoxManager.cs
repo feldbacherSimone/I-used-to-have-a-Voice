@@ -66,6 +66,9 @@ namespace _IUTHAV.Scripts.Dialogue {
             if (!silent) _mIndex++;
             
             if (_mIndex < _comicBoxes.Count) {
+            
+                CurrentCharacterBox().ToggleBubble(true);
+            
                 ApplyPrefabParameters();
                 _positionToggle = true;
             }
@@ -112,7 +115,11 @@ namespace _IUTHAV.Scripts.Dialogue {
         }
 
         public CharacterBox CurrentCharacterBox() {
-            return _comicBoxes[_mIndex];
+            if (_comicBoxes.Count > _mIndex) {
+                return _comicBoxes[_mIndex];
+            }
+
+            return null;
         }
 
         public Vector3 GetContinueButtonPosition() {
@@ -150,6 +157,10 @@ namespace _IUTHAV.Scripts.Dialogue {
             message.alignment = (CurrentCharacterBox().IsRightAlignment)
                 ? TextAlignmentOptions.Right
                 : TextAlignmentOptions.Left;
+                
+            if (_comicBoxes.Count <= _mIndex) {
+                return;
+            }
             
             var boxTransform = _comicBoxes[_mIndex].BoxRectTransform;
             characterPositionEmpty.transform.SetPositionAndRotation(
@@ -164,25 +175,27 @@ namespace _IUTHAV.Scripts.Dialogue {
 
         private void UpdatePrefabParameters(MarkupParseResult line) {
             
-            var bg = CharacterBoxPrefab.GetComponent<Image>();
+            //var bg = CharacterBoxPrefab.GetComponent<Image>();
             _mLastLine = line;
             //message.color = currentTextColor;
 
             var layoutGroup = CharacterBoxPrefab.GetComponent<VerticalLayoutGroup>();
-            if (_comicBoxes[_mIndex].IsRightAlignment) {
+            if (_comicBoxes.Count > _mIndex && _comicBoxes[_mIndex].IsRightAlignment) {
                 layoutGroup.padding.left = 32;
                 layoutGroup.padding.right = 0;
-                bg.transform.SetAsLastSibling();
+                CharacterBoxPrefab.transform.SetAsLastSibling();
             }
             else {
                 layoutGroup.padding.left = 0;
                 layoutGroup.padding.right = 32;
-                bg.transform.SetAsFirstSibling();
+                CharacterBoxPrefab.transform.SetAsFirstSibling();
             }
             
         }
         
         private GameObject InstantiateBox() {
+
+            if (CurrentCharacterBox() == null) return null;
         
             GameObject oldClone = Instantiate( 
                     CharacterBoxPrefab,
@@ -190,6 +203,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                     CurrentCharacterBox().BoxRectTransform.rotation,
                     CurrentCharacterBox().gameObject.transform
             );
+            oldClone.transform.localScale = Vector3.one;
             return oldClone;
         }
 

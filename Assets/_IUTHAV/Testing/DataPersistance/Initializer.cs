@@ -1,5 +1,5 @@
 using System;
-using _IUTHAV.Core_Programming.Scene;
+using _IUTHAV.Scripts.Core.Scene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

@@ -11,7 +11,7 @@ namespace _IUTHAV.Scripts.Core.Scene {
         public static readonly string FLAG_ON = "On";
         public static readonly string FLAG_OFF = "Off";
         public static readonly string FLAG_NONE = "None";
-
+        
         private static string _currentLoadingState = FLAG_NONE;
         private static Dictionary<string, LoadingParameters> _loadList;
         
@@ -23,9 +23,9 @@ namespace _IUTHAV.Scripts.Core.Scene {
         public static void Enable() {
 
             if (IsReady) return;
-
+            
             _loadList = new Dictionary<string, LoadingParameters>();
-            _loadList.Add(SceneManager.GetActiveScene().name, new LoadingParameters(PageType.None, LoadSceneMode.Single, 0));
+            _loadList.Add(SceneManager.GetActiveScene().name, new LoadingParameters(PageType.None, LoadSceneMode.Single));
             if (_currentLoadingState == FLAG_NONE) {
                 SceneManager.sceneLoaded += OnSceneLoaded;
                 _currentLoadingState = FLAG_OFF;
@@ -39,16 +39,16 @@ namespace _IUTHAV.Scripts.Core.Scene {
             _currentLoadingState = FLAG_NONE;
         }
 
-        public static void LoadSingle(string sceneType, PageType loadingPage = PageType.None, int loadTime = 600) {
+        public static void LoadSingle(string sceneType, PageType loadingPage = PageType.None) {
             
             _loadList.Remove(SceneManager.GetActiveScene().name);
-            _loadList.Add(sceneType, new LoadingParameters(loadingPage, LoadSceneMode.Single, loadTime));
+            _loadList.Add(sceneType, new LoadingParameters(loadingPage, LoadSceneMode.Single));
             LoadScene(sceneType);
         }
 
-        public static void LoadAdditive(string sceneType, PageType loadingPage = PageType.None, int loadTime = 600) {
+        public static void LoadAdditive(string sceneType, PageType loadingPage = PageType.None) {
             
-            _loadList.Add(sceneType, new LoadingParameters(loadingPage, LoadSceneMode.Additive, loadTime));
+            _loadList.Add(sceneType, new LoadingParameters(loadingPage, LoadSceneMode.Additive));
             LoadScene(sceneType);
         }
 
@@ -69,31 +69,20 @@ namespace _IUTHAV.Scripts.Core.Scene {
 
 #region Private Functions
 
-        private static async void LoadScene(string type) {
+        private static void LoadScene(string type) {
         
             if (_currentLoadingState == FLAG_ON) {
                 LogWarning("Cannot load a scene while another is currently loading");
                 return;
             }
             _currentLoadingState = FLAG_ON;
-            
-            if (_loadList[type].loadingPage != PageType.None) {
-                PageController.Instance.TurnPageOn(_loadList[type].loadingPage);
-            }
-            
-            await Task.Delay(_loadList[type].loadTime);
-            
+
             SceneManager.LoadScene(type.ToString(), _loadList[type].loadSceneMode);
         }
 
         private static void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode) {
             
-            Log("Awaiting load time of : " + scene.name.ToString() + ": " + _loadList[scene.name.ToString()].loadTime);
-
             Log("Load time completed");
-            if (_loadList[scene.name].loadingPage != PageType.None) {
-                PageController.Instance.TurnPageOff(_loadList[scene.name].loadingPage);
-            }
             _currentLoadingState = FLAG_OFF;
         }
 
@@ -113,12 +102,10 @@ namespace _IUTHAV.Scripts.Core.Scene {
         
             public readonly PageType loadingPage;
             public LoadSceneMode loadSceneMode;
-            public readonly int loadTime;
 
-            public LoadingParameters(PageType loadingPage, LoadSceneMode loadSceneMode, int loadTime) {
+            public LoadingParameters(PageType loadingPage, LoadSceneMode loadSceneMode) {
                 this.loadingPage = loadingPage;
                 this.loadSceneMode = loadSceneMode;
-                this.loadTime = loadTime;
             }
         }
 

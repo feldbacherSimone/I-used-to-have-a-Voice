@@ -2,6 +2,7 @@
 Yarn Spinner is licensed to you under the terms found in the file LICENSE.md.
 */
 
+using _IUTHAV.Scripts.Dialogue;
 using UnityEngine;
 
 namespace Yarn.Unity.Example
@@ -37,20 +38,20 @@ namespace Yarn.Unity.Example
         // ... this is important because YarnCharacterManager.Awake() must run before YarnCharacter.Start()
         void Start()
         {
-            if (YarnCharacterView.instance == null)
+            if (YarnCharacterOverlayCanvasView.instance == null)
             {
                 Debug.LogError("YarnCharacter can't find the YarnCharacterView instance! Is the 3D Dialogue prefab and YarnCharacterView script in the scene?");
                 return;
             }
 
-            YarnCharacterView.instance.RegisterYarnCharacter(this);
+            YarnCharacterOverlayCanvasView.instance.RegisterYarnCharacter(this);
         }
 
         void OnDestroy()
         {
-            if (YarnCharacterView.instance != null)
+            if (YarnCharacterOverlayCanvasView.instance != null)
             {
-                YarnCharacterView.instance.ForgetYarnCharacter(this);
+                YarnCharacterOverlayCanvasView.instance.ForgetYarnCharacter(this);
             }
         }
     }

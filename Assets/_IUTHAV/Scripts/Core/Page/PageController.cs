@@ -119,7 +119,7 @@ namespace _IUTHAV.Scripts.Core.Page {
             _mPages = new Hashtable();
             RegisterAllPages();
             Log("Configured and ready");
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this.gameObject);
         }
         
         private void RegisterAllPages() {

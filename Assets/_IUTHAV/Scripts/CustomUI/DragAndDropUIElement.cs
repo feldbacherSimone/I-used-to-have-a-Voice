@@ -1,19 +1,17 @@
-using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 namespace _IUTHAV.Scripts.CustomUI {
-    public class DragAndDropUIElement : DragableUIElement {
+    public class DragAndDropUIElement : DragUIElement {
 
-        [SerializeField] protected UnityEvent onValidDropSequence;
-        [SerializeField] protected UnityEvent onInvalidDropSequence;
-        [SerializeField] protected UnityEvent onDestructionSequence;
+        [SerializeField] protected UnityEvent onValidDrop;
+        [SerializeField] protected UnityEvent onInvalidDrop;
+        [SerializeField] protected UnityEvent onDestruction;
         public delegate void DropDelegate(DragAndDropUIElement dragAndDropUIElement, PointerEventData data);
         public DropDelegate DropCallback;
-        protected Vector2 startingPosition;
+        protected Vector2 StartingPosition;
         
         private void Awake() {
             EventTrigger trigger = gameObject.GetOrAddComponent<EventTrigger>();
@@ -22,28 +20,28 @@ namespace _IUTHAV.Scripts.CustomUI {
 
         public virtual void StartValidDropPointSequence() {
             Log("Starting ValidDrop Sequence");
-            onValidDropSequence?.Invoke();
+            onValidDrop?.Invoke();
         }
 
         public virtual void StartInvalidDropPointSequence() {
             Log("Starting InvalidDrop Sequence");
-            onInvalidDropSequence?.Invoke();
+            onInvalidDrop?.Invoke();
         }
 
         public virtual void StartDestructionSequence() {
             Log("Starting Destruction Sequence");
-            onDestructionSequence?.Invoke();
+            onDestruction?.Invoke();
         }
 
         protected override void OnBeginDragDelegate(BaseEventData data) {
-            startingPosition = transform.position;
+            StartingPosition = transform.position;
             base.OnBeginDragDelegate(data);
             
         }
 
         protected override void OnDropDelegate(BaseEventData data) {
             base.OnDropDelegate(data);
-            SnapToTarget(startingPosition);
+            SnapToTarget(StartingPosition);
             DropCallback?.Invoke(this, (PointerEventData)data);
         }
 
@@ -73,7 +71,7 @@ namespace _IUTHAV.Scripts.CustomUI {
 
             ConfigureCollider2D();
 
-            startingPosition = transform.position;
+            StartingPosition = transform.position;
 
         }
 

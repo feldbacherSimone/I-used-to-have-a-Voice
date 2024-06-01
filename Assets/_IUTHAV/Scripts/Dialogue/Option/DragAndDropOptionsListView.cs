@@ -81,15 +81,21 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
             lastSeenLine = dialogueLine;
             onDialogueLineFinished();
         }
-        public override void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected)
-        {
-            Log(_mDropBoxes[_mIndex].gameObject.name);
+        public override void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected) {
+            
             // If we don't already have enough option views, create more
+            if (_mIndex >= _mDropBoxes.Count || _mDropBoxes[_mIndex] == null) {
+                LogWarning("Not enough questionDropBoxes have been assigned!");
+                return;
+            }
+            
             while (dialogueOptions.Length > _mDropBoxes[_mIndex].GetOptionViewCount()) {
+                
                 var optionView = _mDropBoxes[_mIndex].CreateNewOptionView();
                 optionView.gameObject.SetActive(false);
             }
             
+            Log(_mDropBoxes[_mIndex].gameObject.name);
             // Set up all of the option views
             _mDropBoxes[_mIndex].SetupOptionViews(this.palette, dialogueOptions, showUnavailableOptions);
             _mDropBoxes[_mIndex].OnOptionSelected = OptionViewWasSelected;
@@ -134,15 +140,15 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
 #region Private Functions
 
         private void OptionViewWasSelected(DialogueOption option)
-            {
-                StartCoroutine(OptionViewWasSelectedInternal(option));
+        {
+            StartCoroutine(OptionViewWasSelectedInternal(option));
 
-                IEnumerator OptionViewWasSelectedInternal(DialogueOption selectedOption)
-                {
-                    yield return StartCoroutine(FadeAndDisableOptionViews(canvasGroup, 1, 0, fadeTime));
-                    OnOptionSelected(selectedOption.DialogueOptionID);
-                }
+            IEnumerator OptionViewWasSelectedInternal(DialogueOption selectedOption)
+            {
+                yield return StartCoroutine(FadeAndDisableOptionViews(canvasGroup, 1, 0, fadeTime));
+                OnOptionSelected(selectedOption.DialogueOptionID);
             }
+        }
 
         /// <summary>
         /// Fades canvas and then disables all option views.

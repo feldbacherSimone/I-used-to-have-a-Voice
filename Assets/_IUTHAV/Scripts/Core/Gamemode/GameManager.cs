@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using _IUTHAV.Scripts.Core.Gamemode.CustomDataTypes;
+using _IUTHAV.Scripts.Core.Input;
 using _IUTHAV.Scripts.Core.Page;
 using _IUTHAV.Scripts.Core.Scene;
 using UnityEngine;
@@ -38,23 +39,32 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
 #region Unity Functions
 
         private void Awake() {
+            
             Configure();
         }
 
         private void Start() {
             LogStates();
+            InputController.Configure();
         }
 
         private void OnDestroy() {
             Dispose();
         }
 
+        private void OnApplicationQuit() {
+            QuiteGame();
+        }
+
 #endregion
 
 #region Public Functions
 
-        public StatePrefix GetCurrentSceneType() {
-            return sceneGameStatesObject.StatePrefix;
+        public StatePrefix? GetCurrentSceneType() {
+            if (sceneGameStatesObject != null) {
+                return sceneGameStatesObject.StatePrefix;
+            }
+            return null;
         }
 
         public void PauseGame(bool pause) {
@@ -66,6 +76,10 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
             }
 
             _isGamePaused = pause;
+        }
+
+        public void QuiteGame() {
+            InputController.Dispose();
         }
 
         public GameState GetState(StateType stateType) {
@@ -139,6 +153,9 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
 
         private void PopulateStatesTable() {
             _mStates = new Hashtable();
+            
+            if (sceneGameStatesObject == null) return;
+            
             foreach (GameState state in sceneGameStatesObject.GameStates) {
                 RegisterState(state);
             }
@@ -186,6 +203,9 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         }
 
         private void Dispose() {
+
+            if (sceneGameStatesObject == null) return;
+            
             foreach (GameState state in sceneGameStatesObject.GameStates) {
                 state.Reset();
             }
