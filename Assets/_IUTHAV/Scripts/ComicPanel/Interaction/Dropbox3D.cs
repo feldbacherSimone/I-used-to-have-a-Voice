@@ -21,7 +21,6 @@ namespace _IUTHAV.Scripts.ComicPanel.Interaction {
                     CurrentElement = dropElement;
                     CurrentElement.DropCallback += OnDropElementDropped;
                     Log("Something just collided with me... " + CurrentElement.gameObject.name);
-                    
                 }
                 else {
                     Log("Wrong DropElement, ignoring it");

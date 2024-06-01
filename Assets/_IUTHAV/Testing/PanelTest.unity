@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7ca6eeb9de434fb06e1af6e9e033af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels: []
   customMaterial: {fileID: 0}
 --- !u!1 &120702522
 GameObject:
@@ -374,6 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
+  updateRenderTextureSize: 0
   defaultPos: {x: 0, y: 0, z: 0}
   xPadding: 3
   yPadding: 3
@@ -381,6 +383,8 @@ MonoBehaviour:
   cmCamGameObject: {fileID: 581787806}
   camTarget: {fileID: 1375277755}
   panelCamera: {fileID: 894983378}
+  isRendering: 0
+  panelIsActive: 0
 --- !u!114 &247108879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,6 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
+  updateRenderTextureSize: 0
   defaultPos: {x: 0, y: 0, z: 0}
   xPadding: 4.33
   yPadding: 5.39
@@ -515,6 +520,8 @@ MonoBehaviour:
   cmCamGameObject: {fileID: 629363267}
   camTarget: {fileID: 20032554}
   panelCamera: {fileID: 1568453366}
+  isRendering: 0
+  panelIsActive: 0
 --- !u!1 &629363267 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2441945451447100801, guid: a8b7f8e8eca86e6409f66aa54e0f7e77,
@@ -930,6 +937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7ca6eeb9de434fb06e1af6e9e033af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels: []
   customMaterial: {fileID: 0}
 --- !u!1 &1491939298
 GameObject:
@@ -1646,6 +1654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7ca6eeb9de434fb06e1af6e9e033af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validPanels: []
   customMaterial: {fileID: 0}
 --- !u!1001 &4359696557320036103
 PrefabInstance:
