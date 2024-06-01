@@ -117,15 +117,16 @@ namespace _IUTHAV.Scripts.ComicPanel {
         private void MoveParalax()
         {
             var resetPosition = CameraMovement.ResetCamera(camTarget, defaultPos);
+            
             if (panelIsActive)
             {
                 Vector3 relativeMousePos = GetRelativeMousePos();
                 DebugPrint($"Current mouse position: {relativeMousePos}");
 
-                scrollAmount = Mathf.Clamp(Input.mouseScrollDelta.y + scrollAmount, -zPadding, zPadding);
+                scrollAmount = Mathf.Clamp(Input.mouseScrollDelta.y + scrollAmount*Time.deltaTime, -zPadding, zPadding);
 
                 Vector3 posDelta = new Vector3(
-                    xPadding * -relativeMousePos.x, 
+                    xPadding * relativeMousePos.x, 
                     yPadding * -relativeMousePos.y, 
                     scrollAmount);
 
@@ -153,6 +154,7 @@ namespace _IUTHAV.Scripts.ComicPanel {
                 newMousePos.x / _rectTransform.rect.width - 0.5f,
                 newMousePos.y / _rectTransform.rect.height - 0.5f);
 
+            
             return relativeMousePos;
         }
 
@@ -163,7 +165,7 @@ namespace _IUTHAV.Scripts.ComicPanel {
         
             CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
         
-            this.GetComponent<RawImage>().color = new Color(0.9f, 0.9f, 1f);
+            GetComponent<RawImage>().color = new Color(0.9f, 0.9f, 1f);
         
         }
 
@@ -217,17 +219,14 @@ namespace _IUTHAV.Scripts.ComicPanel {
         private void IterateSelectableComponents(GameObject targetObj, bool enable) {
 
             foreach (ISelectable selectable in targetObj.GetComponents<ISelectable>()) {
-
+                
                 if (enable) {
-                    
                     selectable.OnSelect(new SelectionContext(this));
                 }
                 else {
                     selectable.OnDeselect();
                 }
-                
             }
-
         }
 
         private void UpdateRenderTexture() {
