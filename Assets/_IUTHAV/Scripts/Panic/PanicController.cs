@@ -48,7 +48,7 @@ namespace _IUTHAV.Scripts.Panic {
 #region Public Functions
 
         /// <summary>
-        /// Starts a coroutine, that tells all Panicable objects to call their Lerp Functions during
+        /// Starts a coroutine, that tells all IPanicable objects to call their Lerp Functions during
         /// _globalPanicDelta seconds
         /// </summary>
         /// <param name="targetPanicValue">Value clamped between 0-1 with 1 representing maximum Panic</param>
@@ -60,7 +60,7 @@ namespace _IUTHAV.Scripts.Panic {
 
         /// <summary>
         /// Upon changing this delta, all coroutines called afterwards will use newDelta
-        /// making every coroutine take newDelta seconds to reach the targetPanicValue
+        /// making every coroutine take newDelta seconds to reach the _targetPanicValue
         /// </summary>
         /// <param name="newDelta">Float to override the currentDelta</param>
         public void ChangePanicDelta(float newDelta) {
@@ -71,6 +71,66 @@ namespace _IUTHAV.Scripts.Panic {
 
 #region Private Functions
 
+        /// <summary>
+        /// Main Coroutine, which calls all Panicables Functions to lerp them
+        /// </summary>
+        /// <param name="job">Job to be run</param>
+        /// <returns>True once the Coroutine is finished, otherwise null</returns>
+        private IEnumerator RunPanicJob(PanicJob job) {
+            
+            Log(String.Format("Running job for {0} seconds to target {1}", job.DeltaTime, job.TargetPanicValue));
+            
+            float t = 0;
+            
+            //Set the starting and endpoint local variables for the lerp functions
+            foreach (var obj in _panicables) {
+                obj.SetBaseParameter();
+                obj.SetTargetParameter(job.TargetPanicValue);
+            }
+
+            while (t < job.DeltaTime) {
+
+                foreach (var obj in _panicables) {
+                    //Lerp to set local variable _currentParameterValue 
+                    obj.LerpByPanicValue(t / job.DeltaTime);
+                    //Set the wanted Parameter to the previously Lerped value using _currentParameterValue
+                    obj.SetDesiredParameter();
+                }
+
+                t += Time.deltaTime;
+                yield return null;
+            }
+            Log("Finished job");
+            yield return true;
+        }
+
+        /// <summary>
+        /// Sub-Coroutine which makes sure, no 2 jobs are running at the same time
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator CoroutineCoordinator() {
+
+            while (_jobQueue.Count > 0) {
+                var jobRunner = _jobQueue.Dequeue();
+                _currentJob = jobRunner;
+                yield return StartCoroutine(jobRunner);
+            }
+
+            _currentJob = null;
+        }
+        
+        private void AddJob(PanicJob job) {
+
+            _jobQueue.Enqueue(RunPanicJob(job));
+            
+            if (_currentJob == null) StartCoroutine(CoroutineCoordinator());
+            Log("Queuing new job");
+            
+        }
+        
+        /// <summary>
+        /// Populates _panicables List and discards GameObjects, which do not have any IPanicable Components
+        /// </summary>
         private void Configure() {
 
             _panicables = new List<IPanicable>();
@@ -94,53 +154,6 @@ namespace _IUTHAV.Scripts.Panic {
             if (_currentJob != null) {
                 StopCoroutine(_currentJob);
             }
-        }
-
-
-        private IEnumerator RunPanicJob(PanicJob job) {
-            
-            Log(String.Format("Running job for {0} seconds to target {1}", job.DeltaTime, job.TargetPanicValue));
-            
-            float t = 0;
-
-            foreach (var obj in _panicables) {
-                obj.SetBaseParameter();
-                obj.SetTargetParameter(job.TargetPanicValue);
-            }
-
-            while (t < job.DeltaTime) {
-
-                foreach (var obj in _panicables) {
-                    
-                    obj.LerpByPanicDelta(t / job.DeltaTime);
-                    obj.ChangeComponentParameter();
-                }
-
-                t += Time.deltaTime;
-                yield return null;
-            }
-            Log("Finished job");
-            yield return true;
-        }
-
-        private void AddJob(PanicJob job) {
-
-            _jobQueue.Enqueue(RunPanicJob(job));
-            
-            if (_currentJob == null) StartCoroutine(CoroutineCoordinator());
-            Log("Queuing new job");
-            
-        }
-
-        private IEnumerator CoroutineCoordinator() {
-
-            while (_jobQueue.Count > 0) {
-                var jobRunner = _jobQueue.Dequeue();
-                _currentJob = jobRunner;
-                yield return StartCoroutine(jobRunner);
-            }
-
-            _currentJob = null;
         }
 
         protected void Log(object msg) {

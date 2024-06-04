@@ -9,10 +9,11 @@ namespace _IUTHAV.Scripts.Panic {
     public class PanicColorParameter : PanicParameter<Color> {
     
         [CanBeNull] [SerializeField] private Image image;
-        [CanBeNull] [SerializeField] private Light light;
+        [SerializeField] private Light lightSource;
         [CanBeNull] [SerializeField] private Material material;
-
-        private byte _mask = 0b0000;
+        
+        //Mask to make checking for null faster
+        private ushort _mask = 0b000000;
 
         public void Awake() {
             Configure();
@@ -20,26 +21,26 @@ namespace _IUTHAV.Scripts.Panic {
 
         public void Configure() {
 
-            if (image != null) _mask |= 0b0001;
-            if (light != null) _mask |= 0b0010;
-            if (material != null) _mask |= 0b0100;
+            if (image != null) _mask |= 0b000001;
+            if (lightSource != null) _mask |= 0b000010;
+            if (material != null) _mask |= 0b000100;
 
             _currentParameterValue = minPanicParameter;
-            ChangeComponentParameter();
+            SetDesiredParameter();
         }
 
         public override void SetBaseParameter() {
-            if ((_mask & 0b0001) == 0b0001) {
+            if ((_mask & 0b000001) == 0b000001) {
                 _baseParameterValue = image.color;
                 return;
             }
 
-            if ((_mask & 0b0010) == 0b0010) {
-                _baseParameterValue = light.color;
+            if ((_mask & 0b000010) == 0b000010) {
+                _baseParameterValue = lightSource.color;
                 return;
             }
 
-            if ((_mask & 0b0100) == 0b0100) {
+            if ((_mask & 0b000100) == 0b000100) {
                 _baseParameterValue = material.color;
                 return;
             }
@@ -49,15 +50,15 @@ namespace _IUTHAV.Scripts.Panic {
             _targetParameterValue = Vector4.Lerp(minPanicParameter, maxPanicParameter, targetValue);
         }
 
-        public override void ChangeComponentParameter() {
+        public override void SetDesiredParameter() {
 
-            if ((_mask & 0b0001) == 0b0001) image.color = _currentParameterValue;
-            if ((_mask & 0b0001) == 0b0010) light.color = _currentParameterValue;
-            if ((_mask & 0b0100) == 0b0100) material.color = _currentParameterValue;
+            if ((_mask & 0b000001) == 0b000001) image.color = _currentParameterValue;
+            if ((_mask & 0b000001) == 0b000010) lightSource.color = _currentParameterValue;
+            if ((_mask & 0b000100) == 0b000100) material.color = _currentParameterValue;
             
         }
 
-        public override void LerpByPanicDelta(float targetValue) {
+        public override void LerpByPanicValue(float targetValue) {
             _currentParameterValue = Vector4.Lerp(_baseParameterValue, _targetParameterValue, targetValue);
         }
     }

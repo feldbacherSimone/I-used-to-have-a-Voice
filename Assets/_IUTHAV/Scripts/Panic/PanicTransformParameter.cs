@@ -19,9 +19,9 @@ namespace _IUTHAV.Scripts.Panic {
                 this.gameObject.SetActive(false);
             }
             _currentParameterValue = minPanicParameter;
-            ChangeComponentParameter();
+            SetDesiredParameter();
         }
-        public override void ChangeComponentParameter() {
+        public override void SetDesiredParameter() {
             if (translatePosition) targetTransform.localPosition = _currentParameterValue.localPosition;
             if (translateRotation) targetTransform.localRotation = _currentParameterValue.localRotation;
             if (translateScale) targetTransform.localScale = _currentParameterValue.localScale;
@@ -39,7 +39,7 @@ namespace _IUTHAV.Scripts.Panic {
             if (translateScale) _targetParameterValue.localScale = Vector3.Lerp(minPanicParameter.localScale, maxPanicParameter.localScale, targetValue);
         }
 
-        public override void LerpByPanicDelta(float targetValue) {
+        public override void LerpByPanicValue(float targetValue) {
             if (translatePosition) _currentParameterValue.localPosition = Vector3.Lerp(minPanicParameter.localPosition, maxPanicParameter.localPosition, targetValue);
             if (translateRotation) _currentParameterValue.localRotation = Quaternion.Euler(Vector3.Lerp(minPanicParameter.localRotation.eulerAngles, maxPanicParameter.localRotation.eulerAngles, targetValue));
             if (translateScale) _currentParameterValue.localScale = Vector3.Lerp(minPanicParameter.localScale, maxPanicParameter.localScale, targetValue);
