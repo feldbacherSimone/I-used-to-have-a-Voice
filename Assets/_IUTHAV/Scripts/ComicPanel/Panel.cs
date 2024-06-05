@@ -1,42 +1,34 @@
-using System;
+
 using _IUTHAV.Scripts.ComicPanel.Interaction;
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _IUTHAV.Scripts.ComicPanel {
     public class Panel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private bool debug = true;
+        
         [Space(20)]
         [SerializeField] private bool updateRenderTextureSize;
         [Space(20)]
+        
         [SerializeField] private Vector3 defaultPos;
-        [SerializeField] private float xPadding = 1;
-        [SerializeField] private float yPadding = 1;
-        [SerializeField] private float zPadding = 1;
+        [SerializeField] private Vector3 movementPadding;
 
         [SerializeField] private GameObject cmCamGameObject;
         [SerializeField] private Transform camTarget;
-    
         public Camera panelCamera;
-        private CinemachineFollow cmFollow;
-
         [HideInInspector] public bool isRendering;
-
         public bool panelIsActive;
-        private ScrollRect _scrollRect;
-        private RectTransform _backGroundTransform;
         
-        private RectTransform _rectTransform;
-        private float scrollAmount = 0;
-
-        private Vector2 panelSize;
-
+        private ScrollRect scrollRect;
+        private RectTransform backgroundTransform;
+        private RectTransform rectTransform;
         private GameObject currentHitObject;
 
+
+#region Unity Functions
         private void OnValidate() {
 
             if (updateRenderTextureSize) {
@@ -46,7 +38,6 @@ namespace _IUTHAV.Scripts.ComicPanel {
             }
             
         }
-
         private void Awake() {
         
             ConfigureCollider2D();
@@ -58,18 +49,15 @@ namespace _IUTHAV.Scripts.ComicPanel {
                 DebugPrint("No cmCam assigned in PanelManager", true);
                 return;
             }
-            cmFollow = cmCamGameObject.GetComponent<CinemachineFollow>();
-            defaultPos = camTarget.position; 
-        
-            _rectTransform = GetComponent<RectTransform>();
+            
+            //Init Camera Movement
+            defaultPos = camTarget.position;
+            rectTransform = GetComponent<RectTransform>();
             CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
 
-            RawImage panelImage = GetComponent<RawImage>();
-            panelSize = new Vector2(panelImage.texture.width, panelImage.texture.height);
-        
             //ScrollRect Configuration
-            _scrollRect = GameObject.FindWithTag("Scroll").GetComponent<ScrollRect>();
-            _backGroundTransform = GameObject.FindWithTag("BG").GetComponent<RectTransform>();
+            scrollRect = GameObject.FindWithTag("Scroll").GetComponent<ScrollRect>();
+            backgroundTransform = GameObject.FindWithTag("BG").GetComponent<RectTransform>();
         
             //Set rendering to false by default
             SetRendering(false);
@@ -83,105 +71,45 @@ namespace _IUTHAV.Scripts.ComicPanel {
         }
 
 
+#endregion
+
+#region Public Functions
         // ReSharper disable Unity.PerformanceAnalysis
-        private void Raycast()
-        {
-            Vector3 realivePos = GetRelativeMousePos();
-            Vector3 rayPos = new Vector3((realivePos.x + 0.5f), (1- (realivePos.y + 0.5f))  , 0);
-        
-            DebugPrint($"rayPos: {rayPos}");
-            Ray screenRay = panelCamera.ViewportPointToRay(rayPos);
-
-            RaycastHit hit;
-            Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.red);
-            
-            if (Physics.Raycast(screenRay, out hit, 1000f))
-            {
-                Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.green);
-                DebugPrint($"Raycast from {gameObject.name}, hit object: {hit.transform.gameObject.name}");
-            
-                if (currentHitObject != hit.transform.gameObject)
-                {
-                    if (currentHitObject != null) IterateSelectableComponents(currentHitObject, false);
-                    currentHitObject = hit.transform.gameObject;
-                    IterateSelectableComponents(currentHitObject, true);
-                }
-            }
-            else if (currentHitObject != null)
-            {
-                IterateSelectableComponents(currentHitObject, false);
-                currentHitObject = null; 
-            }
-
-        }
-        private void MoveParalax()
-        {
-            var resetPosition = CameraMovement.ResetCamera(camTarget, defaultPos);
-            
-            if (panelIsActive)
-            {
-                Vector3 relativeMousePos = GetRelativeMousePos();
-                DebugPrint($"Current mouse position: {relativeMousePos}");
-
-                scrollAmount = Mathf.Clamp(Input.mouseScrollDelta.y + scrollAmount*Time.deltaTime, -zPadding, zPadding);
-
-                Vector3 posDelta = new Vector3(
-                    xPadding * relativeMousePos.x, 
-                    yPadding * -relativeMousePos.y, 
-                    scrollAmount);
-
-                camTarget.position = CameraMovement.GetMovementAmount(posDelta);
-            }
-            else if (resetPosition != null)
-            {
-                camTarget.position = (Vector3)resetPosition; 
-            }
-        }
-
         public Vector2 GetRelativeMousePos()
         {
-
-            float canvasScroll = _backGroundTransform.anchoredPosition.y;
+            float canvasScroll = backgroundTransform.anchoredPosition.y;
             DebugPrint($"Scroll Amount: {canvasScroll}");
-        
-            Vector2 newMousePos = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
-            DebugPrint($"new Mouse pos: {newMousePos}");
-        
-            newMousePos = new Vector2(newMousePos.x - _rectTransform.anchoredPosition.x,
-                newMousePos.y + _rectTransform.anchoredPosition.y + canvasScroll);
+                
+            Vector2 scrollIndependantMousePos = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+            DebugPrint($"Mouse Pos with scroll pos: {scrollIndependantMousePos}");
+                
+            Vector2 mousePosOnPanel = new Vector2(scrollIndependantMousePos.x - rectTransform.anchoredPosition.x,
+                scrollIndependantMousePos.y + rectTransform.anchoredPosition.y + canvasScroll);
 
             Vector2 relativeMousePos = new Vector2(
-                newMousePos.x / _rectTransform.rect.width - 0.5f,
-                newMousePos.y / _rectTransform.rect.height - 0.5f);
-
+                mousePosOnPanel.x / rectTransform.rect.width - 0.5f,
+                mousePosOnPanel.y / rectTransform.rect.height - 0.5f);
             
             return relativeMousePos;
         }
-
         public void OnPointerEnter(PointerEventData eventData)
         {
-            _scrollRect.enabled = false;
+            scrollRect.enabled = false;
             panelIsActive = true;
         
             CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
-        
-            GetComponent<RawImage>().color = new Color(0.9f, 0.9f, 1f);
-        
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            _scrollRect.enabled = true;
+            scrollRect.enabled = true;
             panelIsActive = false;
-        
-            GetComponent<RawImage>().color = Color.white;
-            scrollAmount = 0;
-        
+
             if (currentHitObject != null) IterateSelectableComponents(currentHitObject, false);
             currentHitObject = null;
         }
 
-        public void SetReferences(GameObject _cmCamGameObj, Transform _cmCamTarget, UnityEngine.Camera _panelCamera) { 
+        public void SetReferences(GameObject _cmCamGameObj, Transform _cmCamTarget, Camera _panelCamera) { 
             cmCamGameObject = _cmCamGameObj;
             camTarget = _cmCamTarget;
             panelCamera = _panelCamera;
@@ -206,7 +134,62 @@ namespace _IUTHAV.Scripts.ComicPanel {
             isRendering = enable;
 
         }
-    
+#endregion
+
+#region Private Functions
+// ReSharper disable Unity.PerformanceAnalysis
+        private void Raycast()
+        {
+            
+            //init Ray
+            Vector3 relativeMousePos = GetRelativeMousePos();
+            Vector3 rayPos = new Vector3(
+                (relativeMousePos.x + 0.5f), 
+                (1- (relativeMousePos.y + 0.5f)), 
+                0);
+            
+            Ray screenRay = panelCamera.ViewportPointToRay(rayPos);
+            RaycastHit hit;
+            Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.red);
+                    
+            if (Physics.Raycast(screenRay, out hit, 1000f))
+            {
+                Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.green);
+                DebugPrint($"Raycast from {gameObject.name}, hit object: {hit.transform.gameObject.name}");
+                    
+                if (currentHitObject != hit.transform.gameObject)
+                {
+                    if (currentHitObject != null) IterateSelectableComponents(currentHitObject, false);
+                    currentHitObject = hit.transform.gameObject;
+                    IterateSelectableComponents(currentHitObject, true);
+                }
+            }
+            else if (currentHitObject != null)
+            {
+                IterateSelectableComponents(currentHitObject, false);
+                currentHitObject = null; 
+            }
+        }
+        private void MoveParalax()
+        {
+            var resetPosition = CameraMovement.ResetCamera(camTarget, defaultPos);
+            
+            if (panelIsActive)
+            {
+                Vector3 relativeMousePos = GetRelativeMousePos();
+
+                Vector3 posDelta = new Vector3(
+                    movementPadding.x * relativeMousePos.x, 
+                    movementPadding.y * -relativeMousePos.y, 
+                    0);
+
+                camTarget.position = CameraMovement.GetMovementAmount(posDelta);
+            }
+            else if (resetPosition != null)
+            {
+                camTarget.position = (Vector3)resetPosition; 
+            }
+        }
         private void ConfigureCollider2D() {
         
             BoxCollider2D coll = gameObject.AddComponent<BoxCollider2D>();
@@ -254,5 +237,6 @@ namespace _IUTHAV.Scripts.ComicPanel {
             if(!error) Debug.Log(msg, this);
             else Debug.LogError(msg, this);
         }
+#endregion
     }
 }
