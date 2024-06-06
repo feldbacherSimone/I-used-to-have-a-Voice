@@ -100,7 +100,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_DefaultStencilState:
-    overrideStencilState: 0
+    overrideStencilState: 1
     stencilReference: 0
     stencilCompareFunction: 8
     passOperation: 2
@@ -108,7 +108,7 @@ MonoBehaviour:
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 0
-  m_DepthPrimingMode: 0
+  m_DepthPrimingMode: 2
   m_CopyDepthMode: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
@@ -128,8 +128,23 @@ MonoBehaviour:
   outlineLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  renderPassEvent: 300
+  outlinesOccluderLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  renderPassEvent: 150
   settings:
-    depthBufferBits: 2
     colorFormat: 0
-    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    depthBufferBits: 16
+    filterMode: 1
+    backgroundColor: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
+    perObjectData: 0
+    enableDynamicBatching: 0
+    enableInstancing: 0
+  outlineSettings:
+    outlineColor: {r: 1, g: 1, b: 1, a: 1}
+    outlineScale: 1.26
+    depthThreshold: 12.9
+    robertsCrossMultiplier: 52
+    normalThreshold: 0.016
+    steepAngleThreshold: 0.131
+    steepAngleMultiplier: 54

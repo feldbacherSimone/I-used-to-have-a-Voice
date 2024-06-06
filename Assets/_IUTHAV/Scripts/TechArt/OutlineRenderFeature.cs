@@ -38,11 +38,19 @@ namespace _IUTHAV.Scripts.TechArt
         }
         
         [System.Serializable]
-        private class ViewSpaceNormalsTextureSettings
-        {
-            public int depthBufferBits = 16;
+        private class ViewSpaceNormalsTextureSettings {
+
+            [Header("General Scene View Space Normal Texture Settings")]
             public RenderTextureFormat colorFormat;
+            public int depthBufferBits = 16;
+            public FilterMode filterMode;
             public Color backgroundColor = Color.black;
+
+            [Header("View Space Normal Texture Object Draw Settings")]
+            public PerObjectData perObjectData;
+            public bool enableDynamicBatching;
+            public bool enableInstancing;
+
         }
         private class ViewSpaceNormalTexturePass : ScriptableRenderPass
         {
@@ -50,10 +58,8 @@ namespace _IUTHAV.Scripts.TechArt
             
             private FilteringSettings filteringSettings;
             
-            private readonly RTHandle normals;
+            private FilteringSettings occluderFilteringSettings;
             
-            private readonly Material normalsMaterial;
-
             private readonly List<ShaderTagId> shaderTagIdList = new()
             {
                 new ShaderTagId("UniversalForward"),
@@ -62,15 +68,28 @@ namespace _IUTHAV.Scripts.TechArt
                 new ShaderTagId("SRPDefaultLit"),
             };
             
-            public ViewSpaceNormalTexturePass(RenderPassEvent renderPassEvent, LayerMask outlinesLayerMask, ViewSpaceNormalsTextureSettings settings)
+            private readonly RTHandle normals;
+            
+            private readonly Material occludersMaterial;
+            
+            private readonly Material normalsMaterial;
+
+            
+            
+            public ViewSpaceNormalTexturePass(RenderPassEvent renderPassEvent, LayerMask outlinesLayerMask, LayerMask occluderLayerMask, ViewSpaceNormalsTextureSettings settings)
             {
                 this.renderPassEvent = renderPassEvent;
                 normalsTextureSettings = settings; 
                 
                 filteringSettings = new FilteringSettings(RenderQueueRange.opaque, outlinesLayerMask);
+                occluderFilteringSettings = new FilteringSettings(RenderQueueRange.opaque, occluderLayerMask);
+                
 
                 normals = RTHandles.Alloc("_SceneViewSpaceNormals", name: "_SceneViewSpaceNormals");
-                normalsMaterial = new Material(Shader.Find("Shader Graphs/ViewSpaceNormalsShader"));
+                normalsMaterial = new Material(Shader.Find("Hidden/ViewSpaceNormals"));
+                
+                occludersMaterial = new Material(Shader.Find("Hidden/UnlitColor"));
+                occludersMaterial.SetColor("_Color", normalsTextureSettings.backgroundColor);
             }
 
             public override void Configure(CommandBuffer cmd, RenderTextureDescriptor cameraTextureDescriptor)
@@ -78,7 +97,7 @@ namespace _IUTHAV.Scripts.TechArt
                 RenderTextureDescriptor normalsTextureDescriptor = cameraTextureDescriptor;
                 normalsTextureDescriptor.colorFormat = normalsTextureSettings.colorFormat;
                 normalsTextureDescriptor.depthBufferBits = normalsTextureSettings.depthBufferBits;
-                cmd.GetTemporaryRT(normals.GetInstanceID(), normalsTextureDescriptor, FilterMode.Point);
+                cmd.GetTemporaryRT(normals.GetInstanceID(), normalsTextureDescriptor, normalsTextureSettings.filterMode);
                 
                 ConfigureTarget(normals);
                 ConfigureClear(ClearFlag.All, normalsTextureSettings.backgroundColor);
@@ -86,7 +105,7 @@ namespace _IUTHAV.Scripts.TechArt
 
             public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
             {
-                if (!normalsMaterial) return; 
+                if (!normalsMaterial || !occludersMaterial) return; 
                 
                 CommandBuffer cmd = CommandBufferPool.Get();
                 using (new ProfilingScope(cmd, new ProfilingSampler("SceneViewSpaceNormalsCreation")))
@@ -95,12 +114,22 @@ namespace _IUTHAV.Scripts.TechArt
                     cmd.Clear();
 
                     DrawingSettings drawingSettings = CreateDrawingSettings(shaderTagIdList, ref renderingData, renderingData.cameraData.defaultOpaqueSortFlags);
+                    drawingSettings.perObjectData = normalsTextureSettings.perObjectData;
+                    drawingSettings.enableDynamicBatching = normalsTextureSettings.enableDynamicBatching;
+                    drawingSettings.enableInstancing = normalsTextureSettings.enableInstancing;
                     drawingSettings.overrideMaterial = normalsMaterial;
 
-
+                    DrawingSettings occluderSettings = drawingSettings;
+                    occluderSettings.overrideMaterial = occludersMaterial;
+                    
                     RendererListParams rendererListParams =
                         new RendererListParams(renderingData.cullResults, drawingSettings, filteringSettings);
                     var rendererList = context.CreateRendererList(ref rendererListParams); 
+                    cmd.DrawRendererList(rendererList);
+                    
+                    rendererListParams =
+                        new RendererListParams(renderingData.cullResults, occluderSettings, occluderFilteringSettings);
+                    rendererList = context.CreateRendererList(ref rendererListParams); 
                     cmd.DrawRendererList(rendererList);
                 }
                 context.ExecuteCommandBuffer(cmd);
@@ -122,13 +151,22 @@ namespace _IUTHAV.Scripts.TechArt
             
             private RTHandle temporaryBuffer;
             
-            private int temporaryBufferID = Shader.PropertyToID("_TemporaryBuffer");
             
             
-            public ScreenSpaceOutlinePass(RenderPassEvent renderPassEvent)
+            public ScreenSpaceOutlinePass(RenderPassEvent renderPassEvent, ScreenSpaceOutlineSettings settings)
             {
                 this.renderPassEvent = renderPassEvent;
-                screenSpaceOutlineMaterial = new Material(Shader.Find("Shader Graphs/OutlineShader"));
+                screenSpaceOutlineMaterial = new Material(Shader.Find("Hidden/Outlines"));
+                screenSpaceOutlineMaterial.SetColor("_OutlineColor", settings.outlineColor);
+                screenSpaceOutlineMaterial.SetFloat("_OutlineScale", settings.outlineScale);
+
+                screenSpaceOutlineMaterial.SetFloat("_DepthThreshold", settings.depthThreshold);
+                screenSpaceOutlineMaterial.SetFloat("_RobertsCrossMultiplier", settings.robertsCrossMultiplier);
+
+                screenSpaceOutlineMaterial.SetFloat("_NormalThreshold", settings.normalThreshold);
+
+                screenSpaceOutlineMaterial.SetFloat("_SteepAngleThreshold", settings.steepAngleThreshold);
+                screenSpaceOutlineMaterial.SetFloat("_SteepAngleMultiplier", settings.steepAngleMultiplier);
             }
 
           
@@ -137,9 +175,11 @@ namespace _IUTHAV.Scripts.TechArt
             {
                 RenderTextureDescriptor temporaryTargetDescriptor = renderingData.cameraData.cameraTargetDescriptor;
                 temporaryTargetDescriptor.depthBufferBits = 0;
-                cmd.GetTemporaryRT(temporaryBufferID, temporaryTargetDescriptor, FilterMode.Bilinear);
+                RTHandles.Initialize(Screen.width, Screen.height);
                 temporaryBuffer = RTHandles.Alloc("_TemporaryBuffer", "_TemporaryBuffer");
-
+                cmd.GetTemporaryRT(temporaryBuffer.GetInstanceID(), temporaryTargetDescriptor, FilterMode.Bilinear);
+                
+                
                 cameraColorTarget = renderingData.cameraData.renderer.cameraColorTargetHandle;
             }
 
@@ -149,10 +189,11 @@ namespace _IUTHAV.Scripts.TechArt
                     return;
                 
                 CommandBuffer cmd = CommandBufferPool.Get();
+                
                 using (new ProfilingScope(cmd, new ProfilingSampler("ScreenSpaceOutlines")))
                 {
-                    Blit(cmd, cameraColorTarget, temporaryBuffer);   
-                    Blit(cmd, cameraColorTarget, temporaryBuffer, screenSpaceOutlineMaterial);
+                    Blit(cmd, cameraColorTarget, temporaryBuffer);
+                    Blit(cmd, temporaryBuffer, cameraColorTarget, screenSpaceOutlineMaterial);
                 }
                 context.ExecuteCommandBuffer(cmd);
                 CommandBufferPool.Release(cmd);
@@ -165,16 +206,18 @@ namespace _IUTHAV.Scripts.TechArt
         }
 
        
-        [SerializeField] private LayerMask outlineLayerMask; 
+        [SerializeField] private LayerMask outlineLayerMask;
+        [SerializeField] private LayerMask outlinesOccluderLayerMask;
         [SerializeField] private RenderPassEvent renderPassEvent; 
-        [SerializeField] private ViewSpaceNormalsTextureSettings settings;
+        [SerializeField] private ViewSpaceNormalsTextureSettings settings = new ViewSpaceNormalsTextureSettings();
+        [SerializeField] private ScreenSpaceOutlineSettings outlineSettings = new ScreenSpaceOutlineSettings();
         
         private ViewSpaceNormalTexturePass viewSpaceNormalTexturePass;
         private ScreenSpaceOutlinePass screenSpaceOutlinePass;
         public override void Create()
         {
-            viewSpaceNormalTexturePass = new ViewSpaceNormalTexturePass(renderPassEvent, outlineLayerMask, settings);
-            screenSpaceOutlinePass = new ScreenSpaceOutlinePass(renderPassEvent);
+            viewSpaceNormalTexturePass = new ViewSpaceNormalTexturePass(renderPassEvent, outlineLayerMask,outlinesOccluderLayerMask ,settings);
+            screenSpaceOutlinePass = new ScreenSpaceOutlinePass(renderPassEvent, outlineSettings);
         }
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
