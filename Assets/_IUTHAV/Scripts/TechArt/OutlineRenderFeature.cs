@@ -86,9 +86,9 @@ namespace _IUTHAV.Scripts.TechArt
                 
 
                 normals = RTHandles.Alloc("_SceneViewSpaceNormals", name: "_SceneViewSpaceNormals");
-                normalsMaterial = new Material(Shader.Find("Hidden/ViewSpaceNormals"));
+                normalsMaterial = CoreUtils.CreateEngineMaterial(Shader.Find("Hidden/ViewSpaceNormals"));
                 
-                occludersMaterial = new Material(Shader.Find("Hidden/UnlitColor"));
+                occludersMaterial = CoreUtils.CreateEngineMaterial(Shader.Find("Hidden/UnlitColor"));
                 occludersMaterial.SetColor("_Color", normalsTextureSettings.backgroundColor);
             }
 
@@ -156,7 +156,7 @@ namespace _IUTHAV.Scripts.TechArt
             public ScreenSpaceOutlinePass(RenderPassEvent renderPassEvent, ScreenSpaceOutlineSettings settings)
             {
                 this.renderPassEvent = renderPassEvent;
-                screenSpaceOutlineMaterial = new Material(Shader.Find("Hidden/Outlines"));
+                screenSpaceOutlineMaterial = CoreUtils.CreateEngineMaterial(Shader.Find("Hidden/Outlines"));
                 screenSpaceOutlineMaterial.SetColor("_OutlineColor", settings.outlineColor);
                 screenSpaceOutlineMaterial.SetFloat("_OutlineScale", settings.outlineScale);
 
@@ -167,6 +167,8 @@ namespace _IUTHAV.Scripts.TechArt
 
                 screenSpaceOutlineMaterial.SetFloat("_SteepAngleThreshold", settings.steepAngleThreshold);
                 screenSpaceOutlineMaterial.SetFloat("_SteepAngleMultiplier", settings.steepAngleMultiplier);
+                
+                
             }
 
           
@@ -175,25 +177,26 @@ namespace _IUTHAV.Scripts.TechArt
             {
                 RenderTextureDescriptor temporaryTargetDescriptor = renderingData.cameraData.cameraTargetDescriptor;
                 temporaryTargetDescriptor.depthBufferBits = 0;
-                RTHandles.Initialize(Screen.width, Screen.height);
-                temporaryBuffer = RTHandles.Alloc("_TemporaryBuffer", "_TemporaryBuffer");
-                cmd.GetTemporaryRT(temporaryBuffer.GetInstanceID(), temporaryTargetDescriptor, FilterMode.Bilinear);
                 
+                temporaryBuffer = RTHandles.Alloc(temporaryTargetDescriptor, FilterMode.Bilinear, TextureWrapMode.Clamp, name: "_TemporaryBuffer");
                 
                 cameraColorTarget = renderingData.cameraData.renderer.cameraColorTargetHandle;
             }
 
             public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
             {
-                if(!screenSpaceOutlineMaterial) 
+                if (!screenSpaceOutlineMaterial)
+                {
+                    Debug.LogError("No Outlineshader found!");
                     return;
-                
+                }
+
                 CommandBuffer cmd = CommandBufferPool.Get();
                 
                 using (new ProfilingScope(cmd, new ProfilingSampler("ScreenSpaceOutlines")))
                 {
-                    Blit(cmd, cameraColorTarget, temporaryBuffer);
-                    Blit(cmd, temporaryBuffer, cameraColorTarget, screenSpaceOutlineMaterial);
+                    cmd.Blit(cameraColorTarget, temporaryBuffer);
+                    cmd.Blit(temporaryBuffer, cameraColorTarget, screenSpaceOutlineMaterial);
                 }
                 context.ExecuteCommandBuffer(cmd);
                 CommandBufferPool.Release(cmd);
@@ -201,7 +204,7 @@ namespace _IUTHAV.Scripts.TechArt
 
             public override void OnCameraCleanup(CommandBuffer cmd)
             {
-                cmd.ReleaseTemporaryRT(temporaryBuffer.GetInstanceID());
+                RTHandles.Release(temporaryBuffer);
             }
         }
 
