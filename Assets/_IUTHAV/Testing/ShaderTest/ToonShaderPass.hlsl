@@ -5,6 +5,8 @@
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/SpaceTransforms.hlsl"
 
 
+
+
 // See ShaderVariablesFunctions.hlsl in com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl
 ///////////////////////////////////////////////////////////////////////////////
 //                      CBUFFER                                              //
@@ -198,6 +200,35 @@ float EasySmoothStep(float min, float x)
 {
        return smoothstep(min, min + 0.01, x);
 }
+
+float3 CalculateLighting(Varyings IN, Light light)
+{
+       float NoL = dot(IN.normalWS, light.direction);
+       float toonLighting = EasySmoothStep(_ShadowCutoff, NoL);
+       float3 halfVector = normalize(light.direction + IN.viewDirectionWS);
+       float NoH = max(dot(IN.normalWS, halfVector), 0);
+
+       float specularTerm = pow(NoH, _Smoothness * _Smoothness);
+       specularTerm *= toonLighting;
+       specularTerm = EasySmoothStep(0.01, specularTerm);
+
+       float NoV = max(dot(IN.normalWS, IN.viewDirectionWS), 0);
+       float rimTerm = pow(1.0 - NoV, _RimSharpness);
+
+       rimTerm *= toonLighting;
+       rimTerm = EasySmoothStep(0.01, rimTerm);
+       float3 rimLighting = rimTerm * _RimColor;
+
+       float3 surfaceColor = _Color * SAMPLE_TEXTURE2D(_ColorMap, sampler_ColorMap, IN.uv);
+       float3 directionalLighting = toonLighting * light.color;
+       float3 specularLighting = specularTerm * light.color;
+       float3 finalLighting = float3(0, 0, 0);
+       finalLighting += directionalLighting;
+       finalLighting += specularLighting;
+       finalLighting += rimLighting;
+
+       return surfaceColor * finalLighting;
+}
 /*
 The Fragment function is responsible 
 for handling per-pixel shading during the Forward 
@@ -206,41 +237,45 @@ by default in both Forward and Deferred paths.
 */
 float3 Fragment(Varyings IN) : SV_Target
 {
-       // These macros are required for VR SPI compatibility
-   UNITY_SETUP_INSTANCE_ID(IN);
-   UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
+       UNITY_SETUP_INSTANCE_ID(IN);
+       UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
 
-       Light light;
-       GetMainLightData(IN.positionWS, light);
+       Light mainLight;
+       GetMainLightData(IN.positionWS, mainLight);
 
        IN.normalWS = normalize(IN.normalWS);
        IN.viewDirectionWS = normalize(IN.viewDirectionWS);
 
-       float NoL = dot(IN.normalWS, light.direction);
-       float toonLighting = EasySmoothStep(_ShadowCutoff, NoL);
-       float toonShadow = EasySmoothStep(0.3, light.shadowAttenuation);
-       float3 halfVector = normalize(light.direction + IN.viewDirectionWS);
-       float NoH = max(dot(IN.normalWS, halfVector), 0);
+       // Determine if the fragment is a backface
+       bool isBackFace = dot(IN.normalWS, IN.viewDirectionWS) < 0.0;
+       if (isBackFace)
+       {
+              IN.normalWS = -IN.normalWS;
+       }
 
-       float specularTerm = pow(NoH, _Smoothness * _Smoothness);
-       specularTerm *= toonLighting * toonShadow;
-       specularTerm = EasySmoothStep(0.01, specularTerm);
+       float3 finalColor = float3(0, 0, 0);
 
-       float NoV = max(dot(IN.normalWS, IN.viewDirectionWS), 0);
-       float rimTerm = pow(1.0 - NoV, _RimSharpness);
+       // Handle main directional light
+       finalColor += CalculateLighting(IN, mainLight);
 
-       rimTerm *= toonLighting * toonShadow;
-       rimTerm = EasySmoothStep(0.01, rimTerm);
-       float3 rimLighting = rimTerm * _RimColor;
+       // Handle additional lights
+       uint lightCount = GetAdditionalLightsCount();
+       for (uint i = 0; i < lightCount; ++i)
+       {
+              Light additionalLight = GetAdditionalLight(i, IN.positionWS);
 
-       float3 surfaceColor = _Color * SAMPLE_TEXTURE2D(_ColorMap, sampler_ColorMap, IN.uv);
-       float3 directionalLighting = toonLighting * toonShadow * light.color;
-       float3 specularLighting = specularTerm * light.color;
-       float3 finalLighting = float3(0,0,0);
-       finalLighting += directionalLighting;
-       finalLighting += specularLighting;
-       finalLighting += _AmbientColor;
-       finalLighting += rimLighting;
-       return surfaceColor * finalLighting;
+              float3 lightDir = normalize(additionalLight.direction - IN.positionWS);
+              float distance = length(additionalLight.direction - IN.positionWS);
+              float attenuation = 1.0 / (1.0 + distance * distance); // simple distance attenuation
+
+              additionalLight.direction = lightDir;
+              additionalLight.color *= attenuation;
+
+              finalColor += CalculateLighting(IN, additionalLight);
+       }
+
+       return finalColor + _AmbientColor;
 }
+       
+
 #endif
