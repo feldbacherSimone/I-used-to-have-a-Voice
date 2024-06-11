@@ -16,15 +16,15 @@ MonoBehaviour:
   m_Settings:
     AOMethod: 1
     Downsample: 0
-    AfterOpaque: 0
+    AfterOpaque: 1
     Source: 1
     NormalSamples: 1
-    Intensity: 6.2
-    DirectLightingStrength: 0.067
-    Radius: 0.31
+    Intensity: 1.29
+    DirectLightingStrength: 0.29
+    Radius: 0.04
     Samples: 0
     BlurQuality: 0
-    Falloff: 100
+    Falloff: 5
     SampleCount: -1
   m_BlueNoise256Textures:
   - {fileID: 2800000, guid: 36f118343fc974119bee3d09e2111500, type: 3}
@@ -68,8 +68,7 @@ MonoBehaviour:
       type: 3}
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
-  - {fileID: 6814644080619183747}
-  m_RendererFeatureMap: adc0de57c6d2eee5835e0690af7a925e
+  m_RendererFeatureMap: adc0de57c6d2eee5
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -126,22 +125,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 0
   outlineLayerMask:
-    serializedVersion: 2
     m_Bits: 4294967295
   outlinesOccluderLayerMask:
-    serializedVersion: 2
     m_Bits: 0
   renderPassEvent: 150
   settings:
     colorFormat: 0
     depthBufferBits: 16
     filterMode: 1
-    backgroundColor: {r: 0.7169812, g: 0.49038807, b: 0.49038807, a: 1}
+    backgroundColor:
+      r: 0.7169812
+      g: 0.49038807
+      b: 0.49038807
+      a: 1
     perObjectData: 0
     enableDynamicBatching: 0
     enableInstancing: 0
   outlineSettings:
-    outlineColor: {r: 1, g: 0.98480475, b: 0, a: 1}
+    outlineColor:
+      r: 1
+      g: 0.98480475
+      b: 0
+      a: 1
     outlineScale: 2.04
     depthThreshold: 6.7
     robertsCrossMultiplier: 60
