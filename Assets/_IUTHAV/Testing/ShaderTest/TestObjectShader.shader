@@ -15,7 +15,7 @@ Shader "Custom/TestObjectShader"
         Tags { "RenderType"="Opaque" "RenderPipeline" = "UnversalPipeline"  }
         LOD 100
         
-        Cull Back 
+        Cull Off 
         ZWrite On 
         ZTest LEqual 
         ZClip Off
