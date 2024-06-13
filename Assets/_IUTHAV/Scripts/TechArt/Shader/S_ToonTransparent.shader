@@ -1,30 +1,38 @@
-Shader "Custom/TestObjectShader"
+Shader "Custom/ToonTransparent"
 {
     Properties
     {
         [MainTexture] _ColorMap ("Color Map", 2D) = "white" {}
-        [MainColor] _Color ("Color", Color) = (0.91, 0.91, 0.38)
+        [MainColor] _Color ("Color", Color) = (0.91, 0.91, 0.38, 1)
         [Smoothness] _Smoothness ("Smoothness", float) = 16.0
         [RimSharpness] _RimSharpness ("Rim Sharpness", float) = 1
         [HDR] _RimColor("Rim Color", Color) = (1.0, 1.0, 1.0) 
         _ShadowCutoff("Shadow Cutoff", float) = 0
         _AmbientColor("Ambient Color", color) = (0.0, 0.0, 0.0)
+        [MaterialToggle]_Specular("Specular", float) = 1   
+        
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "RenderPipeline" = "UnversalPipeline"  }
+        Tags { "RenderType"="Transparent" "Queue"="Transparent" "RenderPipeline" = "UnversalPipeline"  }
         LOD 100
         
         Cull Off 
-        ZWrite On 
+        ZWrite Off
         ZTest LEqual 
         ZClip Off
+        
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
             
             Name "ForwardLit"
             Tags {"LightMode" = "UniversalForwardOnly"} 
+            
+           
+            
+           
             
             HLSLPROGRAM
 
@@ -39,7 +47,7 @@ Shader "Custom/TestObjectShader"
             #pragma fragment Fragment
             // make fog work
 
-            #include "ToonShaderPass.hlsl"
+            #include "ToonTransparentShader.hlsl"
 
             ENDHLSL
         }
@@ -55,7 +63,7 @@ Shader "Custom/TestObjectShader"
 
             #pragma  fragment FragmentDepthOnly
 
-            #include "ToonShaderPass.hlsl"
+            #include "ToonTransparentShader.hlsl"
             ENDHLSL
         }
          Pass
@@ -72,7 +80,7 @@ Shader "Custom/TestObjectShader"
                // both use the FragmentDepthOnly function
                #pragma fragment FragmentDepthOnly
                
-               #include "ToonShaderPass.hlsl"
+               #include "ToonTransparentShader.hlsl"
                
                ENDHLSL
            }
@@ -91,7 +99,7 @@ Shader "Custom/TestObjectShader"
                // Fragment function named FragmentDepthNormalsOnly.
                #pragma fragment FragmentDepthNormalsOnly
                
-               #include "ToonShaderPass.hlsl"
+               #include "ToonTransparentShader.hlsl"
                
                ENDHLSL
            }
