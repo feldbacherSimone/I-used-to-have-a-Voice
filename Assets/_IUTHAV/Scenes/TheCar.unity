@@ -689,18 +689,49 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1673843514}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &494554372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4073817038825093758, guid: df1f6baaf63d0084e9c4246ab204ed49,
+    type: 3}
+  m_PrefabInstance: {fileID: 1964834571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &497331203 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8367336405134970199, guid: df1f6baaf63d0084e9c4246ab204ed49,
     type: 3}
   m_PrefabInstance: {fileID: 1964834571}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 494554372}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6b2c9a95dde33b4d8558e333dc40ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &497331204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494554372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947357d9cc4cced44a7b7652923ab3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDebug: 0
+  tracks:
+  - name: GloveBox
+    source: {fileID: 57354212}
+    volume: 0.811
+    groupType: 3
+    audio:
+    - {fileID: 8300000, guid: df01944bb7d8f724482f7512b24dc952, type: 3}
+    autoSearch: 0
+    autoClipFindSettings:
+      isSceneAudio: 0
+      searchFilter: 
+  isReady: 0
 --- !u!1 &533315635
 GameObject:
   m_ObjectHideFlags: 0
@@ -4207,6 +4238,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 497331204}
+        m_TargetAssemblyTypeName: _IUTHAV.Scripts.Core.Audio.AudioController, Assembly-CSharp
+        m_MethodName: PlayClip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: df01944bb7d8f724482f7512b24dc952,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GloveBox
+          m_BoolArgument: 0
+        m_CallState: 2
   onDeselect:
     m_PersistentCalls:
       m_Calls: []
@@ -4396,6 +4440,19 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 497331204}
+        m_TargetAssemblyTypeName: _IUTHAV.Scripts.Core.Audio.AudioController, Assembly-CSharp
+        m_MethodName: PlayClip
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: ec7ca131dc06e5841b757a4ea25570a5,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4923,6 +4980,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6657766084037814779, guid: df1f6baaf63d0084e9c4246ab204ed49,
         type: 3}
+      propertyPath: tracks.Array.data[1].name
+      value: GloveBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657766084037814779, guid: df1f6baaf63d0084e9c4246ab204ed49,
+        type: 3}
       propertyPath: tracks.Array.data[0].source
       value: 
       objectReference: {fileID: 1000572875}
@@ -4933,8 +4995,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6657766084037814779, guid: df1f6baaf63d0084e9c4246ab204ed49,
         type: 3}
+      propertyPath: tracks.Array.data[1].source
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657766084037814779, guid: df1f6baaf63d0084e9c4246ab204ed49,
+        type: 3}
+      propertyPath: tracks.Array.data[1].volume
+      value: 0.505
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657766084037814779, guid: df1f6baaf63d0084e9c4246ab204ed49,
+        type: 3}
+      propertyPath: tracks.Array.data[1].groupType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657766084037814779, guid: df1f6baaf63d0084e9c4246ab204ed49,
+        type: 3}
       propertyPath: tracks.Array.data[0].audio.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657766084037814779, guid: df1f6baaf63d0084e9c4246ab204ed49,
+        type: 3}
+      propertyPath: tracks.Array.data[1].audio.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6657766084037814779, guid: df1f6baaf63d0084e9c4246ab204ed49,
         type: 3}
@@ -4949,6 +5031,21 @@ PrefabInstance:
     - target: {fileID: 6657766084037814779, guid: df1f6baaf63d0084e9c4246ab204ed49,
         type: 3}
       propertyPath: 'tracks.Array.data[0].audio.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: a752173ee6da267478aa541407ec1464, type: 3}
+    - target: {fileID: 6657766084037814779, guid: df1f6baaf63d0084e9c4246ab204ed49,
+        type: 3}
+      propertyPath: 'tracks.Array.data[1].audio.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b613762dc8ccb845b237e05e5d91ca7, type: 3}
+    - target: {fileID: 6657766084037814779, guid: df1f6baaf63d0084e9c4246ab204ed49,
+        type: 3}
+      propertyPath: 'tracks.Array.data[1].audio.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 73bd465f24ee108468929bf6e930ac13, type: 3}
+    - target: {fileID: 6657766084037814779, guid: df1f6baaf63d0084e9c4246ab204ed49,
+        type: 3}
+      propertyPath: 'tracks.Array.data[1].audio.Array.data[2]'
       value: 
       objectReference: {fileID: 8300000, guid: a752173ee6da267478aa541407ec1464, type: 3}
     - target: {fileID: 7380883785547979250, guid: df1f6baaf63d0084e9c4246ab204ed49,
@@ -5001,7 +5098,7 @@ PrefabInstance:
     - target: {fileID: 7380883785547979250, guid: df1f6baaf63d0084e9c4246ab204ed49,
         type: 3}
       propertyPath: gameStateBehaviours.Array.data[0].onFinish.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayTrackLoopQueue
+      value: PlayTrackLoopRandom
       objectReference: {fileID: 0}
     - target: {fileID: 7380883785547979250, guid: df1f6baaf63d0084e9c4246ab204ed49,
         type: 3}
@@ -5050,7 +5147,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 533315636}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4073817038825093758, guid: df1f6baaf63d0084e9c4246ab204ed49,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 497331204}
   m_SourcePrefab: {fileID: 100100000, guid: df1f6baaf63d0084e9c4246ab204ed49, type: 3}
 --- !u!4 &1964834572 stripped
 Transform:
