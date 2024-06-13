@@ -1,9 +1,8 @@
 ﻿#ifndef MY_TOON_SHADER_INCLUDE
 #define MY_TOON_SHADER_INCLUDE
-#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/SpaceTransforms.hlsl"
-
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
 
 
@@ -25,12 +24,14 @@ CBUFFER_START(UnityPerMaterial)
        TEXTURE2D(_ColorMap);
        SAMPLER(sampler_ColorMap);
        float4 _ColorMap_ST;
-       float3 _Color;
+       float4 _Color;
        float _Smoothness;
        float _RimSharpness;
        float3 _RimColor;
        float _ShadowCutoff;
        float3 _AmbientColor;
+       float _Specular;
+       
 CBUFFER_END
 ///////////////////////////////////////////////////////////////////////////////
 //                      STRUCTS                                              //
@@ -100,6 +101,8 @@ float4 GetClipSpacePosition(float3 positionWS, float3 normalWS)
        
        return TransformWorldToHClip(positionWS);
 }
+
+
 /*
 These two functions give us the shadow coordinates 
 depending on whether screen shadows are enabled or not.
@@ -161,7 +164,7 @@ Varyings Vertex(Attributes IN)
        
        // Set up each field of the Varyings struct, then return it.
        OUT.positionWS = mul(unity_ObjectToWorld, IN.positionOS).xyz;
-       OUT.viewDirectionWS = normalize(GetWorldSpaceViewDir(OUT.positionWS));
+       OUT.viewDirectionWS = GetWorldSpaceNormalizeViewDir(OUT.positionWS);
        OUT.normalWS = TransformObjectToWorldNormal(IN.normalOS);
        OUT.positionHCS = GetClipSpacePosition(OUT.positionWS, OUT.normalWS);
        OUT.uv = TRANSFORM_TEX(IN.uv, _ColorMap);
@@ -221,13 +224,14 @@ float3 CalculateLighting(Varyings IN, Light light)
 
        float3 surfaceColor = _Color * SAMPLE_TEXTURE2D(_ColorMap, sampler_ColorMap, IN.uv);
        float3 directionalLighting = toonLighting * light.color;
-       float3 specularLighting = specularTerm * light.color;
+
+       float3 specularLighting = _Specular > 0 ? specularTerm * light.color : 0;
        float3 finalLighting = float3(0, 0, 0);
        finalLighting += directionalLighting;
        finalLighting += specularLighting;
        finalLighting += rimLighting;
 
-       return surfaceColor * finalLighting;
+       return surfaceColor * (finalLighting + _AmbientColor);
 }
 /*
 The Fragment function is responsible 
@@ -235,7 +239,7 @@ for handling per-pixel shading during the Forward
 rendering pass. We use the ForwardOnly pass, so this works
 by default in both Forward and Deferred paths.
 */
-float3 Fragment(Varyings IN) : SV_Target
+float4 Fragment(Varyings IN) : SV_Target
 {
        UNITY_SETUP_INSTANCE_ID(IN);
        UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(IN);
@@ -274,7 +278,7 @@ float3 Fragment(Varyings IN) : SV_Target
               finalColor += CalculateLighting(IN, additionalLight);
        }
 
-       return finalColor + _AmbientColor;
+       return float4(finalColor, _Color[3]);
 }
        
 
