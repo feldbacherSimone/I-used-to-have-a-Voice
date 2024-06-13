@@ -12,7 +12,7 @@ namespace _IUTHAV.Scripts.Core.Audio
     public class AudioController : MonoBehaviour
     {
         [SerializeField] protected bool isDebug;
-        [Header("Audio Properties")]
+        [Header("Audio Propaerties")]
         [SerializeField] protected List<AudioTrack> tracks;
 
         protected Hashtable audioTable;

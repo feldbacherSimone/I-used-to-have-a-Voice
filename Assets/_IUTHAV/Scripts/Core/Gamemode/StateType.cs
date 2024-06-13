@@ -28,6 +28,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         
         //SCENE 1 States
         SC1_ScrollTrigger = 100,
+        SC1_Start = 101,
         SC1_ActFinished_0,
         SC1_ActFinished_1,
         SC1_ActFinished_2,
