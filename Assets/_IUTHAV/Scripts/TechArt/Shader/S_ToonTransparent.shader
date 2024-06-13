@@ -30,10 +30,6 @@ Shader "Custom/ToonTransparent"
             Name "ForwardLit"
             Tags {"LightMode" = "UniversalForwardOnly"} 
             
-           
-            
-           
-            
             HLSLPROGRAM
 
             #pragma  multi_compile_fog

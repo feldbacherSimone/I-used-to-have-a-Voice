@@ -35,7 +35,7 @@ namespace _IUTHAV.Scripts.ComicPanel
             output += x.x < 0 ? x.magnitude * -resultX : x.magnitude * resultX;
             output += y.y < 0 ? y.magnitude * -resultY : y.magnitude * resultY;
 
-            Debug.Log($"Delta pos = {output}");
+            //Debug.Log($"Delta pos = {output}");
             return output + defaultPos; 
         }
 
