@@ -29,7 +29,7 @@ CBUFFER_START(UnityPerMaterial)
        float _RimSharpness;
        float3 _RimColor;
        float _ShadowCutoff;
-       float3 _AmbientColor;
+       float4 _AmbientColor;
        float _Specular;
        
 CBUFFER_END
@@ -204,7 +204,7 @@ float EasySmoothStep(float min, float x)
        return smoothstep(min, min + 0.01, x);
 }
 
-float3 CalculateLighting(Varyings IN, Light light)
+float4 CalculateLighting(Varyings IN, Light light)
 {
        float NoL = dot(IN.normalWS, light.direction);
        float toonLighting = EasySmoothStep(_ShadowCutoff, NoL);
@@ -222,14 +222,15 @@ float3 CalculateLighting(Varyings IN, Light light)
        rimTerm = EasySmoothStep(0.01, rimTerm);
        float3 rimLighting = rimTerm * _RimColor;
 
-       float3 surfaceColor = _Color * SAMPLE_TEXTURE2D(_ColorMap, sampler_ColorMap, IN.uv);
+       float4 surfaceColor = _Color * SAMPLE_TEXTURE2D(_ColorMap, sampler_ColorMap, IN.uv);
        float3 directionalLighting = toonLighting * light.color;
 
        float3 specularLighting = _Specular > 0 ? specularTerm * light.color : 0;
-       float3 finalLighting = float3(0, 0, 0);
-       finalLighting += directionalLighting;
-       finalLighting += specularLighting;
-       finalLighting += rimLighting;
+       float4 finalLighting = float4(0, 0, 0, 0);
+       finalLighting += float4(directionalLighting, 0);
+       finalLighting += float4(specularLighting, 0);
+       finalLighting += float4(rimLighting, 0);
+       
 
        return surfaceColor * (finalLighting + _AmbientColor);
 }
@@ -257,7 +258,7 @@ float4 Fragment(Varyings IN) : SV_Target
               IN.normalWS = -IN.normalWS;
        }
 
-       float3 finalColor = float3(0, 0, 0);
+       float4 finalColor = float4(0, 0, 0,0);
 
        // Handle main directional light
        finalColor += CalculateLighting(IN, mainLight);
@@ -278,7 +279,7 @@ float4 Fragment(Varyings IN) : SV_Target
               finalColor += CalculateLighting(IN, additionalLight);
        }
 
-       return float4(finalColor, _Color[3]);
+       return float4(finalColor);
 }
        
 

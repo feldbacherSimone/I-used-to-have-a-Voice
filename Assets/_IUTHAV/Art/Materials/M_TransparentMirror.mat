@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TestObjectShader 5
-  m_Shader: {fileID: 4800000, guid: 8e6adedf7bcb9c14ab7a752fdc31ab07, type: 3}
+  m_Name: M_TransparentMirror
+  m_Shader: {fileID: 4800000, guid: 084ce7b5c1c40fe449ca4c14fa05a6e5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -30,7 +30,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 5000
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -101,6 +101,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
+    - _Alpha: 1
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -123,9 +124,9 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimSharpness: 8.8
-    - _ShadowCutoff: 0.6
-    - _Smoothness: 17.8
+    - _RimSharpness: 3.27
+    - _ShadowCutoff: -0.8
+    - _Smoothness: 18.41
     - _SmoothnessTextureChannel: 0
     - _Specular: 1
     - _SpecularHighlights: 1
@@ -135,11 +136,11 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _AmbientColor: {r: 0.5250967, g: 0.22739409, b: 0.6603774, a: 1}
+    - _AmbientColor: {r: 0.6415094, g: 0.38806167, b: 0.20879316, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.4811321, g: 0.18382877, b: 0.18382877, a: 1}
+    - _Color: {r: 0.08290311, g: 0.4185632, b: 0.6509434, a: 0.05490196}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 0.19112858, g: 0.01690993, b: 0.7169812, a: 1}
+    - _RimColor: {r: 0.3251641, g: 0, b: 0.15176328, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -12,7 +12,7 @@ namespace _IUTHAV.Scripts.Core.Audio
     public class AudioController : MonoBehaviour
     {
         [SerializeField] protected bool isDebug;
-        [Header("Audio Propaerties")]
+        [Header("Audio Properties")]
         [SerializeField] protected List<AudioTrack> tracks;
 
         protected Hashtable audioTable;
@@ -68,6 +68,7 @@ namespace _IUTHAV.Scripts.Core.Audio
             Start,
             Stop,
             Restart,
+            OneShot,
         }
 
 #region Unity Functions
@@ -85,6 +86,7 @@ namespace _IUTHAV.Scripts.Core.Audio
 #region public Functions
 
         public void PlayClip(string type, Transform spatialParent = null, bool fade = false, float delay = 0f) {
+            
             
             if (spatialParent == null) {
                 
@@ -294,6 +296,7 @@ namespace _IUTHAV.Scripts.Core.Audio
             yield return new WaitForSeconds(job.delay);
             
             AudioTrack track = (AudioTrack)audioTable[job.name];
+            
 
             track.source.clip = GetAudioClipFromAudioTrack(job.name, track);
             
@@ -307,7 +310,6 @@ namespace _IUTHAV.Scripts.Core.Audio
                     if (!job.fade) {
                         track.source.Stop();
                     }
-                    
                     break;
                 
                 case AudioAction.Restart:
