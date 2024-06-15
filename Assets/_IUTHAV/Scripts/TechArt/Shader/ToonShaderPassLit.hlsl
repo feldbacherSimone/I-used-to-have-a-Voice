@@ -227,7 +227,7 @@ float3 CalculateLighting(Varyings IN, Light light)
        float3 surfaceColor = _Color * SAMPLE_TEXTURE2D(_ColorMap, sampler_ColorMap, IN.uv);
        float3 directionalLighting = toonLighting * light.color;
 
-       float toonShadows = EasySmoothStep(0.1, light.shadowAttenuation);
+       float toonShadows = EasySmoothStep(0.5, light.shadowAttenuation);
 
        float3 specularLighting = _Specular > 0 ? specularTerm * light.color : 0;
        float3 finalLighting = float3(0, 0, 0);
