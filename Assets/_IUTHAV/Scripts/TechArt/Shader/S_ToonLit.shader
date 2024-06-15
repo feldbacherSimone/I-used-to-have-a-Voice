@@ -18,7 +18,7 @@ Shader "Custom/Toon"
         LOD 100
         
         Cull Off 
-        
+        ZWrite On
         ZTest LEqual 
         ZClip Off
 
@@ -27,11 +27,7 @@ Shader "Custom/Toon"
             
             Name "ForwardLit"
             Tags {"LightMode" = "UniversalForwardOnly"} 
-            
-            
-            
-           
-            
+
             HLSLPROGRAM
 
             #pragma  multi_compile_fog

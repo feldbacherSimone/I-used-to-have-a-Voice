@@ -206,8 +206,10 @@ float EasySmoothStep(float min, float x)
 
 float3 CalculateLighting(Varyings IN, Light light)
 {
+       
+       
        float NoL = dot(IN.normalWS, light.direction);
-       float toonLighting = EasySmoothStep(_ShadowCutoff, NoL);
+       float toonLighting = EasySmoothStep(_ShadowCutoff, NoL); ;
        float3 halfVector = normalize(light.direction + IN.viewDirectionWS);
        float NoH = max(dot(IN.normalWS, halfVector), 0);
 
@@ -225,11 +227,14 @@ float3 CalculateLighting(Varyings IN, Light light)
        float3 surfaceColor = _Color * SAMPLE_TEXTURE2D(_ColorMap, sampler_ColorMap, IN.uv);
        float3 directionalLighting = toonLighting * light.color;
 
+       float toonShadows = EasySmoothStep(0.1, light.shadowAttenuation);
+
        float3 specularLighting = _Specular > 0 ? specularTerm * light.color : 0;
        float3 finalLighting = float3(0, 0, 0);
        finalLighting += directionalLighting;
        finalLighting += specularLighting;
        finalLighting += rimLighting;
+       finalLighting*= toonShadows;
 
        return surfaceColor * (finalLighting + _AmbientColor);
 }
