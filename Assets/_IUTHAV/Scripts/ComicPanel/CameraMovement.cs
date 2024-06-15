@@ -41,7 +41,7 @@ namespace _IUTHAV.Scripts.ComicPanel
 
         public static Vector3? ResetCamera(Transform cameraTarget, Vector3 restPosition)
         {
-            if (Vector3.Distance(cameraTarget.position, restPosition) > 0.1)
+            if (Vector3.Distance(cameraTarget.position, restPosition) > 0.001)
             {
                 return Vector3.MoveTowards(cameraTarget.position, restPosition, returnSpeed * Time.deltaTime);
             }

@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Transparent
-  m_Shader: {fileID: 4800000, guid: 084ce7b5c1c40fe449ca4c14fa05a6e5, type: 3}
+  m_Name: M_CarInterior
+  m_Shader: {fileID: 4800000, guid: 8e6adedf7bcb9c14ab7a752fdc31ab07, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -30,7 +30,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 5000
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -124,9 +124,9 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimSharpness: 6.52
+    - _RimSharpness: 13.8
     - _ShadowCutoff: 0.6
-    - _Smoothness: 14.09
+    - _Smoothness: 12.4
     - _SmoothnessTextureChannel: 0
     - _Specular: 1
     - _SpecularHighlights: 1
@@ -136,11 +136,11 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _AmbientColor: {r: 0.1303691, g: 0.038047355, b: 0.1792453, a: 1}
+    - _AmbientColor: {r: 0.39392564, g: 0.18836774, b: 0.4811321, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.25471687, g: 0.3077829, b: 0.33962253, a: 0.8235294}
+    - _Color: {r: 0.4716981, g: 0.18022428, b: 0.22739723, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 21.73585, g: 9.392863, b: 4.89341, a: 1}
+    - _RimColor: {r: 0.7176471, g: 0.036095783, b: 0.01568627, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -97,8 +97,6 @@ namespace _IUTHAV.Scripts.ComicPanel {
         {
             scrollRect.enabled = false;
             panelIsActive = true;
-        
-            CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
         }
 
         public void OnPointerExit(PointerEventData eventData)
