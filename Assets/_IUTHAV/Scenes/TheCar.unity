@@ -342,13 +342,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168382003}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.8464037, y: -0.43823713, z: 0.15077385, w: 0.26232857}
+  m_LocalRotation: {x: 0.81973416, y: -0.3855803, z: 0.30516115, w: 0.29366735}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 35.185, y: -181.774, z: -125.816}
+  m_LocalEulerAnglesHint: {x: 45.79, y: -203.124, z: -139.494}
 --- !u!114 &168382006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1613,7 +1613,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759751346}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.9245283, g: 0.8362034, b: 0.6236205, a: 1}
@@ -9531,7 +9531,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1951374776}
   - component: {fileID: 1951374779}
-  - component: {fileID: 1951374778}
   - component: {fileID: 1951374777}
   - component: {fileID: 1951374780}
   m_Layer: 0
@@ -9600,14 +9599,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!81 &1951374778
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951374775}
-  m_Enabled: 1
 --- !u!20 &1951374779
 Camera:
   m_ObjectHideFlags: 0
@@ -9707,7 +9698,7 @@ Transform:
   m_GameObject: {fileID: 1952006074}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.000083, z: -0.000144}
+  m_LocalPosition: {x: 0, y: 0.00008, z: -0.00014}
   m_LocalScale: {x: 0.00022003999, y: 0.00008957824, z: 0.00008957824}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11483,7 +11474,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635547660535181581}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -12340,7 +12331,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9141013271863047149}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
