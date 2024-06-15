@@ -30,7 +30,7 @@ Shader "Custom/Toon"
 
             HLSLPROGRAM
 
-            #pragma  multi_compile_fog
+            #pragma multi_compile_fog
             #pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
 
             // These #pragma directives set up Main Light Shadows.
@@ -39,7 +39,7 @@ Shader "Custom/Toon"
             
             #pragma vertex Vertex
             #pragma fragment Fragment
-            // make fog work
+            
 
             #include "ToonShaderPassLit.hlsl"
 

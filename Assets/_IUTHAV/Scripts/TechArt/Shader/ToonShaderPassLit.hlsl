@@ -206,8 +206,6 @@ float EasySmoothStep(float min, float x)
 
 float3 CalculateLighting(Varyings IN, Light light)
 {
-       
-       
        float NoL = dot(IN.normalWS, light.direction);
        float toonLighting = EasySmoothStep(_ShadowCutoff, NoL); ;
        float3 halfVector = normalize(light.direction + IN.viewDirectionWS);
