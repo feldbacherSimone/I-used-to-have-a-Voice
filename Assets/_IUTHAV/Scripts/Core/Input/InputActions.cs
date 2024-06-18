@@ -44,6 +44,24 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""a9b4a939-5d71-444d-b734-7032d27ce9f7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MouseScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""b24bcd7d-95e4-42fb-af63-b3924c2a347e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -68,6 +86,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Drag"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47f108e8-74eb-406e-938f-38e36786a653"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d825e6a1-de1b-441e-95fc-3a9fe0c9923d"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -84,6 +124,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_BaseActionMap = asset.FindActionMap("BaseActionMap", throwIfNotFound: true);
         m_BaseActionMap_Interact = m_BaseActionMap.FindAction("Interact", throwIfNotFound: true);
         m_BaseActionMap_Drag = m_BaseActionMap.FindAction("Drag", throwIfNotFound: true);
+        m_BaseActionMap_MousePosition = m_BaseActionMap.FindAction("MousePosition", throwIfNotFound: true);
+        m_BaseActionMap_MouseScroll = m_BaseActionMap.FindAction("MouseScroll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -147,12 +189,16 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<IBaseActionMapActions> m_BaseActionMapActionsCallbackInterfaces = new List<IBaseActionMapActions>();
     private readonly InputAction m_BaseActionMap_Interact;
     private readonly InputAction m_BaseActionMap_Drag;
+    private readonly InputAction m_BaseActionMap_MousePosition;
+    private readonly InputAction m_BaseActionMap_MouseScroll;
     public struct BaseActionMapActions
     {
         private @InputActions m_Wrapper;
         public BaseActionMapActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Interact => m_Wrapper.m_BaseActionMap_Interact;
         public InputAction @Drag => m_Wrapper.m_BaseActionMap_Drag;
+        public InputAction @MousePosition => m_Wrapper.m_BaseActionMap_MousePosition;
+        public InputAction @MouseScroll => m_Wrapper.m_BaseActionMap_MouseScroll;
         public InputActionMap Get() { return m_Wrapper.m_BaseActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -168,6 +214,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Drag.started += instance.OnDrag;
             @Drag.performed += instance.OnDrag;
             @Drag.canceled += instance.OnDrag;
+            @MousePosition.started += instance.OnMousePosition;
+            @MousePosition.performed += instance.OnMousePosition;
+            @MousePosition.canceled += instance.OnMousePosition;
+            @MouseScroll.started += instance.OnMouseScroll;
+            @MouseScroll.performed += instance.OnMouseScroll;
+            @MouseScroll.canceled += instance.OnMouseScroll;
         }
 
         private void UnregisterCallbacks(IBaseActionMapActions instance)
@@ -178,6 +230,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Drag.started -= instance.OnDrag;
             @Drag.performed -= instance.OnDrag;
             @Drag.canceled -= instance.OnDrag;
+            @MousePosition.started -= instance.OnMousePosition;
+            @MousePosition.performed -= instance.OnMousePosition;
+            @MousePosition.canceled -= instance.OnMousePosition;
+            @MouseScroll.started -= instance.OnMouseScroll;
+            @MouseScroll.performed -= instance.OnMouseScroll;
+            @MouseScroll.canceled -= instance.OnMouseScroll;
         }
 
         public void RemoveCallbacks(IBaseActionMapActions instance)
@@ -208,5 +266,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnInteract(InputAction.CallbackContext context);
         void OnDrag(InputAction.CallbackContext context);
+        void OnMousePosition(InputAction.CallbackContext context);
+        void OnMouseScroll(InputAction.CallbackContext context);
     }
 }
