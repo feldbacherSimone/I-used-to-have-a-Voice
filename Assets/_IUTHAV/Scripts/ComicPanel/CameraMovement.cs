@@ -6,7 +6,7 @@ namespace _IUTHAV.Scripts.ComicPanel
 {
     public static class CameraMovement 
     {
-        private static Vector3 defaultPos;
+        private static Vector3 initPos;
         private static float  returnSpeed = 2;
 
         private static Vector3 resultZ;
@@ -20,9 +20,10 @@ namespace _IUTHAV.Scripts.ComicPanel
             resultY = camera.transform.rotation * Vector3.up;
             resultX = camera.transform.rotation * Vector3.right;
             
-            Debug.Log($"camera.transform.rotation: {camera.transform.rotation} * {Vector3.forward} = {resultZ}");
+            //Debug.Log($"camera.transform.rotation: {camera.transform.rotation} * {Vector3.forward} = {resultZ}");
 
-            CameraMovement.defaultPos = defaultPos; 
+            initPos = defaultPos; 
+            
         }
         public static Vector3 GetMovementAmount(Vector3 position)
         {
@@ -36,7 +37,7 @@ namespace _IUTHAV.Scripts.ComicPanel
             output += y.y < 0 ? y.magnitude * -resultY : y.magnitude * resultY;
 
             //Debug.Log($"Delta pos = {output}");
-            return output + defaultPos; 
+            return output;
         }
 
         public static Vector3? ResetCamera(Transform cameraTarget, Vector3 restPosition)
