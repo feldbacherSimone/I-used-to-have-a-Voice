@@ -36,7 +36,6 @@ namespace _IUTHAV.Scripts.ComicPanel {
             
                 UpdateRenderTexture();
             }
-            
         }
         private void Awake() {
         
@@ -53,7 +52,7 @@ namespace _IUTHAV.Scripts.ComicPanel {
             //Init Camera Movement
             defaultPos = camTarget.position;
             rectTransform = GetComponent<RectTransform>();
-            CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
+            CameraMovement.InitProjection(cmCamGameObject.transform, defaultPos);
 
             //ScrollRect Configuration
             scrollRect = GameObject.FindWithTag("Scroll").GetComponent<ScrollRect>();
@@ -178,11 +177,11 @@ namespace _IUTHAV.Scripts.ComicPanel {
                 Vector3 relativeMousePos = GetRelativeMousePos();
 
                 Vector3 posDelta = new Vector3(
-                    movementPadding.x * relativeMousePos.x, 
-                    movementPadding.y * -relativeMousePos.y, 
+                    movementPadding.x/10 * relativeMousePos.x, 
+                    movementPadding.y/10 * -relativeMousePos.y, 
                     0);
 
-                camTarget.position = CameraMovement.GetMovementAmount(posDelta);
+                camTarget.position = defaultPos + CameraMovement.GetMovementAmount(posDelta);
             }
             else if (resetPosition != null)
             {
