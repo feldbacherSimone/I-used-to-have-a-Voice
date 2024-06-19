@@ -16,15 +16,15 @@ MonoBehaviour:
   m_Settings:
     AOMethod: 1
     Downsample: 0
-    AfterOpaque: 0
+    AfterOpaque: 1
     Source: 1
     NormalSamples: 1
-    Intensity: 0.5
-    DirectLightingStrength: 0.25
-    Radius: 0.25
-    Samples: 0
-    BlurQuality: 0
-    Falloff: 100
+    Intensity: 0.93
+    DirectLightingStrength: 0.278
+    Radius: 0.04
+    Samples: 2
+    BlurQuality: 2
+    Falloff: 5
     SampleCount: -1
   m_BlueNoise256Textures:
   - {fileID: 2800000, guid: 36f118343fc974119bee3d09e2111500, type: 3}
@@ -68,7 +68,8 @@ MonoBehaviour:
       type: 3}
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
-  m_RendererFeatureMap: adc0de57c6d2eee5
+  - {fileID: 3576790379045577434}
+  m_RendererFeatureMap: adc0de57c6d2eee5dae20b2be64fa331
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -107,7 +108,66 @@ MonoBehaviour:
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 0
-  m_DepthPrimingMode: 0
+  m_DepthPrimingMode: 2
   m_CopyDepthMode: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
+--- !u!114 &3576790379045577434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a8a626e4a363604d8b1a959cc4ab28f, type: 3}
+  m_Name: FullScreenFogRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  _injectionPoint: 550
+  _renderCamera: 3
+  _shader: {fileID: -6465566751694194690, guid: a1b07ed697d67f145899e797afa7e6d3,
+    type: 3}
+--- !u!114 &6814644080619183747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deac002c82ddb9d4cbeb0390ab2e82e2, type: 3}
+  m_Name: OutlineRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  outlineLayerMask:
+    m_Bits: 4294967295
+  outlinesOccluderLayerMask:
+    m_Bits: 0
+  renderPassEvent: 150
+  settings:
+    colorFormat: 0
+    depthBufferBits: 16
+    filterMode: 1
+    backgroundColor:
+      r: 0.7169812
+      g: 0.49038807
+      b: 0.49038807
+      a: 1
+    perObjectData: 0
+    enableDynamicBatching: 0
+    enableInstancing: 0
+  outlineSettings:
+    outlineColor:
+      r: 1
+      g: 0.98480475
+      b: 0
+      a: 1
+    outlineScale: 2.04
+    depthThreshold: 6.7
+    robertsCrossMultiplier: 60
+    normalThreshold: 0.089
+    steepAngleThreshold: 0.2
+    steepAngleMultiplier: 33

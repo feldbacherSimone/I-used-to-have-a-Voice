@@ -46,6 +46,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         private void Start() {
             LogStates();
             InputController.Configure();
+            FinishState(GetCurrentSceneType().ToString()+"_Start");
         }
 
         private void OnDestroy() {

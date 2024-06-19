@@ -90,14 +90,13 @@ namespace _IUTHAV.Scripts.ComicPanel {
                 mousePosOnPanel.x / rectTransform.rect.width - 0.5f,
                 mousePosOnPanel.y / rectTransform.rect.height - 0.5f);
             
+            DebugPrint($"Relative Mouse Pos: {relativeMousePos}");
             return relativeMousePos;
         }
         public void OnPointerEnter(PointerEventData eventData)
         {
             scrollRect.enabled = false;
             panelIsActive = true;
-        
-            CameraMovement.InitProjection(cmCamGameObject.transform, camTarget.position);
         }
 
         public void OnPointerExit(PointerEventData eventData)
