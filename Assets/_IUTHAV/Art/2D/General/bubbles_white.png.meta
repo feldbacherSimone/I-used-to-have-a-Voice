@@ -108,18 +108,554 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: bubbles_white_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 989
+        width: 192
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 61, y: 44, z: 37, w: 39}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 273acdbb51242d74590aae3fd4734ae1
+      internalID: -1191331389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_1
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 997
+        width: 146
+        height: 146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 55, y: 45, z: 34, w: 31}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2213961e045ac304faa0ebb2ce0b70ec
+      internalID: -505551595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_2
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 1006
+        width: 187
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 75, y: 46, z: 58, w: 50}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 987d24be6e045fb4d95ebd9508567cce
+      internalID: -1518870814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_3
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 980
+        width: 165
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 55, y: 47, z: 41, w: 45}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9440222ed81a412408e23d8ffa9e20e7
+      internalID: -805525417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_4
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 984
+        width: 241
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 58, y: 40, z: 52, w: 43}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4fe1c570dd79564597bc21c5c1ebbbb
+      internalID: 1550876287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_5
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 985
+        width: 210
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 96, y: 55, z: 92, w: 55}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f562f4f9908d34641b28fa068ca615d5
+      internalID: 497633935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_6
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 712
+        width: 240
+        height: 199
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 72, y: 69, z: 48, w: 45}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 542e716de4a44d94286c0c0ec9ace57a
+      internalID: -1764808175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_8
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 744
+        width: 210
+        height: 206
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 56, y: 64, z: 63, w: 48}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63b2e261593a14644a2c5787277e5241
+      internalID: -153338499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_11
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 737
+        width: 305
+        height: 168
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 97, y: 49, z: 49, w: 46}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70e0a581e55539941adb90a4448d87c7
+      internalID: -213152476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_13
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 733
+        width: 240
+        height: 214
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 65, y: 53, z: 43, w: 31}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b235cb6dfc1091b42b91399aacaefc3b
+      internalID: 495999712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_15
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 718
+        width: 269
+        height: 198
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 67, y: 48, z: 57, w: 50}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd74c8e4b56880469c78e55814bf9c0
+      internalID: -1045208754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_19
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 494
+        width: 237
+        height: 193
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 59, y: 44, z: 70, w: 51}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f3fe51be8cbe7946849733dfb77e930
+      internalID: -1462558293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_20
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 507
+        width: 241
+        height: 170
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 67, y: 48, z: 49, w: 45}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be79f5bd32d58d547adee8ef5e30ac4c
+      internalID: -659860646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_21
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 485
+        width: 226
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 76, y: 57, z: 47, w: 46}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa5969fb777dc8d4d8f6bc7b7f68daba
+      internalID: -1026258469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_22
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 500
+        width: 254
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 47, y: 37, z: 45, w: 36}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad9fcf2a57437d4fb4c9800e8131109
+      internalID: -1598225714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_23
+      rect:
+        serializedVersion: 2
+        x: 1186
+        y: 489
+        width: 225
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 47, y: 44, z: 57, w: 51}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf596cd7b37561c42848121eb77303ba
+      internalID: 1257563150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_24
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 258
+        width: 200
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 36, y: 48, z: 37, w: 60}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9e73c4f09069124ab23c10dee89dad0
+      internalID: -192382320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_25
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 266
+        width: 163
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 43, y: 37, z: 32, w: 37}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e3ad291fe8bb5b47937aa60fae9770a
+      internalID: -942654440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_26
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 272
+        width: 206
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 44, y: 39, z: 45, w: 40}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c552d5481a617d4f8f6e494ce4dc174
+      internalID: 862330798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_27
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 265
+        width: 249
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 54, y: 35, z: 35, w: 39}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2ddba4ed165357428fbf732b4c0f681
+      internalID: 620200901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_28
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 261
+        width: 222
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 55, y: 40, z: 52, w: 38}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05c3a0b31e1a9c141a6919d9abb17b7a
+      internalID: 1071582422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_29
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 62
+        width: 411
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78cc099e76ad64044833e0c30daad83d
+      internalID: -1824498888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_30
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 61
+        width: 410
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d1849e2bd20df4da0d5195af0c901a
+      internalID: 1988604181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bubbles_white_31
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 62
+        width: 411
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22b652febe0848b4f82405f2b829c1e7
+      internalID: -890111135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c7b502cd2fa5e5d4ebb6305096e2b929
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bubbles_white_0: -1191331389
+      bubbles_white_1: -505551595
+      bubbles_white_10: -2072670601
+      bubbles_white_11: -213152476
+      bubbles_white_12: 2118379370
+      bubbles_white_13: 495999712
+      bubbles_white_14: 243022961
+      bubbles_white_15: -1045208754
+      bubbles_white_16: 1047051021
+      bubbles_white_17: -2022920397
+      bubbles_white_18: -621857905
+      bubbles_white_19: -1462558293
+      bubbles_white_2: -1518870814
+      bubbles_white_20: -659860646
+      bubbles_white_21: -1026258469
+      bubbles_white_22: -1598225714
+      bubbles_white_23: 1257563150
+      bubbles_white_24: -192382320
+      bubbles_white_25: -942654440
+      bubbles_white_26: 862330798
+      bubbles_white_27: 620200901
+      bubbles_white_28: 1071582422
+      bubbles_white_29: -1824498888
+      bubbles_white_3: -805525417
+      bubbles_white_30: 1988604181
+      bubbles_white_31: -890111135
+      bubbles_white_4: 1550876287
+      bubbles_white_5: 497633935
+      bubbles_white_6: -1764808175
+      bubbles_white_7: 216376832
+      bubbles_white_8: -153338499
+      bubbles_white_9: -368966361
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

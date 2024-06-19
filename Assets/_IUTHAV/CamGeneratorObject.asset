@@ -18,10 +18,10 @@ MonoBehaviour:
     type: 2}
   panelPrefab: {fileID: 6385227724739882469, guid: 9778dc1d60b77e94c875362c510de53c,
     type: 3}
-  renderTextureWidth: 300
-  renderTextureHeight: 400
-  cameraOutputMask: 3
-  shotName: BackSeat1
+  renderTextureWidth: 1600
+  renderTextureHeight: 930
+  cameraOutputMask: 10
+  shotName: RearViewMirror
   createRenderTextureAndCamera: 0
-  renderTextureTargetName: BackSeat1
+  renderTextureTargetName: RearViewMirror
   createPanel: 0
