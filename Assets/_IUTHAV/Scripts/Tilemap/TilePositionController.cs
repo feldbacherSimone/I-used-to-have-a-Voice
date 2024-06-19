@@ -69,7 +69,7 @@ namespace _IUTHAV.Scripts.Tilemap {
 
              var t = _mTiles.ToArray();
              
-             t[^1].gameObject.transform.localPosition = -controlPoint.localPosition;
+             t[^1].gameObject.transform.localPosition = controlPoint.localPosition;
         }
 
 #endregion

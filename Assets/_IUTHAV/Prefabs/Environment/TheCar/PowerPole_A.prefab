@@ -145,13 +145,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: {fileID: 6506149923721233672}
   end: {fileID: 0}
-  segmentMaterial: {fileID: 2100000, guid: 0a5c7dc19f419a94185b358acd6402f3, type: 2}
-  segments: 6
-  diameter: 0.1
-  segmentMass: 0.1
-  damper: 1
-  drag: 10
-  spring: 0.25
+  segmentMaterial: {fileID: 2100000, guid: f19dce3eb8296bd41add32a5f6b558d8, type: 2}
+  width: 0.1
+  _isReady: 0
 --- !u!1 &2147465829621980124
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,13 +194,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: {fileID: 3637303738219345068}
   end: {fileID: 0}
-  segmentMaterial: {fileID: 2100000, guid: 0a5c7dc19f419a94185b358acd6402f3, type: 2}
-  segments: 6
-  diameter: 0.1
-  segmentMass: 0.1
-  damper: 1
-  drag: 10
-  spring: 0.25
+  segmentMaterial: {fileID: 2100000, guid: f19dce3eb8296bd41add32a5f6b558d8, type: 2}
+  width: 0.1
+  _isReady: 0
 --- !u!1 &2275826781170855078
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +254,7 @@ MonoBehaviour:
   - {fileID: 5251898213453111926}
   - {fileID: 7345467902691951087}
   key: Left
-  isConnected: 0
+  connection: {fileID: 0}
 --- !u!1 &2369738460194202790
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,13 +301,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: {fileID: 1306842861211147323}
   end: {fileID: 0}
-  segmentMaterial: {fileID: 2100000, guid: 0a5c7dc19f419a94185b358acd6402f3, type: 2}
-  segments: 6
-  diameter: 0.1
-  segmentMass: 0.1
-  damper: 1
-  drag: 10
-  spring: 0.25
+  segmentMaterial: {fileID: 2100000, guid: f19dce3eb8296bd41add32a5f6b558d8, type: 2}
+  width: 0.1
+  _isReady: 0
 --- !u!1 &3637303738219345068
 GameObject:
   m_ObjectHideFlags: 0
