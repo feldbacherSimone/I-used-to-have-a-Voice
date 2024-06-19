@@ -6,6 +6,7 @@ using _IUTHAV.Scripts.Core.Page;
 using _IUTHAV.Scripts.Core.Scene;
 using UnityEngine;
 using UnityEngine.Events;
+using Yarn.Unity;
 
 namespace _IUTHAV.Scripts.Core.Gamemode {
 #region Helper Classes
@@ -124,6 +125,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
             }
         }
 
+        [YarnCommand("FinishState")]
         public void FinishState(string stateType) {
             if (Enum.TryParse(stateType, out StateType type)) {
                 FinishState(type);

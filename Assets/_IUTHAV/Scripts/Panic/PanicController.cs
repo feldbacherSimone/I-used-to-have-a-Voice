@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 namespace _IUTHAV.Scripts.Panic {
     public class PanicController : MonoBehaviour {
@@ -52,6 +53,7 @@ namespace _IUTHAV.Scripts.Panic {
         /// _globalPanicDelta seconds
         /// </summary>
         /// <param name="targetPanicValue">Value clamped between 0-1 with 1 representing maximum Panic</param>
+        [YarnCommand("Panic")]
         public void Panic(float targetPanicValue) {
 
             float v = Math.Clamp(targetPanicValue, 0.0f, 1.0f);
@@ -63,6 +65,7 @@ namespace _IUTHAV.Scripts.Panic {
         /// making every coroutine take newDelta seconds to reach the _targetPanicValue
         /// </summary>
         /// <param name="newDelta">Float to override the currentDelta</param>
+        [YarnCommand("ChangePanicDelta")]
         public void ChangePanicDelta(float newDelta) {
             _globalPanicDelta = newDelta;
         }
