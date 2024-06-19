@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace _IUTHAV.Scripts.Tilemap {
     public abstract class TileController : MonoBehaviour {
@@ -8,7 +9,7 @@ namespace _IUTHAV.Scripts.Tilemap {
         [SerializeField] protected Transform controlPoint;
         [SerializeField] public float scrollSpeed = 2f;
         [SerializeField] private List<Tile> tiles;
-        [SerializeField] protected TilelistType tileListType;
+        [SerializeField] protected TileSwitchMode tileSwitchMode;
         [SerializeField] [Range(0,20)] protected int maxTiles = 5;
 
         public UnityEvent onLastTileReached;
@@ -49,6 +50,11 @@ namespace _IUTHAV.Scripts.Tilemap {
             tiles.Add(tile);
         }
 
+        public void IncrementTileIndex(int i) {
+            _mCurrentTileIndex += i;
+            if (_mCurrentTileIndex == tiles.Count) _mCurrentTileIndex = 0;
+        }
+
 #endregion
 
 #region Private Functions
@@ -63,16 +69,19 @@ namespace _IUTHAV.Scripts.Tilemap {
 
             Tile tile;
 
-            if (tileListType == TilelistType.Queued) {
+            if (tileSwitchMode == TileSwitchMode.Queued) {
 
                 tile = tiles[_mCurrentTileIndex];
                 _mCurrentTileIndex++;
                 if (_mCurrentTileIndex == tiles.Count) _mCurrentTileIndex = 0;
             }
-            else {
+            else if (tileSwitchMode == TileSwitchMode.Random) {
 
                 tile = tiles[Random.Range(0, tiles.Count - 1)];
 
+            }
+            else {
+                tile = tiles[_mCurrentTileIndex];
             }
             
             var tileObj = Instantiate(tile.gameObject, this.gameObject.transform, true);
@@ -105,9 +114,10 @@ namespace _IUTHAV.Scripts.Tilemap {
 
 #region Helper Classes
 
-        protected enum TilelistType {
-            random,
-            Queued
+        protected enum TileSwitchMode {
+            Random,
+            Queued,
+            Manual
         }
         
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c0502ef8c0b3384478ed2847f056cd8f
+guid: 16226cd83471407459e0926bde15df53
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Landscape
-    second: {fileID: 2100000, guid: 0df381c6e9283aa4883dd387b0844fae, type: 2}
+      name: Street
+    second: {fileID: 2100000, guid: 58b40485122637c4d9887ffa09b3f10b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Street
-    second: {fileID: 2100000, guid: 58b40485122637c4d9887ffa09b3f10b, type: 2}
+      name: Tunnel_Door
+    second: {fileID: 2100000, guid: 9a2bdfb5fbde55842a16f57bbdcd9250, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tunnel_Lamphousing
+    second: {fileID: 2100000, guid: 06a8bb22546d9844c8344e1c570774da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tunnel_Rim
+    second: {fileID: 2100000, guid: 0a4dde3cc1e672e499cc405d9c2b7596, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tunnel_Wall
+    second: {fileID: 2100000, guid: f1a6497110996f54f9d74127ede6e5dc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

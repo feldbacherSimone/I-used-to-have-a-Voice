@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c0502ef8c0b3384478ed2847f056cd8f
+guid: 4fe256d16667bcb418b91e475661be10
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Landscape
-    second: {fileID: 2100000, guid: 0df381c6e9283aa4883dd387b0844fae, type: 2}
+      name: Metal_A
+    second: {fileID: 2100000, guid: f518f1791a05bb74aaf022c46245a570, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Street
-    second: {fileID: 2100000, guid: 58b40485122637c4d9887ffa09b3f10b, type: 2}
+      name: Metal_B
+    second: {fileID: 2100000, guid: 1fa5d7ce849dfe74f9ef327431114cf1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

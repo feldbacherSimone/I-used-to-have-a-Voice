@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c0502ef8c0b3384478ed2847f056cd8f
+guid: 9ef1945235b39af45a859cca7a881823
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -12,8 +12,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Street
-    second: {fileID: 2100000, guid: 58b40485122637c4d9887ffa09b3f10b, type: 2}
+      name: Rock
+    second: {fileID: 2100000, guid: f23c44fe478347f41b32327c0fc3e8a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof
+    second: {fileID: 2100000, guid: d6caa8af9ad8a0f418e83d58fd4c85a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall
+    second: {fileID: 2100000, guid: afef80e39ede4ff4d9a736d32e4d09ae, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

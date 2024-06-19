@@ -8,12 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Landscape
-    second: {fileID: 2100000, guid: c8705fad7c44f64459af1ff64c81af1f, type: 2}
+    second: {fileID: 2100000, guid: 0df381c6e9283aa4883dd387b0844fae, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Roof
-    second: {fileID: 2100000, guid: 7306e695437c9cb4f9165a3f81ee69c5, type: 2}
+    second: {fileID: 2100000, guid: d6caa8af9ad8a0f418e83d58fd4c85a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall
+    second: {fileID: 2100000, guid: afef80e39ede4ff4d9a736d32e4d09ae, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

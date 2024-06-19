@@ -25,7 +25,7 @@ namespace _IUTHAV.Scripts.Tilemap {
              scrollSpeed * Time.deltaTime);
 
              if (controlPoint.localRotation == Quaternion.Euler(_mCurrentEndPoint)) {
-                if (_mTiles.Count <= maxTiles) {
+                if (_mTiles.Count <= maxTiles && maxTiles != 0) {
                     SpawnInstance();
                 }
 
