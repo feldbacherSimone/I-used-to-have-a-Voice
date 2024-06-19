@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace _IUTHAV.Scripts.CustomUI {
@@ -6,11 +7,17 @@ namespace _IUTHAV.Scripts.CustomUI {
 
         [SerializeField] protected bool isDebug;
 
+        [SerializeField] protected UnityEvent OnDragelementEnter;
+        [SerializeField] protected UnityEvent OnDragelementExit;
         protected DragAndDropUIElement CurrentElement;
         protected bool IsFull;
         
         void Awake () {
             Configure();
+        }
+
+        public void Empty() {
+            IsFull = false;
         }
 
         private void OnDestroy() {
@@ -21,6 +28,7 @@ namespace _IUTHAV.Scripts.CustomUI {
         
             if (other.gameObject.TryGetComponent(out DragAndDropUIElement dropElement)) {
                 
+                OnDragelementEnter.Invoke();
                 CurrentElement = dropElement;
                 CurrentElement.DropCallback += OnDropElementDropped;
                 Log("Something just collided with me... " + CurrentElement.gameObject.name);
@@ -31,7 +39,7 @@ namespace _IUTHAV.Scripts.CustomUI {
         protected void OnCollisionExit2D(Collision2D other) {
         
             if (other.gameObject.TryGetComponent(out DragAndDropUIElement dropElement)) {
-                
+                OnDragelementExit.Invoke();
                 dropElement.DropCallback -= OnDropElementDropped;
                 Log("Something left me... " + dropElement.gameObject.name);
             }
@@ -48,6 +56,7 @@ namespace _IUTHAV.Scripts.CustomUI {
             dropElement.SnapToTarget(transform.position, () => {
                 dropElement.currentflag = DragUIElement.FLAG_LOCK;
                 dropElement.StartValidDropPointSequence();
+                OnDragelementExit.Invoke();
             });
             Log("You dropped something: " + dropElement.gameObject.name);
             }

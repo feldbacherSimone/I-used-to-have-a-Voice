@@ -8,6 +8,7 @@ public class SunCover : MonoBehaviour
     private Quaternion newRotation; 
     private bool isUp;
     [SerializeField] private float rotationAmount; 
+    [SerializeField] private GameObject toggleActive; 
     
     void Start()
     {
@@ -19,6 +20,10 @@ public class SunCover : MonoBehaviour
     {
         transform.rotation = isUp ? initRotation : newRotation;
         isUp = !isUp; 
+    }
+
+    public void ToggleActive() {
+        toggleActive.SetActive(!toggleActive.activeSelf);
     }
 
 }
