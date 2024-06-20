@@ -34,9 +34,7 @@ namespace _IUTHAV.Scripts.Dialogue {
 #region Unity Functions
 
         private void Awake() {
-
             Configure();
-
         }
 
         private void OnDrawGizmos() {
