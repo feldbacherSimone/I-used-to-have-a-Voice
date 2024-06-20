@@ -38,7 +38,7 @@ namespace _IUTHAV.Scripts.Tilemap {
             
         }
 
-        [YarnCommand("ChangeSpeedAbs")]
+        //[YarnCommand("ChangeSpeedAbs")]
         public void IncrementTileQueue(int i) {
 
             foreach (var ctrl in tileControllers) {
