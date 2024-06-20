@@ -9,7 +9,7 @@ namespace _IUTHAV.Scripts.CustomUI {
         [SerializeField] protected UnityEvent onValidDrop;
         [SerializeField] protected UnityEvent onInvalidDrop;
         [SerializeField] protected UnityEvent onDestruction;
-        public delegate void DropDelegate(DragAndDropUIElement dragAndDropUIElement, PointerEventData data);
+        public delegate void DropDelegate(DragAndDropUIElement dragAndDropUIElement);
         public DropDelegate DropCallback;
         protected Vector2 StartingPosition;
         
@@ -18,31 +18,25 @@ namespace _IUTHAV.Scripts.CustomUI {
             Configure(trigger);
         }
 
-        public virtual void StartValidDropPointSequence() {
+        public void StartValidDropPointSequence() {
             Log("Starting ValidDrop Sequence");
             onValidDrop?.Invoke();
         }
 
-        public virtual void StartInvalidDropPointSequence() {
+        public void StartInvalidDropPointSequence() {
             Log("Starting InvalidDrop Sequence");
             onInvalidDrop?.Invoke();
         }
 
-        public virtual void StartDestructionSequence() {
+        public void StartDestructionSequence() {
             Log("Starting Destruction Sequence");
             onDestruction?.Invoke();
         }
 
-        protected override void OnBeginDragDelegate(BaseEventData data) {
-            StartingPosition = transform.position;
-            base.OnBeginDragDelegate(data);
-            
-        }
-
-        protected override void OnDropDelegate(BaseEventData data) {
-            base.OnDropDelegate(data);
+        protected override void Drop(DragAndDropUIElement dropElement) {
+            base.Drop(dropElement);
             SnapToTarget(StartingPosition);
-            DropCallback?.Invoke(this, (PointerEventData)data);
+            DropCallback?.Invoke(this);
         }
 
         protected void ConfigureCollider2D() {
@@ -71,7 +65,7 @@ namespace _IUTHAV.Scripts.CustomUI {
 
             ConfigureCollider2D();
 
-            StartingPosition = transform.position;
+            StartingPosition = ((RectTransform)transform).position;
 
         }
 

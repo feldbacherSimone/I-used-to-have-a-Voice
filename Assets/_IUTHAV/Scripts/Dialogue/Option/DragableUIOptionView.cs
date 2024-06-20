@@ -14,7 +14,6 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
         [SerializeField] TextMeshProUGUI text;
         [SerializeField] bool showCharacterName = false;
 
-        public Action<DialogueOption> OnOptionSelected;
         public MarkupPalette palette;
 
         DialogueOption _option;
@@ -24,10 +23,12 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
         private void Awake() {
             EventTrigger trigger = gameObject.GetOrAddComponent<EventTrigger>();
             if (text == null) {
-                text = GetComponentInChildren<TextMeshProUGUI>();
+                text = GetComponent<TextMeshProUGUI>();
             }
             base.Configure(trigger);
-            
+
+            text.text = "";
+            currentflag = FLAG_NONE;
         }
 
         public DialogueOption Option
@@ -64,9 +65,9 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
             }
         }
 
-        protected override void OnBeginDragDelegate(BaseEventData data) {
+        protected override void OnClickDelegate(BaseEventData data) {
         
-            base.OnBeginDragDelegate(data);
+            base.OnClickDelegate(data);
             if (optionType == OptionType.DestroyOnPickup) {
                 StartDestructionSequence();
                 

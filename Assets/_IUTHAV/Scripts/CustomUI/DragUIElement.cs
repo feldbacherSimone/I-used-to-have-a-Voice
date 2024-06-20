@@ -1,17 +1,22 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 namespace _IUTHAV.Scripts.CustomUI {
     
     public class DragUIElement : MonoBehaviour {
 
         [SerializeField] protected Canvas canvas;
+
+        [SerializeField] protected UnityEvent onPickup;
+        [SerializeField] protected UnityEvent onDrop;
         
         [SerializeField] protected bool isDebug;
 
-        [HideInInspector] public int currentflag = FLAG_NONE;
+        public int currentflag = FLAG_NONE;
         public const int FLAG_LOCK = 3;
         public const int FLAG_DRAG = 1;
         public const int FLAG_NONE = 0;
@@ -29,10 +34,19 @@ namespace _IUTHAV.Scripts.CustomUI {
             EventTrigger trigger = gameObject.GetOrAddComponent<EventTrigger>();
             Configure(trigger);
         }
+        
+        private void Update() {
+
+            if (currentflag == FLAG_DRAG) {
+                ((RectTransform)transform).position = Input.mousePosition;
+            }
+        }
 
         private void OnDestroy() {
             RemoveListeners();
         }
+
+        
 
 #endregion
 
@@ -47,54 +61,52 @@ namespace _IUTHAV.Scripts.CustomUI {
 
 #region protected Functions
 
-        protected virtual void OnBeginDragDelegate(BaseEventData data) {
+        protected virtual void OnClickDelegate(BaseEventData data) {
+        
+            if (currentflag == FLAG_DRAG) {
+                Drop(null);
+            }
 
             if (currentflag != FLAG_NONE) return;
+            
+            onPickup.Invoke();
 
             CalculateCurrentPointerToCanvasPosition(((PointerEventData)data).position);
+
             if (Vector2.Distance(transform.position, _mTargetPosition) > 0.5f) {
                 StartCoroutine(MoveTowardsTarget(() => { currentflag = FLAG_DRAG; }));
             }
         }
 
-        protected virtual void OnDragDelegate(BaseEventData data) {
+        protected virtual void Drop(DragAndDropUIElement dropElement) {
 
-            if (currentflag == FLAG_LOCK) return;
-            
-            PointerEventData pointerData = (PointerEventData)data;
-            CalculateCurrentPointerToCanvasPosition(pointerData.position);
-
-            if (currentflag != FLAG_MOVESELF) {
-                ((RectTransform)transform).position = new Vector3(_mTargetPosition.x, _mTargetPosition.y, transform.position.z);
+            if (currentflag != FLAG_LOCK) {
+                
+                onDrop.Invoke();
+                currentflag = FLAG_NONE;
             }
-            
-        }
-
-        protected virtual void OnDropDelegate(BaseEventData data) {
-
-            if (currentflag != FLAG_LOCK) currentflag = FLAG_NONE;
 
         }
 
         protected void Configure(EventTrigger trigger) {
             
             EventTrigger.Entry entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.Drag;
-
-            entry.callback.AddListener((data) => { OnDragDelegate((PointerEventData)data);});
-            trigger.triggers.Add(entry);
+            //entry.eventID = EventTriggerType.Drag;
+//
+            //entry.callback.AddListener((data) => { Drag((PointerEventData)data);});
+            //trigger.triggers.Add(entry);
             
             entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.BeginDrag;
+            entry.eventID = EventTriggerType.PointerClick;
 
-            entry.callback.AddListener((data) => { OnBeginDragDelegate((PointerEventData)data);});
+            entry.callback.AddListener((data) => { OnClickDelegate((PointerEventData)data);});
             trigger.triggers.Add(entry);
             
-            entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.EndDrag;
-
-            entry.callback.AddListener((data) => { OnDropDelegate((PointerEventData)data);});
-            trigger.triggers.Add(entry);
+            //entry = new EventTrigger.Entry();
+            //entry.eventID = EventTriggerType.EndDrag;
+//
+            //entry.callback.AddListener((data) => { OnDrop((PointerEventData)data);});
+            //trigger.triggers.Add(entry);
             
             if (canvas == null) {
                 canvas = GameObject.FindWithTag("MainCanvas").GetComponent<Canvas>();

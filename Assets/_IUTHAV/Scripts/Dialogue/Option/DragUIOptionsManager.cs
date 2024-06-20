@@ -23,12 +23,16 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
             _mOptionViews = new List<DragableUIOptionView>();
 
             for (int i = 0; i < transform.childCount; i++) {
-                Log(transform.GetChild(i).name);
+                
                 if (transform.GetChild(i).gameObject.TryGetComponent(out DragableUIOptionView view)) {
                     _mOptionViews.Add(view);
                 }
             }
             
+            
+        }
+
+        private void Start() {
             gameObject.SetActive(false);
         }
 
@@ -82,7 +86,7 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
             }
         }
 
-        protected override void OnDropElementDropped(DragAndDropUIElement dropElement, PointerEventData data) {
+        protected override void OnDropElementDropped(DragAndDropUIElement dropElement) {
 
             if (dropElement.gameObject.TryGetComponent(out DragableUIOptionView optionView)) {
 

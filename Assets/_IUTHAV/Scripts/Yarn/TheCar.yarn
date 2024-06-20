@@ -18,11 +18,11 @@ Fabian: Und Emmi, bist du schon aufgeregt?
 Fabian: bla bla bla bla bla
 <<nextOption OptionsView>>
 Em_Past: Ja, versteh ich.
-<<nextBox ComicBoxView Fabian>>
+<<nextBox ComicBoxView all>>
 Fabian: Bla bla bla! Bla blu blib bla
 Fabian: Blemi?
 Fabian: Emmi?
-<<nextBox ComicBoxView Em_Past>>
+<<nextConversation ComicBoxView>>
 Em_Past: Hm? ... oh sry, bin etwas weggedöst 0-0
 
 //====ACT2====

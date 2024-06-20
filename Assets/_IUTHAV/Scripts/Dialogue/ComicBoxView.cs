@@ -69,29 +69,28 @@ namespace _IUTHAV.Scripts.Dialogue {
 #endregion
         
         [Header("ComicBox Parameters")] 
-        [SerializeField] private CharacterBoxManager[] characters;
-        [SerializeField] private bool cloneBoxesAfterPanelSwitch;
-        [SerializeField] private bool cloneBoxesAfterCharacterSwitch;
+        [SerializeField] private CharacterController[] characters;
+        [SerializeField] private ConversationManager[] conversations;
         [Space(10)] [SerializeField] private bool isDebug;
 
-        private Dictionary<string, CharacterBoxManager> _mComicBoxes;
-        private string _mCurrentCharacter;
+        private Dictionary<string, CharacterController> _mCharControllers;
+        private List<ConversationManager> _mConversations;
+        private string _mCurrentChar;
+        private int _mCurrentIndex;
         private string _mPreviousCharacter;
         private MarkupParseResult _mCurrentLine;
         private bool _mClickedContinue;
         
         private void Awake() {
-            foreach (var c in characters) {
-                _canvasGroup = c.CharacterBoxPrefab.GetComponent<CanvasGroup>();
-                _canvasGroup.alpha = 0;
-                _canvasGroup.blocksRaycasts = false;
-            }
             
-            Configure();
+            PopulateLists();
+            _mCurrentChar = "None";
+            SetCurrentCharacterDialogue(conversations[0].GetFirstCharacter());
+            
         }
 
         private void Reset() {
-            _canvasGroup = characters[0].CharacterBoxPrefab.GetComponent<CanvasGroup>();
+            _canvasGroup = conversations[0].CurrentCharacterBox(conversations[0].GetFirstCharacter()).GetComponent<CanvasGroup>();
         }
         
 #region Yarn Functions
@@ -117,7 +116,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                 currentStopToken.Complete();
             }
             
-            _canvasGroup.alpha = 0;
+            //_canvasGroup.alpha = 0;
             _canvasGroup.blocksRaycasts = false;
             // turning interaction back on, if it needs it
             _canvasGroup.interactable = interactable;
@@ -166,6 +165,10 @@ namespace _IUTHAV.Scripts.Dialogue {
                 SetCurrentCharacterDialogue(dialogueLine.CharacterName);
             }
             SetCurrentLine(dialogueLine.TextWithoutCharacterName);
+
+            if (!_mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar).IsActive) {
+                _mConversations[_mCurrentIndex].ActivateBox(_mCurrentChar);
+            }
             
             // Stop any coroutines currently running on this line view (for
             // example, any other RunLine that might be running)
@@ -261,7 +264,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
             
             IEnumerator WaitForCustomContinue() {
-                Log("[" + _mCurrentCharacter + "] Waiting for User Input PreLine");
+                Log("[" + _mCurrentChar + "] Waiting for User Input PreLine");
                 _mClickedContinue = false;
                 while (!_mClickedContinue) {
                     yield return null;
@@ -276,8 +279,8 @@ namespace _IUTHAV.Scripts.Dialogue {
                     continueButton.SetActive(true);
                     
                     continueButton.transform.SetPositionAndRotation(
-                        _mComicBoxes[_mCurrentCharacter].CurrentCharacterBox().BoxRectTransform.position,
-                        _mComicBoxes[_mCurrentCharacter].CurrentCharacterBox().BoxRectTransform.rotation
+                        _mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar).BoxRectTransform.position,
+                        _mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar).BoxRectTransform.rotation
                     );
                     
                 }
@@ -306,8 +309,8 @@ namespace _IUTHAV.Scripts.Dialogue {
                 continueButton.SetActive(true);
                 
                 continueButton.transform.SetPositionAndRotation(
-                    _mComicBoxes[_mCurrentCharacter].GetContinueButtonPosition(),
-                    _mComicBoxes[_mCurrentCharacter].CharacterBoxPrefab.transform.rotation
+                    _mConversations[_mCurrentIndex].GetContinueButtonPosition(_mCurrentChar),
+                    _mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar).transform.rotation
                 );
             }
 
@@ -320,7 +323,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             
             if (ShouldCharacterWaitForContinue(ContinueTiming.PostLine))
             {
-                Log("[" + _mCurrentCharacter + "] Waiting for User Input PostLine");
+                Log("[" + _mCurrentChar + "] Waiting for User Input PostLine");
                 // The line is now fully visible, and we've been asked to not
                 // auto-advance to the next line. Stop here, and don't call the
                 // completion handler - we'll wait for a call to
@@ -507,45 +510,39 @@ namespace _IUTHAV.Scripts.Dialogue {
 
 #region Public Functions
 
-        [YarnCommand("dismissNextClone")]
-        public void DismissNextClone(string cName) {
-            
-            if (!CharacterExists(cName)) {
-                LogWarning("Character [" + cName + "] doesn't exist!");
-                return;
-            }
-            
-            _mComicBoxes[cName].dismissNextConversantClone = true;
-
-        }
-
         [YarnCommand("nextBox")]
         public void NextBox(string cName) {
-
+            
             if (cName.Equals("all")) {
-                foreach (CharacterBoxManager box in _mComicBoxes.Values) {
-                    box.NextPosition();
-                }
+                SetAllCharacterEmptyPositions();
             }
 
             if (!CharacterExists(cName)) {
                 LogWarning("Character [" + cName + "] doesn't exist!");
                 return;
             }
-
-            if (cloneBoxesAfterPanelSwitch) {
-                _mComicBoxes[cName].CloneNewCharacterBox(_mCurrentLine, true);
-            }
-            else {
-                _mComicBoxes[cName].ShowClonedBox(false);
-            }
+            var box = _mConversations[_mCurrentIndex].NextBox(cName);
             
-            _mComicBoxes[cName].NextPosition();
+            _mCharControllers[cName].SetCharEmptyPosition(box.BoxRectTransform);
+            
+            Log("NextBox for " + cName);
             
         }
 
+        [YarnCommand("nextConversation")]
+        public void NextConversation() {
+
+            if (_mCurrentIndex < _mConversations.Count - 1) {
+                _mCurrentIndex++;
+            }
+
+            SetAllCharacterEmptyPositions();
+            
+            Log("Moving on to next Conversation");
+        }
+        
         public string GetCurrentCharacter() {
-            return _mCurrentCharacter;
+            return _mCurrentChar;
         }
         
 #endregion
@@ -558,36 +555,26 @@ namespace _IUTHAV.Scripts.Dialogue {
 
         private void SetCurrentCharacterDialogue(string newCharacter) {
 
-            _mPreviousCharacter = _mCurrentCharacter;
+            _mPreviousCharacter = _mCurrentChar;
             
             if (!CharacterExists(newCharacter)) {
                 LogWarning("Character [" + newCharacter + "] doesn't exist!");
                 return;
             }
             
-            if (!newCharacter.Equals(_mCurrentCharacter)) {
+            if (!newCharacter.Equals(_mCurrentChar)) {
+
+                var box = _mConversations[_mCurrentIndex].CurrentCharacterBox(newCharacter);
+                _canvasGroup = box.GetComponent<CanvasGroup>();
+                lineText = box.Text;
                 
-                _canvasGroup = _mComicBoxes[newCharacter].CharacterBoxPrefab.GetComponent<CanvasGroup>();
-                lineText = _mComicBoxes[newCharacter].CharacterBoxPrefab.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-                
-                //Clone a Characters box, when another conversant starts speaking
-                if (cloneBoxesAfterCharacterSwitch && 
-                !_mCurrentCharacter.Equals("None") && 
-                !_mComicBoxes[_mCurrentCharacter].dismissNextConversantClone) {
-                
-                    _mComicBoxes[_mCurrentCharacter].CloneNewCharacterBox(_mCurrentLine);
-                    _mComicBoxes[_mCurrentCharacter].dismissNextConversantClone = false;
-                    
-                }
-                _mCurrentCharacter = newCharacter;
+                _mCurrentChar = newCharacter;
             }
 
-            _mComicBoxes[newCharacter].ShowClonedBox(false);
-            
         }
 
         private bool CharacterExists(string cName) {
-            if (_mComicBoxes.ContainsKey(cName)) {
+            if (_mCharControllers.ContainsKey(cName)) {
                 return true;
             }
             else {
@@ -596,25 +583,35 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
         }
 
-        private void Configure() {
+        private void PopulateLists() {
 
-            _mComicBoxes = new Dictionary<string, CharacterBoxManager>();
-            foreach (CharacterBoxManager box in characters) {
-                _mComicBoxes.Add(box.CName, box);
+            _mCharControllers = new Dictionary<string, CharacterController>();
+            foreach (var obj in characters) {
+                _mCharControllers.Add(obj.CName, obj);
             }
+
+            _mConversations = new List<ConversationManager>();
+            for (int i = 0; i < conversations.Length; i++) {
+                _mConversations.Add(conversations[i]);
+            }
+        }
+
+        private void SetAllCharacterEmptyPositions() {
             
-            foreach (CharacterBoxManager box in _mComicBoxes.Values) {
-                box.NextPosition(true);
-            }
+            foreach (var cntrl in _mCharControllers.Values) {
 
-            _mCurrentCharacter = "None";
-            SetCurrentCharacterDialogue(characters[0].CName);
+                if (_mConversations[_mCurrentIndex].ContainsCharacter(cntrl.CName)) {
+                    var box = _mConversations[_mCurrentIndex].CurrentCharacterBox(cntrl.CName);
+                
+                    cntrl.SetCharEmptyPosition(box.BoxRectTransform);
+                }
+            }
             
         }
 
         private bool ShouldCharacterWaitForContinue(ContinueTiming currentTiming) {
             
-            CharacterBoxManager charBox = _mComicBoxes[_mCurrentCharacter];
+            CharacterController charBox = _mCharControllers[_mCurrentChar];
 
             if (charBox.ContinueTiming != currentTiming) return false;
 

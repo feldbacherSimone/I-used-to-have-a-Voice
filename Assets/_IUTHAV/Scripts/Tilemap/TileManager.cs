@@ -12,7 +12,7 @@ namespace _IUTHAV.Scripts.Tilemap {
 
 #region Public Functions
 
-        [YarnCommand("ChangeSpeedFactor")]
+        [YarnCommand("ChangeTileSpeedFactor")]
         public void ChangeSpeedFactor(float f) {
 
             foreach (TileController ctrl in tileControllers) {
@@ -25,7 +25,7 @@ namespace _IUTHAV.Scripts.Tilemap {
 
         }
         
-        [YarnCommand("ChangeSpeedAbs")]
+        [YarnCommand("ChangeTileSpeedAbs")]
         public void ChangeSpeedAbs(float f) {
             
             foreach (TileController ctrl in tileControllers) {
@@ -38,7 +38,7 @@ namespace _IUTHAV.Scripts.Tilemap {
             
         }
 
-        [YarnCommand("ChangeSpeedAbs")]
+        [YarnCommand("NextTile")]
         public void IncrementTileQueue(int i) {
 
             foreach (var ctrl in tileControllers) {

@@ -46,7 +46,7 @@ namespace _IUTHAV.Scripts.CustomUI {
             
         }
 
-        protected virtual void OnDropElementDropped(DragAndDropUIElement dropElement, PointerEventData data) {
+        protected virtual void OnDropElementDropped(DragAndDropUIElement dropElement) {
 
             if (IsFull) {
                 dropElement.StartInvalidDropPointSequence();
