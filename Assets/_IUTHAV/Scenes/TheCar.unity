@@ -4821,12 +4821,12 @@ PrefabInstance:
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: movementPadding.x
-      value: 1
+      value: 3.05
       objectReference: {fileID: 0}
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: movementPadding.y
-      value: 1
+      value: 7.63
       objectReference: {fileID: 0}
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
@@ -16087,12 +16087,12 @@ PrefabInstance:
     - target: {fileID: 7014809065162002228, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: Damping.x
-      value: 3.95
+      value: 6.33
       objectReference: {fileID: 0}
     - target: {fileID: 7014809065162002228, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: Damping.y
-      value: 3.11
+      value: 7.41
       objectReference: {fileID: 0}
     - target: {fileID: 7014809065162002228, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -16102,7 +16102,7 @@ PrefabInstance:
     - target: {fileID: 7014809065162002228, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: Lookahead.Time
-      value: 0.099
+      value: 0.019
       objectReference: {fileID: 0}
     - target: {fileID: 7014809065162002228, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -16112,7 +16112,7 @@ PrefabInstance:
     - target: {fileID: 7014809065162002228, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: Lookahead.Smoothing
-      value: 6.7
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 7014809065162002228, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}

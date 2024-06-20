@@ -10,46 +10,69 @@ Fabian: Bla bla bla bla
 Em_Past: Jap.
 Em_Past: *Summt vor sich hin*
 
-Fabian: Und Emmi, bist du schon aufgeregt?
--> Em_Past: hahaha wie witzig...
-    Fabian: Weniger Zeit mit hübschmachen verbringen, dann kannst ausschlafen.
--> Em_Past: ich hoffe du wirst ermordet von 100 kätzchen
+===
 
-Fabian: bla bla bla bla bla
-<<nextOption OptionsView>>
-Em_Past: Ja, versteh ich.
-<<nextBox ComicBoxView Fabian>>
-Fabian: Bla bla bla! Bla blu blib bla
-Fabian: Blemi?
-Fabian: Emmi?
-<<nextBox ComicBoxView Em_Past>>
-Em_Past: Hm? ... oh sry, bin etwas weggedöst 0-0
+title: Scene1Act2
+---
+Fabian: Und Emmi, bist du schon schon aufgeregt?
+-> Em_Past: gähn Für solche Gefühle ist es noch zu früh.
+    Fabian: Weniger Zeit mit Hübschmachen verbringen, dann kannst ausschlafen.
+-> Em_Past: Ein bisschen, aber das ist ja normal.
+    Fabian: Ha! Das sagt Michi auch immer.
+    Fabian: Keine Angst, für dich gibts eh nicht so viel zu tun.
 
-//====ACT2====
+Em_Past: Warum nimmst du mich eigentlich so spontan mit?
+Fabian: Der Bursch, kann leider nicht.
+Fabian: Und für dich ist es ja auch keine schlechte Übung.
 
-
-
-//TODO: Seperate Ems questions with a more elegant solution than Fabian saying "..."
-
-Fabian: EM, SCHNELL, WAS IST 3 + 4?
--> Em_Past: Sieben?
-    Fabian: NEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEIN
--> Em_Past: 42.
-    Fabian: Jap.
-
-Fabian: Du bist ja erst seit einer Woche da
--> Em_Past: Eigentlich schon 3, erinnerst du dich nicht
-    Fabian: ahhh, ja bei uns ist grad viel los, da vergisst man leicht
--> Em_Past: ... ja so in etwa
-
+Em_Past: Michi ist also krank?
+-> Fabian: Nein, nein, der Junge hat heute Führerscheinprüfung.
+   Fabian: Von einer Erkältung würd der sich nicht unterkriegen lassen.
+-> Fabian: So cool das ich dabei sein darf!
+   Fabian: Vielleicht nehm ich dich ja öfter mit, wenn du heute brav bist.
+           
 Fabian: Das ist eine tolle Gelegenheit, dann verbringst du dein ganzes Praktikum nicht nur in der Firma.
+-> Em_Past: Eigentlich schon seit drei...
+   Fabian: Ach ja. Bei so viel Stress kommt man leicht durcheinander.
+-> Em_Past: … so ungefähr.
 
+Fabian: Heute kannst du dich austoben, dann musst du nicht die ganze zeit in der Firma hocken.
 Em_Past: Der Chef gibt mir ja immer so trockene Büroarbeit auf-
 Fabian: So ordentlich wie du das alles machst, der Bursch könnt das gar nicht. Der ist besser im Hand anlegen.
--> Em_Past: Equipment einladen schaff ich auch noch.
-    Em_Past: Das Ganze Kamerazeug
--> Em_Past: So ordentlich bin ich ja gar nicht...
 
-Fabian: ...
-
+Em_Past: Ist das eine Blackmagic Filmkamera?
+Fabian: Na du kennst dich aber aus. Ja, für ein kurzes Interview mit dem Kunden.
+Em_Past: Darf ich die auch mal verwenden?
+Fabian: Da müsst ich erst mit Andi reden, ist nämlich seine. Bleib du beim fotografieren.
+Em_Past: Andi? Den kenn ich gar nicht. 
+Fabian: Ein Kollege. Der hat sich mit Video selbständig gemacht und filmt öfter für uns, 
+Fabian: vielleicht kannst du ihm ja mal zuschauen.
+Em_Past: Von meinen Filmen leben können, das will ich auch mal. 
+Fabian: Ambitioniert! Das gefällt mir.
+Fabian: Wir brauchen eh mehr Frauen in der Branche, schön dass sich Mädchen heute mehr zutrauen.
 ===
+title: Scene1Act3
+---
+ Fabian: Na schau wenn man vom Teufel spricht.
+ Fabian: Servus Andi, wie gehts denn mit dem Schnitt!
+ Fabian: Nächste Woche ist die Messe weißt d-
+ 
+ Andi: Jetzt fangst schon wieder damit an. Bis zur Messe ist das Video da, Eder. 
+ Andi: Vom Fragen wirds nicht schneller fertig. 
+ Andi: Aber deswegen ruf ich nicht an.
+ 
+ Fabian: Achso- was gibts denn?
+ 
+ Andi: Was hast denn mit eurem Lehrling angestellt, endlich ersetzt?
+ Fabian: Den Michi? Nichts, wie kommst du drauf?
+ Andi: Die Fotos in letzter Zeit, die sind doch nicht von euch. 
+ Andi: Normalweise schafft ihr ja nicht mal scharf zu fokussieren. 
+ Andi: Weder er noch du.
+ 
+ Fabian: Also-
+ 
+ Andi: Bin ich den Tussen aus der Buchhaltung etwa zu teuer geworden? Habts wen billigeren gefunden, ha?
+ 
+ Fabian: Ach nein, das ist nur vorübergehend. Wir haben eine Aushilfe bekommen
+===
+
