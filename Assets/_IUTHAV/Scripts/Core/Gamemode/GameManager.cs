@@ -125,7 +125,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
             }
         }
 
-        [YarnCommand("FinishState")]
+        [YarnCommand("finishState")]
         public void FinishState(string stateType) {
             if (Enum.TryParse(stateType, out StateType type)) {
                 FinishState(type);

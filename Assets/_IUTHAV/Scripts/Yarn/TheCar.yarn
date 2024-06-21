@@ -1,22 +1,57 @@
-﻿title: Scene1Act1
+﻿title: SC1_Act1_Conv1
 tags:
 ---
 
 //====ACT1====
 
-Fabian: Bla bla 
+Fabian: ... heute fahren wir zu ...
+<<nextBox ComicBoxView Fabian>>
 Em_Past: Mhm.
-Fabian: Bla bla bla bla
-Em_Past: Jap.
-Em_Past: *Summt vor sich hin*
+Fabian: ... dort musst du ...
+<<nextBox ComicBoxView Fabian>>
+Em_Past: mhm.
+Fabian: ... der Bursch ... leider krank ...
+Fabian: ... schade, der macht immer so gute Arbeit!
+Em_Past: ...
+
+===
+
+title: SC1_Act1_Conv2
+tags:
+---
+
+Fabian: Emmi, wenn du schon am schauen bist kannst du gleich Musik am Radio anmachen -
+<<nextBox ComicBoxView Fabian>>
+Em_Past: Hm? Oh, ja klar!
+Fabian: Die CDs liegen hier vorne
+-> Em_Past: Rock
+    Fabian: Da hab ich nichts dagegen
+-> Em_Past: Raggae
+    Fabian: Ich hatte schon lange keinen Urlaub mehr...
+-> Em_Past: Metal
+    Fabian: Ich wusste gar nicht, dass du sowas hörst!
+-> Em_Past: Funky
+    Fabian: Gute Wahl!
+
+<<nextOption OptionsView>>
+===
+
+title: Scene1Act2
+tags:
+---
+//====ACT2====
 
 Fabian: Und Emmi, bist du schon aufgeregt?
--> Em_Past: hahaha wie witzig...
-    Fabian: Weniger Zeit mit hübschmachen verbringen, dann kannst ausschlafen.
--> Em_Past: ich hoffe du wirst ermordet von 100 kätzchen
+-> Em_Past: *gähn* für solche Gefühle ist es noch zu früh
+    Fabian: Weniger Zeit mit Hübschmachen verbringen!
+    Fabian: Dann kannst ausschlafen.
+-> Em_Past: Ein bisschen, aber das ist ja normal.
+    Fabian: Ha! Das sagt Michi auch immer.
 
-Fabian: bla bla bla bla bla
+Fabian: Keine Angst, für dich gibts eh nicht viel zu tun.
+
 <<nextOption OptionsView>>
+
 Em_Past: Ja, versteh ich.
 <<nextBox ComicBoxView all>>
 
@@ -30,12 +65,7 @@ Em_Past: Hm? ... oh sry, bin etwas weggedöst 0-0
 Fabian: Kein Problem!
 Andi: Ich bin ein unguter Hund!
 Em_Past: Was war das?
-Fabian: ...
 //====ACT2====
-
-
-
-//TODO: Seperate Ems questions with a more elegant solution than Fabian saying "..."
 
 Fabian: EM, SCHNELL, WAS IST 3 + 4?
 -> Em_Past: Sieben?

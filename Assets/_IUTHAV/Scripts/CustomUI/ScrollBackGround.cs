@@ -101,7 +101,7 @@ namespace _IUTHAV.Scripts.CustomUI {
         public void NextBookmark() {
 
             if (currentBmIndex < bookmarks.Length - 1) {
-                _mCurrentTriggeredState.UnFinish();
+                _mCurrentTriggeredState?.UnFinish();
                 currentBmIndex++;
                 StrechBackground();
                 SetTriggeredStateData();
@@ -112,17 +112,18 @@ namespace _IUTHAV.Scripts.CustomUI {
 
         }
 
-        public void ForceScroll(float yLocation) {
+        public void ForceScrollToEndpoint() {
 
             scrollRect.enabled = false;
-            _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, yLocation);
+            _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, bookmarks[currentBmIndex-1].endpoint-1);
+            Debug.Log(bookmarks[currentBmIndex-1].endpoint-1);
             StartCoroutine(MoveToYLocation(false));
         }
         
-        public void ForceScrollAndLock(float yLocation) {
+        public void ForceScrollAndLock() {
 
             scrollRect.enabled = false;
-            _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, yLocation);
+            _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, bookmarks[currentBmIndex].endpoint-2);
             StartCoroutine(MoveToYLocation(true));
         }
 
@@ -136,20 +137,14 @@ namespace _IUTHAV.Scripts.CustomUI {
 #region Private Functions
 
         private void SetTriggeredStateData() {
-            
-            bool isScrollTrigger = (bookmarks[currentBmIndex].customState == StateType.None);
-            
-            if (isScrollTrigger) {
-                
-                StateType contextSensitiveState = Typeconverter.ChangePreAndSuffix(_mGameManager.GetCurrentSceneType(), StateType.SC1_ScrollTrigger);
-                _mCurrentTriggeredState = _mGameManager.GetState(contextSensitiveState);
-                _mCurrentTriggeredState.onStateCompleted.AddListener(NextBookmark);
+
+            if (bookmarks[currentBmIndex].customState == StateType.None) {
+                return;
             }
-            else {
-                _mCurrentTriggeredState = _mGameManager.GetState(bookmarks[currentBmIndex].customState);
-                _mCurrentTriggeredState.isFreeze = true;
-                Log("Next bookmark is a frozen Trigger of type [" + _mCurrentTriggeredState.StateType + "]");
-            }
+            
+            _mCurrentTriggeredState = _mGameManager.GetState(bookmarks[currentBmIndex].customState);
+            _mCurrentTriggeredState.isFreeze = true;
+            Log("Next bookmark is a frozen Trigger of type [" + _mCurrentTriggeredState.StateType + "]");
             
             _mCurrentTriggeredState.SetStateData(new FloatData(
                 bgRect.localPosition.y,
@@ -159,7 +154,7 @@ namespace _IUTHAV.Scripts.CustomUI {
 
         private void UpdateScrollStateData(Vector2 pos) {
             
-            _mCurrentTriggeredState.UpdateData(bgRect.localPosition.y);
+            _mCurrentTriggeredState?.UpdateData(bgRect.localPosition.y);
         }
 
         private void StrechBackground() {
@@ -171,13 +166,13 @@ namespace _IUTHAV.Scripts.CustomUI {
 
             scrollRect.enabled = false;
 
-            while (Vector2.Distance(bgRect.anchoredPosition, _mTargetPosition) > 0.1f) {
+            while (Vector2.Distance(bgRect.anchoredPosition, _mTargetPosition) > 1f) {
                 
                 var anchoredPosition = bgRect.anchoredPosition;
                 
                 Vector2 target = Vector2.MoveTowards(anchoredPosition, _mTargetPosition, forceScrollSpeed);
                 
-                anchoredPosition = new Vector3(anchoredPosition.x, target.y, anchoredPosition.x);
+                anchoredPosition = new Vector2(anchoredPosition.x, target.y);
                 bgRect.anchoredPosition = anchoredPosition;
 
                 yield return null;

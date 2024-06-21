@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -18,6 +19,8 @@ namespace _IUTHAV.Scripts.Dialogue {
         [SerializeField] private GameObject bubble;
 
         [SerializeField] private bool placeContinueButtonRight;
+        
+        public bool hideBoxOnBoxChange;
         
 
         [HideInInspector] public bool IsActive;
@@ -94,7 +97,7 @@ namespace _IUTHAV.Scripts.Dialogue {
 
             while (t < fadeTime) {
 
-                float x = (enable) ? Mathf.Lerp(0, 1, t / fadeTime) : Mathf.Lerp(1, 0, t / fadeTime);
+                float x = (enable) ? Mathf.Lerp(0.1f, 1, t / fadeTime) : Mathf.Lerp(1, 0.1f, t / fadeTime);
 
                 _canvasGroup.alpha = x;
 
@@ -103,6 +106,8 @@ namespace _IUTHAV.Scripts.Dialogue {
                 t += Time.deltaTime;
                 yield return null;
             }
+
+            if (!enable) _canvasGroup.alpha = 0;
 
         }
     }

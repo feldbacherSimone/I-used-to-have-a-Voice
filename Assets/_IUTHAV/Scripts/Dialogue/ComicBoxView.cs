@@ -178,13 +178,15 @@ namespace _IUTHAV.Scripts.Dialogue {
 
         /// <inheritdoc/>
         public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished) {
-            
+
             if (dialogueLine.CharacterName != null) {
                 SetCurrentCharacterDialogue(dialogueLine.CharacterName);
             }
             SetCurrentLine(dialogueLine.TextWithoutCharacterName);
 
+            //Show new box
             if (!_mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar).IsActive) {
+            
                 _mConversations[_mCurrentIndex].ActivateBox(_mCurrentChar);
             }
             
@@ -555,7 +557,9 @@ namespace _IUTHAV.Scripts.Dialogue {
             
         }
 
-        [YarnCommand("nextConversation")]
+        /// <summary>
+        /// This is called by the DialogueRunner every time a node completes
+        /// </summary>
         public void NextConversation() {
 
             if (_mCurrentIndex < _mConversations.Count - 1) {

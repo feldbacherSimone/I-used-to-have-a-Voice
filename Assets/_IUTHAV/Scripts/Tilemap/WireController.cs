@@ -47,7 +47,6 @@ namespace _IUTHAV.Scripts.Tilemap {
         }
 
         public void GenerateWires(GameObject[] _endPoints) {
-            Debug.Log("Generating wires");
 
             for (int i = 0; i < wires.Length; i++) {
 

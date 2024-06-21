@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace _IUTHAV.Scripts.Dialogue {
@@ -33,11 +34,20 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
             public CharacterBox CurrentBox() {
                 if (CurrentIndex < Boxes.Count) {
-                    Debug.Log("Returned box with index" + CurrentIndex);
+                    
                     return Boxes[CurrentIndex];
                 }
-                Debug.Log("Returned box with index 0 " + Boxes.Count);
+                
                 return Boxes[0];
+            }
+
+            public CharacterBox PreviousBox() {
+                if (CurrentIndex-1 >= 0) {
+                    
+                    return Boxes[CurrentIndex-1];
+                }
+                
+                return null;
             }
 
         }
@@ -46,10 +56,15 @@ namespace _IUTHAV.Scripts.Dialogue {
 
 #region Public Functions
 
-        public void ActivateBox(string cName, bool silent = false) {
+        public void ActivateBox(string cName) {
             
             if (_comicBoxes.TryGetValue(cName, out var cont)) {
-
+                
+                //Check if Previous box should be deactivated
+                if (_comicBoxes[cName].PreviousBox() != null && _comicBoxes[cName].PreviousBox().hideBoxOnBoxChange) {
+                    _comicBoxes[cName].PreviousBox().ToggleBubble(false);
+                }
+                
                 cont.CurrentBox().ToggleBubble(true);
             }
             else {
@@ -136,7 +151,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
             
         }
-        
+
         private void Log(string msg) {
             if (!isDebug) return;
             Debug.Log("[ComicBoxView] " + msg);
