@@ -674,7 +674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPositionEmpty: {fileID: 3162322356876639831}
   continueMode: 1
-  continueTiming: 0
+  continueButtonTiming: 0
 --- !u!114 &3292869818107168206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1533,11 +1533,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8157794236768494059, guid: 4f3336638f186254aab6587a6252779f,
         type: 3}
-      propertyPath: continueButton
-      value: 
-      objectReference: {fileID: 8293565686838700544}
-    - target: {fileID: 8157794236768494059, guid: 4f3336638f186254aab6587a6252779f,
-        type: 3}
       propertyPath: 'characters.Array.data[0]'
       value: 
       objectReference: {fileID: 3433304875986685081}
@@ -2207,12 +2202,6 @@ PrefabInstance:
 --- !u!224 &54215156551825341 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 514047603740234802, guid: 8e287276bf6eed347b1180922a9aace7,
-    type: 3}
-  m_PrefabInstance: {fileID: 568262758058255247}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8293565686838700544 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8429179372204116367, guid: 8e287276bf6eed347b1180922a9aace7,
     type: 3}
   m_PrefabInstance: {fileID: 568262758058255247}
   m_PrefabAsset: {fileID: 0}

@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _IUTHAV.Scripts.Core.Input;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Yarn.Markup;
 using Yarn.Unity;
 
@@ -42,7 +44,8 @@ namespace _IUTHAV.Scripts.Dialogue {
         [SerializeField]
         [Min(0)]
         internal float typewriterEffectSpeed = 0f;
-        
+
+        [SerializeField] internal bool ContinueOnClickAnywhere;
         [SerializeField]
         internal GameObject continueButton = null;
 
@@ -86,13 +89,28 @@ namespace _IUTHAV.Scripts.Dialogue {
             PopulateLists();
             _mCurrentChar = "None";
             SetCurrentCharacterDialogue(conversations[0].GetFirstCharacter());
-            
+
+            if (ContinueOnClickAnywhere) {
+                continueButton = null;
+                InputController.OnCustomClick += OnContinueClicked;
+            }
+
+        }
+
+        private void OnContinueClicked(InputAction.CallbackContext context) {
+            UserRequestedViewAdvancement();
         }
 
         private void Reset() {
             _canvasGroup = conversations[0].CurrentCharacterBox(conversations[0].GetFirstCharacter()).GetComponent<CanvasGroup>();
         }
-        
+
+        private void OnDisable() {
+            if (ContinueOnClickAnywhere) {
+                InputController.OnCustomClick -= OnContinueClicked;
+            }
+        }
+
 #region Yarn Functions
         /// <inheritdoc/>
         public override void DismissLine(Action onDismissalComplete)
@@ -272,7 +290,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                 _mClickedContinue = false;
             }
             
-            if (ShouldCharacterWaitForContinue(ContinueTiming.PreLine)) {
+            if (ShouldCharacterWaitForContinue(ContinueButtonTiming.PreLine)) {
                     
                 if (continueButton != null) {
                     
@@ -304,7 +322,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             _canvasGroup.blocksRaycasts = true;
 
             // Show the continue button, if we have one.
-            if (continueButton != null && ShouldCharacterWaitForContinue(ContinueTiming.PostLine))
+            if (continueButton != null && ShouldCharacterWaitForContinue(ContinueButtonTiming.PostLine))
             {
                 continueButton.SetActive(true);
                 
@@ -321,7 +339,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                 yield return new WaitForSeconds(holdTime);
             }
             
-            if (ShouldCharacterWaitForContinue(ContinueTiming.PostLine))
+            if (ShouldCharacterWaitForContinue(ContinueButtonTiming.PostLine))
             {
                 Log("[" + _mCurrentChar + "] Waiting for User Input PostLine");
                 // The line is now fully visible, and we've been asked to not
@@ -512,16 +530,24 @@ namespace _IUTHAV.Scripts.Dialogue {
 
         [YarnCommand("nextBox")]
         public void NextBox(string cName) {
+
+            CharacterBox box;
             
             if (cName.Equals("all")) {
-                SetAllCharacterEmptyPositions();
+                foreach (var cntrl in _mCharControllers.Values) {
+                    if (!_mConversations[_mCurrentIndex].ContainsCharacter(cntrl.CName)) continue;
+                    box = _mConversations[_mCurrentIndex].NextBox(cntrl.CName);
+                
+                    cntrl.SetCharEmptyPosition(box.BoxRectTransform);
+                }
+                return;
             }
 
             if (!CharacterExists(cName)) {
                 LogWarning("Character [" + cName + "] doesn't exist!");
                 return;
             }
-            var box = _mConversations[_mCurrentIndex].NextBox(cName);
+            box = _mConversations[_mCurrentIndex].NextBox(cName);
             
             _mCharControllers[cName].SetCharEmptyPosition(box.BoxRectTransform);
             
@@ -609,11 +635,11 @@ namespace _IUTHAV.Scripts.Dialogue {
             
         }
 
-        private bool ShouldCharacterWaitForContinue(ContinueTiming currentTiming) {
+        private bool ShouldCharacterWaitForContinue(ContinueButtonTiming currentButtonTiming) {
             
             CharacterController charBox = _mCharControllers[_mCurrentChar];
 
-            if (charBox.ContinueTiming != currentTiming) return false;
+            if (charBox.ContinueButtonTiming != currentButtonTiming) return false;
 
             switch (charBox.ContinueMode) {
                 

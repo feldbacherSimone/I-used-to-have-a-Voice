@@ -72,10 +72,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   typewriterEffectSpeed: 30
+  ContinueOnClickAnywhere: 1
   continueButton: {fileID: 0}
   holdTime: 1
   palette: {fileID: 0}
   characters:
   - {fileID: 0}
   - {fileID: 0}
+  conversations: []
   isDebug: 0

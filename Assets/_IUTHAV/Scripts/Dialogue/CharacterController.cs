@@ -12,7 +12,7 @@ namespace _IUTHAV.Scripts.Dialogue {
         private string _cName;
         [SerializeField] private RectTransform characterPositionEmpty;
         [SerializeField] private ContinueMode continueMode;
-        [SerializeField] private ContinueTiming continueTiming;
+        [FormerlySerializedAs("continueTiming")] [SerializeField] private ContinueButtonTiming continueButtonTiming;
 
         private GameObject _mClonedBox;
         private bool _mFreezeClone;
@@ -21,7 +21,7 @@ namespace _IUTHAV.Scripts.Dialogue {
         private bool _positionToggle;
         public string CName => _cName;
         public ContinueMode ContinueMode => continueMode;
-        public ContinueTiming ContinueTiming => continueTiming;
+        public ContinueButtonTiming ContinueButtonTiming => continueButtonTiming;
 
 #region Unity Functions
 

@@ -9,7 +9,7 @@
         
     }
 
-    public enum ContinueTiming {
+    public enum ContinueButtonTiming {
         None,
         PreLine,
         PostLine,
