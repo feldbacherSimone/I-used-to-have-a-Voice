@@ -81,11 +81,11 @@ namespace _IUTHAV.Scripts.Dialogue {
                 {
                     //dialogueBubbleRect.anchoredPosition = WorldToAnchoredPosition(dialogueBubbleRect, speakerCharacter.positionWithOffset, bubbleMargin);
                     dialogueBubbleRect.position = speakerCharacter.GetComponent<RectTransform>().position;
-                } 
+                }
                 else 
                 {   // if no speaker defined, then display speech above playerCharacter as a default
                     //dialogueBubbleRect.anchoredPosition = WorldToAnchoredPosition(dialogueBubbleRect, playerCharacter.positionWithOffset, bubbleMargin);
-                    dialogueBubbleRect.position = speakerCharacter.GetComponent<RectTransform>().position;
+                    dialogueBubbleRect.position = playerCharacter.GetComponent<RectTransform>().position;
                 }
             }
 
@@ -93,7 +93,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             if (optionsBubbleRect.gameObject.activeInHierarchy)
             {
                 //optionsBubbleRect.anchoredPosition = WorldToAnchoredPosition(optionsBubbleRect, playerCharacter.positionWithOffset, bubbleMargin);
-                dialogueBubbleRect.position = speakerCharacter.GetComponent<RectTransform>().position;
+                dialogueBubbleRect.position = playerCharacter.GetComponent<RectTransform>().position;
             }
         }
         

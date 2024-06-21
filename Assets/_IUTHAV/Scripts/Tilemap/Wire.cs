@@ -24,7 +24,7 @@ namespace _IUTHAV.Scripts.Tilemap {
 
 			if (end == null) return;
 
-			gameObject.AddComponent<LineRenderer>();
+			if (gameObject.GetComponent<LineRenderer>() == null) gameObject.AddComponent<LineRenderer>();
 			_mLineRenderer = gameObject.GetComponent<LineRenderer>();
 
 			_mLineRenderer.useWorldSpace = true;
