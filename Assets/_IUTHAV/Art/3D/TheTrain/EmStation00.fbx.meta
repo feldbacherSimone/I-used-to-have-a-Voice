@@ -3,7 +3,17 @@ guid: d86269b3362d8cc4a8e9ced8d68d1ed7
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TheTrain
+    second: {fileID: 2100000, guid: 11e20008483b09246b3bd76def709e31, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TheTrain_Hair
+    second: {fileID: 2100000, guid: 2bd74224f5c9ce74991c85fc085ec57c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
