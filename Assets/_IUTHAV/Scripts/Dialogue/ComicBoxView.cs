@@ -76,6 +76,8 @@ namespace _IUTHAV.Scripts.Dialogue {
         [SerializeField] private ConversationManager[] conversations;
         [Space(10)] [SerializeField] private bool isDebug;
 
+        [SerializeField] private CharacterSounds characterSounds; 
+        
         private Dictionary<string, CharacterController> _mCharControllers;
         private List<ConversationManager> _mConversations;
         private string _mCurrentChar;
@@ -95,6 +97,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                 InputController.OnCustomClick += OnContinueClicked;
             }
 
+            onCharacterTyped.AddListener(characterSounds.RequestVoiceSound);
         }
 
         private void OnContinueClicked(InputAction.CallbackContext context) {
@@ -593,6 +596,8 @@ namespace _IUTHAV.Scripts.Dialogue {
                 var box = _mConversations[_mCurrentIndex].CurrentCharacterBox(newCharacter);
                 _canvasGroup = box.GetComponent<CanvasGroup>();
                 lineText = box.Text;
+
+                characterSounds.SetCharacter(newCharacter);
                 
                 _mCurrentChar = newCharacter;
             }
