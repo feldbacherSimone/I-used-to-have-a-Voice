@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using _IUTHAV.Scripts.Core.Input;
+using _IUTHAV.Scripts.Dialogue.Option;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -81,8 +82,18 @@ namespace _IUTHAV.Scripts.Dialogue {
         private string _mCurrentChar;
         private int _mCurrentIndex;
         private string _mPreviousCharacter;
+        private int _mPreviousConversationIndex = -1;
         private MarkupParseResult _mCurrentLine;
         private bool _mClickedContinue;
+        private bool _mOverrideContinue;
+
+        private DragUIOptionsManager _mCurrentOption;
+        // The method we should call when an option has been selected.
+        Action<int> OnOptionSelected;
+
+        private LocalizedLine _lastLine;
+        
+        [SerializeField] bool showUnavailableOptions = false;
         
         private void Awake() {
             
@@ -97,10 +108,6 @@ namespace _IUTHAV.Scripts.Dialogue {
 
         }
 
-        private void OnContinueClicked(InputAction.CallbackContext context) {
-            UserRequestedViewAdvancement();
-        }
-
         private void Reset() {
             _canvasGroup = conversations[0].CurrentCharacterBox(conversations[0].GetFirstCharacter()).GetComponent<CanvasGroup>();
         }
@@ -111,7 +118,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
         }
 
-#region Yarn Functions
+#region Running Line
         /// <inheritdoc/>
         public override void DismissLine(Action onDismissalComplete)
         {
@@ -178,6 +185,8 @@ namespace _IUTHAV.Scripts.Dialogue {
 
         /// <inheritdoc/>
         public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished) {
+
+            _lastLine = dialogueLine;
 
             if (dialogueLine.CharacterName != null) {
                 SetCurrentCharacterDialogue(dialogueLine.CharacterName);
@@ -286,10 +295,11 @@ namespace _IUTHAV.Scripts.Dialogue {
             IEnumerator WaitForCustomContinue() {
                 Log("[" + _mCurrentChar + "] Waiting for User Input PreLine");
                 _mClickedContinue = false;
-                while (!_mClickedContinue) {
+                while (!_mClickedContinue || !_mOverrideContinue) {
                     yield return null;
                 }
                 _mClickedContinue = false;
+                _mOverrideContinue = false;
             }
             
             if (ShouldCharacterWaitForContinue(ContinueButtonTiming.PreLine)) {
@@ -355,7 +365,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             // Our presentation is complete; call the completion handler.
             onDialogueLineFinished();
         }
-
+        
         /// <inheritdoc/>
         public override void UserRequestedViewAdvancement()
         {
@@ -387,7 +397,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                 
             }
         }
-
+        
         /// <summary>
         /// Called when the <see cref="continueButton"/> is clicked.
         /// </summary>
@@ -399,6 +409,16 @@ namespace _IUTHAV.Scripts.Dialogue {
             Log("Requested Continue");
             _mClickedContinue = true;
             UserRequestedViewAdvancement();
+        }
+        
+        private void OnContinueClicked(InputAction.CallbackContext context) { OnContinueClicked(); }
+        
+        [YarnCommand("continue")]
+        public void ForceContinue() {
+            _mOverrideContinue = true;
+            OnContinueClicked();
+            var runner = GameObject.Find("DialogueRunner").GetComponent<DialogueRunner>();
+            runner.Dialogue.Continue();
         }
 
         /// <inheritdoc />
@@ -527,6 +547,45 @@ namespace _IUTHAV.Scripts.Dialogue {
             return pausePositions;
         }
 #endregion
+        
+#region OptionFunctions
+        public override void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected) {
+            
+            NextBox(_mCurrentChar);
+            
+            if (_lastLine.CharacterName != null) {
+                SetCurrentCharacterDialogue(_lastLine.CharacterName);
+            }
+            SetCurrentLine(_lastLine.TextWithoutCharacterName);
+
+            //Show new box
+            
+
+            // If we don't already have enough option views, create more
+            var box = _mConversations[_mCurrentIndex].GetCurrentQuestionBox(_mCurrentChar);
+            _mCurrentOption = box.Question;
+            box.EnableQuestions();
+
+            if (_mCurrentOption == null) {
+                LogWarning("Not questionDropBoxes in " + _mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar).gameObject.name + "have been found!");
+                return;
+            }
+            
+            while (dialogueOptions.Length > _mCurrentOption.GetOptionViewCount()) {
+                
+                var optionView = _mCurrentOption.CreateNewOptionView();
+                optionView.gameObject.SetActive(false);
+            }
+            
+            Log(_mCurrentOption.gameObject.name);
+            // Set up all of the option views
+            _mCurrentOption.SetupOptionViews(this.palette, dialogueOptions, showUnavailableOptions);
+            _mCurrentOption.OnOptionSelected = OptionViewWasSelected;
+
+            // Note the delegate to call when an option is selected
+            OnOptionSelected = onOptionSelected;
+        }
+#endregion
 
 #region Public Functions
 
@@ -562,13 +621,14 @@ namespace _IUTHAV.Scripts.Dialogue {
         /// </summary>
         public void NextConversation() {
 
-            if (_mCurrentIndex < _mConversations.Count - 1) {
+            if (_mCurrentIndex < _mConversations.Count -1) {
+                _mPreviousConversationIndex = _mCurrentIndex;
                 _mCurrentIndex++;
             }
 
             SetAllCharacterEmptyPositions();
             
-            Log("Moving on to next Conversation");
+            Log("Moving on to next Conversation " + _mConversations[_mCurrentIndex].gameObject.name);
         }
         
         public string GetCurrentCharacter() {
@@ -592,13 +652,17 @@ namespace _IUTHAV.Scripts.Dialogue {
                 return;
             }
             
-            if (!newCharacter.Equals(_mCurrentChar)) {
+            if (!newCharacter.Equals(_mCurrentChar) || _mPreviousConversationIndex != _mCurrentIndex) {
 
                 var box = _mConversations[_mCurrentIndex].CurrentCharacterBox(newCharacter);
                 _canvasGroup = box.GetComponent<CanvasGroup>();
                 lineText = box.Text;
                 
                 _mCurrentChar = newCharacter;
+                //Log(box.gameObject.name + _mCurrentChar + " | " + _mCurrentIndex);
+            }
+            else {
+                Log("Character was speaking already, no Box change required");
             }
 
         }
@@ -614,12 +678,26 @@ namespace _IUTHAV.Scripts.Dialogue {
         }
 
         private void PopulateLists() {
+            
+            var chars = GameObject.FindWithTag("CharacterContainer").GetComponentsInChildren<CharacterController>();
+            if (chars.Length != conversations.Length) {
+                
+                LogWarning("Conversation List doesn't match Child count of ConversationContainer. Populating automatically");
+                characters = chars;
+            }
 
             _mCharControllers = new Dictionary<string, CharacterController>();
             foreach (var obj in characters) {
                 _mCharControllers.Add(obj.CName, obj);
             }
 
+            var convs = GameObject.FindWithTag("ConversationContainer").GetComponentsInChildren<ConversationManager>();
+            if (convs.Length != conversations.Length) {
+                
+                LogWarning("Conversation List doesn't match Child count of ConversationContainer. Populating automatically");
+                conversations = convs;
+            }
+            
             _mConversations = new List<ConversationManager>();
             for (int i = 0; i < conversations.Length; i++) {
                 _mConversations.Add(conversations[i]);
@@ -642,8 +720,8 @@ namespace _IUTHAV.Scripts.Dialogue {
         private bool ShouldCharacterWaitForContinue(ContinueButtonTiming currentButtonTiming) {
             
             CharacterController charBox = _mCharControllers[_mCurrentChar];
-
-            if (charBox.ContinueButtonTiming != currentButtonTiming) return false;
+            
+            if (charBox.ContinueButtonTiming != currentButtonTiming || ContinueOnClickAnywhere) return false;
 
             switch (charBox.ContinueMode) {
                 
@@ -662,6 +740,12 @@ namespace _IUTHAV.Scripts.Dialogue {
                 default:
                     return false;
             }
+        }
+        
+        private void OptionViewWasSelected(DialogueOption option)
+        {
+            _mConversations[_mCurrentIndex].ActivateBox(_mCurrentChar);
+            OnOptionSelected(option.DialogueOptionID);
         }
 
         private void Log(string msg) {

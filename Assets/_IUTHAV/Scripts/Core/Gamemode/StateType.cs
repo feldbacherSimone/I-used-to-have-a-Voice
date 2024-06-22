@@ -31,9 +31,12 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         SC1_Start = 101,
         SC1_Act1_Conv1,
         SC1_Act1_Conv2,
+        SC1_Act1_Conv3,
 
         SC1_SunCoverClicked = 140,
         SC1_CDGameStart,
+        SC1_GloveBoxClicked,
+        SC1_StartAct2,
 
         //SCENE 2 States
         SC2_ScrollTrigger = 200,

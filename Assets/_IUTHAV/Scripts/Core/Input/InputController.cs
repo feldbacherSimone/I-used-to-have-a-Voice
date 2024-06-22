@@ -50,7 +50,7 @@ namespace _IUTHAV.Scripts.Core.Input {
             OnCustomClick?.Invoke(context);
             
         }
-        
+
         private static void OnBeginDragDelegate(InputAction.CallbackContext context) {
             
             OnBeginDrag?.Invoke(context);

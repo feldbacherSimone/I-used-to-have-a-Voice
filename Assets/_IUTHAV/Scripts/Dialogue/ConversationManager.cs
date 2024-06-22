@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
+using _IUTHAV.Scripts.Dialogue.Option;
 using UnityEngine;
+using Color = UnityEngine.Color;
 
 namespace _IUTHAV.Scripts.Dialogue {
     public class ConversationManager : MonoBehaviour {
@@ -10,8 +11,11 @@ namespace _IUTHAV.Scripts.Dialogue {
         [Header("Textbox Parameters")] [Tooltip("This script will search for any Characterboxes within the given ACT gameobject. It will check the Characterbox parameter 'characterName' and remember it, so it knows if a character is involved in this conversation")]
         [SerializeField] private CharacterBox[] characterBoxes;
 
+        [SerializeField] private bool hideGizmo;
+        [SerializeField] private Color gizmoColor;
+
         private Dictionary<string, CharBoxContainer> _comicBoxes;
-        
+
         private void Awake() {
 
             if (characterBoxes == null || 
@@ -20,6 +24,34 @@ namespace _IUTHAV.Scripts.Dialogue {
                 characterBoxes = gameObject.transform.GetComponentsInChildren<CharacterBox>();
             }
             PopulateConversation();
+        }
+
+        private void OnDrawGizmos() {
+
+            if (hideGizmo) return;
+
+            CharacterBox[] boxes = GetComponentsInChildren<CharacterBox>();
+
+            if (boxes != null) {
+
+                Gizmos.color = gizmoColor;
+                
+                foreach (var box in boxes) {
+                    
+                    var boxTransform = box.gameObject.GetComponent<RectTransform>();
+                    Vector3 widhtHeight = boxTransform.rect.size / 2;
+                    //Gizmos.DrawCube(boxTransform.position + widhtHeight, new Vector3(30, 30));
+                    
+                    string cName = box.characterName;
+
+                    if (cName == "") cName = box.gameObject.name.Split("__")[0];
+                    
+                    Gizmos.DrawIcon(boxTransform.position + widhtHeight, "CharacterIcon_" + cName + ".png", false, gizmoColor);
+                    
+                }
+                
+            }
+
         }
 
 #region Helper Classes
@@ -94,6 +126,16 @@ namespace _IUTHAV.Scripts.Dialogue {
             return null;
         }
 
+        public QuestionBox GetCurrentQuestionBox(string cName) {
+        
+            if (_comicBoxes.TryGetValue(cName, out var box)) {
+                return box.CurrentBox().gameObject.GetComponent<QuestionBox>();
+            }
+            
+            LogWarning("No Characterbox found with Key: " + cName);
+            return null;
+        }
+
         public CharacterBox NextBox(string cName) {
             if (_comicBoxes.TryGetValue(cName, out var box)) {
                 box.CurrentIndex++;
@@ -147,19 +189,19 @@ namespace _IUTHAV.Scripts.Dialogue {
                     _comicBoxes[box.characterName].Boxes.Add(box);
                     Log("Added Box " + box.gameObject.name);
                 }
-                
+
             }
             
         }
 
         private void Log(string msg) {
             if (!isDebug) return;
-            Debug.Log("[ComicBoxView] " + msg);
+            Debug.Log("[ConversationManager] " + msg);
         }
         
         private void LogWarning(string msg) {
             if (!isDebug) return;
-            Debug.LogWarning("[ComicBoxView] " + msg);
+            Debug.LogWarning("[ConversationManager] " + msg);
         }
 
 #endregion

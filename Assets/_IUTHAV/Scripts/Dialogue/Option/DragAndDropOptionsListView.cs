@@ -17,12 +17,7 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
 
         [SerializeField] bool showUnavailableOptions = false;
 
-        [Header("Last Line Components")]
-        [SerializeField] TextMeshProUGUI lastLineText;
-        [SerializeField] GameObject lastLineContainer;
-
-        [SerializeField] TextMeshProUGUI lastLineCharacterNameText;
-        [SerializeField] GameObject lastLineCharacterNameContainer;
+        
 
         [Header("DragBoxView Parameters")] [SerializeField]
         private DragUIOptionsManager[] dropBoxes;
@@ -180,45 +175,45 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
         }
 
         private void ConfigureLastLine() {
-            // Update the last line, if one is configured
-            if (lastLineContainer != null)
-            {
-                if (lastSeenLine != null)
-                {
-                    // if we have a last line character name container
-                    // and the last line has a character then we show the nameplate
-                    // otherwise we turn off the nameplate
-                    var line = lastSeenLine.Text;
-                    if (lastLineCharacterNameContainer != null)
-                    {
-                        if (string.IsNullOrWhiteSpace(lastSeenLine.CharacterName))
-                        {
-                            lastLineCharacterNameContainer.SetActive(false);
-                        }
-                        else
-                        {
-                            line = lastSeenLine.TextWithoutCharacterName;
-                            lastLineCharacterNameContainer.SetActive(true);
-                            lastLineCharacterNameText.text = lastSeenLine.CharacterName;
-                        }
-                    }
-
-                    if (palette != null)
-                    {
-                        lastLineText.text = LineView.PaletteMarkedUpText(line, palette);
-                    }
-                    else
-                    {
-                        lastLineText.text = line.Text;
-                    }
-
-                    lastLineContainer.SetActive(true);
-                }
-                else
-                {
-                    lastLineContainer.SetActive(false);
-                }
-            }
+            //// Update the last line, if one is configured
+            //if (_mDropBoxes[_mIndex].lastLineContainer != null)
+            //{
+            //    if (lastSeenLine != null)
+            //    {
+            //        // if we have a last line character name container
+            //        // and the last line has a character then we show the nameplate
+            //        // otherwise we turn off the nameplate
+            //        var line = lastSeenLine.Text;
+            //        if (_mDropBoxes[_mIndex].lastLineCharacterNameContainer != null)
+            //        {
+            //            if (string.IsNullOrWhiteSpace(lastSeenLine.CharacterName))
+            //            {
+            //                _mDropBoxes[_mIndex].lastLineCharacterNameContainer.SetActive(false);
+            //            }
+            //            else
+            //            {
+            //                line = lastSeenLine.TextWithoutCharacterName;
+            //                _mDropBoxes[_mIndex].lastLineCharacterNameContainer.SetActive(true);
+            //                _mDropBoxes[_mIndex].lastLineCharacterNameText.text = lastSeenLine.CharacterName;
+            //            }
+            //        }
+////
+            //        if (palette != null)
+            //        {
+            //            _mDropBoxes[_mIndex].lastLineText.text = LineView.PaletteMarkedUpText(line, palette);
+            //        }
+            //        else
+            //        {
+            //            _mDropBoxes[_mIndex].lastLineText.text = line.Text;
+            //        }
+////
+            //        _mDropBoxes[_mIndex].lastLineContainer.SetActive(true);
+            //    }
+            //    else
+            //    {
+            //        _mDropBoxes[_mIndex].lastLineContainer.SetActive(false);
+            //    }
+            //}
         }
         
         private void Log(string msg) {

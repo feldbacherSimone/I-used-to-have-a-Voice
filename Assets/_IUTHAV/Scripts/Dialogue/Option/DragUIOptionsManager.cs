@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using _IUTHAV.Scripts.CustomUI;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Yarn.Unity;
 
 namespace _IUTHAV.Scripts.Dialogue.Option {
@@ -28,12 +27,7 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
                     _mOptionViews.Add(view);
                 }
             }
-            
-            
-        }
 
-        private void Start() {
-            gameObject.SetActive(false);
         }
 
         public DragableUIOptionView CreateNewOptionView() {

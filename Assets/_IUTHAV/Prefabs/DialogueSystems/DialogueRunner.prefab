@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3826835643976076960}
   - component: {fileID: 4834351784159837988}
   m_Layer: 0
-  m_Name: Dialogue Runner
+  m_Name: DialogueRunner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,6 @@ MonoBehaviour:
     type: 3}
   _variableStorage: {fileID: 4834351784159837988}
   dialogueViews:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   startNode: Scene1TestDialogue

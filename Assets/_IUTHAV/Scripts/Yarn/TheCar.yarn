@@ -23,7 +23,14 @@ tags:
 Fabian: Emmi, wenn du schon am schauen bist kannst du gleich Musik am Radio anmachen -
 <<nextBox ComicBoxView Fabian>>
 Em_Past: Hm? Oh, ja klar!
-Fabian: Die CDs liegen hier vorne
+Fabian: Die CDs sind im Handschuhfach
+
+===
+
+title: SC1_Act1_Conv3
+tags:
+---
+Fabian: Such dir eine aus
 -> Em_Past: Rock
     Fabian: Da hab ich nichts dagegen
 -> Em_Past: Raggae
@@ -33,10 +40,11 @@ Fabian: Die CDs liegen hier vorne
 -> Em_Past: Funky
     Fabian: Gute Wahl!
 
-<<nextOption OptionsView>>
+Fabian: Schalte gern ab wenn du nichts mehr hören willst
+
 ===
 
-title: Scene1Act2
+title: SC1_Act2_Conv1
 tags:
 ---
 //====ACT2====
@@ -50,28 +58,8 @@ Fabian: Und Emmi, bist du schon aufgeregt?
 
 Fabian: Keine Angst, für dich gibts eh nicht viel zu tun.
 
-<<nextOption OptionsView>>
-
 Em_Past: Ja, versteh ich.
 <<nextBox ComicBoxView all>>
-
-Fabian: Bla bla bla! Bla blu blib bla
-Em_Past: Jup
-Fabian: Blemi?
-Fabian: Emmi?
-
-<<nextConversation ComicBoxView>>
-Em_Past: Hm? ... oh sry, bin etwas weggedöst 0-0
-Fabian: Kein Problem!
-Andi: Ich bin ein unguter Hund!
-Em_Past: Was war das?
-//====ACT2====
-
-Fabian: EM, SCHNELL, WAS IST 3 + 4?
--> Em_Past: Sieben?
-    Fabian: NEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEINNEIN
--> Em_Past: 42.
-    Fabian: Jap.
 
 Fabian: Du bist ja erst seit einer Woche da
 -> Em_Past: Eigentlich schon 3, erinnerst du dich nicht
