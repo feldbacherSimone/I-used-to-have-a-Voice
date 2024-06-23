@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using _IUTHAV.Scripts.Dialogue.Option;
+using Unity.VisualScripting;
 using UnityEngine;
 using Color = UnityEngine.Color;
 
@@ -129,10 +130,11 @@ namespace _IUTHAV.Scripts.Dialogue {
         public QuestionBox GetCurrentQuestionBox(string cName) {
         
             if (_comicBoxes.TryGetValue(cName, out var box)) {
-                return box.CurrentBox().gameObject.GetComponent<QuestionBox>();
+                var qbox = box.CurrentBox().gameObject.GetComponent<QuestionBox>();
+                if (qbox != null) return qbox;
             }
             
-            LogWarning("No Characterbox found with Key: " + cName);
+            LogWarning("No QuestionBox found in: " + _comicBoxes[cName].CurrentBox().gameObject.name);
             return null;
         }
 

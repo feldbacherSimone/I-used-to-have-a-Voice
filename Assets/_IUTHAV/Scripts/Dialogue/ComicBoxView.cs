@@ -406,7 +406,6 @@ namespace _IUTHAV.Scripts.Dialogue {
             // When the Continue button is clicked, we'll do the same thing as
             // if we'd received a signal from any other part of the game (for
             // example, if a DialogueAdvanceInput had signalled us.)
-            Log("Requested Continue");
             _mClickedContinue = true;
             UserRequestedViewAdvancement();
         }
@@ -549,6 +548,7 @@ namespace _IUTHAV.Scripts.Dialogue {
 #endregion
         
 #region OptionFunctions
+
         public override void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected) {
             
             NextBox(_mCurrentChar);
@@ -585,6 +585,12 @@ namespace _IUTHAV.Scripts.Dialogue {
             // Note the delegate to call when an option is selected
             OnOptionSelected = onOptionSelected;
         }
+        
+        private void OptionViewWasSelected(DialogueOption option) {
+            _mConversations[_mCurrentIndex].ActivateBox(_mCurrentChar);
+            OnOptionSelected(option.DialogueOptionID);
+        }
+        
 #endregion
 
 #region Public Functions
@@ -721,7 +727,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             
             CharacterController charBox = _mCharControllers[_mCurrentChar];
             
-            if (charBox.ContinueButtonTiming != currentButtonTiming || ContinueOnClickAnywhere) return false;
+            if (charBox.ContinueButtonTiming != currentButtonTiming) return false;
 
             switch (charBox.ContinueMode) {
                 
@@ -740,12 +746,6 @@ namespace _IUTHAV.Scripts.Dialogue {
                 default:
                     return false;
             }
-        }
-        
-        private void OptionViewWasSelected(DialogueOption option)
-        {
-            _mConversations[_mCurrentIndex].ActivateBox(_mCurrentChar);
-            OnOptionSelected(option.DialogueOptionID);
         }
 
         private void Log(string msg) {

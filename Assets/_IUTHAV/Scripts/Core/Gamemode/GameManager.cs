@@ -42,6 +42,8 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         private void Awake() {
             
             Configure();
+            //Update a sceneGameStateObject automatically
+            sceneGameStatesObject.GenerateList();
         }
 
         private void Start() {

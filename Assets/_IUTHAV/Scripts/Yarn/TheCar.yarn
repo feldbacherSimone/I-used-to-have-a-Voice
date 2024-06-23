@@ -2,7 +2,7 @@
 tags:
 ---
 
-//====ACT1====
+//===================ACT1=====================
 
 Fabian: ... heute fahren wir zu ...
 <<nextBox ComicBoxView Fabian>>
@@ -44,36 +44,281 @@ Fabian: Schalte gern ab wenn du nichts mehr hören willst
 
 ===
 
+
+
 title: SC1_Act2_Conv1
 tags:
 ---
-//====ACT2====
+
+//===================ACT2=====================
 
 Fabian: Und Emmi, bist du schon aufgeregt?
--> Em_Past: *gähn* für solche Gefühle ist es noch zu früh
+-> Em_Past: *gähn* für solche Gefühle ist es noch zu früh.
     Fabian: Weniger Zeit mit Hübschmachen verbringen!
     Fabian: Dann kannst ausschlafen.
 -> Em_Past: Ein bisschen, aber das ist ja normal.
     Fabian: Ha! Das sagt Michi auch immer.
 
-Fabian: Keine Angst, für dich gibts eh nicht viel zu tun.
+Fabian: Das vergeht sicher, so was Schweres geb ich dir eh nicht auf.
 
-Em_Past: Ja, versteh ich.
-<<nextBox ComicBoxView all>>
+<<nextBookmark ScrollRect>>
 
-Fabian: Du bist ja erst seit einer Woche da
--> Em_Past: Eigentlich schon 3, erinnerst du dich nicht
-    Fabian: ahhh, ja bei uns ist grad viel los, da vergisst man leicht
+->Em_Past: Michi ist also krank?
+    Fabian: Nein, nein, der Junge hat heute Führerscheinprüfung.
+    Fabian: Von einer Erkältung würd der sich nicht unterkriegen lassen.
+->Em_Past: Warum nimmst du mich so spontan mit?
+    Fabian: Der Bursch, unser Lehrling, kann leider nicht mit.
+    Fabian: Und für dich ist es ja auch keine schlechte Übung.
+<<nextBox ComicBoxView Fabian>>
+Fabian: Du bist ja erst seit einer Woche da.
+-> Em_Past: Eigentlich ja schon 3, erinnerst du dich nicht?
+    Fabian: Ahh, ja bei uns ist grad viel los, da vergisst man leicht.
 -> Em_Past: ... ja so in etwa
 
-Fabian: Das ist eine tolle Gelegenheit, dann verbringst du dein ganzes Praktikum nicht nur in der Firma.
-
-Em_Past: Der Chef gibt mir ja immer so trockene Büroarbeit auf-
-Fabian: So ordentlich wie du das alles machst, der Bursch könnt das gar nicht. Der ist besser im Hand anlegen.
--> Em_Past: Equipment einladen schaff ich auch noch.
-    Em_Past: Das Ganze Kamerazeug
--> Em_Past: So ordentlich bin ich ja gar nicht...
-
-Fabian: ...
+Fabian: Das ist eine tolle Gelegenheit, ...
+Fabian: dann verbringst du dein ganzes Praktikum nicht in der Firma.
+Em_Past: Der chef gibt mir ja immer so trockene Büroarbeit auf-
+Fabian: Nimms als Kompliment. Du bist so ordentlich, der Bursch könnt das gar nicht.
+<<nextBox ComicBoxView Fabian>>
+Fabian: Der ist besser im Hand anlegen.
+-> Em_Past: Equipment einladen schaff ich ja auch noch.
+    Fabian: Das ganze Kamerazeug?
+-> Em_Past: So ordentlich bin ich ja garnicht...
+    Fabian: ...
 
 ===
+
+title: SC1_Act2_Conv2
+tags:
+---
+
+Em_Past: Das am Rücksitz ist eine Videokamera, oder?
+Fabian: Ja, für ein kurzes Interview mit dem Kunden, nichts komplexes.
+Fabian: Der Bursch hätt dir zeigen können wie sie funktioniert, der macht das schon länger.
+<<nextBox ComicBoxView Fabian>>
+Fabian: Sonst machst du heute einfach Fotos.
+-> Em_Past: Ich- werd mein Bestes versuchen...
+    Fabian: Engagiert, das ist gut.
+    Fabian: Dann hab ich bald weniger Arbeit, wenn ihr beide das könnt.
+-> Em_Past: Mit dem hab ich eh schon gearbeitet
+    Fabian: Ach echt?
+    Fabian: Vielleicht kann ich mir von dir ja was abschaun.
+
+Fabian: Weißt du, Video ist nicht unser Ding, ...
+Fabian: Das macht normalerweise der Andi
+<<nextBox ComicBoxView all>>
+Em_Past: Ein Kollege? Den kenn ich gar nicht.
+Fabian: Ein Bekannter. Der hat sich mit Video selbständig gemacht.
+Fabian: Der fotografiert auch oft für uns.
+<<nextBox ComicBoxView all>>
+<<nextBookmark ScrollRect>>
+<<forceScrollToEndpoint ScrollRect>>
+Em_Past: Vom Filmen leben, das will ich auch mal können.
+Fabian: Dann streng dich heute besser an, dann nehmen wir dich zum nächsten Dreh mit.
+
+
+===
+
+title: SC1_Act2_Conv3
+tags:
+---
+
+Em_Past: Klingt wie ein cooler Typ der Andi.
+Fabian: Naja... er ist etwas...
+Fabian: sagen wir eigen.
+<<nextBox ComicBoxView Fabian>>
+Fabian: Aber so sind kreative oft.
+<<nextBox ComicBoxView Fabian>>
+-> Em_Past: Das hört man oft über Kreative, ja
+    Fabian: Kann man nichts machen...
+    Fabian: Bleib so wie du bist.
+-> Em_Past: Also muss ich anstrengend sein um in der Branche was zu reißen?
+    Fabian: Nein nein, bleib so wie du bist.
+Fabian: Du machst ja gute Arbeit.
+-> Em_Past: Man tut sein bestes. Gibt sicher Leute, die das besser können.
+-> Das ist schön zu hören, danke
+-> Ich hoffe das reicht...
+<<nextBookmark ScrollRect>>
+Fabian: Du bringst frischen Wind ins Büro.
+-> Em_Past: Schleimer, ich bin ja nicht die erste Praktikantin.
+-> Em_Past: Wie meinst du das?
+Fabian: Bis auf die Mädels in der Buchhaltung gibt es einfach wenig Frauen im Betrieb.
+<<nextBox ComicBoxView Fabian>>
+Fabian: Und du weist ja wie die drauf sind...
+Fabian: Da find ichs einfach toll, dass sich da was tut.
+<<nextBox ComicBoxView Fabian>>
+Fabian: Ist ja längst überfällig.
+<<nextBox ComicBoxView Em_Past>>
+<<forceScrollToEndpoint ScrollRect>>
+Em_Past: Woran liegt das meinst du?
+Em_Past: Das es so lange gedauert hat?
+<<nextBox ComicBoxView Fabian>>
+Fabian: Hm... schwierig
+Fabian: Auf jedenfall bin ich froh -
+<<nextBox ComicBoxView Fabian>>
+Fabian: Dass sich Mädchen heute mehr zutrauen.
+
+===
+
+title: SC1_Act3_Conv1
+tags:
+---
+
+//===================ACT3=====================
+
+Fabian: Na schau, wenn man vom Teufel spricht...
+<<nextBox ComicBoxView Fabian>>
+Fabian: Servus Andi, wie gehts denn mit dem Schnitt!
+Fabian: Nächste Woche ist die Messe, weißt d-
+<<nextBox ComicBoxView Fabian>>
+Andi: Jetzt fangst schon wieder an.
+Andi: Bis zur Messe ist das Video da, Eder -
+Andi: vom Fragen wirds nicht schneller fertig.
+
+Andi: Aber deswegen ruf ich nicht an
+Fabian: Achso- was ist denn los?
+
+<<nextBookmark ScrollRect>>
+<<forceScrollAndLock ScrollRect>>
+<<nextBox ComicBoxView all>>
+
+Andi: Was hast denn mit dem Bursch angestellt, endlich ersetzt?
+Fabian: Den Michi?
+Fabian: Nichts -
+Fabian: Wie kommst du drauf?
+<<nextBox ComicBoxView Fabian>>
+Andi: Die Fotos in letzter Zeit, die sind nicht von euch.
+Andi: Normalerweise schafft ihr ja nicht mal scharfe Fotos.
+Andi: Weder er noch du.
+Andi: Bin ich den Tussen aus der Buchhaltung zu teuer geworden, habts wen Billigeren gefunden huh?
+<<nextBox ComicBoxView Andi>>
+Fabian: Ach nein, das ist nur Vorübergehend.
+Fabian: Wir haben Unterstützung diesen Sommer
+<<nextBox ComicBoxView Fabian>>
+Andi: Der scheint ja was zu können, zumindest mehr als du.
+Andi: Da kann der Bursch auch endlich was lernen.
+<<nextBox ComicBoxView Andi>>
+Fabian: Sie... Die Emmi ist nur eine Praktikantin.
+Fabian: Aber echt Vorbildlich.
+Fabian: Immer pünktlich und ordentlich.
+Fabian: Und nett ist sie auch, nur nicht so gesprächig.
+
+<<nextBox ComicBoxView Fabian>>
+<<nextBookmark ScrollRect>>
+<<forceScrollAndLock ScrollRect>>
+
+Andi: Na sowas -
+Andi: Eine Praktikantin also
+
+Fabian: Heute hilft sie mir beim Videodreh, -
+Fabian: wenn sie gute Arbeit macht dann wär sie ja was für dich, oder?
+Andi: Pff, das klingt ja spannend
+
+<<nextBox ComicBoxView Andi>>
+Andi: Wie schaut sie denn aus?
+
+===
+
+title: SC1_Act3_Conv2
+tags:
+---
+
+Fabian: Wie-
+<<nextBox ComicBoxView Fabian>>
+Andi: Eder.
+Andi: Tu nicht, du bist ja ein Mann, -
+Andi: Ist sie auch hübsch?
+<<nextBox ComicBoxView Andi>>
+Andi: Hat man was zum schauen?
+Fabian: Ach... sie sitzt eh neben mir im Auto.
+Fabian: Frag sie doch selber
+<<nextBox ComicBoxView Andi>>
+Andi: !!-
+Andi: Achso
+Andi: hehe, war ja nur ein Schmäh.
+-> Em_Past: ...haha ich versteh
+-> Em_Past: Redest du gern so über 15 jährige?
+-> Em_Past: Geh dich vergraben Schröckauer
+
+Fabian: Schau, sie hat Humor
+<<nextBox ComicBoxView all>>
+<<nextBookmark ScrollRect>>
+<<forceScrollAndLock ScrollRect>>
+Fabian: Aber ich muss schlussmachen, noch viel Arbeit.
+Fabian: Andi, wir reden dann noch wegen dem Schnitt-
+Andi: --""--
+
+===
+
+title: SC1_Act3_Conv3
+tags:
+---
+
+Fabian: Ich hab ja gesagt er ist eigen...
+-> Em_Past: Er ist ein Hund
+-> Em_Past: Warum hast du nichts gesagt
+-> Em_Past: ...das hab ich gemerkt
+<<nextBox ComicBoxView Fabian>>
+Fabian: Aber seine Videos sind gut, da kann man sich nicht beschweren.
+Fabian: Irgendwie kommt man schon miteinander klar.
+-> Em_Past: Das sagst du leicht
+-> Em_Past: Ich versteh.
+
+Fabian: Und du hast ihn wenigstens in Verlegenheit gebracht.
+Fabian: Der redet ja nur immer so.
+<<nextBox ComicBoxView Fabian>>
+Em_Past: ...
+Em_Past: Meinst du wirklch, dass ich bei ihm mal aushelfen kann?
+<<nextBox ComicBoxView Em_Past>>
+Fabian: Wenn du willst, -
+Fabian: dann schick ich dich mit dem Bursch gemeinsam
+Fabian: Der passt schon auf dich auf, haha
+<<nextBox ComicBoxView Fabian>>
+
+Em_Past: "Die Tussen aus der Buchhaltung" was meint er damit
+<<nextBox ComicBoxView Em_Past>>
+Fabian: Bei Firmenausflügen, da hat die Maria immer fotografiert.
+Fabian: Das hat ihr wirklich Spaß gemacht, -
+Fabian: aber nur so als Hobby
+<<nextBox ComicBoxView Fabian>>
+Em_Past: Wie lange fahren wir noch?
+Fabian: 20 Minuten circa.
+
+===
+
+title: SC1_Act3_Conv4
+tags:
+---
+
+Em_Present: Ich habe gelacht
+Em_Present: Das macht man doch in der Situation?
+<<nextBox ComicBoxView Em_Present>>
+Em_Present: Humor
+<<nextBox ComicBoxView Em_Present>>
+Em_Present: Sympathie
+<<nextBox ComicBoxView Em_Present>>
+Em_Present: nicht kleinlich sein
+<<nextBox ComicBoxView Em_Present>>
+Em_Present: Der Bursch hätte sicher auch so reagiert.
+Em_Present: Ich arbeite hart und habe viel gelernt, das zählt.
+Em_Present: Aber ich schaue in den Spiegel und der Mann in meinem Kopf fragt
+<<nextBox ComicBoxView Em_Present>>
+Em_Present: Bist du auch schön genug?
+<<nextBox ComicBoxView Em_Present>>
+Em_Present: Wenn du nicht schön bist
+Em_Present: und nicht lieb, ...
+Em_Present: Was zählt dann deine Arbeit?
+<<nextBox ComicBoxView Em_Present>>
+<<nextBookmark ScrollRect>>
+<<forceScrollAndLock ScrollRect>>
+Em_Present: Schön?
+Em_Present: Heute bin ich es, aber was bringt es mir
+Em_Present: So ein Temperament werde ich mir nie leisten können.
+<<nextbox ComicBoxView Em_Present>>
+Em_Present: Der Kollege schon,
+<<nextBox ComicBoxView Em_Present>>
+Em_Present Er war weder nett noch schön.
+
+===
+
+
