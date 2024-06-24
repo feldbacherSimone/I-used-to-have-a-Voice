@@ -62,7 +62,7 @@ Fabian: Und Emmi, bist du schon aufgeregt?
     Fabian: Ha! Das sagt Michi auch immer.
     Fabian: Keine Angst, für dich gibts eh nicht so viel zu tun.
 Em_Past: Warum nimmst du mich eigentlich so spontan mit?
-<<nextBox ComicBoxView Fabian>>
+<<nextBox ComicBoxView Em_Past>>
 
 <<nextBookmark ScrollRect>>
 
@@ -70,7 +70,7 @@ Em_Past: Warum nimmst du mich eigentlich so spontan mit?
 <<nextBox ComicBoxView Fabian>>
 Fabian: Der Bursch, kann leider nicht.
 Fabian: Und für dich ist es ja auch keine schlechte Übung.
-
+<<nextBox ComicBoxView Fabian>>
 ->Em_Past: Michi ist also krank?
     Fabian: Nein, nein, der Junge hat heute Führerscheinprüfung.
     Fabian: Von einer Erkältung würd der sich nicht unterkriegen lassen.
@@ -120,10 +120,6 @@ Fabian: Ambitioniert! Das gefällt mir.
 
 Fabian: Wir brauchen eh mehr Frauen in der Branche
 Fabian: schön dass sich Mädchen heute mehr zutrauen.
-
-<<nextBox ComicBoxView all>>
-<<nextBookmark ScrollRect>>
-<<forceScrollToEndpoint ScrollRect>>
 
 ===
 
