@@ -4941,6 +4941,16 @@ PrefabInstance:
       propertyPath: Lens.FieldOfView
       value: 95.9
       objectReference: {fileID: 0}
+    - target: {fileID: 6684895073483767622, guid: 689505d0251489c4897c416cc82b7a5b,
+        type: 3}
+      propertyPath: m_Antialiasing
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684895073483767622, guid: 689505d0251489c4897c416cc82b7a5b,
+        type: 3}
+      propertyPath: m_AntialiasingQuality
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8072046379423853748, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: field of view
