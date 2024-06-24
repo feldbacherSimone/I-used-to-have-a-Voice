@@ -6,6 +6,7 @@ using _IUTHAV.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Yarn.Unity;
 
 namespace _IUTHAV.Scripts.CustomUI {
 
@@ -44,13 +45,13 @@ namespace _IUTHAV.Scripts.CustomUI {
 
         private void OnDrawGizmos() {
 
-            Gizmos.matrix = canvasRect.localToWorldMatrix;
+            //Gizmos.matrix = canvasRect.localToWorldMatrix;
             var rect = bgRect.rect;
-            var localPosition = bgRect.localPosition;
+            var localY = bgRect.anchoredPosition.y + canvasRect.rect.height;
             
             Gizmos.color = Color.red;
             foreach (var f in bookmarks) {
-                Gizmos.DrawLine(new Vector3(-rect.width/2, -f.endpoint + localPosition.y), new Vector3(rect.width/2, -f.endpoint + localPosition.y));
+                Gizmos.DrawLine(new Vector3(0, -f.endpoint + localY), new Vector3(rect.width, -f.endpoint + localY));
             }
             
             foreach (var f in bookmarks) {
@@ -61,13 +62,13 @@ namespace _IUTHAV.Scripts.CustomUI {
                 else {
                     Gizmos.color = Color.white;
                 }
-                Gizmos.DrawLine(new Vector3(-rect.width/2, -f.triggerPoint + localPosition.y), new Vector3(-rect.width/2.5f, -f.triggerPoint + localPosition.y));
-                Gizmos.DrawLine(new Vector3(rect.width/2.5f, -f.triggerPoint + localPosition.y), new Vector3(rect.width/2, -f.triggerPoint + localPosition.y));
+                Gizmos.DrawLine(new Vector3(0, -f.triggerPoint + localY), new Vector3(200, -f.triggerPoint + localY));
+                Gizmos.DrawLine(new Vector3(rect.width-200, -f.triggerPoint + localY), new Vector3(rect.width, -f.triggerPoint + localY));
             }
             Gizmos.color = Color.magenta;
             if (bookmarks.Length > 0) {
                 float currentBmF = bookmarks[currentBmIndex].triggerPoint;
-                Gizmos.DrawLine(new Vector3(-rect.width/3, -currentBmF + localPosition.y), new Vector3(rect.width/3, -currentBmF + localPosition.y));
+                Gizmos.DrawLine(new Vector3(300, -currentBmF + localY), new Vector3(rect.width - 300, -currentBmF + localY));
             }
             
 
@@ -81,7 +82,8 @@ namespace _IUTHAV.Scripts.CustomUI {
                 scrollRect = GetComponent<ScrollRect>();
             }
 
-            _mBgOffset = bgRect.localPosition.y;
+            _mBgOffset = bgRect.anchoredPosition.y;
+            Log("Starting with Offset " + _mBgOffset);
             
             SetTriggeredStateData();
 
@@ -98,10 +100,11 @@ namespace _IUTHAV.Scripts.CustomUI {
 
 #region Public Functions
 
+        [YarnCommand("nextBookmark")]
         public void NextBookmark() {
 
             if (currentBmIndex < bookmarks.Length - 1) {
-                _mCurrentTriggeredState.UnFinish();
+                _mCurrentTriggeredState?.UnFinish();
                 currentBmIndex++;
                 StrechBackground();
                 SetTriggeredStateData();
@@ -111,21 +114,21 @@ namespace _IUTHAV.Scripts.CustomUI {
             }
 
         }
-
-        public void ForceScroll(float yLocation) {
+        [YarnCommand("forceScrollToEndpoint")]
+        public void ForceScrollToEndpoint() {
 
             scrollRect.enabled = false;
-            _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, yLocation);
+            _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, bookmarks[currentBmIndex].endpoint-canvasRect.rect.height);
             StartCoroutine(MoveToYLocation(false));
         }
-        
-        public void ForceScrollAndLock(float yLocation) {
+        [YarnCommand("forceScrollAndLock")]
+        public void ForceScrollAndLock() {
 
             scrollRect.enabled = false;
-            _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, yLocation);
+            _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, bookmarks[currentBmIndex].endpoint-canvasRect.rect.height);
             StartCoroutine(MoveToYLocation(true));
         }
-
+        [YarnCommand("unlock")]
         public void ToggleManualScroll(bool enable) {
 
             scrollRect.enabled = enable;
@@ -136,30 +139,24 @@ namespace _IUTHAV.Scripts.CustomUI {
 #region Private Functions
 
         private void SetTriggeredStateData() {
-            
-            bool isScrollTrigger = (bookmarks[currentBmIndex].customState == StateType.None);
-            
-            if (isScrollTrigger) {
-                
-                StateType contextSensitiveState = Typeconverter.ChangePreAndSuffix(_mGameManager.GetCurrentSceneType(), StateType.SC1_ScrollTrigger);
-                _mCurrentTriggeredState = _mGameManager.GetState(contextSensitiveState);
-                _mCurrentTriggeredState.onStateCompleted.AddListener(NextBookmark);
+
+            if (bookmarks[currentBmIndex].customState == StateType.None) {
+                return;
             }
-            else {
-                _mCurrentTriggeredState = _mGameManager.GetState(bookmarks[currentBmIndex].customState);
-                _mCurrentTriggeredState.isFreeze = true;
-                Log("Next bookmark is a frozen Trigger of type [" + _mCurrentTriggeredState.StateType + "]");
-            }
+            
+            _mCurrentTriggeredState = _mGameManager.GetState(bookmarks[currentBmIndex].customState);
+            _mCurrentTriggeredState.isFreeze = true;
+            Log("Next bookmark is a frozen Trigger of type [" + _mCurrentTriggeredState.StateType + "]");
             
             _mCurrentTriggeredState.SetStateData(new FloatData(
-                bgRect.localPosition.y,
-                bookmarks[currentBmIndex].triggerPoint - _mBgOffset
-                ));
+                bgRect.anchoredPosition.y,
+                bookmarks[currentBmIndex].triggerPoint - _mBgOffset - canvasRect.rect.height
+            ));
         }
 
         private void UpdateScrollStateData(Vector2 pos) {
             
-            _mCurrentTriggeredState.UpdateData(bgRect.localPosition.y);
+            _mCurrentTriggeredState?.UpdateData(bgRect.anchoredPosition.y);
         }
 
         private void StrechBackground() {
@@ -168,18 +165,17 @@ namespace _IUTHAV.Scripts.CustomUI {
         }
 
         private IEnumerator MoveToYLocation(bool lockOnFinish) {
-
+            
             scrollRect.enabled = false;
 
-            while (Vector2.Distance(bgRect.anchoredPosition, _mTargetPosition) > 0.1f) {
+            while (Vector2.Distance(bgRect.anchoredPosition, _mTargetPosition) > 5f) {
                 
                 var anchoredPosition = bgRect.anchoredPosition;
-                
+
                 Vector2 target = Vector2.MoveTowards(anchoredPosition, _mTargetPosition, forceScrollSpeed);
                 
-                anchoredPosition = new Vector3(anchoredPosition.x, target.y, anchoredPosition.x);
+                anchoredPosition = new Vector2(anchoredPosition.x, target.y);
                 bgRect.anchoredPosition = anchoredPosition;
-
                 yield return null;
             }
 

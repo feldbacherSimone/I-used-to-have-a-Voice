@@ -3,6 +3,7 @@ using _IUTHAV.Scripts.CustomUI;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using Yarn.Unity;
 
@@ -15,6 +16,8 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
         [SerializeField] bool showCharacterName = false;
 
         public MarkupPalette palette;
+
+        [SerializeField] private UnityEvent onSelectedWhenBlocked;
 
         DialogueOption _option;
 
@@ -29,6 +32,16 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
 
             text.text = "";
             currentflag = FLAG_NONE;
+
+            if (optionType == OptionType.Blocked) {
+
+                var group = gameObject.GetComponent<CanvasGroup>();
+
+                if (group == null) group = gameObject.AddComponent<CanvasGroup>();
+                group.interactable = false;
+                group.blocksRaycasts = false;
+
+            }
         }
 
         public DialogueOption Option
@@ -68,11 +81,19 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
         protected override void OnClickDelegate(BaseEventData data) {
         
             base.OnClickDelegate(data);
-            if (optionType == OptionType.DestroyOnPickup) {
-                StartDestructionSequence();
+
+            switch (optionType) {
+                
+                case OptionType.DestroyOnPickup:
+                    StartDestructionSequence();
+                    break;
+                    
+                case OptionType.Blocked:
+                    onSelectedWhenBlocked.Invoke();
+                    break;
                 
             }
-            
+
         }
         
     }

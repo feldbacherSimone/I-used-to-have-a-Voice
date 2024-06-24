@@ -881,7 +881,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1253715774}
         m_TargetAssemblyTypeName: _IUTHAV.Scripts.CustomUI.ScrollBackGround, Assembly-CSharp
-        m_MethodName: ForceScroll
+        m_MethodName: ForceScrollToBreakpoint
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

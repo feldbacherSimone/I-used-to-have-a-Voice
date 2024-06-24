@@ -32,6 +32,25 @@ namespace _IUTHAV.Scripts.CustomUI {
             Log("Starting Destruction Sequence");
             onDestruction?.Invoke();
         }
+        
+        protected override void OnClickDelegate(BaseEventData data) {
+        
+            if (currentflag == FLAG_DRAG) {
+                Drop(null);
+            }
+
+            if (currentflag != FLAG_NONE) return;
+            
+            onPickup.Invoke();
+
+            CalculateCurrentPointerToCanvasPosition(((PointerEventData)data).position);
+
+            StartingPosition = transform.position;
+
+            if (Vector2.Distance(transform.position, _mTargetPosition) > 0.5f) {
+                StartCoroutine(MoveTowardsTarget(() => { currentflag = FLAG_DRAG; }));
+            }
+        }
 
         protected override void Drop(DragAndDropUIElement dropElement) {
             base.Drop(dropElement);
@@ -65,7 +84,7 @@ namespace _IUTHAV.Scripts.CustomUI {
 
             ConfigureCollider2D();
 
-            StartingPosition = ((RectTransform)transform).position;
+            StartingPosition = gameObject.GetComponent<RectTransform>().anchoredPosition;
 
         }
 

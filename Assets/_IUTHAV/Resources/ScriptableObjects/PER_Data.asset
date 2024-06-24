@@ -19,7 +19,28 @@ MonoBehaviour:
     onStateCompleted:
       m_PersistentCalls:
         m_Calls: []
-    resetOnUnload: 1
+    resetOnUnload: 0
+    isFreeze: 0
+    isFinished: 0
+  - stateType: 2
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 0
+    isFreeze: 0
+    isFinished: 0
+  - stateType: 3
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 0
+    isFreeze: 0
+    isFinished: 0
+  - stateType: 4
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 0
     isFreeze: 0
     isFinished: 0
   regenerateList: 0

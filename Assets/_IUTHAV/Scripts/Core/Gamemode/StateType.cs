@@ -25,15 +25,32 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         
         //Persistent States
         PER_State_1 = 1,
+        PER_TheCarFinished,
+        PER_TheTrain,
+        PER_TheMessage,
         
         //SCENE 1 States
         SC1_ScrollTrigger = 100,
         SC1_Start = 101,
-        SC1_ActFinished_0,
-        SC1_ActFinished_1,
-        SC1_ActFinished_2,
-        
-        SC1_SphereAppears = 130,
+        SC1_Act1_Conv1,
+        SC1_Act1_Conv2,
+        SC1_Act1_Conv3,
+        SC1_Act2_Conv1,
+        SC1_Act2_Conv2,
+        SC1_Act2_Conv3,
+        SC1_Act3_Conv1,
+        SC1_Act3_Conv2,
+        SC1_Act3_Conv3,
+        SC1_Act3_Conv4,
+
+        SC1_SunCoverClicked = 140,
+        SC1_CDGameStart,
+        SC1_GloveBoxClicked,
+        SC1_StartAct2,
+        SC1_StartAct2_Conv2,
+        SC1_StartAct2_Conv3,
+        SC1_StartAct3_Conv3,
+        SC1_EmPanic,
 
         //SCENE 2 States
         SC2_ScrollTrigger = 200,

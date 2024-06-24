@@ -18,10 +18,10 @@ MonoBehaviour:
     type: 2}
   panelPrefab: {fileID: 6385227724739882469, guid: 9778dc1d60b77e94c875362c510de53c,
     type: 3}
-  renderTextureWidth: 1600
-  renderTextureHeight: 930
-  cameraOutputMask: 10
-  shotName: RearViewMirror
+  renderTextureWidth: 966
+  renderTextureHeight: 522
+  cameraOutputMask: 11
+  shotName: CarFront
   createRenderTextureAndCamera: 0
-  renderTextureTargetName: RearViewMirror
+  renderTextureTargetName: CarFront
   createPanel: 0

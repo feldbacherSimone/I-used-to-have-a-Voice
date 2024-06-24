@@ -42,6 +42,8 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         private void Awake() {
             
             Configure();
+            //Update a sceneGameStateObject automatically
+            if (sceneGameStatesObject != null) sceneGameStatesObject.GenerateList();
         }
 
         private void Start() {
@@ -125,7 +127,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
             }
         }
 
-        [YarnCommand("FinishState")]
+        [YarnCommand("finishState")]
         public void FinishState(string stateType) {
             if (Enum.TryParse(stateType, out StateType type)) {
                 FinishState(type);
