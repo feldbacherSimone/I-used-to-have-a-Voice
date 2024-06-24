@@ -121,6 +121,21 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
         }
 
+        private void OnDrawGizmos() {
+
+            var box = GetCurrentBox();
+            
+            if (box != null) {
+
+                //Gizmos.matrix = box.BoxRectTransform.localToWorldMatrix;
+                
+                Gizmos.color = new Color(1f, 0, 1f, 0.5f);
+                
+                Gizmos.DrawWireCube(box.BoxRectTransform.position, new Vector3(100, 100, 1));
+            }
+
+        }
+
 #region Running Line
         /// <inheritdoc/>
         public override void DismissLine(Action onDismissalComplete)
@@ -145,7 +160,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
             
             //_canvasGroup.alpha = 0;
-            _canvasGroup.blocksRaycasts = false;
+            _canvasGroup.blocksRaycasts = interactable;
             // turning interaction back on, if it needs it
             _canvasGroup.interactable = interactable;
             
@@ -197,7 +212,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             SetCurrentLine(dialogueLine.TextWithoutCharacterName);
 
             //Show new box
-            if (!_mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar).IsActive) {
+            if (!GetCurrentBox().IsActive) {
             
                 _mConversations[_mCurrentIndex].ActivateBox(_mCurrentChar);
             }
@@ -312,8 +327,8 @@ namespace _IUTHAV.Scripts.Dialogue {
                     continueButton.SetActive(true);
                     
                     continueButton.transform.SetPositionAndRotation(
-                        _mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar).BoxRectTransform.position,
-                        _mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar).BoxRectTransform.rotation
+                        GetCurrentBox().BoxRectTransform.position,
+                        GetCurrentBox().BoxRectTransform.rotation
                     );
                     
                 }
@@ -343,7 +358,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                 
                 continueButton.transform.SetPositionAndRotation(
                     _mConversations[_mCurrentIndex].GetContinueButtonPosition(_mCurrentChar),
-                    _mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar).transform.rotation
+                    GetCurrentBox().transform.rotation
                 );
             }
 
@@ -553,9 +568,7 @@ namespace _IUTHAV.Scripts.Dialogue {
 #region OptionFunctions
 
         public override void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected) {
-            
-            NextBox(_mCurrentChar);
-            
+
             if (_lastLine.CharacterName != null) {
                 SetCurrentCharacterDialogue(_lastLine.CharacterName);
             }
@@ -570,7 +583,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             box.EnableQuestions();
 
             if (_mCurrentOption == null) {
-                LogWarning("Not questionDropBoxes in " + _mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar).gameObject.name + "have been found!");
+                LogWarning("Not questionDropBoxes in " + GetCurrentBox().gameObject.name + "have been found!");
                 return;
             }
             
@@ -751,6 +764,19 @@ namespace _IUTHAV.Scripts.Dialogue {
                 default:
                     return false;
             }
+        }
+
+        private CharacterBox GetCurrentBox() {
+
+            if (_mConversations == null ||
+            _mCurrentIndex > _mConversations.Count || 
+            _mCurrentIndex < 0 || 
+            _mConversations.Count == 0) {
+                return null;
+            }
+            
+            return _mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar);
+
         }
 
         private void Log(string msg) {

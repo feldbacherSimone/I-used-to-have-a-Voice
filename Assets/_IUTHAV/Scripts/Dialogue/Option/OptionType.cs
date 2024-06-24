@@ -6,6 +6,7 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
         InvalidButDontDestroy,
         DestroyOnPickup,
         DestroyOnDrop,
+        Blocked,
 
     }
 }

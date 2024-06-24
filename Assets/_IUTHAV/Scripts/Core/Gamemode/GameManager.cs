@@ -43,7 +43,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
             
             Configure();
             //Update a sceneGameStateObject automatically
-            sceneGameStatesObject.GenerateList();
+            if (sceneGameStatesObject != null) sceneGameStatesObject.GenerateList();
         }
 
         private void Start() {

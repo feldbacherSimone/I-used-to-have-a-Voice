@@ -1,4 +1,4 @@
-﻿title: SC1_Act1_Conv1
+title: SC1_Act1_Conv1
 tags:
 ---
 
@@ -31,6 +31,7 @@ title: SC1_Act1_Conv3
 tags:
 ---
 Fabian: Such dir eine aus
+<<nextBox ComicBoxView Fabian>>
 -> Em_Past: Rock
     Fabian: Da hab ich nichts dagegen
 -> Em_Past: Raggae
@@ -53,12 +54,13 @@ tags:
 //===================ACT2=====================
 
 Fabian: Und Emmi, bist du schon aufgeregt?
+<<nextBox ComicBoxView Fabian>>
 -> Em_Past: *gähn* für solche Gefühle ist es noch zu früh.
     Fabian: Weniger Zeit mit Hübschmachen verbringen!
     Fabian: Dann kannst ausschlafen.
 -> Em_Past: Ein bisschen, aber das ist ja normal.
     Fabian: Ha! Das sagt Michi auch immer.
-
+<<nextBox ComicBoxView Fabian>>
 Fabian: Das vergeht sicher, so was Schweres geb ich dir eh nicht auf.
 
 <<nextBookmark ScrollRect>>
@@ -71,6 +73,7 @@ Fabian: Das vergeht sicher, so was Schweres geb ich dir eh nicht auf.
     Fabian: Und für dich ist es ja auch keine schlechte Übung.
 <<nextBox ComicBoxView Fabian>>
 Fabian: Du bist ja erst seit einer Woche da.
+<<nextBox ComicBoxView Fabian>>
 -> Em_Past: Eigentlich ja schon 3, erinnerst du dich nicht?
     Fabian: Ahh, ja bei uns ist grad viel los, da vergisst man leicht.
 -> Em_Past: ... ja so in etwa
@@ -81,6 +84,7 @@ Em_Past: Der chef gibt mir ja immer so trockene Büroarbeit auf-
 Fabian: Nimms als Kompliment. Du bist so ordentlich, der Bursch könnt das gar nicht.
 <<nextBox ComicBoxView Fabian>>
 Fabian: Der ist besser im Hand anlegen.
+<<nextBox ComicBoxView Fabian>>
 -> Em_Past: Equipment einladen schaff ich ja auch noch.
     Fabian: Das ganze Kamerazeug?
 -> Em_Past: So ordentlich bin ich ja garnicht...
@@ -97,6 +101,7 @@ Fabian: Ja, für ein kurzes Interview mit dem Kunden, nichts komplexes.
 Fabian: Der Bursch hätt dir zeigen können wie sie funktioniert, der macht das schon länger.
 <<nextBox ComicBoxView Fabian>>
 Fabian: Sonst machst du heute einfach Fotos.
+<<nextBox ComicBoxView Fabian>>
 -> Em_Past: Ich- werd mein Bestes versuchen...
     Fabian: Engagiert, das ist gut.
     Fabian: Dann hab ich bald weniger Arbeit, wenn ihr beide das könnt.
@@ -135,11 +140,13 @@ Fabian: Aber so sind kreative oft.
 -> Em_Past: Also muss ich anstrengend sein um in der Branche was zu reißen?
     Fabian: Nein nein, bleib so wie du bist.
 Fabian: Du machst ja gute Arbeit.
+<<nextBox ComicBoxView Fabian>>
 -> Em_Past: Man tut sein bestes. Gibt sicher Leute, die das besser können.
 -> Das ist schön zu hören, danke
 -> Ich hoffe das reicht...
 <<nextBookmark ScrollRect>>
 Fabian: Du bringst frischen Wind ins Büro.
+<<nextBox ComicBoxView Fabian>>
 -> Em_Past: Schleimer, ich bin ja nicht die erste Praktikantin.
 -> Em_Past: Wie meinst du das?
 Fabian: Bis auf die Mädels in der Buchhaltung gibt es einfach wenig Frauen im Betrieb.
@@ -236,6 +243,7 @@ Fabian: Frag sie doch selber
 Andi: !!-
 Andi: Achso
 Andi: hehe, war ja nur ein Schmäh.
+<<nextBox ComicBoxView Andi>>
 -> Em_Past: ...haha ich versteh
 -> Em_Past: Redest du gern so über 15 jährige?
 -> Em_Past: Geh dich vergraben Schröckauer
@@ -255,16 +263,16 @@ tags:
 ---
 
 Fabian: Ich hab ja gesagt er ist eigen...
+<<nextBox ComicBoxView Fabian>>
 -> Em_Past: Er ist ein Hund
 -> Em_Past: Warum hast du nichts gesagt
 -> Em_Past: ...das hab ich gemerkt
-<<nextBox ComicBoxView Fabian>>
-Fabian: Aber seine Videos sind gut, da kann man sich nicht beschweren.
+    Fabian: Aber seine Videos sind gut, da kann man sich nicht beschweren.
 Fabian: Irgendwie kommt man schon miteinander klar.
+<<nextBox ComicBoxView Fabian>>
 -> Em_Past: Das sagst du leicht
 -> Em_Past: Ich versteh.
-
-Fabian: Und du hast ihn wenigstens in Verlegenheit gebracht.
+    Fabian: Und du hast ihn wenigstens in Verlegenheit gebracht.
 Fabian: Der redet ja nur immer so.
 <<nextBox ComicBoxView Fabian>>
 Em_Past: ...
@@ -292,6 +300,7 @@ tags:
 
 Em_Present: Ich habe gelacht
 Em_Present: Das macht man doch in der Situation?
+<<nextBookmark ScrollRect>>
 <<nextBox ComicBoxView Em_Present>>
 Em_Present: Humor
 <<nextBox ComicBoxView Em_Present>>
@@ -314,10 +323,10 @@ Em_Present: Was zählt dann deine Arbeit?
 Em_Present: Schön?
 Em_Present: Heute bin ich es, aber was bringt es mir
 Em_Present: So ein Temperament werde ich mir nie leisten können.
-<<nextbox ComicBoxView Em_Present>>
+<<nextBox ComicBoxView Em_Present>>
 Em_Present: Der Kollege schon,
 <<nextBox ComicBoxView Em_Present>>
-Em_Present Er war weder nett noch schön.
+Em_Present: Er war weder nett noch schön.
 
 ===
 

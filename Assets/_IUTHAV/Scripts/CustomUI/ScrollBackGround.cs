@@ -125,7 +125,7 @@ namespace _IUTHAV.Scripts.CustomUI {
         public void ForceScrollAndLock() {
 
             scrollRect.enabled = false;
-            _mTargetPosition = new Vector2(bgRect.position.x, bookmarks[currentBmIndex].endpoint-canvasRect.rect.height);
+            _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, bookmarks[currentBmIndex].endpoint-canvasRect.rect.height);
             StartCoroutine(MoveToYLocation(true));
         }
         [YarnCommand("unlock")]
@@ -168,7 +168,7 @@ namespace _IUTHAV.Scripts.CustomUI {
             
             scrollRect.enabled = false;
 
-            while (Vector2.Distance(bgRect.anchoredPosition, _mTargetPosition) > 1f) {
+            while (Vector2.Distance(bgRect.anchoredPosition, _mTargetPosition) > 5f) {
                 
                 var anchoredPosition = bgRect.anchoredPosition;
 
@@ -176,7 +176,6 @@ namespace _IUTHAV.Scripts.CustomUI {
                 
                 anchoredPosition = new Vector2(anchoredPosition.x, target.y);
                 bgRect.anchoredPosition = anchoredPosition;
-
                 yield return null;
             }
 
