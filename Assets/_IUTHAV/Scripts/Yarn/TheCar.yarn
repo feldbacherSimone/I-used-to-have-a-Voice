@@ -60,26 +60,32 @@ Fabian: Und Emmi, bist du schon aufgeregt?
     Fabian: Dann kannst ausschlafen.
 -> Em_Past: Ein bisschen, aber das ist ja normal.
     Fabian: Ha! Das sagt Michi auch immer.
+    Fabian: Keine Angst, für dich gibts eh nicht so viel zu tun.
+Em_Past: Warum nimmst du mich eigentlich so spontan mit?
 <<nextBox ComicBoxView Fabian>>
-Fabian: Das vergeht sicher, so was Schweres geb ich dir eh nicht auf.
 
 <<nextBookmark ScrollRect>>
+
+
+<<nextBox ComicBoxView Fabian>>
+Fabian: Der Bursch, kann leider nicht.
+Fabian: Und für dich ist es ja auch keine schlechte Übung.
 
 ->Em_Past: Michi ist also krank?
     Fabian: Nein, nein, der Junge hat heute Führerscheinprüfung.
     Fabian: Von einer Erkältung würd der sich nicht unterkriegen lassen.
-->Em_Past: Warum nimmst du mich so spontan mit?
-    Fabian: Der Bursch, unser Lehrling, kann leider nicht mit.
-    Fabian: Und für dich ist es ja auch keine schlechte Übung.
+->Em_Past: So cool das ich dabei sein darf!
+    Fabian: Vielleicht nehm ich dich ja öfter mit, wenn du heute brav bist.
+
 <<nextBox ComicBoxView Fabian>>
 Fabian: Du bist ja erst seit einer Woche da.
 <<nextBox ComicBoxView Fabian>>
--> Em_Past: Eigentlich ja schon 3, erinnerst du dich nicht?
-    Fabian: Ahh, ja bei uns ist grad viel los, da vergisst man leicht.
--> Em_Past: ... ja so in etwa
+-> Em_Past: Eigentlich schon seit drei...
+    Fabian: Ach ja. Bei so viel Stress kommt man leicht durcheinander.
+-> Em_Past: … so ungefähr.
 
-Fabian: Das ist eine tolle Gelegenheit, ...
-Fabian: dann verbringst du dein ganzes Praktikum nicht in der Firma.
+Fabian: Heute kannst du dich austoben...
+Fabian: dann musst du nicht die ganze zeit in der Firma hocken.
 Em_Past: Der chef gibt mir ja immer so trockene Büroarbeit auf-
 Fabian: Nimms als Kompliment. Du bist so ordentlich, der Bursch könnt das gar nicht.
 <<nextBox ComicBoxView Fabian>>
@@ -96,74 +102,28 @@ title: SC1_Act2_Conv2
 tags:
 ---
 
-Em_Past: Das am Rücksitz ist eine Videokamera, oder?
-Fabian: Ja, für ein kurzes Interview mit dem Kunden, nichts komplexes.
+Em_Past: Ist das eine Blackmagic Filmkamera?
+Fabian: Na du kennst dich aber aus. 
+Fabian: Ja, für ein kurzes Interview mit dem Kunden.
 Fabian: Der Bursch hätt dir zeigen können wie sie funktioniert, der macht das schon länger.
 <<nextBox ComicBoxView Fabian>>
-Fabian: Sonst machst du heute einfach Fotos.
-<<nextBox ComicBoxView Fabian>>
--> Em_Past: Ich- werd mein Bestes versuchen...
-    Fabian: Engagiert, das ist gut.
-    Fabian: Dann hab ich bald weniger Arbeit, wenn ihr beide das könnt.
--> Em_Past: Mit dem hab ich eh schon gearbeitet
-    Fabian: Ach echt?
-    Fabian: Vielleicht kann ich mir von dir ja was abschaun.
+Em_Past: Darf ich die auch mal verwenden?
+Fabian: Da müsst ich erst mit Andi reden, ist nämlich seine. 
+Fabian: Bleib du beim fotografieren.
+Em_Past: Andi? Den kenn ich gar nicht.
 
-Fabian: Weißt du, Video ist nicht unser Ding, ...
-Fabian: Das macht normalerweise der Andi
-<<nextBox ComicBoxView all>>
-Em_Past: Ein Kollege? Den kenn ich gar nicht.
-Fabian: Ein Bekannter. Der hat sich mit Video selbständig gemacht.
-Fabian: Der fotografiert auch oft für uns.
+Fabian: Ein Kollege. Der hat sich mit Video selbständig gemacht und filmt öfter für uns 
+Fabian: vielleicht kannst du ihm ja mal zuschauen.
+
+Em_Past: Von meinen Filmen leben können, das will ich auch mal.
+Fabian: Ambitioniert! Das gefällt mir.
+
+Fabian: Wir brauchen eh mehr Frauen in der Branche
+Fabian: schön dass sich Mädchen heute mehr zutrauen.
+
 <<nextBox ComicBoxView all>>
 <<nextBookmark ScrollRect>>
 <<forceScrollToEndpoint ScrollRect>>
-Em_Past: Vom Filmen leben, das will ich auch mal können.
-Fabian: Dann streng dich heute besser an, dann nehmen wir dich zum nächsten Dreh mit.
-
-
-===
-
-title: SC1_Act2_Conv3
-tags:
----
-
-Em_Past: Klingt wie ein cooler Typ der Andi.
-Fabian: Naja... er ist etwas...
-Fabian: sagen wir eigen.
-<<nextBox ComicBoxView Fabian>>
-Fabian: Aber so sind kreative oft.
-<<nextBox ComicBoxView Fabian>>
--> Em_Past: Das hört man oft über Kreative, ja
-    Fabian: Kann man nichts machen...
-    Fabian: Bleib so wie du bist.
--> Em_Past: Also muss ich anstrengend sein um in der Branche was zu reißen?
-    Fabian: Nein nein, bleib so wie du bist.
-Fabian: Du machst ja gute Arbeit.
-<<nextBox ComicBoxView Fabian>>
--> Em_Past: Man tut sein bestes. Gibt sicher Leute, die das besser können.
--> Das ist schön zu hören, danke
--> Ich hoffe das reicht...
-<<nextBookmark ScrollRect>>
-Fabian: Du bringst frischen Wind ins Büro.
-<<nextBox ComicBoxView Fabian>>
--> Em_Past: Schleimer, ich bin ja nicht die erste Praktikantin.
--> Em_Past: Wie meinst du das?
-Fabian: Bis auf die Mädels in der Buchhaltung gibt es einfach wenig Frauen im Betrieb.
-<<nextBox ComicBoxView Fabian>>
-Fabian: Und du weist ja wie die drauf sind...
-Fabian: Da find ichs einfach toll, dass sich da was tut.
-<<nextBox ComicBoxView Fabian>>
-Fabian: Ist ja längst überfällig.
-<<nextBox ComicBoxView Em_Past>>
-<<forceScrollToEndpoint ScrollRect>>
-Em_Past: Woran liegt das meinst du?
-Em_Past: Das es so lange gedauert hat?
-<<nextBox ComicBoxView Fabian>>
-Fabian: Hm... schwierig
-Fabian: Auf jedenfall bin ich froh -
-<<nextBox ComicBoxView Fabian>>
-Fabian: Dass sich Mädchen heute mehr zutrauen.
 
 ===
 
