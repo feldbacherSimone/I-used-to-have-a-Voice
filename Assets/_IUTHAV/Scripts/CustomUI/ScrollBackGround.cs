@@ -32,6 +32,8 @@ namespace _IUTHAV.Scripts.CustomUI {
         [SerializeField] private int currentBmIndex;
         [SerializeField] private Bookmark[] bookmarks;
 
+        [SerializeField] private Animator scrollIndicator;
+
         [Space(10)] [SerializeField] private bool isDebug;
 
         
@@ -108,6 +110,8 @@ namespace _IUTHAV.Scripts.CustomUI {
                 currentBmIndex++;
                 StrechBackground();
                 SetTriggeredStateData();
+                
+                scrollIndicator.Play("On");
             }
             else {
                 Log("No more bookmarks to iterate through!");
@@ -120,18 +124,30 @@ namespace _IUTHAV.Scripts.CustomUI {
             scrollRect.enabled = false;
             _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, bookmarks[currentBmIndex].endpoint-canvasRect.rect.height);
             StartCoroutine(MoveToYLocation(false));
+            
+            scrollIndicator.Play("Off");
+            
         }
+        
         [YarnCommand("forceScrollAndLock")]
         public void ForceScrollAndLock() {
 
             scrollRect.enabled = false;
             _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, bookmarks[currentBmIndex].endpoint-canvasRect.rect.height);
             StartCoroutine(MoveToYLocation(true));
+            
+            scrollIndicator.Play("Off");
+            
         }
         [YarnCommand("unlock")]
         public void ToggleManualScroll(bool enable) {
 
             scrollRect.enabled = enable;
+        }
+
+        [YarnCommand("showIndicator")]
+        public void ShowIndicator() {
+            scrollIndicator.Play("On");
         }
 
 #endregion
@@ -157,6 +173,7 @@ namespace _IUTHAV.Scripts.CustomUI {
         private void UpdateScrollStateData(Vector2 pos) {
             
             _mCurrentTriggeredState?.UpdateData(bgRect.anchoredPosition.y);
+            
         }
 
         private void StrechBackground() {

@@ -357,7 +357,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                 continueButton.SetActive(true);
                 
                 continueButton.transform.SetPositionAndRotation(
-                    _mConversations[_mCurrentIndex].GetContinueButtonPosition(_mCurrentChar),
+                    GetCurrentBox().GetContinueButtonPosition(_mCurrentChar),
                     GetCurrentBox().transform.rotation
                 );
             }
@@ -603,8 +603,9 @@ namespace _IUTHAV.Scripts.Dialogue {
         }
         
         private void OptionViewWasSelected(DialogueOption option) {
-            _mConversations[_mCurrentIndex].ActivateBox(_mCurrentChar);
+            //_mConversations[_mCurrentIndex].ActivateBox(_mCurrentChar);
             OnOptionSelected(option.DialogueOptionID);
+            UserRequestedViewAdvancement();
         }
         
 #endregion

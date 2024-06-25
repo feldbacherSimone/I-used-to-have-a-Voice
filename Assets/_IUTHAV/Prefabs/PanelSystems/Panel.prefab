@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 603061148176835456}
   - component: {fileID: 4676958556985342832}
   - component: {fileID: 8254823183389079644}
+  - component: {fileID: 5254438900794527922}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -92,9 +93,33 @@ MonoBehaviour:
   movementPadding: {x: 0, y: 0, z: 0}
   cmCamGameObject: {fileID: 0}
   camTarget: {fileID: 0}
+  border: {fileID: 6528774128627729209}
+  borderColours: {fileID: 11400000, guid: ebe37b575caca28418f30e6608d1d02e, type: 2}
   panelCamera: {fileID: 0}
   isRendering: 0
   panelIsActive: 0
+--- !u!95 &5254438900794527922
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385227724739882469}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99370dfad5b29a74d8dd706b7e26de4a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &4275285835004083572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -203,6 +228,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5630120710773591636, guid: f10802ab71a53314cadc7c5b05d9d723,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7047571198757092941, guid: f10802ab71a53314cadc7c5b05d9d723,
         type: 3}
       propertyPath: m_Name
@@ -216,6 +246,12 @@ PrefabInstance:
 --- !u!224 &2854434447349428437 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2073943712039947681, guid: f10802ab71a53314cadc7c5b05d9d723,
+    type: 3}
+  m_PrefabInstance: {fileID: 4275285835004083572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6528774128627729209 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7047571198757092941, guid: f10802ab71a53314cadc7c5b05d9d723,
     type: 3}
   m_PrefabInstance: {fileID: 4275285835004083572}
   m_PrefabAsset: {fileID: 0}

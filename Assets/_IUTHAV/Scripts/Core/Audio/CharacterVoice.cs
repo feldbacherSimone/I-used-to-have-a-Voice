@@ -22,7 +22,7 @@ namespace _IUTHAV.Scripts.Core.Audio
         public AudioClip TryGetClip()
         {
             timeSinceLastSound = Time.unscaledTime - lastTime;
-            print($"Unscaled Time: {Time.unscaledTime}, Time since last sound: {timeSinceLastSound}" );
+            //print($"Unscaled Time: {Time.unscaledTime}, Time since last sound: {timeSinceLastSound}" );
             if (timeSinceLastSound > 1/soundFrequency)
             {
                 lastTime = Time.unscaledTime;

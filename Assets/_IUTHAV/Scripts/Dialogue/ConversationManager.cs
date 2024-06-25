@@ -105,18 +105,6 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
             
         }
-
-        public Vector3 GetContinueButtonPosition(string cName) {
-            Vector3[] v = new Vector3[4];
-            _comicBoxes[cName].CurrentBox().GetComponent<RectTransform>().GetWorldCorners(v);
-
-            if (CurrentCharacterBox(cName).PlaceContinueButtonRight) {
-                return v[0];
-            }
-            else {
-                return v[3];
-            }
-        }
         
         public CharacterBox CurrentCharacterBox(string cName) {
             if (_comicBoxes.TryGetValue(cName, out var box)) {

@@ -56,13 +56,14 @@ tags:
 Fabian: Und Emmi, bist du schon aufgeregt?
 <<nextBox ComicBoxView Fabian>>
 -> Em_Past: *gähn* für solche Gefühle ist es noch zu früh.
+    Em_Past: *gähn* für solche Gefühle ist es noch zu früh.
     Fabian: Weniger Zeit mit Hübschmachen verbringen!
     Fabian: Dann kannst ausschlafen.
 -> Em_Past: Ein bisschen, aber das ist ja normal.
+    Em_Past: Ein bisschen, aber das ist ja normal.
     Fabian: Ha! Das sagt Michi auch immer.
     Fabian: Keine Angst, für dich gibts eh nicht so viel zu tun.
 Em_Past: Warum nimmst du mich eigentlich so spontan mit?
-<<nextBox ComicBoxView Em_Past>>
 
 <<nextBookmark ScrollRect>>
 
@@ -72,17 +73,21 @@ Fabian: Der Bursch, kann leider nicht.
 Fabian: Und für dich ist es ja auch keine schlechte Übung.
 <<nextBox ComicBoxView Fabian>>
 ->Em_Past: Michi ist also krank?
+    Em_Past: Michi ist also krank?
     Fabian: Nein, nein, der Junge hat heute Führerscheinprüfung.
     Fabian: Von einer Erkältung würd der sich nicht unterkriegen lassen.
 ->Em_Past: So cool das ich dabei sein darf!
+    Em_Past: So cool das ich dabei sein darf!
     Fabian: Vielleicht nehm ich dich ja öfter mit, wenn du heute brav bist.
 
-<<nextBox ComicBoxView Fabian>>
+<<nextBox ComicBoxView all>>
 Fabian: Du bist ja erst seit einer Woche da.
 <<nextBox ComicBoxView Fabian>>
 -> Em_Past: Eigentlich schon seit drei...
+    Em_Past: Eigentlich schon seit drei...
     Fabian: Ach ja. Bei so viel Stress kommt man leicht durcheinander.
 -> Em_Past: … so ungefähr.
+    Em_Past: … so ungefähr.
 
 Fabian: Heute kannst du dich austoben...
 Fabian: dann musst du nicht die ganze zeit in der Firma hocken.
@@ -92,8 +97,10 @@ Fabian: Nimms als Kompliment. Du bist so ordentlich, der Bursch könnt das gar n
 Fabian: Der ist besser im Hand anlegen.
 <<nextBox ComicBoxView Fabian>>
 -> Em_Past: Equipment einladen schaff ich ja auch noch.
+    Em_Past: Equipment einladen schaff ich ja auch noch.
     Fabian: Das ganze Kamerazeug?
 -> Em_Past: So ordentlich bin ich ja garnicht...
+    Em_Past: So ordentlich bin ich ja garnicht...
     Fabian: ...
 
 ===
@@ -201,6 +208,7 @@ Andi: Achso
 Andi: hehe, war ja nur ein Schmäh.
 <<nextBox ComicBoxView Andi>>
 -> Em_Past: ...haha ich versteh
+    Em_Past: ...haha ich versteh
 -> Em_Past: Redest du gern so über 15 jährige?
 -> Em_Past: Geh dich vergraben Schröckauer
 

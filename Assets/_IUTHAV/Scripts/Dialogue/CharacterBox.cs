@@ -23,6 +23,8 @@ namespace _IUTHAV.Scripts.Dialogue {
         protected RectTransform _boxRectTransform;
         
         public RectTransform BoxRectTransform => _boxRectTransform;
+        
+        [SerializeField] protected GameObject bubble;
         public bool PlaceContinueButtonRight => placeContinueButtonRight;
 
         [SerializeField] protected CanvasGroup _canvasGroup;
@@ -56,6 +58,18 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
             
         }
+        
+        public Vector3 GetContinueButtonPosition(string cName) {
+            Vector3[] v = new Vector3[4];
+            bubble.GetComponent<RectTransform>().GetWorldCorners(v);
+
+            if (PlaceContinueButtonRight) {
+                return v[0];
+            }
+            else {
+                return v[3];
+            }
+        }
 
         protected void AutoAssignName() {
 
@@ -70,6 +84,10 @@ namespace _IUTHAV.Scripts.Dialogue {
             RectTransform rectTransform = GetComponent<RectTransform>();
 
             _boxRectTransform = rectTransform;
+
+            if (bubble == null) {
+                bubble = gameObject.transform.GetChild(0).transform.GetChild(0).gameObject;
+            }
 
             if (_canvasGroup == null && gameObject.transform.childCount > 0) {
                 _canvasGroup = gameObject.GetComponent<CanvasGroup>();

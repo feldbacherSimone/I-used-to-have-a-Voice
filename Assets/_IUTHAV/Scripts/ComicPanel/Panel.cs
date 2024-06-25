@@ -18,6 +18,9 @@ namespace _IUTHAV.Scripts.ComicPanel {
 
         [SerializeField] private GameObject cmCamGameObject;
         [SerializeField] private Transform camTarget;
+        [SerializeField] private GameObject border;
+        [SerializeField] private BorderColours borderColours;
+        
         public Camera panelCamera;
         [HideInInspector] public bool isRendering;
         public bool panelIsActive;
@@ -40,6 +43,7 @@ namespace _IUTHAV.Scripts.ComicPanel {
         private void Awake() {
         
             ConfigureCollider2D();
+            border.GetComponent<Image>().color = borderColours.borderBaseColour;
 
         }
         private void Start()
@@ -94,17 +98,25 @@ namespace _IUTHAV.Scripts.ComicPanel {
         }
         public void OnPointerEnter(PointerEventData eventData)
         {
-            scrollRect.enabled = false;
+            //scrollRect.enabled = false;
             panelIsActive = true;
+
+            if (border.GetComponent<Image>().color != borderColours.borderHighlightColour) {
+                border.GetComponent<Image>().color = borderColours.borderSelectionColour;
+            }
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            scrollRect.enabled = true;
+            //scrollRect.enabled = true;
             panelIsActive = false;
 
             if (currentHitObject != null) IterateSelectableComponents(currentHitObject, false);
             currentHitObject = null;
+            
+            if (border.GetComponent<Image>().color != borderColours.borderHighlightColour) {
+                border.GetComponent<Image>().color = borderColours.borderBaseColour;
+            }
         }
 
         public void SetReferences(GameObject _cmCamGameObj, Transform _cmCamTarget, Camera _panelCamera) { 
@@ -131,6 +143,14 @@ namespace _IUTHAV.Scripts.ComicPanel {
             if (panelCamera != null) panelCamera.enabled = enable;
             isRendering = enable;
 
+        }
+
+        public void HighlightBorder() {
+            border.GetComponent<Image>().color = borderColours.borderHighlightColour;
+        }
+
+        public void ResetBorderColour() {
+            border.GetComponent<Image>().color = borderColours.borderBaseColour;
         }
 #endregion
 

@@ -7,7 +7,7 @@ namespace _IUTHAV.Scripts.Dialogue {
 
 
         [SerializeField] private DragUIOptionsManager question;
-        [SerializeField] private GameObject bubble;
+        
         [SerializeField] private CanvasGroup questionCanvasGroup;
 
         public DragUIOptionsManager Question => question;
@@ -61,7 +61,7 @@ namespace _IUTHAV.Scripts.Dialogue {
 
                 group.alpha = x;
                 
-                bubble.transform.localScale = Vector3.Scale(initialScale, new Vector3(x, x, x));
+                if (group == _canvasGroup) bubble.transform.localScale = Vector3.Scale(initialScale, new Vector3(x, x, x));
                 
                 t += Time.deltaTime;
                 yield return null;
