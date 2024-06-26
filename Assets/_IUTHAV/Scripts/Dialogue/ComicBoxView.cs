@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using _IUTHAV.Scripts.Core.Input;
+using _IUTHAV.Scripts.CustomUI;
 using _IUTHAV.Scripts.Dialogue.Option;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Yarn.Markup;
 using Yarn.Unity;
 
@@ -77,7 +79,8 @@ namespace _IUTHAV.Scripts.Dialogue {
         [SerializeField] private ConversationManager[] conversations;
         [Space(10)] [SerializeField] private bool isDebug;
 
-        [SerializeField] private CharacterSounds characterSounds; 
+        [SerializeField] private CharacterSounds _characterSounds;
+        [SerializeField] private CustomCursor _customCursor;
         
         private Dictionary<string, CharacterController> _mCharControllers;
         private List<ConversationManager> _mConversations;
@@ -108,7 +111,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                 InputController.OnCustomClick += OnContinueClicked;
             }
 
-            onCharacterTyped.AddListener(characterSounds.RequestVoiceSound);
+            onCharacterTyped.AddListener(_characterSounds.RequestVoiceSound);
         }
 
         private void Reset() {
@@ -321,7 +324,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
             
             if (ShouldCharacterWaitForContinue(ContinueButtonTiming.PreLine)) {
-                    
+                _customCursor.SetCursor(CursorState.Talk);    
                 if (continueButton != null) {
                     
                     continueButton.SetActive(true);
@@ -362,6 +365,12 @@ namespace _IUTHAV.Scripts.Dialogue {
                 );
             }
 
+            //Change Cursor state 
+            if (ShouldCharacterWaitForContinue(ContinueButtonTiming.PostLine) && ContinueOnClickAnywhere)
+            {
+                _customCursor.SetCursor(CursorState.Talk);
+            }
+            
             // If we have a hold time, wait that amount of time, and then
             // continue.
             if (holdTime > 0)
@@ -380,6 +389,9 @@ namespace _IUTHAV.Scripts.Dialogue {
                 yield break;
             }
 
+            //Set Cursor Back to Default
+            _customCursor.SetCursor(CursorState.Default); 
+            
             // Our presentation is complete; call the completion handler.
             onDialogueLineFinished();
         }
@@ -397,6 +409,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                 return;
             }
 
+            _customCursor.SetCursor(CursorState.Default); 
             // we may want to change this later so the interrupted
             // animation coroutine is what actually interrupts
             // for now this is fine.
@@ -683,7 +696,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                 _canvasGroup = box.BoxCanvasGroup;
                 lineText = box.Text;
 
-                characterSounds.SetCharacter(newCharacter);
+                _characterSounds.SetCharacter(newCharacter);
                 
                 _mCurrentChar = newCharacter;
                 //Log(box.gameObject.name + _mCurrentChar + " | " + _mCurrentIndex);
