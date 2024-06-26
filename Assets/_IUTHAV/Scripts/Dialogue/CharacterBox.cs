@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace _IUTHAV.Scripts.Dialogue {
@@ -27,7 +28,7 @@ namespace _IUTHAV.Scripts.Dialogue {
         [SerializeField] protected GameObject bubble;
         public bool PlaceContinueButtonRight => placeContinueButtonRight;
 
-        [SerializeField] protected CanvasGroup _canvasGroup;
+        [FormerlySerializedAs("CanvasGroup")] public CanvasGroup BoxCanvasGroup;
 
         protected Vector3 initialScale;
         
@@ -50,10 +51,10 @@ namespace _IUTHAV.Scripts.Dialogue {
 
             if (enable == IsActive) return;
 
-            if (_canvasGroup != null) {
+            if (BoxCanvasGroup != null) {
                 
                 IsActive = enable;
-                StartCoroutine(FadeBox(enable, _canvasGroup));
+                StartCoroutine(FadeBox(enable, BoxCanvasGroup));
                 
             }
             
@@ -89,19 +90,19 @@ namespace _IUTHAV.Scripts.Dialogue {
                 bubble = gameObject.transform.GetChild(0).transform.GetChild(0).gameObject;
             }
 
-            if (_canvasGroup == null && gameObject.transform.childCount > 0) {
-                _canvasGroup = gameObject.GetComponent<CanvasGroup>();
+            if (BoxCanvasGroup == null && gameObject.transform.childCount > 0) {
+                BoxCanvasGroup = gameObject.GetComponent<CanvasGroup>();
             }
 
-            if (_canvasGroup != null) {
+            if (BoxCanvasGroup != null) {
             
-                _canvasGroup.alpha = 0;
+                BoxCanvasGroup.alpha = 0;
                 
-                _canvasGroup.blocksRaycasts = false;
+                BoxCanvasGroup.blocksRaycasts = false;
 
                 initialScale = transform.localScale;
                 
-                _canvasGroup.transform.localScale = Vector3.zero;
+                BoxCanvasGroup.transform.localScale = Vector3.zero;
                 
             }
             

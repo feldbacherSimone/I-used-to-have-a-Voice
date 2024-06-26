@@ -89,7 +89,7 @@ namespace _IUTHAV.Scripts.Dialogue {
         private bool _mClickedContinue;
         private bool _mOverrideContinue;
 
-        private DragUIOptionsManager _mCurrentOption;
+        private QuestionBox _mCurrentQuestionBox;
         // The method we should call when an option has been selected.
         Action<int> OnOptionSelected;
 
@@ -112,7 +112,7 @@ namespace _IUTHAV.Scripts.Dialogue {
         }
 
         private void Reset() {
-            _canvasGroup = conversations[0].CurrentCharacterBox(conversations[0].GetFirstCharacter()).GetComponent<CanvasGroup>();
+            _canvasGroup = conversations[0].CurrentCharacterBox(conversations[0].GetFirstCharacter()).BoxCanvasGroup;
         }
 
         private void OnDisable() {
@@ -203,7 +203,7 @@ namespace _IUTHAV.Scripts.Dialogue {
 
         /// <inheritdoc/>
         public override void RunLine(LocalizedLine dialogueLine, Action onDialogueLineFinished) {
-
+            
             _lastLine = dialogueLine;
 
             if (dialogueLine.CharacterName != null) {
@@ -568,7 +568,8 @@ namespace _IUTHAV.Scripts.Dialogue {
 #region OptionFunctions
 
         public override void RunOptions(DialogueOption[] dialogueOptions, Action<int> onOptionSelected) {
-
+            
+            Log("Running Option: " + dialogueOptions[0].Line.Text);
             if (_lastLine.CharacterName != null) {
                 SetCurrentCharacterDialogue(_lastLine.CharacterName);
             }
@@ -578,34 +579,35 @@ namespace _IUTHAV.Scripts.Dialogue {
             
 
             // If we don't already have enough option views, create more
-            var box = _mConversations[_mCurrentIndex].GetCurrentQuestionBox(_mCurrentChar);
-            _mCurrentOption = box.Question;
-            box.EnableQuestions();
+            _mCurrentQuestionBox = _mConversations[_mCurrentIndex].GetCurrentQuestionBox(_mCurrentChar);
+            _mCurrentQuestionBox.EnableQuestions();
 
-            if (_mCurrentOption == null) {
+            if (_mCurrentQuestionBox == null) {
                 LogWarning("Not questionDropBoxes in " + GetCurrentBox().gameObject.name + "have been found!");
                 return;
             }
             
-            while (dialogueOptions.Length > _mCurrentOption.GetOptionViewCount()) {
+            while (dialogueOptions.Length > _mCurrentQuestionBox.Question.GetOptionViewCount()) {
                 
-                var optionView = _mCurrentOption.CreateNewOptionView();
+                var optionView = _mCurrentQuestionBox.Question.CreateNewOptionView();
                 optionView.gameObject.SetActive(false);
             }
             
-            Log(_mCurrentOption.gameObject.name);
+            Log(_mCurrentQuestionBox.gameObject.name);
             // Set up all of the option views
-            _mCurrentOption.SetupOptionViews(this.palette, dialogueOptions, showUnavailableOptions);
-            _mCurrentOption.OnOptionSelected = OptionViewWasSelected;
+            _mCurrentQuestionBox.Question.SetupOptionViews(this.palette, dialogueOptions, showUnavailableOptions);
+            _mCurrentQuestionBox.Question.OnOptionSelected = OptionViewWasSelected;
 
             // Note the delegate to call when an option is selected
             OnOptionSelected = onOptionSelected;
+            
         }
         
         private void OptionViewWasSelected(DialogueOption option) {
-            //_mConversations[_mCurrentIndex].ActivateBox(_mCurrentChar);
+
             OnOptionSelected(option.DialogueOptionID);
-            UserRequestedViewAdvancement();
+            _mCurrentQuestionBox.EnableQuestions(false);
+            
         }
         
 #endregion
@@ -678,7 +680,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             if (!newCharacter.Equals(_mCurrentChar) || _mPreviousConversationIndex != _mCurrentIndex) {
 
                 var box = _mConversations[_mCurrentIndex].CurrentCharacterBox(newCharacter);
-                _canvasGroup = box.GetComponent<CanvasGroup>();
+                _canvasGroup = box.BoxCanvasGroup;
                 lineText = box.Text;
 
                 characterSounds.SetCharacter(newCharacter);

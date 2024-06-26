@@ -241,6 +241,9 @@ MonoBehaviour:
   text: {fileID: 942470621075522684}
   showCharacterName: 0
   palette: {fileID: 0}
+  onSelectedWhenBlocked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5562721439989539595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +285,6 @@ GameObject:
   - component: {fileID: 1613042158928027591}
   - component: {fileID: 2131332036184545776}
   - component: {fileID: 5817320409769408416}
-  - component: {fileID: 7304691291956678725}
   m_Layer: 5
   m_Name: CNAME__QuestionBox
   m_TagString: Untagged
@@ -337,22 +339,10 @@ MonoBehaviour:
   placeContinueButtonRight: 0
   hideBoxOnBoxChange: 1
   IsActive: 0
-  _canvasGroup: {fileID: 5527270608324486082}
-  question: {fileID: 4679287460027964936}
   bubble: {fileID: 2226247287030248605}
+  BoxCanvasGroup: {fileID: 0}
+  question: {fileID: 4679287460027964936}
   questionCanvasGroup: {fileID: 3456941452876738096}
---- !u!225 &7304691291956678725
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000599120207864592}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &2226247287030248605
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,6 +746,9 @@ MonoBehaviour:
   text: {fileID: 2134708163263611294}
   showCharacterName: 0
   palette: {fileID: 0}
+  onSelectedWhenBlocked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6814335621146084133
 MonoBehaviour:
   m_ObjectHideFlags: 0

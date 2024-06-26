@@ -81,7 +81,7 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
         }
 
         protected override void OnDropElementDropped(DragAndDropUIElement dropElement) {
-
+            Debug.Log(gameObject.name + " received " + dropElement.gameObject.name);
             if (dropElement.gameObject.TryGetComponent(out DragableUIOptionView optionView)) {
 
                 switch (optionView.OptionType) {
