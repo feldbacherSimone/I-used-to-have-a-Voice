@@ -100,6 +100,7 @@ namespace _IUTHAV.Scripts.ComicPanel {
         {
             //scrollRect.enabled = false;
             panelIsActive = true;
+            CameraMovement.InitProjection(cmCamGameObject.transform, defaultPos);
 
             if (border.GetComponent<Image>().color != borderColours.borderHighlightColour) {
                 border.GetComponent<Image>().color = borderColours.borderSelectionColour;
