@@ -2,16 +2,12 @@ using UnityEngine;
 
 namespace _IUTHAV.Scripts.Tilemap {
     public class TileRotationController : TileController {
-        
-        [SerializeField] private float targetXRotation;
-        [SerializeField] private float targetYRotation;
-        [SerializeField] private float targetZRotation;
 
 #region Unity Functions
 
         private void Awake() {
 
-            Configure(new Vector3(targetXRotation, targetYRotation, targetZRotation));
+            Configure();
         }
 
 #endregion
@@ -20,26 +16,27 @@ namespace _IUTHAV.Scripts.Tilemap {
 
         protected override void UpdateTile() {
         
-            controlPoint.localRotation = Quaternion.RotateTowards(controlPoint.localRotation,
-             Quaternion.Euler(_mCurrentEndPoint),
+            _mControlPoint.localRotation = Quaternion.RotateTowards(_mControlPoint.localRotation,
+             _mCurrentEndPoint.localRotation,
              scrollSpeed * Time.deltaTime);
-
-             if (controlPoint.localRotation == Quaternion.Euler(_mCurrentEndPoint)) {
+            
+             if (_mControlPoint.localRotation == _mCurrentEndPoint.localRotation) {
                 if (_mTiles.Count <= maxTiles && maxTiles != 0) {
                     SpawnInstance();
                 }
 
                 if (_mTiles.Count > maxTiles) {
+                    
                     if (!DespawnInstance()) return;
                 }
-                controlPoint.localRotation = Quaternion.identity;
+                _mControlPoint.localRotation = Quaternion.identity;
              }
 
              var t = _mTiles.ToArray();
              
-             var targetRotation = controlPoint.localRotation.eulerAngles;
+             var targetRotation = _mControlPoint.localRotation.eulerAngles;
              for (int i = 0, j = t.Length-1; i < t.Length; i++, j--) {
-                 Vector3 rot = _mCurrentEndPoint * i + targetRotation;
+                 Vector3 rot = _mCurrentEndPoint.localRotation.eulerAngles * i + targetRotation;
                  t[j].transform.localRotation = Quaternion.Euler(rot);
              }
         }

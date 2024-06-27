@@ -45,9 +45,9 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RimSharpness: 1
-    - _ShadowCutoff: 0
-    - _Smoothness: 2.9
+    - _RimSharpness: 0.36
+    - _ShadowCutoff: 0.01
+    - _Smoothness: 2.69
     - _Specular: 1
     m_Colors:
     - _AmbientColor: {r: 0, g: 0, b: 0, a: 1}

@@ -81,7 +81,7 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
         }
 
         protected override void OnDropElementDropped(DragAndDropUIElement dropElement) {
-            Debug.Log(gameObject.name + " received " + dropElement.gameObject.name);
+
             if (dropElement.gameObject.TryGetComponent(out DragableUIOptionView optionView)) {
 
                 switch (optionView.OptionType) {
@@ -91,28 +91,35 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
                         _mOption = optionView.Option;
                         IsFull = true;
                 
-                        dropElement.SnapToTarget(transform.position, () => {
-                            dropElement.currentflag = DragUIElement.FLAG_LOCK;
-                            this.InvokeOptionSelected();
-                            dropElement.StartValidDropPointSequence();
-                        });
+                        //dropElement.SnapToTarget(transform.position, () => {
+                        //    dropElement.currentflag = DragUIElement.FLAG_LOCK;
+                        //    this.InvokeOptionSelected();
+                        //    dropElement.StartValidDropPointSequence();
+                        //});
+                        InvokeOptionSelected();
+                        dropElement.StartValidDropPointSequence();
+                        dropElement.gameObject.SetActive(false);
                         
                         break;
                     
                     case OptionType.DestroyOnDrop:
                     
-                        dropElement.SnapToTarget(transform.position, () => {
-                            dropElement.currentflag = DragUIElement.FLAG_LOCK;
-                            dropElement.StartDestructionSequence();
-                        });
+                        //dropElement.SnapToTarget(transform.position, () => {
+                        //    dropElement.currentflag = DragUIElement.FLAG_LOCK;
+                        //    dropElement.StartDestructionSequence();
+                        //});
+                        InvokeOptionSelected();
+                        dropElement.StartDestructionSequence();
+                        dropElement.gameObject.SetActive(false);
                         Log("Chose Invalid Option");
+                        break;
+                    
+                    default:
+                        dropElement.StartInvalidDropPointSequence();
+                        Log("Invalid DragUIelement [" + dropElement.gameObject.name + "]");
                         break;
                 }
 
-            }
-            else {
-                dropElement.StartInvalidDropPointSequence();
-                Log("Invalid DragUIelement [" + dropElement.gameObject.name + "]");
             }
             
         }

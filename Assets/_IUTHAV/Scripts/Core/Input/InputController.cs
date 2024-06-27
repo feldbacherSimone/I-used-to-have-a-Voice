@@ -17,6 +17,8 @@ namespace _IUTHAV.Scripts.Core.Input {
 
         public static bool IsConfigured;
 
+        public static bool IsHoldingElement;
+
         public static void Configure() {
 
             if (IsConfigured) return;

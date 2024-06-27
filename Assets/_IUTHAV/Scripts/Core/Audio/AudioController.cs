@@ -158,7 +158,7 @@ namespace _IUTHAV.Scripts.Core.Audio
 
         public static void UpdateMixerFX() {
             //TODO: change to Log function, so there is a smoother transition
-            _masterGroup.audioMixer.SetFloat(AudioGroupType.Master.ToString().ToLower() + "lowpasscuttofffreq",
+            _masterGroup.audioMixer.SetFloat(AudioGroupType.Master.ToString().ToLower() + "lowpasscutofffreq",
                 AudioFXController.Lowpasscutofffreq);
             _masterGroup.audioMixer.SetFloat(AudioGroupType.Master.ToString().ToLower() + "lowpassresonance",
                 AudioFXController.Lowpassresonance);
