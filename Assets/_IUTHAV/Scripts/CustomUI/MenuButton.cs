@@ -26,12 +26,7 @@ namespace _IUTHAV.Scripts.CustomUI
         }
 
      
-
-        protected override void Reset()
-        {
-            _rectTransform = GetComponent<RectTransform>();
-            basePosition = _rectTransform.anchoredPosition; 
-        }
+        
         private void Update()
         {
             // Oscillate between basePosition + moveAmount and basePosition - moveAmount

@@ -10,7 +10,7 @@ namespace _IUTHAV.Scripts.CustomUI
         public void SetCursor(CursorState cursorState)
         {
             Texture2D currrentTexture = GetCursorTexture(cursorState);
-            Cursor.SetCursor(currrentTexture, new Vector2(128, 128), CursorMode.Auto);
+            Cursor.SetCursor(currrentTexture, new Vector2(64, 64), CursorMode.Auto);
         }
 
         private Texture2D GetCursorTexture(CursorState cursorState)
