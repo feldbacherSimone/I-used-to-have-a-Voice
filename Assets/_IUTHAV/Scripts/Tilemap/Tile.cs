@@ -1,10 +1,14 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _IUTHAV.Scripts.Tilemap {
     public class Tile : MonoBehaviour {
 
         [SerializeField] private Transform endPoint;
+        [SerializeField] private GameObject tileObject;
+        [SerializeField] private bool animateTile = true;
 
         public Transform EndPoint => endPoint;
 
@@ -40,16 +44,13 @@ namespace _IUTHAV.Scripts.Tilemap {
 
             }
             
-        }
-
-        public Vector3 GetLocalPosEndpoint() {
-
-            return endPoint.localPosition;
-        }
-
-        public Quaternion GetLocalRotEndpoint() {
+            if (animateTile) StartCoroutine(AnimateTileMesh(true));
             
-            return endPoint.localRotation;
+        }
+
+        public Transform GetEndpointTransform() {
+            
+            return endPoint.transform;
         }
 
         public void DestroyTile() {
@@ -59,6 +60,25 @@ namespace _IUTHAV.Scripts.Tilemap {
                 Destroy(obj);
             }
             
+            StopAllCoroutines();
+            
+        }
+        
+        private IEnumerator AnimateTileMesh(bool enable) {
+
+            float t = 0;
+            
+            Vector3 baseScale = enable ? Vector3.zero : tileObject.transform.localScale;
+            Vector3 targetScale = !enable ? Vector3.zero : tileObject.transform.localScale;
+
+            while (t < 4.0f) {
+
+                tileObject.transform.localScale = Vector3.Lerp(baseScale, targetScale, t / 4.0f);
+
+                t += Time.deltaTime;
+                yield return null;
+            }
+
         }
 
     }

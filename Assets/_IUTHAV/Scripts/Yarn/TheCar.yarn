@@ -163,6 +163,7 @@ Andi: Normalerweise schafft ihr ja nicht mal scharfe Fotos.
 Andi: Weder er noch du.
 Andi: Bin ich den Tussen aus der Buchhaltung zu teuer geworden, habts wen Billigeren gefunden huh?
 <<nextBox ComicBoxView Andi>>
+<<nextTile Street>>
 Fabian: Ach nein, das ist nur Vorübergehend.
 Fabian: Wir haben Unterstützung diesen Sommer
 <<nextBox ComicBoxView Fabian>>
@@ -230,13 +231,18 @@ tags:
 Fabian: Ich hab ja gesagt er ist eigen...
 <<nextBox ComicBoxView Fabian>>
 -> Em_Past: Er ist ein Hund
+    Em_Past: Er ist ein Hund
 -> Em_Past: Warum hast du nichts gesagt
+    Em_Past: Warum hast du nichts gesagt
 -> Em_Past: ...das hab ich gemerkt
+    Em_Past: ...das hab ich gemerkt
     Fabian: Aber seine Videos sind gut, da kann man sich nicht beschweren.
 Fabian: Irgendwie kommt man schon miteinander klar.
 <<nextBox ComicBoxView Fabian>>
 -> Em_Past: Das sagst du leicht
+    Em_Past: Das sagst du leicht
 -> Em_Past: Ich versteh.
+    Em_Past: Ich versteh.
     Fabian: Und du hast ihn wenigstens in Verlegenheit gebracht.
 Fabian: Der redet ja nur immer so.
 <<nextBox ComicBoxView Fabian>>

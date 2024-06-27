@@ -12,7 +12,7 @@ namespace _IUTHAV.Scripts.Core.Audio {
         private static float _currentFloor = 20f;
 
         public static IEnumerator FadeIn(AudioFXType fxType, float fadeTime, float floor = 20f) {
-            float currentTime = 0.1f;
+            float currentTime = 0.01f;
             _currentFloor = floor;
             
             while (currentTime < fadeTime) {
@@ -31,9 +31,10 @@ namespace _IUTHAV.Scripts.Core.Audio {
                         Masterechodecay = currentTime / fadeTime;
                         break;
                 }
+                
                 AudioController.UpdateMixerFX();
-                currentTime += 0.1f+Time.deltaTime;
-                yield return new WaitForSeconds(0.1f + Time.deltaTime);
+                currentTime += Time.deltaTime;
+                yield return null;
             }
             
             yield return null;
@@ -58,6 +59,7 @@ namespace _IUTHAV.Scripts.Core.Audio {
                         Masterechodecay = currentTime / fadeTime;
                         break;
                 }
+                
                 AudioController.UpdateMixerFX();
                 currentTime += 0.1f + Time.deltaTime;
                 yield return new WaitForSeconds(0.1f + Time.deltaTime);
