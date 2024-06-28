@@ -47,7 +47,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 32a9e506fa7fd914b9c8f2a486115ad1, type: 2}
+  m_Motion: {fileID: 4821032112211857846, guid: ba2af3b618d66764fa96331e3caa4c6b,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -59,7 +60,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AC_TheTrainEm2
+  m_Name: AC_TheTrainNorbert
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -96,7 +97,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 270, y: 50, z: 0}
+  m_EntryPosition: {x: 260, y: 60, z: 0}
   m_ExitPosition: {x: 620, y: 260, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -2414423335069759198}
