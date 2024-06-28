@@ -108,10 +108,9 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
                         //    dropElement.currentflag = DragUIElement.FLAG_LOCK;
                         //    dropElement.StartDestructionSequence();
                         //});
-                        InvokeOptionSelected();
                         dropElement.StartDestructionSequence();
                         dropElement.gameObject.SetActive(false);
-                        Log("Chose Invalid Option");
+                        Log("Chose Invalid Option and destruct");
                         break;
                     
                     default:
