@@ -2025,6 +2025,11 @@ PrefabInstance:
       propertyPath: cmCamGameObject
       value: 
       objectReference: {fileID: 1469401315}
+    - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
+      propertyPath: movementPadding.x
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2596,6 +2601,16 @@ PrefabInstance:
       propertyPath: cmCamGameObject
       value: 
       objectReference: {fileID: 1939255533}
+    - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
+      propertyPath: movementPadding.x
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
+      propertyPath: movementPadding.y
+      value: 0.63
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7429,7 +7444,7 @@ PrefabInstance:
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: movementPadding.x
-      value: 2.3
+      value: 2.69
       objectReference: {fileID: 0}
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
@@ -8593,17 +8608,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 574167556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73a8a5ae40ed41a5b5057623da9925cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 19c2d18c747e2e34fb01107690ee4169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPanicParameter: {fileID: 11400000, guid: 5fb37832873e0164fab7ca7fd3afca3d, type: 2}
-  maxPanicParameter: {fileID: 11400000, guid: be6fa099eb1d951449d09ad2f01eb2c0, type: 2}
-  profile: {fileID: 11400000, guid: c717370fdef75744cbf14234fa13807a, type: 2}
-  bufferProfileBase: {fileID: 11400000, guid: 71b64204080d1cf41a4a7ff9a78b79f3, type: 2}
-  bufferProfileCurrent: {fileID: 11400000, guid: 170dd53e28b00cd4ab2b9f4adc688286,
-    type: 2}
-  bufferProfileTarget: {fileID: 11400000, guid: 16f98ca0e3506304ca4adaed9c5165e7,
-    type: 2}
+  minPanicParameter: 0
+  maxPanicParameter: 1
+  profile: {fileID: 947927715}
 --- !u!1 &634312554
 GameObject:
   m_ObjectHideFlags: 0
@@ -11291,7 +11301,7 @@ PrefabInstance:
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: debug
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
@@ -11336,7 +11346,7 @@ PrefabInstance:
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: movementPadding.y
-      value: 1
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
@@ -11506,6 +11516,16 @@ PrefabInstance:
       propertyPath: cmCamGameObject
       value: 
       objectReference: {fileID: 938436118}
+    - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
+      propertyPath: movementPadding.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
+      propertyPath: movementPadding.y
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: updateRenderTextureSize
@@ -12096,6 +12116,11 @@ PrefabInstance:
     - target: {fileID: 5465215561112513519, guid: f02c9fd4b5153eb4d8f34211581a2667,
         type: 3}
       propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 878253248590578683, guid: 789021b8ea8b1a845ae7d81887b5b0ac,
+        type: 3}
+      propertyPath: hideBoxOnBoxChange
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2685271121137034989, guid: 789021b8ea8b1a845ae7d81887b5b0ac,
@@ -12968,7 +12993,7 @@ PrefabInstance:
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: movementPadding.y
-      value: 1.68
+      value: 6.27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14075,7 +14100,7 @@ PrefabInstance:
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.032999992
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -14085,42 +14110,47 @@ PrefabInstance:
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.000000011602454
+      value: 0.000000008954681
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000000004215506
+      value: -0.0000000030883447
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9398862
+      value: 0.94535595
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.34148777
+      value: 0.32604006
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.032999992
       objectReference: {fileID: 0}
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.000000011602454
+      value: 0.000000008954681
       objectReference: {fileID: 0}
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000000004215506
+      value: -0.0000000030883447
       objectReference: {fileID: 0}
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9398862
+      value: 0.94535595
       objectReference: {fileID: 0}
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.34148777
+      value: 0.32604006
       objectReference: {fileID: 0}
     - target: {fileID: 4102648885915324208, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -17154,6 +17184,11 @@ PrefabInstance:
       propertyPath: cmCamGameObject
       value: 
       objectReference: {fileID: 1962259255}
+    - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
+      propertyPath: movementPadding.y
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17529,7 +17564,7 @@ PrefabInstance:
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: movementPadding.x
-      value: 1.14
+      value: 1.83
       objectReference: {fileID: 0}
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
@@ -22953,6 +22988,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1109979706}
     m_Modifications:
+    - target: {fileID: 2854434447349428437, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 190.8405
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854434447349428437, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 35.9346
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854434447349428437, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.5826111
+      objectReference: {fileID: 0}
     - target: {fileID: 4676958556985342832, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: m_Texture
@@ -23075,9 +23125,29 @@ PrefabInstance:
       objectReference: {fileID: 848172702}
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
+      propertyPath: isRendering
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
       propertyPath: panelCamera
       value: 
       objectReference: {fileID: 848172703}
+    - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
+      propertyPath: defaultPos.x
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
+      propertyPath: defaultPos.y
+      value: 0.52000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
+      propertyPath: defaultPos.z
+      value: -2.0939999
+      objectReference: {fileID: 0}
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: cmCamGameObject
@@ -23085,8 +23155,13 @@ PrefabInstance:
       objectReference: {fileID: 848172704}
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
+      propertyPath: movementPadding.x
+      value: 7.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
+        type: 3}
       propertyPath: movementPadding.y
-      value: 2.09
+      value: 10.59
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24688,7 +24763,7 @@ PrefabInstance:
     - target: {fileID: 2725731569012774502, guid: 789021b8ea8b1a845ae7d81887b5b0ac,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1581
+      value: -1519
       objectReference: {fileID: 0}
     - target: {fileID: 2725731569012774502, guid: 789021b8ea8b1a845ae7d81887b5b0ac,
         type: 3}
@@ -29495,6 +29570,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fabian
       objectReference: {fileID: 0}
+    - target: {fileID: 8584764855158180269, guid: 8903f4ad49563d94c9a22cd0e1db2c22,
+        type: 3}
+      propertyPath: hideBoxOnBoxChange
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8719050447439201702, guid: 8903f4ad49563d94c9a22cd0e1db2c22,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31246,7 +31326,7 @@ MonoBehaviour:
       m_Length: 1
       m_Item0:
         transform: {fileID: 1392070312}
-        weight: 0.51
+        weight: 0.96
       m_Item1:
         transform: {fileID: 0}
         weight: 0
@@ -31268,7 +31348,7 @@ MonoBehaviour:
       m_Item7:
         transform: {fileID: 0}
         weight: 0
-    m_Offset: {x: 0, y: 0, z: 0}
+    m_Offset: {x: 8.48, y: 0, z: 0}
     m_MinLimit: -151
     m_MaxLimit: 158
     m_AimAxis: 4
@@ -32428,7 +32508,7 @@ PrefabInstance:
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: movementPadding.y
-      value: 0.66
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32614,7 +32694,7 @@ PrefabInstance:
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: movementPadding.y
-      value: 0.39
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37898,7 +37978,7 @@ PrefabInstance:
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
       propertyPath: movementPadding.x
-      value: 0.93
+      value: 1.99
       objectReference: {fileID: 0}
     - target: {fileID: 8254823183389079644, guid: 9778dc1d60b77e94c875362c510de53c,
         type: 3}
