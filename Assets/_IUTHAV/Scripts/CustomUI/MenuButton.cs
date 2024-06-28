@@ -25,7 +25,6 @@ namespace _IUTHAV.Scripts.CustomUI
             selectionAction.Invoke();
         }
 
-     
         
         private void Update()
         {
