@@ -1,10 +1,10 @@
-Shader"My Custom Shaders/Toon Shader"
+Shader"My Custom Shaders/Toon Shader Transparent"
     {
  
         Properties
         {
             [MainTexture] _ColorMap ("Color Map", 2D) = "white" {}
-            [MainColor] _Color ("Color", Color) = (0.91, 0.91, 0.38)
+            [MainColor] _Color ("Color", Color) = (0.91, 0.91, 0.38, 1)
             [Smoothness] _Smoothness ("Smoothness", float) = 16.0
             [RimSharpness] _RimSharpness ("Rim Sharpness", float) = 1
             [HDR] _RimColor("Rim Color", Color) = (1.0, 1.0, 1.0) 
@@ -16,7 +16,7 @@ Shader"My Custom Shaders/Toon Shader"
         SubShader
         {
             
-            Tags { "RenderType"="Transparent" "Queue"="Transparent" "RenderPipeline" = "UnversalPipeline"  }
+            Tags { "RenderType"="Transparent"  "RenderPipeline" = "UniversalPipeline"  }
 
             
             Cull Off
@@ -24,7 +24,7 @@ Shader"My Custom Shaders/Toon Shader"
             ZTest LEqual
             ZClip Off
             
-            Blend SrcAlpha OneMinusSrcAlpha
+           Blend SrcAlpha OneMinusSrcAlpha
             
             Pass
             {

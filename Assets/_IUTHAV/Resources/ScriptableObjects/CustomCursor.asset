@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 80687701c53f49c7b04b981fd49a3d38, type: 3}
   m_Name: CustomCursor
-  m_EditorClassIdentifier: Assembly-CSharp:_IUTHAV.Scripts.CustomUI:CustomCursorContainer
+  m_EditorClassIdentifier: 
   _cursorTypes:
   - cursorTexture2D: {fileID: 2800000, guid: 5bc425e0f95352d4bb7ee52e6e104b69, type: 3}
     _cursorState: 0

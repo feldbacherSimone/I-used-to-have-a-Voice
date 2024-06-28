@@ -220,16 +220,16 @@ float4 CalculateLighting(Varyings IN, Light light)
 
        rimTerm *= toonLighting;
        rimTerm = EasySmoothStep(0.01, rimTerm);
-       float3 rimLighting = rimTerm * _RimColor;
+       float4 rimLighting = rimTerm * float4(_RimColor, 0);
 
        float4 surfaceColor = _Color * SAMPLE_TEXTURE2D(_ColorMap, sampler_ColorMap, IN.uv);
-       float3 directionalLighting = toonLighting * light.color;
+       float4 directionalLighting = toonLighting * float4(light.color, 0);
 
-       float3 specularLighting = _Specular > 0 ? specularTerm * light.color : 0;
+       float4 specularLighting = _Specular > 0 ? specularTerm * float4(light.color, 0) : 0;
        float4 finalLighting = float4(0, 0, 0, 0);
-       finalLighting += float4(directionalLighting, 0);
-       finalLighting += float4(specularLighting, 0);
-       finalLighting += float4(rimLighting, 0);
+       finalLighting += directionalLighting;
+       finalLighting += specularLighting;
+       finalLighting += rimLighting;
        
 
        return surfaceColor * (finalLighting + _AmbientColor);

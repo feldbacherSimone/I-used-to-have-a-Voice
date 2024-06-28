@@ -36,7 +36,8 @@ namespace _IUTHAV.Scripts.CustomUI {
 
         [Space(10)] [SerializeField] private bool isDebug;
 
-        
+
+        public int bookmarkCount; 
 
         private GameManager _mGameManager;
         private GameState _mCurrentTriggeredState;
@@ -92,6 +93,8 @@ namespace _IUTHAV.Scripts.CustomUI {
             scrollRect.onValueChanged.AddListener(UpdateScrollStateData);
             
             StrechBackground();
+
+            bookmarkCount = bookmarks.Length;
         }
 
         private void OnDestroy() {
