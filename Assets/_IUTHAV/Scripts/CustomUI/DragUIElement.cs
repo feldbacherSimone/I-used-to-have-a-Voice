@@ -63,8 +63,10 @@ namespace _IUTHAV.Scripts.CustomUI {
 #region protected Functions
 
         protected virtual void OnClickDelegate(BaseEventData data) {
+
+            if (InputController.IsHoldingElement) return;
         
-            if (currentflag == FLAG_DRAG || InputController.IsHoldingElement) {
+            if (currentflag == FLAG_DRAG) {
                 Drop(null);
             }
 
