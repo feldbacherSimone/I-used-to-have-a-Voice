@@ -3,19 +3,23 @@ using UnityEngine;
 
 namespace _IUTHAV.Scripts.CustomUI
 {
-    public class CustomCursor : MonoBehaviour
+    public static class CustomCursor
     {
-       [SerializeField] private CursorType[] _cursorTypes;
+        private static CustomCursorContainer _customCursorContainer; 
 
-        public void SetCursor(CursorState cursorState)
+        public static void SetCursor(CursorState cursorState)
         {
+            if (!_customCursorContainer)
+            {
+                _customCursorContainer = Resources.Load<CustomCursorContainer>("ScriptableObjects/CustomCursor");
+            }
             Texture2D currrentTexture = GetCursorTexture(cursorState);
-            Cursor.SetCursor(currrentTexture, new Vector2(0, 0), CursorMode.Auto);
+            Cursor.SetCursor(currrentTexture, new Vector2(64, 64), CursorMode.Auto);
         }
 
-        private Texture2D GetCursorTexture(CursorState cursorState)
+        private static Texture2D GetCursorTexture(CursorState cursorState)
         {
-            foreach (var cursorType in _cursorTypes)
+            foreach (var cursorType in _customCursorContainer.CursorTypes)
             {
                 if (cursorType.CursorState == cursorState)
                 {
@@ -25,6 +29,15 @@ namespace _IUTHAV.Scripts.CustomUI
 
             return null;
         }
+    }
+
+    [Serializable]
+    [CreateAssetMenu(fileName = "CustomCursor", menuName = "ScriptableObjects/CustomCursor")]
+    public class CustomCursorContainer : ScriptableObject
+    {
+        [SerializeField] private CursorType[] _cursorTypes;
+
+        public CursorType[] CursorTypes => _cursorTypes;
     }
 
     [Serializable]

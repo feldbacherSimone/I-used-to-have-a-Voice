@@ -80,8 +80,7 @@ namespace _IUTHAV.Scripts.Dialogue {
         [Space(10)] [SerializeField] private bool isDebug;
 
         [SerializeField] private CharacterSounds _characterSounds;
-        [SerializeField] private CustomCursor _customCursor;
-        
+
         private Dictionary<string, CharacterController> _mCharControllers;
         private List<ConversationManager> _mConversations;
         private string _mCurrentChar;
@@ -324,7 +323,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
             
             if (ShouldCharacterWaitForContinue(ContinueButtonTiming.PreLine)) {
-                _customCursor.SetCursor(CursorState.Talk);    
+                CustomCursor.SetCursor(CursorState.Talk);    
                 if (continueButton != null) {
                     
                     continueButton.SetActive(true);
@@ -368,7 +367,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             //Change Cursor state 
             if (ShouldCharacterWaitForContinue(ContinueButtonTiming.PostLine) && ContinueOnClickAnywhere)
             {
-                _customCursor.SetCursor(CursorState.Talk);
+                CustomCursor.SetCursor(CursorState.Talk);
             }
             
             // If we have a hold time, wait that amount of time, and then
@@ -390,7 +389,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
 
             //Set Cursor Back to Default
-            _customCursor.SetCursor(CursorState.Default); 
+            CustomCursor.SetCursor(CursorState.Default); 
             
             // Our presentation is complete; call the completion handler.
             onDialogueLineFinished();
@@ -409,7 +408,7 @@ namespace _IUTHAV.Scripts.Dialogue {
                 return;
             }
 
-            _customCursor.SetCursor(CursorState.Default); 
+            CustomCursor.SetCursor(CursorState.Default); 
             // we may want to change this later so the interrupted
             // animation coroutine is what actually interrupts
             // for now this is fine.

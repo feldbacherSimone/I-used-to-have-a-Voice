@@ -1,4 +1,5 @@
 using _IUTHAV.Scripts.Core.Input;
+using _IUTHAV.Scripts.CustomUI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -40,12 +41,14 @@ namespace _IUTHAV.Scripts.ComicPanel.Interaction {
 
             if (context.IsValidPanelExists(validPanels)) {
                 IsSelected = true;
+                CustomCursor.SetCursor(CursorState.Interact);
                 onSelect?.Invoke();
             }
         }
 
         public virtual void OnDeselect() {
             IsSelected = false;
+            CustomCursor.SetCursor(CursorState.Default);
             onDeselect?.Invoke();
         }
 
