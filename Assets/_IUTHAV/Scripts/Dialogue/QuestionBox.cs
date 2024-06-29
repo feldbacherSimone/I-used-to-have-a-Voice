@@ -31,9 +31,9 @@ namespace _IUTHAV.Scripts.Dialogue {
                 questionCanvasGroup.blocksRaycasts = false;
                 questionCanvasGroup.interactable = false;
 
-                initialScale = bubble.transform.localScale;
+                initialScale = Vector3.one;
 
-                bubble.transform.localScale = Vector3.zero;
+                BoxCanvasGroup.transform.localScale = Vector3.zero;
 
                 question.gameObject.SetActive(false);
 
@@ -63,8 +63,8 @@ namespace _IUTHAV.Scripts.Dialogue {
                 
                 group.alpha = x;
                 
-                if (group == BoxCanvasGroup) bubble.transform.localScale = Vector3.Scale(initialScale, new Vector3(x, x, x));
-                
+                if (group == BoxCanvasGroup) BoxCanvasGroup.transform.localScale = Vector3.Scale(initialScale, new Vector3(x, x, x));
+
                 t += Time.deltaTime;
                 yield return null;
             }

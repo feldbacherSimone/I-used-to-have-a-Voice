@@ -1,9 +1,198 @@
-﻿title: Scene2Act1
+﻿title: SC2_Act1_Conv1
 tags:
 ---
 
-Norbert: Das hier ist ein test
-NorbertsGruppe: Wir werden getestet
-Em_Past: Sind wir bald fertig?
+University: ...wirklich bemerkenswerte Arbeiten.
+<<nextBox ComicBoxView University>>
+University: Natürlich darf ich Ihnen noch nichts versprechen 
+University: aber mit so einer Bewerbung -
+<<nextBox ComicBoxView University>>
+University: wird die Akademie Sie mit offenen Armen begrüßen.
+
+
+===
+
+title: SC2_Act1_Conv2
+tags:
+---
+
+Friend: Erzähl, wie war das Gespräch?
+Em_Past: Ganz gut glaub ich.
+<<nextBox ComicBoxView Em_Past>>
+-> Em_Past: Sie waren richtig begeistert, das klappt sicher
+    Em_Past: Sie waren richtig begeistert, das klappt sicher
+-> Em_Past: Aber ich will mich nicht zu früh freuen
+    Em_Past: Aber ich will mich nicht zu früh freuen
+<<nextBox ComicBoxView Em_Past>>
+Em_Past: erzähl dir alles, wenn wir uns wieder sehen
+
+===
+
+title: SC2_Act1_Conv3
+tags:
+---
+
+Announcer: Regionalexpress R75, Bahnsteig 7 A-C fährt ein.
+
+===
+
+title: SC2_Act2_Conv1
+tags:
+---
+
+Friend: Ich bin stolz!
+Friend: Klar schaffst du das, -
+Friend: da bin ich mir sicher
+
+-> Em_Past: Danke <3
+    Em_Past: Danke <3
+-> Em_Past: Wenn du das sagst ^^
+    Em_Past: Wenn du das sagst ^^
+
+===
+
+title: SC2_Act2_Conv2
+tags:
+---
+
+Announcer: Nächster Halt, next Stop
+Announcer: -&?%=?-dorf
+
+===
+
+title: SC2_Act2_Conv3
+tags:
+---
+
+Halunken: Jetzt schau dass du heimkommst, sonst kommst morgen nicht auf
+Halunken: Schönheitsschlaf würd dir eh nicht schaden
+Halunken: Grüß deine Alte von mir
+
+===
+
+title: SC3_Act3_Conv1
+tags:
+---
+
+Norbert: Da is eh frei, oder
+Norbert: Wo musst denn du so spät noch hin?
+Em_Past: Nach Hause
+Norbert: Vom Fortgehen? Das hab ich in deinem Alter auch immer gemacht
+
+-> Em_Past: Achso nein, heute nicht
+    Em_Past: Achso nein, heute nicht
+-> Em_Past: Das klingt schön
+    Em_Past: Das klingt schön
+
+Norbert: Eine junge Dame wie du muss die Zeit schon genießen.
+Em_Past: Ich bemüh mich
+-> Em_Past: ...
+    Em_Past: ...
+    Norbert: Musst nicht schüchtern sein
+    Norbert: Ich bin ein ganz Netter
+-> Em_Past: Ich geh nicht so gern fort
+    Em_Past: Ich geh nicht so gern fort
+    Norbert: So eine Brave, das sieht man heute nicht mehr so oft
+
+Norbert: Ich bin der Norbert
+
+===
+
+
+title: SC2_Act3_Conv2
+tags:
+---
+
+Norbert: Und wer bist du?
+-> Em_Past: Emilia
+    Em_Past: Emilia
+    Norbert: Emilia, ein schöner Name
+-> Em_Past: Bianca
+    Em_Past: Bianca
+    Norbert: Bianca, ein schöner Name
+
+Nobert: Weißt du, ich wär gern auch wieder so jung
+Em_Past: Wirklich?
+Norbert: Du kannst dich noch richtig ausleben, ohne Verpflichtungen
+Norbert: Dein Freund hat echt Glück, das muss man schon sagen
+
+Em_Past: Freund? Ich hab k-
+
+Norbert: Was?
+Norbert: Das glaub ich ja gar nicht!
+
+===
+
+title: SC2_Act3_Conv3
+tags:
+---
+
+Em_Present: Lass das
+Norbert: Du bist so eine fesche Maus
+Em_Present: Bitte nicht ich
+Norbert: Sehen das die jungen Burschen nicht?
+Em_Present: Sowas passiert nur anderen
+Norbert: Ich mach dir einen Vorschlag:
+Norbert: Wenn du mit mir aussteigst
+Norbert: zeig ich dir was du dir entgehen lasst -
+Norbert: nütrlich zahl ich dafür
+
+===
+
+---
+
+title: SC2_Act3_Conv4
+tags:
+---
+
+Bystander: Ich würd mir sowas nicht gefallen lassen
+Bystander: Ja was is jetzt? Mach doch was
+Bystander: Wennst dich schon so anziehst...
+
+->Em_Past: Geh weg, das ist ekelhaft!
+->Em_Past: Wieso hilft mir denn keiner? Seht ihr nicht, was passiert?
+->Em_Past: Nimm deine Drecksfinger von mir du notgeiler Arsch
+
+Announcer: Nächster Halt, next Stop, !?="/%?
+===
+
+title: SC2_Act3_Conv5
+tags:
+---
+
+-> Em_Past: Ich bin doch erst 15
+    Em_Past: Ich bin doch erst 15
+
+Bystander: Muss die sich auch so anziehen
+Bystander: Heute darfst ja echt nix mehr sagen
+Bystander: Was stellt die sich jetzt so an
+Bystander: Um die Zeit noch alleine unterwegs sein, was denkt die sich auch dabei
+
+===
+
+title: SC2_Act4_Conv1
+tags:
+---
+
+Mama: Schreib mir, wenn du daheim bist, ok?
+
+===
+
+title: SC2_Act4_Conv2
+tags:
+---
+
+Em_Present: Sowas würde ich mir nie gefallen lassen.
+Em_Present: Ich bin Herrin über meinen Körper, aber da war ich es nicht.
+Em_Present: Wie soll ich diesen Knochen je wieder Vertrauen?
+Em_Present: Ich weiß es ist nicht meine Schuld aber-
+Em_Present: So schwach werde ich nie wieder sein.
+Em_Present: Meine Mutter hat gefragt, wie es mir geht.
+Em_Present: "Gut", habe ich geantwortet.
+Em_Present: Für alles andere hab ich mich zu sehr geschämt.
+
+//Editors note: "So schwach werde ich nie wieder sein" find ich passender als letzten Satz
+//damit würden wir andeuten, Em bereut ihre Mutter angeolgen zu haben und möchte sich trauen
+//ihre Ängste anderen anzuvertrauen
 
 ===

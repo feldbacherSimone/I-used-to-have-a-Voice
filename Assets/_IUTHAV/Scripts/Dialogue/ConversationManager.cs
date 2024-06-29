@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using _IUTHAV.Scripts.Dialogue.Option;
-using Unity.VisualScripting;
 using UnityEngine;
 using Color = UnityEngine.Color;
 
@@ -13,15 +11,17 @@ namespace _IUTHAV.Scripts.Dialogue {
         [SerializeField] private CharacterBox[] characterBoxes;
 
         [SerializeField] private bool hideGizmo;
+        [SerializeField] private bool autoFillBoxes = true;
         [SerializeField] private Color gizmoColor;
 
         private Dictionary<string, CharBoxContainer> _comicBoxes;
 
         private void Awake() {
 
-            if (characterBoxes == null || 
+            if (autoFillBoxes &&
+            (characterBoxes == null || 
             characterBoxes.Length == 0 ||
-            characterBoxes.Length != transform.childCount) {
+            characterBoxes.Length != transform.childCount)) {
                 characterBoxes = gameObject.transform.GetComponentsInChildren<CharacterBox>();
             }
             PopulateConversation();
