@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: CustomCursor
+  m_EditorClassIdentifier: Assembly-CSharp:_IUTHAV.Scripts.CustomUI:CustomCursorContainer
+  _cursorTypes:
+  - cursorTexture2D: {fileID: 2800000, guid: 5bc425e0f95352d4bb7ee52e6e104b69, type: 3}
+    _cursorState: 0
+  - cursorTexture2D: {fileID: 2800000, guid: 5bebb71a2caf4594b8f04fd4ef63f325, type: 3}
+    _cursorState: 1
+  - cursorTexture2D: {fileID: 2800000, guid: c3d38fc0303bda34f9cecb5abb7d3b07, type: 3}
+    _cursorState: 2
