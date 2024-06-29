@@ -18,10 +18,10 @@ MonoBehaviour:
     type: 2}
   panelPrefab: {fileID: 6385227724739882469, guid: 9778dc1d60b77e94c875362c510de53c,
     type: 3}
-  renderTextureWidth: 1400
-  renderTextureHeight: 400
-  cameraOutputMask: 6
-  shotName: EmTrainPOV
+  renderTextureWidth: 1850
+  renderTextureHeight: 900
+  cameraOutputMask: 7
+  shotName: EmNorbertAssult
   createRenderTextureAndCamera: 0
-  renderTextureTargetName: EmTrainPOV
+  renderTextureTargetName: EmNorbertAssult
   createPanel: 0
