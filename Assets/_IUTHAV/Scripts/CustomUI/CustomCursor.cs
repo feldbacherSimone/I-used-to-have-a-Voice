@@ -32,6 +32,7 @@ namespace _IUTHAV.Scripts.CustomUI
     }
 
     
+
     [Serializable]
     public class CursorType
     {

@@ -169,19 +169,17 @@ namespace _IUTHAV.Scripts.ComicPanel {
             
             Ray screenRay = panelCamera.ViewportPointToRay(rayPos);
             RaycastHit hit;
+            RaycastHit2D hit2D;
             Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.red);
-                    
+
+            hit2D = Physics2D.Raycast(screenRay.origin, screenRay.direction, 1000f);
             if (Physics.Raycast(screenRay, out hit, 1000f))
             {
-                Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.green);
-                DebugPrint($"Raycast from {gameObject.name}, hit object: {hit.transform.gameObject.name}");
-                    
-                if (currentHitObject != hit.transform.gameObject)
-                {
-                    if (currentHitObject != null) IterateSelectableComponents(currentHitObject, false);
-                    currentHitObject = hit.transform.gameObject;
-                    IterateSelectableComponents(currentHitObject, true);
-                }
+                HandleRayCast(screenRay, hit.transform.gameObject);
+            }
+            else if (hit2D)
+            {
+                HandleRayCast(screenRay, hit2D.transform.gameObject);
             }
             else if (currentHitObject != null)
             {
@@ -189,6 +187,20 @@ namespace _IUTHAV.Scripts.ComicPanel {
                 currentHitObject = null; 
             }
         }
+
+        private void HandleRayCast(Ray screenRay, GameObject hitObject)
+        {
+            Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.green);
+            DebugPrint($"Raycast from {gameObject.name}, hit object: {hitObject.name}");
+
+            if (currentHitObject != hitObject)
+            {
+                if (currentHitObject != null) IterateSelectableComponents(currentHitObject, false);
+                currentHitObject = hitObject;
+                IterateSelectableComponents(currentHitObject, true);
+            }
+        }
+
         private void MoveParalax()
         {
             var resetPosition = CameraMovement.ResetCamera(camTarget, defaultPos);

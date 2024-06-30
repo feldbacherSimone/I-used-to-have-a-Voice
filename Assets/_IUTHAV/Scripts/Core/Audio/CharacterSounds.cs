@@ -51,7 +51,7 @@ public class CharacterSounds : MonoBehaviour
    private void PlayOneShot(AudioClip clip)
    {
       if(!clip) return;
-      GameObject oneShotObject = new GameObject();
+      GameObject oneShotObject = new GameObject("CharacterVoice");
       AudioSource oneShotSource = oneShotObject.AddComponent<AudioSource>();
 
       oneShotSource.clip = clip;
