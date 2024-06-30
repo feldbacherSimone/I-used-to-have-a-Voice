@@ -36,8 +36,10 @@ namespace _IUTHAV.Scripts.Dialogue {
             if (characterBoxes == null || characterBoxes.Length == 0) {
                 boxes = GetComponentsInChildren<CharacterBox>();
             }
-
-            boxes = characterBoxes;
+            else {
+                boxes = characterBoxes;
+            }
+            
 
             if (boxes != null) {
 

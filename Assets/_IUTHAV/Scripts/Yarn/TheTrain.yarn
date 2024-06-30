@@ -2,12 +2,12 @@
 tags:
 ---
 
-University: ...wirklich bemerkenswerte Arbeiten.
+University: ... wirklich bemerkenswerte Arbeiten.
 <<nextBox ComicBoxView University>>
-University: Natürlich darf ich Ihnen noch nichts versprechen 
-University: aber mit so einer Bewerbung -
+University: Natürlich darf ich Ihnen noch nichts versprechen,
+University: aber mit so einer Bewerbung ...
 <<nextBox ComicBoxView University>>
-University: wird die Akademie Sie mit offenen Armen begrüßen.
+University: ... wird die Akademie Sie mit offenen Armen begrüßen.
 
 
 ===
@@ -17,14 +17,14 @@ tags:
 ---
 
 Friend: Erzähl, wie war das Gespräch?
-Em_Past: Ganz gut glaub ich.
+Em_Past: Ganz gut glaub ich
 <<nextBox ComicBoxView Em_Past>>
 -> Em_Past: Sie waren richtig begeistert, das klappt sicher
     Em_Past: Sie waren richtig begeistert, das klappt sicher
 -> Em_Past: Aber ich will mich nicht zu früh freuen
     Em_Past: Aber ich will mich nicht zu früh freuen
 <<nextBox ComicBoxView Em_Past>>
-Em_Past: erzähl dir alles, wenn wir uns wieder sehen
+Em_Past: Erzähl dir alles, wenn wir uns wieder sehen
 
 ===
 
@@ -32,7 +32,7 @@ title: SC2_Act1_Conv3
 tags:
 ---
 
-Announcer: Regionalexpress R75, Bahnsteig 7 A-C fährt ein.
+Announcer: Regionalexpress R75, Bahnsteig 7 A-C, fährt ein.
 
 ===
 
@@ -42,7 +42,7 @@ tags:
 
 Friend: Ich bin stolz!
 <<nextBox ComicBoxView Friend>>
-Friend: Klar schaffst du das, -
+Friend: Klar schaffst du das,
 <<nextBox ComicBoxView Friend>>
 Friend: da bin ich mir sicher
 
@@ -57,7 +57,7 @@ title: SC2_Act2_Conv2
 tags:
 ---
 
-Announcer: Nächster Halt, next Stop
+Announcer: Nächster Halt, next Stop:
 Announcer: -&?%=?-dorf
 
 ===
@@ -66,11 +66,11 @@ title: SC2_Act2_Conv3
 tags:
 ---
 
-Halunken: Jetzt schau dass du heimkommst, sonst kommst morgen nicht auf
+Halunken: Jetzt schau dass du heimkommst, sonst kommst morgen nicht auf!
 <<nextBox ComicBoxView Halunken>>
-Halunken: Schönheitsschlaf würd dir eh nicht schaden
+Halunken: Schönheitsschlaf würd dir eh nicht schaden.
 <<nextBox ComicBoxView Halunken>>
-Halunken: Grüß deine Alte von mir
+Halunken: Grüß deine Alte von mir!
 
 ===
 
@@ -82,7 +82,6 @@ Norbert: Da is eh frei, oder
 <<nextBox ComicBoxView Norbert>>
 Norbert: Wo musst denn du so spät noch hin?
 Em_Past: Nach Hause
-<<nextBox ComicBoxView Em_Past>>
 Norbert: Vom Fortgehen? Das hab ich in deinem Alter auch immer gemacht
 -> Em_Past: Achso nein, heute nicht
     Em_Past: Achso nein, heute nicht
@@ -135,13 +134,15 @@ tags:
 
 Em_Present: Lass das
 Norbert: Du bist so eine fesche Maus
+<<nextBox ComicBoxView all>>
 Em_Present: Bitte nicht ich
 Norbert: Sehen das die jungen Burschen nicht?
 Em_Present: Sowas passiert nur anderen
 Norbert: Ich mach dir einen Vorschlag:
 Norbert: Wenn du mit mir aussteigst
-Norbert: zeig ich dir was du dir entgehen lasst -
-Norbert: nütrlich zahl ich dafür
+Norbert: dann zeig ich dir was du dir entgehen lasst
+<<nextBox ComicBoxView all>>
+Norbert: zahlen tu ich dir eh auch was
 
 ===
 
@@ -152,14 +153,16 @@ tags:
 ---
 
 Bystander: Ich würd mir sowas nicht gefallen lassen
+<<nextBox ComicBoxView Bystander>>
 Bystander: Ja was is jetzt? Mach doch was
-Bystander: Wennst dich schon so anziehst...
+<<nextBox ComicBoxView Bystander>>
+Bystander: Wennst dich schon so anziehst ...
 
 ->Em_Past: Geh weg, das ist ekelhaft!
 ->Em_Past: Wieso hilft mir denn keiner? Seht ihr nicht, was passiert?
-->Em_Past: Nimm deine Drecksfinger von mir du notgeiler Arsch
+->Em_Past: Nimm deine Drecksfinger von mir du notgeiler Arsch!
 
-Announcer: Nächster Halt, next Stop, !?="/%?
+Announcer: Nächster Halt, next Stop: !?="/%?
 ===
 
 title: SC2_Act3_Conv5
@@ -169,10 +172,13 @@ tags:
 -> Em_Past: Ich bin doch erst 15
     Em_Past: Ich bin doch erst 15
 
-Bystander: Muss die sich auch so anziehen
-Bystander: Heute darfst ja echt nix mehr sagen
-Bystander: Was stellt die sich jetzt so an
-Bystander: Um die Zeit noch alleine unterwegs sein, was denkt die sich auch dabei
+Bystander: Muss die sich auch so anziehen?
+<<nextBox ComicBoxView Bystander>>
+Bystander: Heute darfst ja echt nix mehr sagen.
+<<nextBox ComicBoxView Bystander>>
+Bystander: Was stellt die sich jetzt so an?
+<<nextBox ComicBoxView Bystander>>
+Bystander: Um die Zeit noch alleine unterwegs sein, was denkt die sich auch dabei ...
 
 ===
 
@@ -190,11 +196,13 @@ tags:
 
 Em_Present: Sowas würde ich mir nie gefallen lassen.
 Em_Present: Ich bin Herrin über meinen Körper, aber da war ich es nicht.
-Em_Present: Wie soll ich diesen Knochen je wieder Vertrauen?
+Em_Present: Wie soll ich diesen Knochen je wieder vertrauen?
+<<nextBox ComicBoxView Em_Present>>
 Em_Present: Ich weiß es ist nicht meine Schuld aber-
 Em_Present: So schwach werde ich nie wieder sein.
+<<nextBox ComicBoxView Em_Present>>
 Em_Present: Meine Mutter hat gefragt, wie es mir geht.
-Em_Present: "Gut", habe ich geantwortet.
+Em_Present: "Gut," habe ich geantwortet.
 Em_Present: Für alles andere hab ich mich zu sehr geschämt.
 
 //Editors note: "So schwach werde ich nie wieder sein" find ich passender als letzten Satz
