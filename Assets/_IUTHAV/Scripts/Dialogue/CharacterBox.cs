@@ -10,8 +10,8 @@ namespace _IUTHAV.Scripts.Dialogue {
         [Tooltip("Use the same name as given in the YarnCharacter Component! Will try to automatically assign the name using the __ as a seperator")]
         public string characterName;
 
-        [SerializeField] private TextMeshProUGUI text;
-        [SerializeField] private TextMeshProUGUI textSizeSetter;
+        [SerializeField] protected TextMeshProUGUI text;
+        [SerializeField] protected TextMeshProUGUI textSizeSetter;
 
         public TextMeshProUGUI Text => text;
 
@@ -28,7 +28,7 @@ namespace _IUTHAV.Scripts.Dialogue {
         [SerializeField] protected GameObject bubble;
         public bool PlaceContinueButtonRight => placeContinueButtonRight;
 
-        [FormerlySerializedAs("CanvasGroup")] public CanvasGroup BoxCanvasGroup;
+        public CanvasGroup BoxCanvasGroup;
 
         protected Vector3 initialScale;
         

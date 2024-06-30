@@ -54,9 +54,22 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
 
         //SCENE 2 States
         SC2_ScrollTrigger = 200,
-        SC2_ActFinished_0,
-        SC2_ActFinished_1,
-        SC2_ActFinished_2,
+        SC2_Start = 201,
+        SC2_Act1_Conv1,
+        SC2_Act1_Conv2,
+        SC2_Act1_Conv3,
+        SC2_Act2_Conv1,
+        SC2_Act2_Conv2,
+        SC2_Act2_Conv3,
+        SC2_Act3_Conv1,
+        SC2_Act3_Conv2,
+        SC2_Act3_Conv3,
+        SC2_Act3_Conv4,
+        SC2_Act3_Conv5,
+        SC2_Act4_Conv1,
+        SC2_Act4_Conv2,
+        
+        SC2_StartAct1_Conv2 = 240,
         
         //SCENE 3 States
         SC3_ScrollTrigger = 300,
