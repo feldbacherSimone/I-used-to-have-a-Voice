@@ -31,7 +31,13 @@ namespace _IUTHAV.Scripts.Dialogue {
 
             if (hideGizmo) return;
 
-            CharacterBox[] boxes = GetComponentsInChildren<CharacterBox>();
+            CharacterBox[] boxes;
+            
+            if (characterBoxes == null || characterBoxes.Length == 0) {
+                boxes = GetComponentsInChildren<CharacterBox>();
+            }
+
+            boxes = characterBoxes;
 
             if (boxes != null) {
 

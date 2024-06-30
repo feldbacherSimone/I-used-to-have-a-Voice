@@ -41,7 +41,9 @@ tags:
 ---
 
 Friend: Ich bin stolz!
+<<nextBox ComicBoxView Friend>>
 Friend: Klar schaffst du das, -
+<<nextBox ComicBoxView Friend>>
 Friend: da bin ich mir sicher
 
 -> Em_Past: Danke <3
@@ -65,7 +67,9 @@ tags:
 ---
 
 Halunken: Jetzt schau dass du heimkommst, sonst kommst morgen nicht auf
+<<nextBox ComicBoxView Halunken>>
 Halunken: Schönheitsschlaf würd dir eh nicht schaden
+<<nextBox ComicBoxView Halunken>>
 Halunken: Grüß deine Alte von mir
 
 ===
@@ -75,16 +79,18 @@ tags:
 ---
 
 Norbert: Da is eh frei, oder
+<<nextBox ComicBoxView Norbert>>
 Norbert: Wo musst denn du so spät noch hin?
 Em_Past: Nach Hause
+<<nextBox ComicBoxView Em_Past>>
 Norbert: Vom Fortgehen? Das hab ich in deinem Alter auch immer gemacht
-
 -> Em_Past: Achso nein, heute nicht
     Em_Past: Achso nein, heute nicht
 -> Em_Past: Das klingt schön
     Em_Past: Das klingt schön
 
 Norbert: Eine junge Dame wie du muss die Zeit schon genießen.
+<<nextBox ComicBoxView Norbert>>
 Em_Past: Ich bemüh mich
 -> Em_Past: ...
     Em_Past: ...
@@ -93,7 +99,7 @@ Em_Past: Ich bemüh mich
 -> Em_Past: Ich geh nicht so gern fort
     Em_Past: Ich geh nicht so gern fort
     Norbert: So eine Brave, das sieht man heute nicht mehr so oft
-
+<<nextBox ComicBoxView Norbert>>
 Norbert: Ich bin der Norbert
 
 ===
