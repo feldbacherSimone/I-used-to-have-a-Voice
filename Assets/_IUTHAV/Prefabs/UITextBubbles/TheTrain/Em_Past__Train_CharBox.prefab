@@ -124,6 +124,42 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4248992743777843668}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5610679994471308981 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8586772229470906209, guid: 003cedc2b9146e645a95f29cc142ee23,
+    type: 3}
+  m_PrefabInstance: {fileID: 4248992743777843668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!225 &7866110103434533096 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 6331354180388954428, guid: 003cedc2b9146e645a95f29cc142ee23,
+    type: 3}
+  m_PrefabInstance: {fileID: 4248992743777843668}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8171939513125993309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5449350961418814089, guid: 003cedc2b9146e645a95f29cc142ee23,
+    type: 3}
+  m_PrefabInstance: {fileID: 4248992743777843668}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8956105611064677838 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5097246817548217370, guid: 003cedc2b9146e645a95f29cc142ee23,
+    type: 3}
+  m_PrefabInstance: {fileID: 4248992743777843668}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8822540007281822500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136,22 +172,22 @@ PrefabInstance:
         type: 3}
       propertyPath: text
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8956105611064677838}
     - target: {fileID: -1105619794638992745, guid: b52e5ef56fe80ec48b6cd095a1fa267b,
         type: 3}
       propertyPath: bubble
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8171939513125993309}
     - target: {fileID: -1105619794638992745, guid: b52e5ef56fe80ec48b6cd095a1fa267b,
         type: 3}
       propertyPath: BoxCanvasGroup
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7866110103434533096}
     - target: {fileID: -1105619794638992745, guid: b52e5ef56fe80ec48b6cd095a1fa267b,
         type: 3}
       propertyPath: textSizeSetter
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5610679994471308981}
     - target: {fileID: 145775292702209426, guid: b52e5ef56fe80ec48b6cd095a1fa267b,
         type: 3}
       propertyPath: m_fontAsset

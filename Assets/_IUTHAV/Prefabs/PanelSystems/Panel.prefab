@@ -98,6 +98,9 @@ MonoBehaviour:
   panelCamera: {fileID: 0}
   isRendering: 0
   panelIsActive: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 32763
 --- !u!95 &5254438900794527922
 Animator:
   serializedVersion: 7

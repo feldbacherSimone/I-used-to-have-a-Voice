@@ -9,7 +9,7 @@ Fabian: ... heute fahren wir zu ...
 Em_Past: Mhm.
 Fabian: ... dort musst du ...
 <<nextBox ComicBoxView Fabian>>
-Em_Past: mhm.
+Em_Past: Mhm.
 Fabian: ... der Bursch ... leider krank ...
 Fabian: ... schade, der macht immer so gute Arbeit!
 Em_Past: ...
@@ -20,23 +20,23 @@ title: SC1_Act1_Conv2
 tags:
 ---
 
-Fabian: Emmi, wenn du schon am schauen bist kannst du gleich Musik am Radio anmachen -
+Fabian: Emmi, wenn du schon am schauen bist kannst du gleich Musik am Radio anmachen.
 <<nextBox ComicBoxView Fabian>>
 Em_Past: Hm? Oh, ja klar!
-Fabian: Die CDs sind im Handschuhfach
+Fabian: Die CDs sind im Handschuhfach.
 
 ===
 
 title: SC1_Act1_Conv3
 tags:
 ---
-Fabian: Such dir eine aus
+Fabian: Such dir eine aus.
 <<nextBox ComicBoxView Fabian>>
 <<continue ComicBoxView>>
 -> Em_Past: Rock
-    Fabian: Da hab ich nichts dagegen
+    Fabian: Da hab ich nichts dagegen.
 -> Em_Past: Raggae
-    Fabian: Ich hatte schon lange keinen Urlaub mehr...
+    Fabian: Ich hatte schon lange keinen Urlaub mehr ...
 -> Em_Past: Metal
     Fabian: Ich wusste gar nicht, dass du sowas hörst!
 -> Em_Past: Funky
@@ -56,8 +56,8 @@ tags:
 
 Fabian: Und Emmi, bist du schon aufgeregt?
 <<nextBox ComicBoxView Fabian>>
--> Em_Past: *gähn* für solche Gefühle ist es noch zu früh.
-    Em_Past: *gähn* für solche Gefühle ist es noch zu früh.
+-> Em_Past: *gähn* Für solche Gefühle ist es noch zu früh.
+    Em_Past: *gähn* Für solche Gefühle ist es noch zu früh.
     Fabian: Weniger Zeit mit Hübschmachen verbringen!
     Fabian: Dann kannst ausschlafen.
 -> Em_Past: Ein bisschen, aber das ist ja normal.
@@ -70,7 +70,7 @@ Em_Past: Warum nimmst du mich eigentlich so spontan mit?
 
 
 <<nextBox ComicBoxView Fabian>>
-Fabian: Der Bursch, kann leider nicht.
+Fabian: Der Bursch, der kann leider nicht.
 Fabian: Und für dich ist es ja auch keine schlechte Übung.
 <<nextBox ComicBoxView Fabian>>
 ->Em_Past: Michi ist also krank?
@@ -84,13 +84,13 @@ Fabian: Und für dich ist es ja auch keine schlechte Übung.
 <<nextBox ComicBoxView all>>
 Fabian: Du bist ja erst seit einer Woche da.
 <<nextBox ComicBoxView Fabian>>
--> Em_Past: Eigentlich schon seit drei...
-    Em_Past: Eigentlich schon seit drei...
+-> Em_Past: Eigentlich schon seit drei ...
+    Em_Past: Eigentlich schon seit drei ...
     Fabian: Ach ja. Bei so viel Stress kommt man leicht durcheinander.
 -> Em_Past: … so ungefähr.
     Em_Past: … so ungefähr.
 
-Fabian: Heute kannst du dich austoben...
+Fabian: Heute kannst du dich austoben -
 Fabian: dann musst du nicht die ganze zeit in der Firma hocken.
 Em_Past: Der chef gibt mir ja immer so trockene Büroarbeit auf-
 Fabian: Nimms als Kompliment. Du bist so ordentlich, der Bursch könnt das gar nicht.
@@ -100,8 +100,8 @@ Fabian: Der ist eher besser im Hand anlegen.
 -> Em_Past: Equipment einladen schaff ich ja auch noch.
     Em_Past: Equipment einladen schaff ich ja auch noch.
     Fabian: Das ganze Kamerazeug?
--> Em_Past: So ordentlich bin ich ja garnicht...
-    Em_Past: So ordentlich bin ich ja garnicht...
+-> Em_Past: So ordentlich bin ich ja gar nicht ...
+    Em_Past: So ordentlich bin ich ja gar nicht ...
     Fabian: ...
 
 ===
@@ -120,14 +120,14 @@ Fabian: Da müsst ich erst mit Andi reden, ist nämlich seine.
 Fabian: Bleib du beim fotografieren.
 Em_Past: Andi? Den kenn ich gar nicht.
 
-Fabian: Ein Kollege. Der hat sich mit Video selbständig gemacht und filmt öfter für uns 
-Fabian: vielleicht kannst du ihm ja mal zuschauen.
+Fabian: Ein Kollege. Der hat sich mit Video selbständig gemacht und filmt öfter für uns.
+Fabian: Vielleicht kannst du ihm ja mal zuschauen.
 
 Em_Past: Von meinen Filmen leben können, das will ich auch mal.
 Fabian: Ambitioniert! Das gefällt mir.
 
-Fabian: Wir brauchen eh mehr Frauen in der Branche
-Fabian: schön dass sich Mädchen heute mehr zutrauen.
+Fabian: Wir brauchen eh mehr Frauen in der Branche.
+Fabian: Schön dass sich Mädchen heute mehr zutrauen.
 
 ===
 
@@ -137,7 +137,7 @@ tags:
 
 //===================ACT3=====================
 
-Fabian: Na schau, wenn man vom Teufel spricht...
+Fabian: Na schau, wenn man vom Teufel spricht ...
 <<nextBox ComicBoxView Fabian>>
 Fabian: Servus Andi, wie gehts denn mit dem Schnitt!
 Fabian: Nächste Woche ist die Messe, weißt d-
@@ -146,32 +146,32 @@ Andi: Jetzt fangst schon wieder an.
 Andi: Bis zur Messe ist das Video da, Eder -
 Andi: vom Fragen wirds nicht schneller fertig.
 
-Andi: Aber deswegen ruf ich nicht an
-Fabian: Achso- was ist denn los?
+Andi: Aber deswegen ruf ich nicht an.
+Fabian: Achso -- was ist denn los?
 
 <<nextBookmark ScrollRect>>
 <<forceScrollAndLock ScrollRect>>
 <<nextBox ComicBoxView all>>
 
 Andi: Was hast denn mit dem Bursch angestellt, endlich ersetzt?
-Fabian: Den Michi?
+Fabian: Dem Michi?
 Fabian: Nichts -
-Fabian: Wie kommst du drauf?
+Fabian: wie kommst du drauf?
 <<nextBox ComicBoxView Fabian>>
 Andi: Die Fotos in letzter Zeit, die sind nicht von euch.
 Andi: Normalerweise schafft ihr ja nicht mal scharfe Fotos.
 Andi: Weder er noch du.
-Andi: Bin ich den Tussen aus der Buchhaltung zu teuer geworden, habts wen Billigeren gefunden huh?
+Andi: Bin ich den Tussen aus der Buchhaltung zu teuer geworden, habts wen Billigeren gefunden, huh?
 <<nextBox ComicBoxView Andi>>
 <<nextTile Street>>
-Fabian: Ach nein, das ist nur Vorübergehend.
-Fabian: Wir haben Unterstützung diesen Sommer
+Fabian: Ach nein, das ist nur vorübergehend.
+Fabian: Wir haben Unterstützung diesen Sommer.
 <<nextBox ComicBoxView Fabian>>
 Andi: Der scheint ja was zu können, zumindest mehr als du.
 Andi: Da kann der Bursch auch endlich was lernen.
 <<nextBox ComicBoxView Andi>>
-Fabian: Sie... Die Emmi ist nur eine Praktikantin.
-Fabian: Aber echt Vorbildlich.
+Fabian: Sie ... Die Emmi ist nur eine Praktikantin.
+Fabian: Aber echt vorbildlich.
 Fabian: Immer pünktlich und ordentlich.
 Fabian: Und nett ist sie auch, nur nicht so gesprächig.
 
@@ -180,11 +180,11 @@ Fabian: Und nett ist sie auch, nur nicht so gesprächig.
 <<forceScrollAndLock ScrollRect>>
 
 Andi: Na sowas -
-Andi: Eine Praktikantin also...
+Andi: eine Praktikantin also ...
 
 Fabian: Heute hilft sie mir beim Videodreh, -
 Fabian: wenn sie gute Arbeit macht dann wär sie ja was für dich, oder?
-Andi: Pff, das klingt ja spannend
+Andi: Pff, das klingt ja spannend.
 
 <<nextBox ComicBoxView Andi>>
 Andi: Wie schaut sie denn aus?
@@ -197,24 +197,24 @@ tags:
 
 Fabian: Wie-
 <<nextBox ComicBoxView Fabian>>
-Andi: Eder-
-Andi: Tu nicht so, du bist ja auch ein Mann, -
-Andi: Ist sie auch hübsch?
+Andi: Eder.
+Andi: Tu nicht, du bist ja ein Mann, -
+Andi: ist sie auch hübsch?
 <<nextBox ComicBoxView Andi>>
 Andi: Hat man was zum schauen?
-Fabian: Ach... sie sitzt eh neben mir im Auto.
+Fabian: Ach ... sie sitzt eh neben mir im Auto.
 Fabian: Frag sie doch selber
 <<nextBox ComicBoxView Andi>>
 Andi: !!-
 Andi: Achso
-Andi: hehe, war ja nur ein Schmäh.
+Andi: Hehe, war ja nur ein Schmäh.
 <<nextBox ComicBoxView Andi>>
--> Em_Past: ...haha ich versteh
-    Em_Past: ...haha ich versteh
+-> Em_Past: ... haha ich versteh
+    Em_Past: ... haha ich versteh
 -> Em_Past: Redest du gern so über 15 jährige?
--> Em_Past: Geh dich vergraben Andi
+-> Em_Past: Geh dich vergraben, Andi
 
-Fabian: Schau, sie hat Humor
+Fabian: Schau, sie hat Humor.
 <<nextBox ComicBoxView all>>
 <<nextBookmark ScrollRect>>
 <<forceScrollAndLock ScrollRect>>
@@ -228,19 +228,19 @@ title: SC1_Act3_Conv3
 tags:
 ---
 
-Fabian: Ich hab ja gesagt er ist eigen...
+Fabian: Ich hab ja gesagt er ist eigen ...
 <<nextBox ComicBoxView Fabian>>
--> Em_Past: Er ist ein Hund
-    Em_Past: Er ist ein Hund
--> Em_Past: Warum hast du nichts gesagt
-    Em_Past: Warum hast du nichts gesagt
--> Em_Past: ...das hab ich gemerkt
-    Em_Past: ...das hab ich gemerkt
+-> Em_Past: Er ist ein Hund.
+    Em_Past: Er ist ein Hund.
+-> Em_Past: Warum hast du nichts gesagt?
+    Em_Past: Warum hast du nichts gesagt?
+-> Em_Past: ... das hab ich gemerkt
+    Em_Past: ... das hab ich gemerkt
     Fabian: Aber seine Videos sind gut, da kann man sich nicht beschweren.
 Fabian: Irgendwie kommt man schon miteinander klar.
 <<nextBox ComicBoxView Fabian>>
--> Em_Past: Das sagst du leicht
-    Em_Past: Das sagst du leicht
+-> Em_Past: Das sagst du leicht.
+    Em_Past: Das sagst du leicht.
 -> Em_Past: Ich versteh.
     Em_Past: Ich versteh.
     Fabian: Und du hast ihn wenigstens in Verlegenheit gebracht.
@@ -249,16 +249,16 @@ Fabian: Der redet ja nur immer so.
 Em_Past: ...
 Em_Past: Meinst du wirklch, dass ich bei ihm mal aushelfen kann?
 <<nextBox ComicBoxView Em_Past>>
-Fabian: Wenn du willst, -
-Fabian: dann schick ich dich mit dem Bursch gemeinsam
-Fabian: Der passt schon auf dich auf, haha
+Fabian: Wenn du willst,
+Fabian: dann schick ich dich mit dem Bursch gemeinsam.
+Fabian: Der passt schon auf dich auf, haha.
 <<nextBox ComicBoxView Fabian>>
 
-Em_Past: "Die Tussen aus der Buchhaltung" was meint er damit
+Em_Past: "Die Tussen aus der Buchhaltung" was meint er damit?
 <<nextBox ComicBoxView Em_Past>>
 Fabian: Bei Firmenausflügen, da hat die Maria immer fotografiert.
-Fabian: Das hat ihr wirklich Spaß gemacht, -
-Fabian: aber nur so als Hobby
+Fabian: Das hat ihr wirklich Spaß gemacht, 
+Fabian: aber nur so als Hobby.
 <<nextBox ComicBoxView Fabian>>
 Em_Past: Wie lange fahren wir noch?
 Fabian: 20 Minuten circa.
@@ -295,9 +295,9 @@ Em_Present: Schön?
 Em_Present: Heute bin ich es, aber was bringt es mir
 Em_Present: So ein Temperament werde ich mir nie leisten können.
 <<nextBox ComicBoxView Em_Present>>
-Em_Present: Der Kollege schon,
+Em_Present: Der Kollege schon
 <<nextBox ComicBoxView Em_Present>>
-Em_Present: Er war weder nett noch schön.
+Em_Present: er war weder nett noch schön.
 
 ===
 
