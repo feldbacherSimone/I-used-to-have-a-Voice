@@ -34,7 +34,9 @@ namespace _IUTHAV.Scripts.CustomUI {
         }
         
         protected override void OnClickDelegate(BaseEventData data) {
-        
+            
+            onClick.Invoke();
+            
             if (currentflag == FLAG_DRAG) {
                 Drop(null);
             }

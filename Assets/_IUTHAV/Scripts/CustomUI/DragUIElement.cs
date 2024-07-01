@@ -4,19 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 namespace _IUTHAV.Scripts.CustomUI {
     
-    public class DragUIElement : MonoBehaviour {
-
-        [SerializeField] protected Canvas canvas;
-
+    public class DragUIElement : SelectAndClickUIElement {
+        
         [SerializeField] protected UnityEvent onPickup;
         [SerializeField] protected UnityEvent onDrop;
         
-        [SerializeField] protected bool isDebug;
-
         public int currentflag = FLAG_NONE;
         public const int FLAG_LOCK = 3;
         public const int FLAG_DRAG = 1;
@@ -62,8 +57,10 @@ namespace _IUTHAV.Scripts.CustomUI {
 
 #region protected Functions
 
-        protected virtual void OnClickDelegate(BaseEventData data) {
-
+        protected override void OnClickDelegate(BaseEventData data) {
+            
+            base.OnClickDelegate(data);
+            
             if (InputController.IsHoldingElement) return;
         
             if (currentflag == FLAG_DRAG) {
@@ -93,40 +90,6 @@ namespace _IUTHAV.Scripts.CustomUI {
                 InputController.IsHoldingElement = false;
             }
 
-        }
-
-        protected void Configure(EventTrigger trigger) {
-            
-            EventTrigger.Entry entry = new EventTrigger.Entry();
-            //entry.eventID = EventTriggerType.Drag;
-//
-            //entry.callback.AddListener((data) => { Drag((PointerEventData)data);});
-            //trigger.triggers.Add(entry);
-            
-            entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.PointerClick;
-
-            entry.callback.AddListener((data) => { OnClickDelegate((PointerEventData)data);});
-            trigger.triggers.Add(entry);
-            
-            //entry = new EventTrigger.Entry();
-            //entry.eventID = EventTriggerType.EndDrag;
-//
-            //entry.callback.AddListener((data) => { OnDrop((PointerEventData)data);});
-            //trigger.triggers.Add(entry);
-            
-            if (canvas == null) {
-                canvas = GameObject.FindWithTag("MainCanvas").GetComponent<Canvas>();
-            }
-            
-        }
-
-        protected void RemoveListeners() {
-        
-            if (TryGetComponent(out EventTrigger trigger)) {
-                trigger.triggers.Clear();
-            }
-            
         }
 
         protected void CalculateCurrentPointerToCanvasPosition(Vector2 pointerPosition) {
@@ -160,16 +123,6 @@ namespace _IUTHAV.Scripts.CustomUI {
             
             currentflag = FLAG_NONE;
             if (onFinishMove != null) onFinishMove();
-        }
-        
-        protected void Log(string msg) {
-            if (!isDebug) return;
-            Debug.Log("[DragableUIElement] [" + gameObject.name + "] " + msg);
-        }
-        
-        protected void LogWarning(string msg) {
-            if (!isDebug) return;
-            Debug.LogWarning("[DragableUIElement] [" + gameObject.name + "] " + msg);
         }
         
 #endregion
