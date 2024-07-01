@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -108,7 +108,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: TheCar_Glovebox_CDs_0
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 238
+        width: 228
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce85fb31e5fd2e450800000000000000
+      internalID: 6116696839073781996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TheCar_Glovebox_CDs_1
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 236
+        width: 229
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eb4df2476112f510800000000000000
+      internalID: 1581345554363665384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TheCar_Glovebox_CDs_2
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 23
+        width: 224
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66fa557a271eaf680800000000000000
+      internalID: -8720409845899612314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TheCar_Glovebox_CDs_3
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 13
+        width: 228
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dc3b7d5213919b60800000000000000
+      internalID: 7751138140768386259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +203,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TheCar_Glovebox_CDs_0: 6116696839073781996
+      TheCar_Glovebox_CDs_1: 1581345554363665384
+      TheCar_Glovebox_CDs_2: -8720409845899612314
+      TheCar_Glovebox_CDs_3: 7751138140768386259
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -77,6 +77,11 @@ namespace _IUTHAV.Scripts.CustomUI {
 
         }
 
+        private void Awake()
+        {
+            bookmarkCount = bookmarks.Length;
+        }
+
         private void Start() {
 
             _mGameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
@@ -93,8 +98,7 @@ namespace _IUTHAV.Scripts.CustomUI {
             scrollRect.onValueChanged.AddListener(UpdateScrollStateData);
             
             StrechBackground();
-
-            bookmarkCount = bookmarks.Length;
+            
         }
 
         private void OnDestroy() {

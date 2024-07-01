@@ -1,4 +1,5 @@
 
+using System;
 using _IUTHAV.Scripts.ComicPanel.Interaction;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -24,6 +25,8 @@ namespace _IUTHAV.Scripts.ComicPanel {
         public Camera panelCamera;
         [HideInInspector] public bool isRendering;
         public bool panelIsActive;
+
+        [SerializeField] private LayerMask _layerMask;
         
         private ScrollRect scrollRect;
         private RectTransform backgroundTransform;
@@ -168,18 +171,17 @@ namespace _IUTHAV.Scripts.ComicPanel {
                 0);
             
             Ray screenRay = panelCamera.ViewportPointToRay(rayPos);
-            RaycastHit hit;
-            RaycastHit2D hit2D;
-            Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.red);
+            
+            Debug.DrawRay(screenRay.origin, screenRay.direction, Color.red);
 
-            hit2D = Physics2D.Raycast(screenRay.origin, screenRay.direction, 1000f);
-            if (Physics.Raycast(screenRay, out hit, 1000f))
+            // Perform the Raycasts 
+ 
+            bool raycast3D = Physics.Raycast(screenRay, out var hit, 1000f, _layerMask);
+            
+            // Evaluate Results
+            if ( raycast3D)
             {
                 HandleRayCast(screenRay, hit.transform.gameObject);
-            }
-            else if (hit2D)
-            {
-                HandleRayCast(screenRay, hit2D.transform.gameObject);
             }
             else if (currentHitObject != null)
             {
@@ -190,8 +192,8 @@ namespace _IUTHAV.Scripts.ComicPanel {
 
         private void HandleRayCast(Ray screenRay, GameObject hitObject)
         {
-            Debug.DrawRay(screenRay.origin, screenRay.direction * 1000, Color.green);
-            DebugPrint($"Raycast from {gameObject.name}, hit object: {hitObject.name}");
+            Debug.DrawRay(screenRay.origin, screenRay.direction, Color.green);
+            DebugPrint($"Raycast  from {gameObject.name}, hit object: {hitObject.name}");
 
             if (currentHitObject != hitObject)
             {
