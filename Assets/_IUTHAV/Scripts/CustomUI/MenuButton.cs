@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -19,10 +20,18 @@ namespace _IUTHAV.Scripts.CustomUI
         [SerializeField] private Vector3 basePosition; 
         [SerializeField] private float animationTime;
 
+
+        protected override void Awake()
+        {
+            base.Awake();
+            onClick.AddListener(() => SoundManager.PlaySound(SoundManager.Sound.UIClick, SoundManager.Mixer.SFX));
+        }
+
         public override void OnPointerEnter(PointerEventData eventData)
         {
             base.OnPointerEnter(eventData);
             selectionAction.Invoke();
+            SoundManager.PlaySound(SoundManager.Sound.UIHover, SoundManager.Mixer.SFX);
         }
 
         
