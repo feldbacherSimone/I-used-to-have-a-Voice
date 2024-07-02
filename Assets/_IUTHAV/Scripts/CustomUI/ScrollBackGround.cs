@@ -196,7 +196,7 @@ namespace _IUTHAV.Scripts.CustomUI {
                 
                 var anchoredPosition = bgRect.anchoredPosition;
 
-                Vector2 target = Vector2.MoveTowards(anchoredPosition, _mTargetPosition, forceScrollSpeed);
+                Vector2 target = Vector2.MoveTowards(anchoredPosition, _mTargetPosition, forceScrollSpeed * Time.deltaTime * 100);
                 
                 anchoredPosition = new Vector2(anchoredPosition.x, target.y);
                 bgRect.anchoredPosition = anchoredPosition;

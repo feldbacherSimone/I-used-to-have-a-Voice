@@ -1,4 +1,4 @@
-﻿title: SC2_Act1_Conv1
+title: SC2_Act1_Conv1
 tags:
 ---
 
@@ -46,7 +46,8 @@ Friend: Ich bin stolz!
 Friend: Klar schaffst du das,
 <<nextBox ComicBoxView Friend>>
 Friend: da bin ich mir sicher
-
+Em_Past: ...
+<<nextBox ComicBoxView Em_Past>>
 -> Em_Past: Danke <3
     Em_Past: Danke <3
 -> Em_Past: Wenn du das sagst ^^
@@ -70,20 +71,25 @@ tags:
 Halunken: Jetzt schau dass du heimkommst, sonst kommst morgen nicht auf!
 <<nextBox ComicBoxView Halunken>>
 Halunken: Schönheitsschlaf würd dir eh nicht schaden.
+<<nextBookmark ScrollRect>>
+<<forceScrollToEndpoint ScrollRect>>
 <<nextBox ComicBoxView Halunken>>
 Halunken: Grüß deine Alte von mir!
 
 ===
 
-title: SC3_Act3_Conv1
+title: SC2_Act3_Conv1
 tags:
 ---
 
 Norbert: Da is eh frei, oder
 <<nextBox ComicBoxView Norbert>>
+<<nextBookmark ScrollRect>>
+<<forceScrollAndLock ScrollRect>>
 Norbert: Wo musst denn du so spät noch hin?
 Em_Past: Nach Hause
 Norbert: Vom Fortgehen? Das hab ich in deinem Alter auch immer gemacht
+<<nextBox ComicBoxView Norbert>>
 -> Em_Past: Achso nein, heute nicht
     Em_Past: Achso nein, heute nicht
 -> Em_Past: Das klingt schön
@@ -91,7 +97,9 @@ Norbert: Vom Fortgehen? Das hab ich in deinem Alter auch immer gemacht
 
 Norbert: Eine junge Dame wie du muss die Zeit schon genießen.
 <<nextBox ComicBoxView Norbert>>
+<<nextBox ComicBoxView Em_Past>>
 Em_Past: Ich bemüh mich
+
 -> Em_Past: ...
     Em_Past: ...
     Norbert: Musst nicht schüchtern sein
@@ -110,14 +118,15 @@ tags:
 ---
 
 Norbert: Und wer bist du?
+<<nextBox ComicBoxView Norbert>>
 -> Em_Past: Emilia
     Em_Past: Emilia
     Norbert: Emilia, ein schöner Name
 -> Em_Past: Bianca
     Em_Past: Bianca
     Norbert: Bianca, ein schöner Name
-
-Nobert: Weißt du, ich wär gern auch wieder so jung
+<<nextBox ComicBoxView Norbert>>
+Norbert: Weißt du, ich wär gern auch wieder so jung
 Em_Past: Wirklich?
 Norbert: Du kannst dich noch richtig ausleben, ohne Verpflichtungen
 Norbert: Dein Freund hat echt Glück, das muss man schon sagen
@@ -135,14 +144,20 @@ tags:
 
 Em_Present: Lass das
 Norbert: Du bist so eine fesche Maus
-<<nextBox ComicBoxView all>>
+<<nextBox ComicBoxView Em_Present>>
+<<triggerAnimation PanelMask Reveal>>
+
 Em_Present: Bitte nicht ich
 Norbert: Sehen das die jungen Burschen nicht?
+<<nextBox ComicBoxView all>>
+<<triggerAnimation PanelMask Reveal>>
+
 Em_Present: Sowas passiert nur anderen
 Norbert: Ich mach dir einen Vorschlag:
+<<triggerAnimation PanelMask Reveal>>
 Norbert: Wenn du mit mir aussteigst
+<<nextBox ComicBoxView Norbert>>
 Norbert: dann zeig ich dir was du dir entgehen lasst
-<<nextBox ComicBoxView all>>
 Norbert: zahlen tu ich dir eh auch was
 
 ===

@@ -73,6 +73,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         SC2_StartTrainEnter,
         SC2_StartAct2_Conv1,
         SC2_StartAct2_Conv2,
+        SC2_StartAct3_Conv1,
         //SCENE 3 States
         SC3_ScrollTrigger = 300,
     

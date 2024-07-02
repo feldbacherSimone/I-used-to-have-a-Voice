@@ -13,6 +13,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
 
     [Serializable]
     public class GameStateBehaviour {
+        
         public StateType stateType;
         public UnityEvent onFinish;
 
@@ -195,11 +196,13 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
             foreach (GameStateBehaviour behaviour in gameStateBehaviours) {
                 //Does this work? Idunno, lets find out
                 GameState state = (GameState)_mStates[behaviour.stateType];
+
                 state.onStateCompleted = behaviour.onFinish;
                 behaviour.onFinish = null;
                 state.isFreeze = behaviour.isFreeze;
 
                 state.Enable();
+                
             }
         }
 
