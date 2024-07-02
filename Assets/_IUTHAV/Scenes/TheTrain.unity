@@ -3706,6 +3706,11 @@ PrefabInstance:
       propertyPath: m_text
       value: "Erz\xE4hl, wie war das Gespr\xE4ch?"
       objectReference: {fileID: 0}
+    - target: {fileID: 8676766047631556278, guid: ae2b98ae03899c941a8b661693d95d3d,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9768,6 +9773,11 @@ PrefabInstance:
       propertyPath: m_text
       value: "Erz\xE4hl, wie war das Gespr\xE4ch?"
       objectReference: {fileID: 0}
+    - target: {fileID: 8676766047631556278, guid: ae2b98ae03899c941a8b661693d95d3d,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10120,6 +10130,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: "erz\xE4hl dir alles, wenn wir uns wieder sehen"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676766047631556278, guid: c9fda98692a78984f99b77b4b094c87e,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12421,7 +12436,7 @@ PrefabInstance:
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -7.499712e-12
+      value: -7.499517e-12
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -12431,7 +12446,7 @@ PrefabInstance:
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -5.489028e-11
+      value: -5.488885e-11
       objectReference: {fileID: 0}
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -12441,7 +12456,7 @@ PrefabInstance:
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -7.499712e-12
+      value: -7.499517e-12
       objectReference: {fileID: 0}
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -12451,7 +12466,7 @@ PrefabInstance:
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -5.489028e-11
+      value: -5.488885e-11
       objectReference: {fileID: 0}
     - target: {fileID: 4102648885915324208, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -14359,6 +14374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: "Erz\xE4hl, wie war das Gespr\xE4ch?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676766047631556278, guid: ae2b98ae03899c941a8b661693d95d3d,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16387,6 +16407,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Em_Past__Phone_CharBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8676766047631556278, guid: c9fda98692a78984f99b77b4b094c87e,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17987,6 +18012,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: "Erz\xE4hl, wie war das Gespr\xE4ch?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676766047631556278, guid: ae2b98ae03899c941a8b661693d95d3d,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28135,6 +28165,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Em_Past__Phone_CharBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8676766047631556278, guid: c9fda98692a78984f99b77b4b094c87e,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30343,37 +30378,37 @@ PrefabInstance:
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.4550002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.102
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.32700014
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.69987357
+      value: 0.7068643
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.07638667
+      value: 0.018509904
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.70296985
+      value: 0.70686466
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.10087367
+      value: 0.018509895
       objectReference: {fileID: 0}
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -30433,7 +30468,7 @@ PrefabInstance:
     - target: {fileID: 8072046379423853748, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: field of view
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8072046379423853748, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -31072,37 +31107,37 @@ PrefabInstance:
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.4550002
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.102
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.32700014
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.69987357
+      value: 0.7068643
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.07638667
+      value: 0.018509904
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.70296985
+      value: 0.70686466
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.10087367
+      value: 0.018509895
       objectReference: {fileID: 0}
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -31162,7 +31197,7 @@ PrefabInstance:
     - target: {fileID: 8072046379423853748, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: field of view
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8072046379423853748, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}

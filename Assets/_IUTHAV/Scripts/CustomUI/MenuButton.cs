@@ -20,7 +20,6 @@ namespace _IUTHAV.Scripts.CustomUI
         [SerializeField] private Vector3 basePosition; 
         [SerializeField] private float animationTime;
 
-
         protected override void Awake()
         {
             base.Awake();

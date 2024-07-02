@@ -151,7 +151,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
 #region Private Functions
 
         private void Configure() {
-            _pageController = PageController.Instance;
+
             PopulateStatesTable();
             AssignDelegates();
             SceneLoader.Enable();
@@ -159,15 +159,19 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
 
         private void PopulateStatesTable() {
             _mStates = new Hashtable();
+
+            if (persistentGameStatesObject != null) {
+                
+                foreach (GameState persistentState in persistentGameStatesObject.GameStates) {
+                    RegisterState(persistentState);
+                }
+                
+            }
             
             if (sceneGameStatesObject == null) return;
             
             foreach (GameState state in sceneGameStatesObject.GameStates) {
                 RegisterState(state);
-            }
-
-            foreach (GameState persistentState in persistentGameStatesObject.GameStates) {
-                RegisterState(persistentState);
             }
         }
 

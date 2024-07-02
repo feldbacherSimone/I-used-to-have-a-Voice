@@ -24,10 +24,9 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         None,
         
         //Persistent States
-        PER_State_1 = 1,
         PER_TheCarFinished,
-        PER_TheTrain,
-        PER_TheMessage,
+        PER_TheTrainFinished,
+        PER_TheMessageFinished,
         
         //SCENE 1 States
         SC1_ScrollTrigger = 100,

@@ -15,8 +15,8 @@ public static class SoundManager
 
     public enum Mixer //there's only two channels at this point but if i have to debug for 30 minutes just because I made a typo again one more time im gonna dlelete this project 
     {
-        SFX, 
-        Music, 
+        SFX,
+        Music,
     }
 
 
@@ -43,8 +43,8 @@ public static class SoundManager
             oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
             AssignMixer(mixer, oneShotAudioSource);
             oneShotAudioSource.volume = GetVolume(sound);
-           
         }
+        
         oneShotAudioSource.PlayOneShot(GetAudioClip(sound));
     }
 
@@ -95,12 +95,14 @@ public static class SoundManager
         {
             if (soundAudioClip.sound == sound)
             {
-                int newClipIndex;
-                
-                do
-                {
-                    newClipIndex = Random.Range(0, soundAudioClip.audioClip.Length);
-                } while (lastPlayedClipIndex.ContainsKey(sound) && newClipIndex == lastPlayedClipIndex[sound]);
+                int newClipIndex = 0;
+
+                if (soundAudioClip.audioClip.Length > 1) {
+                    do
+                    {
+                        newClipIndex = Random.Range(0, soundAudioClip.audioClip.Length);
+                    } while (lastPlayedClipIndex.ContainsKey(sound) && newClipIndex == lastPlayedClipIndex[sound]);
+                }
                 
                 lastPlayedClipIndex[sound] = newClipIndex;
 
@@ -128,7 +130,7 @@ public static class SoundManager
 
     private static void AssignMixer(Mixer mixer, AudioSource source)
     {
-        if (audioMixer != null          )
+        if (audioMixer != null)
             source.outputAudioMixerGroup = audioMixer.FindMatchingGroups(mixer.ToString())[0]; 
         else
             Debug.LogError("You Dumb Fuck, there is no Mixer to Accesess");
