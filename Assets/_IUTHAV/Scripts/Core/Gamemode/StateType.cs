@@ -75,6 +75,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         SC2_StartAct3_Conv1,
         SC2_AllOptionsTried,
         SC2_StartAct4_Conv1,
+        SC2_StartAct4_Conv2,
         //SCENE 3 States
         SC3_ScrollTrigger = 300,
     

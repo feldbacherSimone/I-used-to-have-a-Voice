@@ -201,6 +201,10 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
                 //Does this work? Idunno, lets find out
                 GameState state = (GameState)_mStates[behaviour.stateType];
 
+                if (state == null) {
+                    Debug.LogError("Error evaluating state: " + behaviour.stateType + " try resetting it in Inspector!");
+                }
+                
                 state.onStateCompleted = behaviour.onFinish;
                 behaviour.onFinish = null;
                 state.isFreeze = behaviour.isFreeze;

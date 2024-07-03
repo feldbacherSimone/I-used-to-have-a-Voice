@@ -256,9 +256,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac24ecac9b847ae8c8418142aae072a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   _scrollBackGround: {fileID: 0}
   dialogueRunner: {fileID: 0}
   comicBoxView: {fileID: 0}
+  skipConvButton: {fileID: 3462541925319381988}
   timeScaleText: {fileID: 8971867781529207558}
   conversationText: {fileID: 3121507943292714163}
   conversationTextSetter: {fileID: 1441968592083638635}
@@ -514,7 +516,7 @@ GameObject:
   - component: {fileID: 5181325112779463501}
   - component: {fileID: 3462541925319381988}
   m_Layer: 5
-  m_Name: B_Clear (2)
+  m_Name: B_SkipConv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

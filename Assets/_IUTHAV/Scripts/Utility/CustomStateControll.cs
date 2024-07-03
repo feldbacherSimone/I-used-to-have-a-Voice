@@ -19,6 +19,8 @@ namespace _IUTHAV.Scripts.Utility
 
         [SerializeField] private ComicBoxView comicBoxView;
         
+        [SerializeField] private Button skipConvButton;
+        
         [SerializeField] private TextMeshProUGUI timeScaleText;
         
         [SerializeField] private TextMeshProUGUI conversationText;
@@ -38,6 +40,12 @@ namespace _IUTHAV.Scripts.Utility
 
             comicBoxView.OnLineRun += UpdateLineText;
             
+        }
+
+        private void FixedUpdate() {
+
+            skipConvButton.interactable = dialogueRunner.IsDialogueRunning;
+
         }
 
         private void OnDisable() {
