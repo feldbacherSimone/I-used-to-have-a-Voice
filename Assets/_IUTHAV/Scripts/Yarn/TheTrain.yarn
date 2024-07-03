@@ -167,11 +167,11 @@ title: SC2_Act3_Conv4
 tags:
 ---
 
-Bystander: Ich würd mir sowas nicht gefallen lassen
-<<nextBox ComicBoxView Bystander>>
 Bystander: Ja was is jetzt? Mach doch was
 <<nextBox ComicBoxView Bystander>>
 Bystander: Wennst dich schon so anziehst ...
+<<nextBox ComicBoxView Bystander>>
+Bystander: Ich würd mir sowas nicht gefallen lassen
 
 <<nextBox ComicBoxView Bystander>>
 ->Em_Past: Geh weg, das ist ekelhaft!
@@ -192,11 +192,11 @@ Announcer: Nächster Halt, next Stop: !?="/%?
     <<forceScrollToEndpoint ScrollRect>>
     Em_Past: Ich bin doch erst 15
 
-Bystander: Muss die sich auch so anziehen?
+Bystander: Was stellt die sich jetzt so an?
 <<nextBox ComicBoxView Bystander>>
 Bystander: Heute darfst ja echt nix mehr sagen.
 <<nextBox ComicBoxView Bystander>>
-Bystander: Was stellt die sich jetzt so an?
+Bystander: Muss die sich auch so anziehen?
 <<nextBox ComicBoxView Bystander>>
 Bystander: Um die Zeit noch alleine unterwegs sein, was denkt die sich auch dabei ...
 
