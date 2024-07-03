@@ -12,6 +12,8 @@ namespace _IUTHAV.Scripts.Dialogue {
 
         public DragUIOptionsManager Question => question;
 
+        [SerializeField] private bool hideOptionsOnSubmit = true;
+
         private void Awake() {
             RectTransform rectTransform = GetComponent<RectTransform>();
 
@@ -59,19 +61,34 @@ namespace _IUTHAV.Scripts.Dialogue {
             
             while (t < fadeTime) {
                 
-                float x = (enable) ? Mathf.Lerp(0.1f, 1, t / fadeTime) : Mathf.Lerp(1, 0.1f, t / fadeTime);
+                float x = (enable) ? Mathf.Lerp(0.01f, 1, t / fadeTime) : Mathf.Lerp(1, 0.01f, t / fadeTime);
+
+
+                if (group == questionCanvasGroup) {
+
+                    if (enable) {
+                        group.alpha = x;
+                    }
+                    
+                    if (!enable && hideOptionsOnSubmit) {
+                        group.alpha = x;
+                    }
+                    
+                }
                 
-                group.alpha = x;
-                
-                if (group == BoxCanvasGroup) BoxCanvasGroup.transform.localScale = Vector3.Scale(initialScale, new Vector3(x, x, x));
+
+                if (group == BoxCanvasGroup) {
+                    BoxCanvasGroup.transform.localScale = Vector3.Scale(initialScale, new Vector3(x, x, x));
+                    group.alpha = x;
+                }
 
                 t += Time.deltaTime;
                 yield return null;
             }
 
-            if (!enable) group.alpha = 0;
+            //if (!enable) group.alpha = 0;
             
-            if (group == questionCanvasGroup && !enable) Question.gameObject.SetActive(false);
+            if (group == questionCanvasGroup && !enable && hideOptionsOnSubmit) Question.gameObject.SetActive(false);
 
         }
         

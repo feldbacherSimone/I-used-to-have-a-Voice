@@ -14,6 +14,8 @@ namespace _IUTHAV.Scripts.Dialogue {
         [SerializeField] private bool autoFillBoxes = true;
         [SerializeField] private Color gizmoColor;
 
+        public Color GizmoColor => gizmoColor;
+
         private Dictionary<string, CharBoxContainer> _comicBoxes;
 
         private void Awake() {
@@ -120,6 +122,14 @@ namespace _IUTHAV.Scripts.Dialogue {
             }
             
             LogWarning("No Characterbox found with Key: " + cName);
+            return null;
+        }
+        
+        public CharacterBox CurrentCharacterBoxSilent(string cName) {
+            if (_comicBoxes.TryGetValue(cName, out var box)) {
+                return box.CurrentBox();
+            }
+            
             return null;
         }
 

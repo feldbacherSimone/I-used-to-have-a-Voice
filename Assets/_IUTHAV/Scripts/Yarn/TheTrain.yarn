@@ -162,7 +162,6 @@ Norbert: zahlen tu ich dir eh auch was
 
 ===
 
----
 
 title: SC2_Act3_Conv4
 tags:
@@ -174,18 +173,23 @@ Bystander: Ja was is jetzt? Mach doch was
 <<nextBox ComicBoxView Bystander>>
 Bystander: Wennst dich schon so anziehst ...
 
+<<nextBox ComicBoxView Bystander>>
 ->Em_Past: Geh weg, das ist ekelhaft!
 ->Em_Past: Wieso hilft mir denn keiner? Seht ihr nicht, was passiert?
 ->Em_Past: Nimm deine Drecksfinger von mir du notgeiler Arsch!
 
-Announcer: Nächster Halt, next Stop: !?="/%?
+
 ===
 
 title: SC2_Act3_Conv5
 tags:
 ---
 
+Announcer: Nächster Halt, next Stop: !?="/%?
+<<nextBox ComicBoxView Announcer>>
 -> Em_Past: Ich bin doch erst 15
+    <<nextBookmark ScrollRect>>
+    <<forceScrollToEndpoint ScrollRect>>
     Em_Past: Ich bin doch erst 15
 
 Bystander: Muss die sich auch so anziehen?

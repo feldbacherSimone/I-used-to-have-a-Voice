@@ -370,6 +370,11 @@ PrefabInstance:
       propertyPath: hideBoxOnBoxChange
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5817320409769408416, guid: 492525f5b6ae91b43a35f2d195fc55c1,
+        type: 3}
+      propertyPath: hideOptionsOnSubmit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6805881163524827662, guid: 492525f5b6ae91b43a35f2d195fc55c1,
         type: 3}
       propertyPath: m_Sprite

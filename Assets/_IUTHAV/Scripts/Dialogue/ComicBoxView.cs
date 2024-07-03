@@ -4,11 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using _IUTHAV.Scripts.Core.Input;
 using _IUTHAV.Scripts.CustomUI;
-using _IUTHAV.Scripts.Dialogue.Option;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Yarn.Markup;
 using Yarn.Unity;
 
@@ -99,6 +97,10 @@ namespace _IUTHAV.Scripts.Dialogue {
         
         [SerializeField] bool showUnavailableOptions = false;
         
+        public delegate void LineRun(ConversationManager conversation);
+
+        public event LineRun OnLineRun;
+        
         private void Awake() {
             
             PopulateLists();
@@ -125,7 +127,7 @@ namespace _IUTHAV.Scripts.Dialogue {
 
         private void OnDrawGizmos() {
 
-            var box = GetCurrentBox();
+            var box = GetCurrentBoxSilent();
             
             if (box != null) {
 
@@ -226,6 +228,8 @@ namespace _IUTHAV.Scripts.Dialogue {
             
             // Begin running the line as a coroutine.
             StartCoroutine(RunLineInternal(dialogueLine, onDialogueLineFinished));
+            
+            OnLineRun?.Invoke(_mConversations[_mCurrentIndex]);
         }
 
         private IEnumerator RunLineInternal(LocalizedLine dialogueLine, Action onDialogueLineFinished)
@@ -589,6 +593,7 @@ namespace _IUTHAV.Scripts.Dialogue {
 
             //Show new box
             
+            
 
             // If we don't already have enough option views, create more
             _mCurrentQuestionBox = _mConversations[_mCurrentIndex].GetCurrentQuestionBox(_mCurrentChar);
@@ -612,7 +617,8 @@ namespace _IUTHAV.Scripts.Dialogue {
 
             // Note the delegate to call when an option is selected
             OnOptionSelected = onOptionSelected;
-            
+
+            OnLineRun?.Invoke(_mConversations[_mCurrentIndex]);
         }
         
         private void OptionViewWasSelected(DialogueOption option) {
@@ -670,6 +676,10 @@ namespace _IUTHAV.Scripts.Dialogue {
         
         public string GetCurrentCharacter() {
             return _mCurrentChar;
+        }
+
+        public string GetCurrentConversation() {
+            return _mConversations[_mCurrentIndex]?.gameObject.name;
         }
         
 #endregion
@@ -793,6 +803,19 @@ namespace _IUTHAV.Scripts.Dialogue {
             return _mConversations[_mCurrentIndex].CurrentCharacterBox(_mCurrentChar);
 
         }
+        
+        private CharacterBox GetCurrentBoxSilent() {
+
+            if (_mConversations == null ||
+            _mCurrentIndex > _mConversations.Count || 
+            _mCurrentIndex < 0 || 
+            _mConversations.Count == 0) {
+                return null;
+            }
+            
+            return _mConversations[_mCurrentIndex].CurrentCharacterBoxSilent(_mCurrentChar);
+
+        }
 
         private void Log(string msg) {
             if (!isDebug) return;
@@ -804,6 +827,7 @@ namespace _IUTHAV.Scripts.Dialogue {
             Debug.LogWarning("[ComicBoxView] " + msg);
         }
 #endregion
+        
     }
         
 }

@@ -1,3 +1,4 @@
+using _IUTHAV.Scripts.Core.Input;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -40,6 +41,8 @@ namespace _IUTHAV.Scripts.CustomUI {
             if (currentflag == FLAG_DRAG) {
                 Drop(null);
             }
+            
+            if (InputController.IsHoldingElement) return;
 
             if (currentflag != FLAG_NONE) return;
             
@@ -52,6 +55,8 @@ namespace _IUTHAV.Scripts.CustomUI {
             if (Vector2.Distance(transform.position, _mTargetPosition) > 0.5f) {
                 StartCoroutine(MoveTowardsTarget(() => { currentflag = FLAG_DRAG; }));
             }
+            
+            InputController.IsHoldingElement = true;
         }
 
         protected override void Drop(DragAndDropUIElement dropElement) {

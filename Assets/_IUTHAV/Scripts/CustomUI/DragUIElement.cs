@@ -60,12 +60,12 @@ namespace _IUTHAV.Scripts.CustomUI {
         protected override void OnClickDelegate(BaseEventData data) {
             
             base.OnClickDelegate(data);
-            
-            if (InputController.IsHoldingElement) return;
         
             if (currentflag == FLAG_DRAG) {
                 Drop(null);
             }
+            
+            if (InputController.IsHoldingElement) return;
 
             if (currentflag != FLAG_NONE) return;
             
