@@ -6,6 +6,7 @@ namespace _IUTHAV.Scripts.Core.Input {
 
         private static InputAction _AInteract;
         private static InputAction _ADrag;
+        private static InputAction _ADebug;
         
         public delegate void InteractionHandler(InputAction.CallbackContext context);
 
@@ -14,6 +15,8 @@ namespace _IUTHAV.Scripts.Core.Input {
         public static InteractionHandler OnBeginDrag;
 
         public static InteractionHandler OnEndDrag;
+
+        public static InteractionHandler OnDebug;
 
         public static bool IsConfigured;
 
@@ -27,12 +30,14 @@ namespace _IUTHAV.Scripts.Core.Input {
 
             _AInteract = actions.BaseActionMap.Interact;
             _ADrag = actions.BaseActionMap.Drag;
-            
+            _ADebug = actions.BaseActionMap.Debug;
+
             actions.Enable();
 
             _AInteract.performed += OnInteractDelegate;
             _ADrag.started += OnBeginDragDelegate;
             _ADrag.canceled += OnEndDragDelegate;
+            _ADebug.performed += OnDebugDelegate;
 
             IsConfigured = true;
 
@@ -45,6 +50,8 @@ namespace _IUTHAV.Scripts.Core.Input {
             _ADrag.started -= OnBeginDragDelegate;
 
             _ADrag.canceled -= OnEndDragDelegate;
+            
+            _ADebug.performed -= OnDebugDelegate;
         }
 
         private static void OnInteractDelegate(InputAction.CallbackContext context) {
@@ -62,6 +69,12 @@ namespace _IUTHAV.Scripts.Core.Input {
         private static void OnEndDragDelegate(InputAction.CallbackContext context) {
             
             OnEndDrag?.Invoke(context);
+            
+        }
+
+        private static void OnDebugDelegate(InputAction.CallbackContext context) {
+            
+            OnDebug?.Invoke(context);
             
         }
 

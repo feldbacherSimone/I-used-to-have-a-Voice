@@ -37,12 +37,15 @@ namespace _IUTHAV.Scripts.CustomUI {
         [Space(10)] [SerializeField] private bool isDebug;
 
 
-        public int bookmarkCount; 
+        public int bookmarkCount;
 
         private GameManager _mGameManager;
         private GameState _mCurrentTriggeredState;
         private float _mBgOffset;
         private Vector2 _mTargetPosition;
+
+        public delegate void OnBookmarkHandler();
+        public OnBookmarkHandler OnBookmark;
 
 #region Unity Functions
 
@@ -119,6 +122,8 @@ namespace _IUTHAV.Scripts.CustomUI {
                 SetTriggeredStateData();
                 
                 scrollIndicator.Play("On");
+
+                OnBookmark?.Invoke();
             }
             else {
                 Log("No more bookmarks to iterate through!");

@@ -32,6 +32,7 @@ namespace _IUTHAV.Scripts.CustomUI {
         public void StartDestructionSequence() {
             Log("Starting Destruction Sequence");
             onDestruction?.Invoke();
+            if (gameObject.activeSelf) gameObject.SetActive(false);
         }
         
         protected override void OnClickDelegate(BaseEventData data) {

@@ -62,6 +62,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Debug"",
+                    ""type"": ""Button"",
+                    ""id"": ""b72c9ab4-df08-451c-8d29-b50591fe936b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -108,6 +117,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""MouseScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22f10575-9216-4fe9-a859-9955fddfb948"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MouseAndKeyboard"",
+                    ""action"": ""Debug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -126,6 +146,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_BaseActionMap_Drag = m_BaseActionMap.FindAction("Drag", throwIfNotFound: true);
         m_BaseActionMap_MousePosition = m_BaseActionMap.FindAction("MousePosition", throwIfNotFound: true);
         m_BaseActionMap_MouseScroll = m_BaseActionMap.FindAction("MouseScroll", throwIfNotFound: true);
+        m_BaseActionMap_Debug = m_BaseActionMap.FindAction("Debug", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -191,6 +212,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_BaseActionMap_Drag;
     private readonly InputAction m_BaseActionMap_MousePosition;
     private readonly InputAction m_BaseActionMap_MouseScroll;
+    private readonly InputAction m_BaseActionMap_Debug;
     public struct BaseActionMapActions
     {
         private @InputActions m_Wrapper;
@@ -199,6 +221,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Drag => m_Wrapper.m_BaseActionMap_Drag;
         public InputAction @MousePosition => m_Wrapper.m_BaseActionMap_MousePosition;
         public InputAction @MouseScroll => m_Wrapper.m_BaseActionMap_MouseScroll;
+        public InputAction @Debug => m_Wrapper.m_BaseActionMap_Debug;
         public InputActionMap Get() { return m_Wrapper.m_BaseActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -220,6 +243,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @MouseScroll.started += instance.OnMouseScroll;
             @MouseScroll.performed += instance.OnMouseScroll;
             @MouseScroll.canceled += instance.OnMouseScroll;
+            @Debug.started += instance.OnDebug;
+            @Debug.performed += instance.OnDebug;
+            @Debug.canceled += instance.OnDebug;
         }
 
         private void UnregisterCallbacks(IBaseActionMapActions instance)
@@ -236,6 +262,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @MouseScroll.started -= instance.OnMouseScroll;
             @MouseScroll.performed -= instance.OnMouseScroll;
             @MouseScroll.canceled -= instance.OnMouseScroll;
+            @Debug.started -= instance.OnDebug;
+            @Debug.performed -= instance.OnDebug;
+            @Debug.canceled -= instance.OnDebug;
         }
 
         public void RemoveCallbacks(IBaseActionMapActions instance)
@@ -268,5 +297,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnDrag(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnMouseScroll(InputAction.CallbackContext context);
+        void OnDebug(InputAction.CallbackContext context);
     }
 }
