@@ -120,6 +120,13 @@ MonoBehaviour:
     resetOnUnload: 1
     isFreeze: 0
     isFinished: 0
+  - stateType: 215
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 1
+    isFreeze: 0
+    isFinished: 0
   - stateType: 240
     onStateCompleted:
       m_PersistentCalls:
@@ -170,6 +177,13 @@ MonoBehaviour:
     isFreeze: 0
     isFinished: 0
   - stateType: 247
+    onStateCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    resetOnUnload: 1
+    isFreeze: 0
+    isFinished: 0
+  - stateType: 248
     onStateCompleted:
       m_PersistentCalls:
         m_Calls: []
