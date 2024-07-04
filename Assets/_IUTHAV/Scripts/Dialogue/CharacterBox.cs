@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace _IUTHAV.Scripts.Dialogue {
@@ -36,6 +35,8 @@ namespace _IUTHAV.Scripts.Dialogue {
 
         protected const float maxRandomWaitTime = 0.3f;
 
+        private IEnumerator _mFadeBoxJob;
+
         private void Awake() {
         
             Configure();
@@ -54,8 +55,12 @@ namespace _IUTHAV.Scripts.Dialogue {
             if (BoxCanvasGroup != null) {
                 
                 IsActive = enable;
-                StartCoroutine(FadeBox(enable, BoxCanvasGroup));
-                
+
+                if (_mFadeBoxJob != null) {
+                    StopCoroutine(_mFadeBoxJob);
+                }
+                _mFadeBoxJob = FadeBox(enable, BoxCanvasGroup);
+                StartCoroutine(_mFadeBoxJob);
             }
             
         }

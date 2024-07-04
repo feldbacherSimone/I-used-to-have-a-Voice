@@ -5,14 +5,14 @@ using UnityEngine;
 namespace _IUTHAV.Scripts.Dialogue {
     public class QuestionBox : CharacterBox {
 
-
         [SerializeField] private DragUIOptionsManager question;
         
         [SerializeField] private CanvasGroup questionCanvasGroup;
-
         public DragUIOptionsManager Question => question;
 
         [SerializeField] private bool hideOptionsOnSubmit = true;
+
+        private IEnumerator _mFadeQuestionJob;
 
         private void Awake() {
             RectTransform rectTransform = GetComponent<RectTransform>();
@@ -47,7 +47,13 @@ namespace _IUTHAV.Scripts.Dialogue {
         public void EnableQuestions(bool enable = true) {
             
             if (enable) Question.gameObject.SetActive(true);
-            StartCoroutine(FadeBox(enable, questionCanvasGroup));
+
+            if (_mFadeQuestionJob != null) {
+                StopCoroutine(_mFadeQuestionJob);
+            }
+
+            _mFadeQuestionJob = FadeBox(enable, questionCanvasGroup);
+            StartCoroutine(_mFadeQuestionJob);
         }
         
         protected override IEnumerator FadeBox(bool enable, CanvasGroup group) {
