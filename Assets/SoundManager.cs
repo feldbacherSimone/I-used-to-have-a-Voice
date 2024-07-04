@@ -10,7 +10,17 @@ public static class SoundManager
        UIHover, 
        UIClick,
        
+       AnswerPickUp,
+       AnswerDrop,
        AnswerBlocked,
+       
+       PhoneRing,
+       TrainArrive,
+       PhoneSend,
+       TrainDoorOpen,
+       TrainDoorClosed,
+       
+       
     }
 
     public enum Mixer //there's only two channels at this point but if i have to debug for 30 minutes just because I made a typo again one more time im gonna dlelete this project 
@@ -64,6 +74,8 @@ public static class SoundManager
 
         Object.Destroy(soundGameObject, audioSource.clip.length);
     }
+
+ 
 
 
     public static float PlayAndWait(Sound sound, Vector3 pos, Mixer mixer)

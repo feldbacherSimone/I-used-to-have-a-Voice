@@ -13,8 +13,15 @@ public class OneShotSoundPlayer : MonoBehaviour
 
     [SerializeField] private SoundManager.Mixer mixer; 
     [SerializeField] private SoundManager.Sound sound; 
+    [SerializeField] private float delay; 
     public void PlayOneShot()
     {
+        StartCoroutine(WaitAndPlay());
+    }
+
+    IEnumerator WaitAndPlay()
+    {
+        yield return new WaitForSeconds(delay);
         SoundManager.PlaySound(sound, mixer);
     }
 }

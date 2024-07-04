@@ -1,13 +1,13 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-6956277893208152414
+--- !u!1102 &-7348407615816170246
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: root|rigAction_001
+  m_Name: Door
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -20,21 +20,21 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 4668421355667787951, guid: ba46009338cf46b45b682cd8f4e02943,
+  m_Motion: {fileID: -943916150157292393, guid: ba2af3b618d66764fa96331e3caa4c6b,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-2414423335069759198
+--- !u!1102 &-4419535078052034932
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: A_TheTrain
+  m_Name: Leaning
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -47,7 +47,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 4821032112211857846, guid: ba2af3b618d66764fa96331e3caa4c6b,
+  m_Motion: {fileID: 3592739338228997352, guid: ba2af3b618d66764fa96331e3caa4c6b,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -76,6 +76,33 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!1102 &8442592457411941902
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Standing
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: -4119245637933746683, guid: ba2af3b618d66764fa96331e3caa4c6b,
+    type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1107 &8670951427922236770
 AnimatorStateMachine:
   serializedVersion: 6
@@ -86,11 +113,14 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -2414423335069759198}
-    m_Position: {x: 490, y: 60, z: 0}
+    m_State: {fileID: -7348407615816170246}
+    m_Position: {x: 540, y: 50, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -6956277893208152414}
-    m_Position: {x: 320, y: 190, z: 0}
+    m_State: {fileID: -4419535078052034932}
+    m_Position: {x: 780, y: 30, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 8442592457411941902}
+    m_Position: {x: 1120, y: 60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -100,4 +130,4 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 260, y: 60, z: 0}
   m_ExitPosition: {x: 620, y: 260, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -2414423335069759198}
+  m_DefaultState: {fileID: -7348407615816170246}

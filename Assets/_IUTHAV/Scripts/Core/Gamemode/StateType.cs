@@ -54,6 +54,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         //SCENE 2 States
         SC2_ScrollTrigger = 200,
         SC2_Start = 201,
+        SC2_RingPhone,
         SC2_Act1_Conv1,
         SC2_Act1_Conv2,
         SC2_Act1_Conv3,
