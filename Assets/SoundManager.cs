@@ -19,7 +19,7 @@ public static class SoundManager
        PhoneSend,
        TrainDoorOpen,
        TrainDoorClosed,
-       
+       TrainDoorButton,
        
     }
 

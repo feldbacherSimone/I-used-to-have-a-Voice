@@ -42,6 +42,16 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
                 group.blocksRaycasts = false;
 
             }
+            
+            SetupUISounds();
+        }
+
+        private void SetupUISounds()
+        {
+            onPickup.AddListener((() => SoundManager.PlaySound(SoundManager.Sound.AnswerPickUp, SoundManager.Mixer.SFX)));
+            onDrop.AddListener((() => SoundManager.PlaySound(SoundManager.Sound.AnswerDrop, SoundManager.Mixer.SFX)));
+            onInvalidDrop.AddListener((() => SoundManager.PlaySound(SoundManager.Sound.AnswerBlocked, SoundManager.Mixer.SFX)));
+            onDestruction.AddListener((() => SoundManager.PlaySound(SoundManager.Sound.AnswerBlocked, SoundManager.Mixer.SFX)));
         }
 
         public DialogueOption Option

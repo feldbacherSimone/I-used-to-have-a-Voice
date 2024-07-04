@@ -7955,10 +7955,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundAudioClips:
-  - sound: 2
+  - sound: 4
     audioClip:
     - {fileID: 8300000, guid: 348706e7f1f64b043be228931555271b, type: 3}
-    volume: 0
+    volume: 0.5
+  - sound: 2
+    audioClip:
+    - {fileID: 8300000, guid: dc8bdcdbf6d9bcf458ad552f2cf3d589, type: 3}
+    volume: 0.5
+  - sound: 3
+    audioClip:
+    - {fileID: 8300000, guid: 6a7edb5ca6abf8647a9752986cf7a8fb, type: 3}
+    volume: 0.5
 --- !u!1 &402945737
 GameObject:
   m_ObjectHideFlags: 0
@@ -35492,6 +35500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mixer: 0
   sound: 2
+  delay: 0
 --- !u!224 &1878874673 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2450789693031149407, guid: 8903f4ad49563d94c9a22cd0e1db2c22,
