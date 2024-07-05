@@ -121,7 +121,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""22f10575-9216-4fe9-a859-9955fddfb948"",
-                    ""path"": ""<Keyboard>/f3"",
+                    ""path"": ""<Keyboard>/f2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MouseAndKeyboard"",
