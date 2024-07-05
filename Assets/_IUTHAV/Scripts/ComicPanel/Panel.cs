@@ -156,6 +156,12 @@ namespace _IUTHAV.Scripts.ComicPanel {
         public void ResetBorderColour() {
             border.GetComponent<Image>().color = borderColours.borderBaseColour;
         }
+
+        public void SetDefaultYPosition(float pos) {
+
+            defaultPos.y = pos;
+
+        }
 #endregion
 
 #region Private Functions

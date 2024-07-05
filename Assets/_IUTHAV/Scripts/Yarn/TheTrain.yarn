@@ -86,6 +86,7 @@ Norbert: Da is eh frei, oder
 <<nextBox ComicBoxView Norbert>>
 <<nextBookmark ScrollRect>>
 <<forceScrollAndLock ScrollRect>>
+<<finishState GameManager SC2_TriggerNorbert>>
 Norbert: Wo musst denn du so spät noch hin?
 Em_Past: Nach Hause
 Norbert: Vom Fortgehen? Das hab ich in deinem Alter auch immer gemacht

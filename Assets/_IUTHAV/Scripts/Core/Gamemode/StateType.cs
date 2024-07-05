@@ -78,6 +78,7 @@ namespace _IUTHAV.Scripts.Core.Gamemode {
         SC2_StartAct4_Conv1,
         SC2_StartAct4_Conv2,
         SC2_OpenDoor,
+        SC2_TriggerNorbert,
         //SCENE 3 States
         SC3_ScrollTrigger = 300,
     
