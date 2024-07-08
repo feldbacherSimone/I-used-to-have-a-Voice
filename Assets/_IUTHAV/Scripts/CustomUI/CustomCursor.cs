@@ -14,7 +14,7 @@ namespace _IUTHAV.Scripts.CustomUI
                 _customCursorContainer = Resources.Load<CustomCursorContainer>("ScriptableObjects/CustomCursor");
             }
             Texture2D currrentTexture = GetCursorTexture(cursorState);
-            Cursor.SetCursor(currrentTexture, new Vector2(64, 64), CursorMode.Auto);
+            Cursor.SetCursor(currrentTexture, new Vector2(32, 32), CursorMode.Auto);
         }
 
         private static Texture2D GetCursorTexture(CursorState cursorState)
