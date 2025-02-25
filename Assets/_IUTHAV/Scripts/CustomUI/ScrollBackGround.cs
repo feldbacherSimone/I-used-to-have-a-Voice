@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using _IUTHAV.Scripts.Core.Gamemode;
 using _IUTHAV.Scripts.Core.Gamemode.CustomDataTypes;
-using _IUTHAV.Scripts.Utility;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Yarn.Unity;
 
@@ -27,15 +25,21 @@ namespace _IUTHAV.Scripts.CustomUI {
         [SerializeField] private RectTransform canvasRect;
         [SerializeField] private ScrollRect scrollRect;
         [SerializeField] private RectTransform bgRect;
-        [SerializeField][Range(1, 15)] private float forceScrollSpeed = 4.0f;
         [Space(10)]
         [SerializeField] private int currentBmIndex;
         [SerializeField] private Bookmark[] bookmarks;
 
         [SerializeField] private Animator scrollIndicator;
-
+        
         [Space(10)] [SerializeField] private bool isDebug;
 
+        public float ScrollPosition {
+            get => bgRect.anchoredPosition.y;
+            set {
+                var anchoredPosition = new Vector2(bgRect.anchoredPosition.x, value);
+                bgRect.anchoredPosition = anchoredPosition;
+            }
+        }
 
         public int bookmarkCount;
 
@@ -46,6 +50,8 @@ namespace _IUTHAV.Scripts.CustomUI {
 
         public delegate void OnBookmarkHandler();
         public OnBookmarkHandler OnBookmark;
+
+        private IEnumerator m_forceScrollRoutine;
 
 #region Unity Functions
 
@@ -131,22 +137,29 @@ namespace _IUTHAV.Scripts.CustomUI {
 
         }
         [YarnCommand("forceScrollToEndpoint")]
-        public void ForceScrollToEndpoint() {
+        public void ForceScrollToEndpoint(bool lockOnfinish = false, float speed = 4.0f) {
 
             scrollRect.enabled = false;
             _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, bookmarks[currentBmIndex].endpoint-canvasRect.rect.height);
-            StartCoroutine(MoveToYLocation(false));
+            
+            if (m_forceScrollRoutine != null) StopCoroutine(m_forceScrollRoutine);
+            
+            m_forceScrollRoutine = MoveToYLocation(lockOnfinish, speed);
+            StartCoroutine(m_forceScrollRoutine);
             
             scrollIndicator.Play("Off");
             
         }
         
         [YarnCommand("forceScrollAndLock")]
-        public void ForceScrollAndLock() {
+        public void ForceScrollAndLock(float speed = 4.0f) {
 
             scrollRect.enabled = false;
             _mTargetPosition = new Vector2(bgRect.anchoredPosition.x, bookmarks[currentBmIndex].endpoint-canvasRect.rect.height);
-            StartCoroutine(MoveToYLocation(true));
+            if (m_forceScrollRoutine != null) StopCoroutine(m_forceScrollRoutine);
+            
+            m_forceScrollRoutine = MoveToYLocation(true, speed);
+            StartCoroutine(m_forceScrollRoutine);
             
             scrollIndicator.Play("Off");
             
@@ -156,7 +169,7 @@ namespace _IUTHAV.Scripts.CustomUI {
 
             scrollRect.enabled = enable;
         }
-
+        
         [YarnCommand("showIndicator")]
         public void ShowIndicator() {
             scrollIndicator.Play("On");
@@ -193,7 +206,7 @@ namespace _IUTHAV.Scripts.CustomUI {
             bgRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, bookmarks[currentBmIndex].endpoint);
         }
 
-        private IEnumerator MoveToYLocation(bool lockOnFinish) {
+        private IEnumerator MoveToYLocation(bool lockOnFinish, float speed) {
             
             scrollRect.enabled = false;
 
@@ -201,7 +214,7 @@ namespace _IUTHAV.Scripts.CustomUI {
                 
                 var anchoredPosition = bgRect.anchoredPosition;
 
-                Vector2 target = Vector2.MoveTowards(anchoredPosition, _mTargetPosition, forceScrollSpeed * Time.deltaTime * 100);
+                Vector2 target = Vector2.MoveTowards(anchoredPosition, _mTargetPosition, speed * Time.deltaTime * 100);
                 
                 anchoredPosition = new Vector2(anchoredPosition.x, target.y);
                 bgRect.anchoredPosition = anchoredPosition;
@@ -209,6 +222,7 @@ namespace _IUTHAV.Scripts.CustomUI {
             }
 
             scrollRect.enabled = !lockOnFinish;
+            m_forceScrollRoutine = null;
             yield return null;
 
         }
