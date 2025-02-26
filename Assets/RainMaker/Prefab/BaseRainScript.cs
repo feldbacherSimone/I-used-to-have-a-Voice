@@ -30,7 +30,7 @@ namespace DigitalRuby.RainMaker
         [Tooltip("Heavy rain looping clip")]
         public AudioClip RainSoundHeavy;
 
-        [Tooltip("AudoMixer used for the rain sound")]
+        [Tooltip("AudoMixer used for the rain soundType")]
         public AudioMixerGroup RainSoundAudioMixer;
 
         [Tooltip("Intensity of rain (0-1)")]
@@ -53,13 +53,13 @@ namespace DigitalRuby.RainMaker
         [Tooltip("Wind looping clip")]
         public AudioClip WindSound;
 
-        [Tooltip("Wind sound volume modifier, use this to lower your sound if it's too loud.")]
+        [Tooltip("Wind soundType volume modifier, use this to lower your soundType if it's too loud.")]
         public float WindSoundVolumeModifier = 0.5f;
 
         [Tooltip("Wind zone that will affect and follow the rain")]
         public WindZone WindZone;
 
-        [Tooltip("X = minimum wind speed. Y = maximum wind speed. Z = sound multiplier. Wind speed is divided by Z to get sound multiplier value. Set Z to lower than Y to increase wind sound volume, or higher to decrease wind sound volume.")]
+        [Tooltip("X = minimum wind speed. Y = maximum wind speed. Z = soundType multiplier. Wind speed is divided by Z to get soundType multiplier value. Set Z to lower than Y to increase wind soundType volume, or higher to decrease wind soundType volume.")]
         public Vector3 WindSpeedRange = new Vector3(50.0f, 500.0f, 500.0f);
 
         [Tooltip("How often the wind speed and direction changes (minimum and maximum change interval in seconds)")]

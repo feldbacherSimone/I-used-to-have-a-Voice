@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _IUTHAV.Scripts.Core.Audio;
 using UnityEngine;
 
 public class PhoneRing : MonoBehaviour
@@ -15,7 +16,7 @@ public class PhoneRing : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         _animation.Play();
-        SoundManager.PlaySound(SoundManager.Sound.PhoneRing, SoundManager.Mixer.SFX);
+        SoundManager.PlaySound(SoundManager.SoundType.PhoneRing, SoundManager.Mixer.SFX);
     }
     
 }

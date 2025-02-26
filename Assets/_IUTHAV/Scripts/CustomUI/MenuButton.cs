@@ -1,4 +1,5 @@
 ﻿using System;
+using _IUTHAV.Scripts.Core.Audio;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,14 +24,14 @@ namespace _IUTHAV.Scripts.CustomUI
         protected override void Awake()
         {
             base.Awake();
-            onClick.AddListener(() => SoundManager.PlaySound(SoundManager.Sound.UIClick, SoundManager.Mixer.SFX));
+            onClick.AddListener(() => SoundManager.PlaySound(SoundManager.SoundType.UIClick, SoundManager.Mixer.SFX));
         }
 
         public override void OnPointerEnter(PointerEventData eventData)
         {
             base.OnPointerEnter(eventData);
             selectionAction.Invoke();
-            SoundManager.PlaySound(SoundManager.Sound.UIHover, SoundManager.Mixer.SFX);
+            SoundManager.PlaySound(SoundManager.SoundType.UIHover, SoundManager.Mixer.SFX);
         }
 
         
