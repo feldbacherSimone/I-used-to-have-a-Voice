@@ -45,7 +45,7 @@ MonoBehaviour:
           m_CallState: 2
     resetOnUnload: 0
     isFreeze: 0
-    isFinished: 0
+    isFinished: 1
   - stateType: 2
     onStateCompleted:
       m_PersistentCalls:
@@ -76,7 +76,7 @@ MonoBehaviour:
           m_CallState: 2
     resetOnUnload: 0
     isFreeze: 0
-    isFinished: 0
+    isFinished: 1
   - stateType: 3
     onStateCompleted:
       m_PersistentCalls:
