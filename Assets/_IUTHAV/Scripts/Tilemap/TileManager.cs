@@ -1,15 +1,14 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Yarn.Unity;
 
 namespace _IUTHAV.Scripts.Tilemap {
     public class TileManager : MonoBehaviour {
-
+        
         [SerializeField] private TileController[] tileControllers;
         [SerializeField] private float speedChangeDuration = 2f;
-
+        
 #region Public Functions
 
         [YarnCommand("ChangeTileSpeedFactor")]

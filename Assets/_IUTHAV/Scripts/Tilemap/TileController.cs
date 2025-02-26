@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 using Yarn.Unity;
 
 namespace _IUTHAV.Scripts.Tilemap {
@@ -14,41 +11,16 @@ namespace _IUTHAV.Scripts.Tilemap {
         [SerializeField] protected TileSwitchMode tileSwitchMode;
         [SerializeField] [Range(0,20)] protected int maxTiles = 5;
         [SerializeField] [Range(0,20)] protected int startingTiles = 3;
-
+        
         public UnityEvent onLastTileReached;
         
         protected int _mCurrentTileIndex;
         protected Transform _mCurrentEndPoint;
         protected Transform _mControlPoint;
         protected Queue<Tile> _mTiles;
-        protected bool _mScrolling;
         
-        private void Update() {
-            
-            if (_mScrolling) {
-                
-                UpdateTile();
-            };
-        }
-
 #region Public Functions
-
-        public void StartTileScroll() {
-
-            _mScrolling = true;
-        }
-
-        public void StopTilescroll() {
-
-            _mScrolling = false;
-        }
-
-        public void StopSpawningTiles() {
-
-            maxTiles = 0;
-
-        }
-
+        
         public void QueueTile(Tile tile) {
             
             SpawnInstance(tile);
@@ -68,11 +40,10 @@ namespace _IUTHAV.Scripts.Tilemap {
 
 #region Private Functions
 
-        protected virtual void Configure() {
+        protected void Configure() {
             
-            _mScrolling = true;
             _mTiles = new Queue<Tile>(GetComponentsInChildren<Tile>());
-
+            
             _mControlPoint = Instantiate(new GameObject("CTRL"), transform).transform;
             _mCurrentEndPoint = Instantiate(new GameObject("END"), transform).transform;
             
@@ -83,15 +54,14 @@ namespace _IUTHAV.Scripts.Tilemap {
             while (_mTiles.Count < startingTiles) {
                 
                 SpawnInstance();
-                
             }
         }
-
+        
         protected virtual void SpawnInstance(Tile tile = null) {
-
+            
             if (tile == null) {
                 if (tileSwitchMode == TileSwitchMode.Queued) {
-
+                    
                     tile = tiles[_mCurrentTileIndex];
                     _mCurrentTileIndex++;
                     
@@ -106,8 +76,6 @@ namespace _IUTHAV.Scripts.Tilemap {
                     tile = tiles[_mCurrentTileIndex];
                 }
             }
-            
-            
             
             var tileObj = Instantiate(tile.gameObject, this.gameObject.transform, true);
             tileObj.transform.localPosition = Vector3.zero;
@@ -126,7 +94,6 @@ namespace _IUTHAV.Scripts.Tilemap {
 
             if (_mTiles.Count == 0) {
                 onLastTileReached.Invoke();
-                _mScrolling = false;
                 return false;
             }
 

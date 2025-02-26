@@ -1,7 +1,7 @@
 ﻿using _IUTHAV.Scripts.CustomUI;
 using UnityEngine.Playables;
 
-namespace _IUTHAV.Scripts.Timeline {
+namespace _IUTHAV.Scripts.Timeline.ScrollBackground {
     public class ScrollBackgroundControlMixerBehaviour : PlayableBehaviour {
         
         // NOTE: This function is called at runtime and edit time.  Keep that in mind when setting the values of properties.

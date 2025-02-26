@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Playables;
 
-namespace _IUTHAV.Scripts.Timeline {
+namespace _IUTHAV.Scripts.Timeline.ScrollBackground {
     public class ScrollBackgroundControlAsset  : PlayableAsset {
 
         public ScrollBackgroundControlBehaviour template;

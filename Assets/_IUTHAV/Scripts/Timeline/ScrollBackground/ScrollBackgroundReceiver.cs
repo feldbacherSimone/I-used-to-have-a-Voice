@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Playables;
 
-namespace _IUTHAV.Scripts.Timeline {
+namespace _IUTHAV.Scripts.Timeline.ScrollBackground {
     public class ScrollBackgroundReceiver : MonoBehaviour, INotificationReceiver {
 
         [SerializeField] private ScrollBackGround scrollBackground;
@@ -29,15 +29,15 @@ namespace _IUTHAV.Scripts.Timeline {
 
             switch (marker.CommandType) {
                 
-                case ScrollBackgroundCommandType.NextEndpoint:
+                case ScrollBackgroundMarker.ScrollBackgroundCommandType.NextEndpoint:
                     scrollBackground.NextBookmark();
                     break;
                     
-                case ScrollBackgroundCommandType.EnableUserScrolling:
+                case ScrollBackgroundMarker.ScrollBackgroundCommandType.EnableUserScrolling:
                     scrollBackground.ToggleManualScroll(marker.EnableUserScrolling);
                     break;
                     
-                case ScrollBackgroundCommandType.ForceScrollToEndpoint:
+                case ScrollBackgroundMarker.ScrollBackgroundCommandType.ForceScrollToEndpoint:
                     scrollBackground.ForceScrollToEndpoint(marker.LockOnScrollend, marker.ForceScrollSpeed);
                     break;
             

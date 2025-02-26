@@ -15,7 +15,7 @@ namespace _IUTHAV.Scripts.Tilemap {
 #region Private Functions
 
         protected override void UpdateTile() {
-        
+            
             _mControlPoint.localRotation = Quaternion.RotateTowards(_mControlPoint.localRotation,
              _mCurrentEndPoint.localRotation,
              scrollSpeed * Time.deltaTime);

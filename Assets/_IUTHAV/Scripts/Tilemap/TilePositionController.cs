@@ -2,11 +2,9 @@ using UnityEngine;
 
 namespace _IUTHAV.Scripts.Tilemap {
     public class TilePositionController : TileController {
-
-        [SerializeField] private Transform targetEndpoint;
-
+        
 #region Unity Functions
-
+        
         private void Awake() {
 
             Configure();
@@ -47,7 +45,6 @@ namespace _IUTHAV.Scripts.Tilemap {
 
             if (_mTiles.Count == 0) {
                 onLastTileReached.Invoke();
-                _mScrolling = false;
                 return false;
             }
 
