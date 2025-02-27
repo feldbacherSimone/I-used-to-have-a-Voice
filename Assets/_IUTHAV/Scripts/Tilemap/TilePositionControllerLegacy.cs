@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace _IUTHAV.Scripts.Tilemap {
-    public class TilePositionController : TileController {
+    public class TilePositionControllerLegacy : TileControllerLegacy {
         
 #region Unity Functions
         
@@ -38,7 +38,7 @@ namespace _IUTHAV.Scripts.Tilemap {
             if (_mTiles.TryDequeue(out Tile tile)) {
                 
                 tile.EndPoint.transform.DetachChildren();
-                tile.DestroyTile();
+                tile.OnDisable();
                 Destroy(tile.gameObject);
 
             }

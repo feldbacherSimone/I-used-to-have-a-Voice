@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace _IUTHAV.Scripts.Tilemap {
     public class Tile : MonoBehaviour {
@@ -14,54 +17,44 @@ namespace _IUTHAV.Scripts.Tilemap {
 
         [SerializeField] private Transform[] spawnPoints;
         [SerializeField] private GameObject[] spawnObjects;
+        public GameObject[] SpawnObjects => spawnObjects;
         [SerializeField] private bool randomizeXRotation;
         [SerializeField] private bool randomizeYRotation;
         [SerializeField] private bool randomizeZRotation;
         
-        private List<GameObject> _mSpawnedObjects;
+        public Action<Transform, GameObject> OnRequestSpawnObjectChild;
 
-        private void Awake() {
+        private void OnEnable() {
 
             if (spawnObjects == null || spawnPoints == null) return;
-
-            _mSpawnedObjects = new List<GameObject>();
-
+            
             foreach (var p in spawnPoints) {
-
                 int random = Random.Range(0, spawnObjects.Length);
-
-                var obj = Instantiate(spawnObjects[random], p, true);
-
-                Vector3 rot = obj.transform.rotation.eulerAngles;
-
-                if (randomizeXRotation) rot.x = Random.Range(0, 360);
-                if (randomizeYRotation) rot.y = Random.Range(0, 360);
-                if (randomizeZRotation) rot.z = Random.Range(0, 360);
-
-                obj.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(rot));
+                var obj = spawnObjects[random];
                 
-                _mSpawnedObjects.Add(obj);
-
+                OnRequestSpawnObjectChild.Invoke(p, obj);
             }
             
             if (animateTile) StartCoroutine(AnimateTileMesh(true));
             
         }
 
+        public void RandomizeRotation(Transform targetTransform) {
+            Vector3 rot = targetTransform.rotation.eulerAngles;
+
+            if (randomizeXRotation) rot.x = Random.Range(0, 360);
+            if (randomizeYRotation) rot.y = Random.Range(0, 360);
+            if (randomizeZRotation) rot.z = Random.Range(0, 360);
+
+            targetTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(rot));
+        }
+
         public Transform GetEndpointTransform() {
-            
             return endPoint.transform;
         }
 
-        public void DestroyTile() {
-
-            foreach (var obj in _mSpawnedObjects) {
-                
-                Destroy(obj);
-            }
-            
+        public void OnDisable() {
             StopAllCoroutines();
-            
         }
         
         private IEnumerator AnimateTileMesh(bool enable) {

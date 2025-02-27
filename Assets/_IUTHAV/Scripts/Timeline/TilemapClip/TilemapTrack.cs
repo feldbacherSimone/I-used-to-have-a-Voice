@@ -7,7 +7,7 @@ namespace _IUTHAV.Scripts.Timeline.TilemapClip {
     
     [TrackColor(0.3f, 0.3f, 1f)]
     [TrackClipType(typeof(TilemapControlAsset))]
-    [TrackBindingType(typeof(TileController))]
+    [TrackBindingType(typeof(TileControllerLegacy))]
     public class TilemapTrack : TrackAsset {
         public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount) {
             return ScriptPlayable<TilemapMixerBehaviour>.Create(graph, inputCount);

@@ -7,7 +7,7 @@ namespace _IUTHAV.Scripts.Timeline.TilemapClip {
         
         // NOTE: This function is called at runtime and edit time.  Keep that in mind when setting the values of properties.
         public override void ProcessFrame(Playable playable, FrameData info, object playerData) {
-            TileController trackBinding = playerData as TileController;
+            TileControllerLegacy trackBinding = playerData as TileControllerLegacy;
             float finalInput = 0f;
             
             if (trackBinding == null)

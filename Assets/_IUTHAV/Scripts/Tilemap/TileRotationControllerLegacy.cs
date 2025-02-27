@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace _IUTHAV.Scripts.Tilemap {
-    public class TileRotationController : TileController {
+    public class TileRotationControllerLegacy : TileControllerLegacy {
 
 #region Unity Functions
 

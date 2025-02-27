@@ -6,7 +6,7 @@ using Yarn.Unity;
 namespace _IUTHAV.Scripts.Tilemap {
     public class TileManager : MonoBehaviour {
         
-        [SerializeField] private TileController[] tileControllers;
+        [SerializeField] private TileControllerLegacy[] tileControllers;
         [SerializeField] private float speedChangeDuration = 2f;
         
 #region Public Functions
@@ -14,7 +14,7 @@ namespace _IUTHAV.Scripts.Tilemap {
         [YarnCommand("ChangeTileSpeedFactor")]
         public void ChangeSpeedFactor(float f) {
 
-            foreach (TileController ctrl in tileControllers) {
+            foreach (TileControllerLegacy ctrl in tileControllers) {
             
                 float target = Math.Clamp(f * ctrl.scrollSpeed, 0, 100);
 
@@ -27,7 +27,7 @@ namespace _IUTHAV.Scripts.Tilemap {
         [YarnCommand("ChangeTileSpeedAbs")]
         public void ChangeSpeedAbs(float f) {
             
-            foreach (TileController ctrl in tileControllers) {
+            foreach (TileControllerLegacy ctrl in tileControllers) {
             
                 float target = Math.Clamp(f + ctrl.scrollSpeed, 0, 100);
 
@@ -48,7 +48,7 @@ namespace _IUTHAV.Scripts.Tilemap {
 
 #endregion
 
-        private IEnumerator LerpTileSpeed(TileController tile, float targetSpeed) {
+        private IEnumerator LerpTileSpeed(TileControllerLegacy tile, float targetSpeed) {
 
             float t = 0;
             float startSpeed = tile.scrollSpeed;
