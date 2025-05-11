@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace _IUTHAV.Scripts.Tilemap {
+namespace _IUTHAV.Scripts.Terrain {
     public class WireController : MonoBehaviour {
 
         [SerializeField] private GameObject[] startPoints;

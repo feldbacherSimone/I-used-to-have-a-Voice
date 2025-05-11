@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _IUTHAV.Scripts.Tilemap {
+namespace _IUTHAV.Scripts.Terrain {
 	public class Wire : MonoBehaviour {
 		
 		public GameObject start;
