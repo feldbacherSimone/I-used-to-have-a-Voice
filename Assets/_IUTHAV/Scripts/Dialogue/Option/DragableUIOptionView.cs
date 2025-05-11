@@ -1,4 +1,5 @@
 using System;
+using _IUTHAV.Scripts.Core.Audio;
 using _IUTHAV.Scripts.CustomUI;
 using TMPro;
 using Unity.VisualScripting;
@@ -48,10 +49,10 @@ namespace _IUTHAV.Scripts.Dialogue.Option {
 
         private void SetupUISounds()
         {
-            onPickup.AddListener((() => SoundManager.PlaySound(SoundManager.Sound.AnswerPickUp, SoundManager.Mixer.SFX)));
-            onDrop.AddListener((() => SoundManager.PlaySound(SoundManager.Sound.AnswerDrop, SoundManager.Mixer.SFX)));
-            onInvalidDrop.AddListener((() => SoundManager.PlaySound(SoundManager.Sound.AnswerBlocked, SoundManager.Mixer.SFX)));
-            onDestruction.AddListener((() => SoundManager.PlaySound(SoundManager.Sound.AnswerBlocked, SoundManager.Mixer.SFX)));
+            onPickup.AddListener((() => SoundManager.PlaySound(SoundManager.SoundType.AnswerPickUp, SoundManager.Mixer.SFX)));
+            onDrop.AddListener((() => SoundManager.PlaySound(SoundManager.SoundType.AnswerDrop, SoundManager.Mixer.SFX)));
+            onInvalidDrop.AddListener((() => SoundManager.PlaySound(SoundManager.SoundType.AnswerBlocked, SoundManager.Mixer.SFX)));
+            onDestruction.AddListener((() => SoundManager.PlaySound(SoundManager.SoundType.AnswerBlocked, SoundManager.Mixer.SFX)));
         }
 
         public DialogueOption Option

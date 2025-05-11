@@ -82,7 +82,7 @@
                 #if defined(_SOFTPARTICLES_ON)
                 float sceneZ = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, sampler_CameraDepthTexture, input.projPos.xy / input.projPos.w);
                 float partZ = input.projPos.z / input.projPos.w;
-                color.a *= saturate(_InvFade * (LinearEyeDepth(sceneZ) - partZ));
+                
                 #endif
 
                 return color;
