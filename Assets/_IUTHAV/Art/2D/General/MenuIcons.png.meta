@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6952ac25870582d4e8d8623cd6b02089
+guid: 6df6c847e91fa034b858c6cd1028e0c0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -49,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 357, y: 99, z: 923, w: 88}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -110,22 +110,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Exclamation_0
+      name: Option
       rect:
         serializedVersion: 2
-        x: 209
-        y: 89
-        width: 904
-        height: 904
+        x: 289
+        y: 485
+        width: 520
+        height: 531
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27e4fa3c226544a4a9249d283aa9af14
-      internalID: 2069121673
+      spriteID: 49ca767b599eae34f8a5b500b1ef8f3b
+      internalID: -488373327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cancel
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 484
+        width: 534
+        height: 538
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3de5a72ab7189e40874ad4c74eb4c04
+      internalID: 602097979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Exclamation
+      rect:
+        serializedVersion: 2
+        x: 1409
+        y: 485
+        width: 322
+        height: 566
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2145be09cf195624d8dbdecc6e2cefd6
+      internalID: 711886353
       vertices: []
       indices: 
       edges: []
@@ -133,16 +175,17 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: fd5a91038ca476b46b3b352bb1efcdbe
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Exclamation_0: 2069121673
-      Exclamation_1: 1906627738
+      Cancel: 602097979
+      Exclamation: 711886353
+      Option: -488373327
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

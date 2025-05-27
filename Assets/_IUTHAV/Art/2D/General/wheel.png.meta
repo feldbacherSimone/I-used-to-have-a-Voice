@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6952ac25870582d4e8d8623cd6b02089
+guid: 34255fa7bae6e4f468c2098071534937
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -49,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 357, y: 99, z: 923, w: 88}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -110,22 +110,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Exclamation_0
+      name: wheel_0
       rect:
         serializedVersion: 2
-        x: 209
-        y: 89
-        width: 904
-        height: 904
+        x: 284
+        y: 482
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27e4fa3c226544a4a9249d283aa9af14
-      internalID: 2069121673
+      spriteID: af42cef2d1b764e4dad33100d578d490
+      internalID: 1446427179
       vertices: []
       indices: 
       edges: []
@@ -134,15 +134,14 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Exclamation_0: 2069121673
-      Exclamation_1: 1906627738
+      wheel_0: 1446427179
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
