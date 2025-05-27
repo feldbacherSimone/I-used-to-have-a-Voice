@@ -8022,16 +8022,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundAudioClips:
-  - sound: 4
-    audioClip:
+  - soundType: 0
+    audioClips:
     - {fileID: 8300000, guid: 348706e7f1f64b043be228931555271b, type: 3}
     volume: 0.5
-  - sound: 2
-    audioClip:
+  - soundType: 0
+    audioClips:
     - {fileID: 8300000, guid: dc8bdcdbf6d9bcf458ad552f2cf3d589, type: 3}
     volume: 0.5
-  - sound: 3
-    audioClip:
+  - soundType: 0
+    audioClips:
     - {fileID: 8300000, guid: 6a7edb5ca6abf8647a9752986cf7a8fb, type: 3}
     volume: 0.5
 --- !u!1 &402945737
@@ -8806,18 +8806,6 @@ MonoBehaviour:
   - onSequenceStart:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1964834573}
-          m_TargetAssemblyTypeName: _IUTHAV.Scripts.Core.Gamemode.GameManager, Assembly-CSharp
-          m_MethodName: FinishState
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: PER_TheCarFinished
-            m_BoolArgument: 1
-          m_CallState: 2
         - m_Target: {fileID: 1735479517}
           m_TargetAssemblyTypeName: _IUTHAV.Scripts.Core.Scene.SceneSwitcher, Assembly-CSharp
           m_MethodName: LoadMainMenu
@@ -11755,6 +11743,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 684526911}
     m_Modifications:
+    - target: {fileID: 2685271121137034989, guid: f1f3e2d39ab79ef4d91258b6b161bb1f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 327250594490951466, guid: 492525f5b6ae91b43a35f2d195fc55c1,
         type: 3}
       propertyPath: m_text
@@ -12045,11 +12038,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 2685271121137034989, guid: f1f3e2d39ab79ef4d91258b6b161bb1f,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -31367,11 +31355,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8526526999076856785, guid: 8903f4ad49563d94c9a22cd0e1db2c22,
         type: 3}
-      propertyPath: isDebug
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8526526999076856785, guid: 8903f4ad49563d94c9a22cd0e1db2c22,
-        type: 3}
       propertyPath: _customCursor
       value: 
       objectReference: {fileID: 0}
@@ -35747,7 +35730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: 0
-  sound: 2
+  soundType: 0
   delay: 0
 --- !u!224 &1878874673 stripped
 RectTransform:
