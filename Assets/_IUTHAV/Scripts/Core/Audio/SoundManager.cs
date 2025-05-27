@@ -127,7 +127,7 @@ namespace _IUTHAV.Scripts.Core.Audio
 
         private static bool isUniqueSoundIndex(int clipIndex, SoundType soundType)
         {
-            return lastPlayedClipIndex.ContainsKey(soundType) && clipIndex != lastPlayedClipIndex[soundType];
+            return !lastPlayedClipIndex.ContainsKey(soundType) || clipIndex != lastPlayedClipIndex[soundType];
         }
         private static float GetVolume(SoundType soundType)
         {
