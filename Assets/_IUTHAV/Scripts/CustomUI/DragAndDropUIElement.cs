@@ -1,3 +1,4 @@
+using _IUTHAV.Scripts.Core.Audio;
 using _IUTHAV.Scripts.Core.Input;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,11 +22,13 @@ namespace _IUTHAV.Scripts.CustomUI {
 
         public void StartValidDropPointSequence() {
             Log("Starting ValidDrop Sequence");
+            SoundManager.PlaySound(SoundManager.SoundType.AnswerDrop, SoundManager.Mixer.UI);
             onValidDrop?.Invoke();
         }
 
         public void StartInvalidDropPointSequence() {
             Log("Starting InvalidDrop Sequence");
+            SoundManager.PlaySound(SoundManager.SoundType.AnswerBlocked, SoundManager.Mixer.UI);
             onInvalidDrop?.Invoke();
         }
 

@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using _IUTHAV.Scripts.Core.Audio;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -29,7 +30,7 @@ namespace _IUTHAV.Scripts.CustomUI {
 
 #endregion
         protected virtual void OnClickDelegate(BaseEventData data) {
-            
+            SoundManager.PlaySound(SoundManager.SoundType.AnswerPickUp, SoundManager.Mixer.UI);
             onClick.Invoke();
         }
         
@@ -46,7 +47,10 @@ namespace _IUTHAV.Scripts.CustomUI {
             entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.PointerEnter;
 
-            entry.callback.AddListener((data) => { onPointerEnter.Invoke();});
+            entry.callback.AddListener((data) => {
+                SoundManager.PlaySound(SoundManager.SoundType.UIHover, SoundManager.Mixer.UI);
+                onPointerEnter.Invoke();
+            });
             trigger.triggers.Add(entry);
             
             entry = new EventTrigger.Entry();

@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 2678499004412882245}
   - component: {fileID: 2679202981733642542}
   - component: {fileID: 5562721439989539595}
+  - component: {fileID: 6870246308869190847}
   m_Layer: 5
   m_Name: Option2
   m_TagString: Untagged
@@ -197,41 +198,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6870246308869190847}
+        m_TargetAssemblyTypeName: _IUTHAV.Scripts.CustomUI.ImageColourController,
+          Assembly-CSharp
+        m_MethodName: SwitchToHighlightColour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6870246308869190847}
+        m_TargetAssemblyTypeName: _IUTHAV.Scripts.CustomUI.ImageColourController,
+          Assembly-CSharp
+        m_MethodName: ResetColour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  isDebug: 1
   onPickup:
     m_PersistentCalls:
       m_Calls: []
   onDrop:
     m_PersistentCalls:
       m_Calls: []
-  isDebug: 1
   currentflag: 1
   onValidDrop:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Stop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: _IUTHAV.Scripts.Utility.Sequencer, Assembly-CSharp
-        m_MethodName: StartSequence
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onInvalidDrop:
     m_PersistentCalls:
       m_Calls: []
@@ -275,6 +287,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6870246308869190847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838637237842121277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3660eb72ce7c4675a3ebeed1a0360032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  borderColours: {fileID: 11400000, guid: ebe37b575caca28418f30e6608d1d02e, type: 2}
+  text: {fileID: 942470621075522684}
+  highlightedTextColour: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2000599120207864592
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +371,7 @@ MonoBehaviour:
   BoxCanvasGroup: {fileID: 0}
   question: {fileID: 4679287460027964936}
   questionCanvasGroup: {fileID: 3456941452876738096}
+  hideOptionsOnSubmit: 1
 --- !u!1 &2226247287030248605
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +683,7 @@ GameObject:
   - component: {fileID: 5497623189158256620}
   - component: {fileID: 490911335783385612}
   - component: {fileID: 6814335621146084133}
+  - component: {fileID: 8943469822521766382}
   m_Layer: 5
   m_Name: Option1
   m_TagString: Untagged
@@ -703,41 +732,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8943469822521766382}
+        m_TargetAssemblyTypeName: _IUTHAV.Scripts.CustomUI.ImageColourController,
+          Assembly-CSharp
+        m_MethodName: SwitchToHighlightColour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8943469822521766382}
+        m_TargetAssemblyTypeName: _IUTHAV.Scripts.CustomUI.ImageColourController,
+          Assembly-CSharp
+        m_MethodName: ResetColour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  isDebug: 1
   onPickup:
     m_PersistentCalls:
       m_Calls: []
   onDrop:
     m_PersistentCalls:
       m_Calls: []
-  isDebug: 1
   currentflag: 1
   onValidDrop:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Stop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: _IUTHAV.Scripts.Utility.Sequencer, Assembly-CSharp
-        m_MethodName: StartSequence
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onInvalidDrop:
     m_PersistentCalls:
       m_Calls: []
@@ -781,6 +821,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8943469822521766382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5071420390402179838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3660eb72ce7c4675a3ebeed1a0360032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  borderColours: {fileID: 11400000, guid: ebe37b575caca28418f30e6608d1d02e, type: 2}
+  text: {fileID: 2134708163263611294}
+  highlightedTextColour: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &6571387902623815149
 GameObject:
   m_ObjectHideFlags: 0
