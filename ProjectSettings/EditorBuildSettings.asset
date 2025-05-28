@@ -20,5 +20,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_IUTHAV/Scenes/TheMessage.unity
     guid: 0cf2184426ca1c140b522643e5dcbe8d
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: e8e917639b631f24c929ae4c68a64b5d,
+      type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 7c44383d70135184e9775859c76821ef,
+      type: 2}
   m_UseUCBPForAssetBundles: 0
