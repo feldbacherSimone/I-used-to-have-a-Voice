@@ -9,15 +9,37 @@ namespace _IUTHAV.Scripts.Core.Audio
     
     public static class SoundManager 
     {
+        
         public enum SoundType
         {
             UIHover, 
             UIClick,
-       
+
             AnswerPickUp,
             AnswerDrop,
             AnswerBlocked,
-       
+            
+            AmbientCar,
+            MusicCarRadioFunky,
+            MusicCarRadioMetal,
+            MusicCarRadioReggae,
+            MusicCarRadioRock,
+            MusicCarHeartbeatLoop,
+            SFXCarEndCall,
+            SFXCarCameraequipmentRattle,
+            SFXCarCDInsert,
+            SFXCarCDPickup,
+            SFXCarAirrefresherBass,
+            SFXCarPhoneRing,
+            SFXCarChildLaughter,
+            SFXCarKnobTurn,
+            SFXCarKnobPress,
+            SFXCarPhoneStatic,
+            SFXCarBag,
+            SFXCarSideMirrorBreaks,
+            SFXCarSunshield,
+            SFXCarClockticking,
+
             PhoneRing,
             TrainArrive,
             PhoneSend,
@@ -30,6 +52,9 @@ namespace _IUTHAV.Scripts.Core.Audio
         {
             SFX,
             Music,
+            Dialogue,
+            Ambient,
+            UI
         }
 
         const int defaultOneShotObjectCount = 10;
