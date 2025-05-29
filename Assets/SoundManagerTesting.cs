@@ -8,7 +8,7 @@ public class SoundManagerTesting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SoundManager.PlaySound(SoundManager.SoundType.PhoneRing, SoundManager.Mixer.SFX);
+        SoundManager.PlaySound(SoundManager.SoundType.SFXPhoneRing, SoundManager.Mixer.SFX);
     }
 
     // Update is called once per frame

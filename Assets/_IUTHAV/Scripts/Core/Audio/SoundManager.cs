@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _IUTHAV.Scripts.Core.Scene;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -9,7 +10,6 @@ namespace _IUTHAV.Scripts.Core.Audio
     
     public static class SoundManager 
     {
-        
         public enum SoundType
         {
             UIHover, 
@@ -40,12 +40,20 @@ namespace _IUTHAV.Scripts.Core.Audio
             SFXCarSunshield,
             SFXCarClockticking,
 
-            PhoneRing,
-            TrainArrive,
-            PhoneSend,
-            TrainDoorOpen,
-            TrainDoorClosed,
-            TrainDoorButton,
+            SFXPhoneRing,
+            SFXPhoneSend,
+            AmbientTrainStation,
+            AmbientTrainInterior,
+            SFXTrainArrive,
+            SFXTrainDeparture,
+            SFXTrainDoorOpen,
+            SFXTrainDoorClosed,
+            SFXTrainDoorButton,
+            SFXTrainLuggageRolling,
+            SFXTrainSteps,
+            MusicTrainHeadhponesAngsty,
+            MusicTrainHeadphonesSoftpop,
+            
        
         }
         public enum Mixer

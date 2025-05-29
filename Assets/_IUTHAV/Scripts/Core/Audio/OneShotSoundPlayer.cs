@@ -11,7 +11,7 @@ namespace _IUTHAV.Scripts.Core.Audio
     
         [SerializeField] private SoundManager.Mixer mixer; 
         [SerializeField] private SoundManager.SoundType soundType; 
-        [SerializeField] private float delay; 
+        [SerializeField] private float delay = 0; 
         public void PlayOneShot()
         {
             StartCoroutine(WaitAndPlay());

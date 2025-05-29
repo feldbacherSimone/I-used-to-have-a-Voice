@@ -16,7 +16,7 @@ public class PhoneRing : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         _animation.Play();
-        SoundManager.PlaySound(SoundManager.SoundType.PhoneRing, SoundManager.Mixer.SFX);
+        SoundManager.PlaySound(SoundManager.SoundType.SFXPhoneRing, SoundManager.Mixer.SFX);
     }
     
 }
