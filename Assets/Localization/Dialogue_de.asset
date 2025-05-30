@@ -1,0 +1,1040 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Dialogue_de
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: 262b28c9957ef034e8c517f2cdf8dec2, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 152597004288
+    m_Localized: 'Fabian: ... heute fahren wir zu ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152643141632
+    m_Localized: 'Em_Past: Mhm.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152643141633
+    m_Localized: 'Fabian: ... dort musst du ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152643141634
+    m_Localized: 'Em_Past: Mhm.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335936
+    m_Localized: 'Fabian: ... der Bursch ... leider krank ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335937
+    m_Localized: 'Fabian: ... schade, der macht immer so gute Arbeit!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335938
+    m_Localized: 'Em_Past: ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335939
+    m_Localized: 'Fabian: Emmi, wenn du schon am schauen bist kannst du gleich Musik
+      am Radio anmachen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335940
+    m_Localized: 'Em_Past: Hm? Oh, ja klar!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335941
+    m_Localized: 'Fabian: Die CDs sind im Handschuhfach.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335942
+    m_Localized: 'Fabian: Such dir eine aus.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335943
+    m_Localized: 'Em_Past: Rock'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335944
+    m_Localized: 'Fabian: Da hab ich nichts dagegen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335945
+    m_Localized: 'Em_Past: Raggae'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335946
+    m_Localized: 'Fabian: Ich hatte schon lange keinen Urlaub mehr ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335947
+    m_Localized: 'Em_Past: Metal'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335948
+    m_Localized: "Fabian: Ich wusste gar nicht, dass du sowas h\xF6rst!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335949
+    m_Localized: 'Em_Past: Funky'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335950
+    m_Localized: 'Fabian: Gute Wahl!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335951
+    m_Localized: "Fabian: Schalte gern ab wenn du nichts mehr h\xF6ren willst"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335952
+    m_Localized: 'Fabian: Und Emmi, bist du schon aufgeregt?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335953
+    m_Localized: "Em_Past: *g\xE4hn* F\xFCr solche Gef\xFChle ist es noch zu fr\xFCh."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335954
+    m_Localized: "Em_Past: *g\xE4hn* F\xFCr solche Gef\xFChle ist es noch zu fr\xFCh."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335955
+    m_Localized: "Fabian: Weniger Zeit mit H\xFCbschmachen verbringen!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335956
+    m_Localized: 'Fabian: Dann kannst ausschlafen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335957
+    m_Localized: 'Em_Past: Ein bisschen, aber das ist ja normal.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335958
+    m_Localized: 'Em_Past: Ein bisschen, aber das ist ja normal.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335959
+    m_Localized: 'Fabian: Ha! Das sagt Michi auch immer.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335960
+    m_Localized: "Fabian: Keine Angst, f\xFCr dich gibts eh nicht so viel zu tun."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335961
+    m_Localized: 'Em_Past: Warum nimmst du mich eigentlich so spontan mit?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335962
+    m_Localized: 'Fabian: Der Bursch, der kann leider nicht.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335963
+    m_Localized: "Fabian: Und f\xFCr dich ist es ja auch keine schlechte \xDCbung."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335964
+    m_Localized: 'Em_Past: Michi ist also krank?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335965
+    m_Localized: 'Em_Past: Michi ist also krank?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335966
+    m_Localized: "Fabian: Nein, nein, der Junge hat heute F\xFChrerscheinpr\xFCfung."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335967
+    m_Localized: "Fabian: Von einer Erk\xE4ltung w\xFCrd der sich nicht unterkriegen
+      lassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335968
+    m_Localized: 'Em_Past: So cool das ich dabei sein darf!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335969
+    m_Localized: 'Em_Past: So cool das ich dabei sein darf!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335970
+    m_Localized: "Fabian: Vielleicht nehm ich dich ja \xF6fter mit, wenn du heute
+      brav bist."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335971
+    m_Localized: 'Fabian: Du bist ja erst seit einer Woche da.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335972
+    m_Localized: 'Em_Past: Eigentlich schon seit drei ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335973
+    m_Localized: 'Em_Past: Eigentlich schon seit drei ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335974
+    m_Localized: 'Fabian: Ach ja. Bei so viel Stress kommt man leicht durcheinander.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335975
+    m_Localized: "Em_Past: \u2026 so ungef\xE4hr."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335976
+    m_Localized: "Em_Past: \u2026 so ungef\xE4hr."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335977
+    m_Localized: 'Fabian: Heute kannst du dich austoben -'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335978
+    m_Localized: 'Fabian: dann musst du nicht die ganze zeit in der Firma hocken.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335979
+    m_Localized: "Em_Past: Der chef gibt mir ja immer so trockene B\xFCroarbeit auf-"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335980
+    m_Localized: "Fabian: Nimms als Kompliment. Du bist so ordentlich, der Bursch
+      k\xF6nnt das gar nicht."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335981
+    m_Localized: 'Fabian: Der ist eher besser im Hand anlegen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335982
+    m_Localized: 'Em_Past: Equipment einladen schaff ich ja auch noch.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335983
+    m_Localized: 'Em_Past: Equipment einladen schaff ich ja auch noch.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335984
+    m_Localized: 'Fabian: Das ganze Kamerazeug?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335985
+    m_Localized: 'Em_Past: So ordentlich bin ich ja gar nicht ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335986
+    m_Localized: 'Em_Past: So ordentlich bin ich ja gar nicht ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335987
+    m_Localized: 'Fabian: ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335988
+    m_Localized: 'Em_Past: Ist das eine Blackmagic Filmkamera?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335989
+    m_Localized: 'Fabian: Na du kennst dich aber aus.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335990
+    m_Localized: "Fabian: Ja, f\xFCr ein kurzes Interview mit dem Kunden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335991
+    m_Localized: "Fabian: Der Bursch h\xE4tt dir zeigen k\xF6nnen wie sie funktioniert,
+      der macht das schon l\xE4nger."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335992
+    m_Localized: 'Em_Past: Darf ich die auch mal verwenden?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335993
+    m_Localized: "Fabian: Da m\xFCsst ich erst mit Andi reden, ist n\xE4mlich seine."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335994
+    m_Localized: 'Fabian: Bleib du beim fotografieren.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335995
+    m_Localized: 'Em_Past: Andi? Den kenn ich gar nicht.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335996
+    m_Localized: "Fabian: Ein Kollege. Der hat sich mit Video selbst\xE4ndig gemacht
+      und filmt \xF6fter f\xFCr uns."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335997
+    m_Localized: 'Fabian: Vielleicht kannst du ihm ja mal zuschauen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335998
+    m_Localized: "Em_Past: Von meinen Filmen leben k\xF6nnen, das will ich auch mal."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647335999
+    m_Localized: "Fabian: Ambitioniert! Das gef\xE4llt mir."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336000
+    m_Localized: 'Fabian: Wir brauchen eh mehr Frauen in der Branche.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336001
+    m_Localized: "Fabian: Sch\xF6n dass sich M\xE4dchen heute mehr zutrauen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336002
+    m_Localized: 'Fabian: Na schau, wenn man vom Teufel spricht ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336003
+    m_Localized: 'Fabian: Servus Andi, wie gehts denn mit dem Schnitt!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336004
+    m_Localized: "Fabian: N\xE4chste Woche ist die Messe, wei\xDFt d-"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336005
+    m_Localized: 'Andi: Jetzt fangst schon wieder an.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336006
+    m_Localized: 'Andi: Bis zur Messe ist das Video da, Eder -'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336007
+    m_Localized: 'Andi: vom Fragen wirds nicht schneller fertig.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336008
+    m_Localized: 'Andi: Aber deswegen ruf ich nicht an.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336009
+    m_Localized: 'Fabian: Achso -- was ist denn los?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336010
+    m_Localized: 'Andi: Was hast denn mit dem Bursch angestellt, endlich ersetzt?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336011
+    m_Localized: 'Fabian: Dem Michi?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336012
+    m_Localized: 'Fabian: Nichts -'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336013
+    m_Localized: 'Fabian: wie kommst du drauf?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336014
+    m_Localized: 'Andi: Die Fotos in letzter Zeit, die sind nicht von euch.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336015
+    m_Localized: 'Andi: Normalerweise schafft ihr ja nicht mal scharfe Fotos.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336016
+    m_Localized: 'Andi: Weder er noch du.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336017
+    m_Localized: 'Andi: Bin ich den Tussen aus der Buchhaltung zu teuer geworden,
+      habts wen Billigeren gefunden, huh?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336018
+    m_Localized: "Fabian: Ach nein, das ist nur vor\xFCbergehend."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336019
+    m_Localized: "Fabian: Wir haben Unterst\xFCtzung diesen Sommer."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336020
+    m_Localized: "Andi: Der scheint ja was zu k\xF6nnen, zumindest mehr als du."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336021
+    m_Localized: 'Andi: Da kann der Bursch auch endlich was lernen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336022
+    m_Localized: 'Fabian: Sie ... Die Emmi ist nur eine Praktikantin.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336023
+    m_Localized: 'Fabian: Aber echt vorbildlich.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336024
+    m_Localized: "Fabian: Immer p\xFCnktlich und ordentlich."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336025
+    m_Localized: "Fabian: Und nett ist sie auch, nur nicht so gespr\xE4chig."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336026
+    m_Localized: 'Andi: Na sowas -'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336027
+    m_Localized: 'Andi: eine Praktikantin also ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336028
+    m_Localized: 'Fabian: Heute hilft sie mir beim Videodreh, -'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336029
+    m_Localized: "Fabian: wenn sie gute Arbeit macht dann w\xE4r sie ja was f\xFCr
+      dich, oder?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336030
+    m_Localized: 'Andi: Pff, das klingt ja spannend.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336031
+    m_Localized: 'Andi: Wie schaut sie denn aus?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336032
+    m_Localized: 'Fabian: Wie-'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336033
+    m_Localized: 'Andi: Eder.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336034
+    m_Localized: 'Andi: Tu nicht, du bist ja ein Mann, -'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336035
+    m_Localized: "Andi: ist sie auch h\xFCbsch?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336036
+    m_Localized: 'Andi: Hat man was zum schauen?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336037
+    m_Localized: 'Fabian: Ach ... sie sitzt eh neben mir im Auto.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336038
+    m_Localized: 'Fabian: Frag sie doch selber'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336039
+    m_Localized: 'Andi: !!-'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336040
+    m_Localized: 'Andi: Achso'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336041
+    m_Localized: "Andi: Hehe, war ja nur ein Schm\xE4h."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336042
+    m_Localized: 'Em_Past: ... haha ich versteh'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336043
+    m_Localized: 'Em_Past: ... haha ich versteh'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336044
+    m_Localized: "Em_Past: Redest du gern so \xFCber 15 j\xE4hrige?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336045
+    m_Localized: 'Em_Past: Geh dich vergraben, Andi'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336046
+    m_Localized: 'Fabian: Schau, sie hat Humor.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336047
+    m_Localized: 'Fabian: Aber ich muss schlussmachen, noch viel Arbeit.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336048
+    m_Localized: 'Fabian: Andi, wir reden dann noch wegen dem Schnitt-'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336049
+    m_Localized: 'Andi: --""--'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336050
+    m_Localized: 'Fabian: Ich hab ja gesagt er ist eigen ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336051
+    m_Localized: 'Em_Past: Er ist ein Hund.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336052
+    m_Localized: 'Em_Past: Er ist ein Hund.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336053
+    m_Localized: 'Em_Past: Warum hast du nichts gesagt?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336054
+    m_Localized: 'Em_Past: Warum hast du nichts gesagt?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336055
+    m_Localized: 'Em_Past: ... das hab ich gemerkt'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336056
+    m_Localized: 'Em_Past: ... das hab ich gemerkt'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336057
+    m_Localized: 'Fabian: Aber seine Videos sind gut, da kann man sich nicht beschweren.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336058
+    m_Localized: 'Fabian: Irgendwie kommt man schon miteinander klar.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336059
+    m_Localized: 'Em_Past: Das sagst du leicht.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336060
+    m_Localized: 'Em_Past: Das sagst du leicht.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336061
+    m_Localized: 'Em_Past: Ich versteh.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336062
+    m_Localized: 'Em_Past: Ich versteh.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336063
+    m_Localized: 'Fabian: Und du hast ihn wenigstens in Verlegenheit gebracht.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336064
+    m_Localized: 'Fabian: Der redet ja nur immer so.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336065
+    m_Localized: 'Em_Past: ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336066
+    m_Localized: 'Em_Past: Meinst du wirklch, dass ich bei ihm mal aushelfen kann?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336067
+    m_Localized: 'Fabian: Wenn du willst,'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336068
+    m_Localized: 'Fabian: dann schick ich dich mit dem Bursch gemeinsam.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336069
+    m_Localized: 'Fabian: Der passt schon auf dich auf, haha.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336070
+    m_Localized: 'Em_Past: "Die Tussen aus der Buchhaltung" was meint er damit?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336071
+    m_Localized: "Fabian: Bei Firmenausfl\xFCgen, da hat die Maria immer fotografiert."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336072
+    m_Localized: "Fabian: Das hat ihr wirklich Spa\xDF gemacht,"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336073
+    m_Localized: 'Fabian: aber nur so als Hobby.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336074
+    m_Localized: 'Em_Past: Wie lange fahren wir noch?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336075
+    m_Localized: 'Fabian: 20 Minuten circa.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336076
+    m_Localized: 'Em_Present: Ich habe gelacht'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336077
+    m_Localized: 'Em_Present: Das macht man doch in der Situation?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336078
+    m_Localized: 'Em_Present: Humor'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336079
+    m_Localized: 'Em_Present: Sympathie'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336080
+    m_Localized: 'Em_Present: nicht kleinlich sein'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336081
+    m_Localized: "Em_Present: Der Bursch h\xE4tte sicher auch so reagiert."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336082
+    m_Localized: "Em_Present: Ich arbeite hart und habe viel gelernt, das z\xE4hlt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336083
+    m_Localized: 'Em_Present: Aber ich schaue in den Spiegel und der Mann in meinem
+      Kopf fragt'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336084
+    m_Localized: "Em_Present: Bist du auch sch\xF6n genug?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336085
+    m_Localized: "Em_Present: Wenn du nicht sch\xF6n bist"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336086
+    m_Localized: 'Em_Present: und nicht lieb, ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336087
+    m_Localized: "Em_Present: Was z\xE4hlt dann deine Arbeit?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336088
+    m_Localized: "Em_Present: Sch\xF6n?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336089
+    m_Localized: 'Em_Present: Heute bin ich es, aber was bringt es mir'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336090
+    m_Localized: "Em_Present: So ein Temperament werde ich mir nie leisten k\xF6nnen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336091
+    m_Localized: 'Em_Present: Der Kollege schon'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336092
+    m_Localized: "Em_Present: er war weder nett noch sch\xF6n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336093
+    m_Localized: 'Otto: Das hier ist ein test'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336094
+    m_Localized: 'Em_Past: Sind wir bald fertig?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336095
+    m_Localized: 'University: ... wirklich bemerkenswerte Arbeiten.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336096
+    m_Localized: "University: Nat\xFCrlich darf ich Ihnen noch nichts versprechen,"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336097
+    m_Localized: 'University: aber mit so einer Bewerbung ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336098
+    m_Localized: "University: ... wird die Akademie Sie mit offenen Armen begr\xFC\xDFen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336099
+    m_Localized: "Friend: Erz\xE4hl, wie war das Gespr\xE4ch?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336100
+    m_Localized: 'Em_Past: Ganz gut glaub ich'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336101
+    m_Localized: 'Em_Past: Sie waren richtig begeistert, das klappt sicher'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336102
+    m_Localized: 'Em_Past: Sie waren richtig begeistert, das klappt sicher'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336103
+    m_Localized: "Em_Past: Aber ich will mich nicht zu fr\xFCh freuen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336104
+    m_Localized: "Em_Past: Aber ich will mich nicht zu fr\xFCh freuen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336105
+    m_Localized: "Em_Past: Erz\xE4hl dir alles, wenn wir uns wieder sehen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336106
+    m_Localized: "Announcer: Regionalexpress R75, Bahnsteig 7 A-C, f\xE4hrt ein."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336107
+    m_Localized: 'Friend: Ich bin stolz!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336108
+    m_Localized: 'Friend: Klar schaffst du das,'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336109
+    m_Localized: 'Friend: da bin ich mir sicher'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336110
+    m_Localized: 'Em_Past: ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336111
+    m_Localized: 'Em_Past: Danke <3'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336112
+    m_Localized: 'Em_Past: Danke <3'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336113
+    m_Localized: 'Em_Past: Wenn du das sagst ^^'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336114
+    m_Localized: 'Em_Past: Wenn du das sagst ^^'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336115
+    m_Localized: "Announcer: N\xE4chster Halt, next Stop:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336116
+    m_Localized: 'Announcer: -&?%=?-dorf'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336117
+    m_Localized: 'Halunken: Jetzt schau dass du heimkommst, sonst kommst morgen nicht
+      auf!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336118
+    m_Localized: "Halunken: Sch\xF6nheitsschlaf w\xFCrd dir eh nicht schaden."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336119
+    m_Localized: "Halunken: Gr\xFC\xDF deine Alte von mir!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336120
+    m_Localized: 'Norbert: Da is eh frei, oder'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336121
+    m_Localized: "Norbert: Wo musst denn du so sp\xE4t noch hin?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336122
+    m_Localized: 'Em_Past: Nach Hause'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336123
+    m_Localized: 'Norbert: Vom Fortgehen? Das hab ich in deinem Alter auch immer
+      gemacht'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336124
+    m_Localized: 'Em_Past: Achso nein, heute nicht'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336125
+    m_Localized: 'Em_Past: Achso nein, heute nicht'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336126
+    m_Localized: "Em_Past: Das klingt sch\xF6n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336127
+    m_Localized: "Em_Past: Das klingt sch\xF6n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336128
+    m_Localized: "Norbert: Eine junge Dame wie du muss die Zeit schon genie\xDFen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336129
+    m_Localized: "Em_Past: Ich bem\xFCh mich"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336130
+    m_Localized: 'Em_Past: ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336131
+    m_Localized: 'Em_Past: ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336132
+    m_Localized: "Norbert: Musst nicht sch\xFCchtern sein"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336133
+    m_Localized: 'Norbert: Ich bin ein ganz Netter'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336134
+    m_Localized: 'Em_Past: Ich geh nicht so gern fort'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336135
+    m_Localized: 'Em_Past: Ich geh nicht so gern fort'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336136
+    m_Localized: 'Norbert: So eine Brave, das sieht man heute nicht mehr so oft'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336137
+    m_Localized: 'Norbert: Ich bin der Norbert'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336138
+    m_Localized: 'Norbert: Und wer bist du?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336139
+    m_Localized: 'Em_Past: Emilia'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336140
+    m_Localized: 'Em_Past: Emilia'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336141
+    m_Localized: "Norbert: Emilia, ein sch\xF6ner Name"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336142
+    m_Localized: 'Em_Past: Bianca'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336143
+    m_Localized: 'Em_Past: Bianca'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336144
+    m_Localized: "Norbert: Bianca, ein sch\xF6ner Name"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336145
+    m_Localized: "Norbert: Wei\xDFt du, ich w\xE4r gern auch wieder so jung"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336146
+    m_Localized: 'Em_Past: Wirklich?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336147
+    m_Localized: 'Norbert: Du kannst dich noch richtig ausleben, ohne Verpflichtungen'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336148
+    m_Localized: "Norbert: Dein Freund hat echt Gl\xFCck, das muss man schon sagen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336149
+    m_Localized: 'Em_Past: Freund? Ich hab k-'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336150
+    m_Localized: 'Norbert: Was?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336151
+    m_Localized: 'Norbert: Das glaub ich ja gar nicht!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336152
+    m_Localized: 'Em_Present: Lass das'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336153
+    m_Localized: 'Norbert: Du bist so eine fesche Maus'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336154
+    m_Localized: 'Em_Present: Bitte nicht ich'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336155
+    m_Localized: 'Norbert: Sehen das die jungen Burschen nicht?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336156
+    m_Localized: 'Em_Present: Sowas passiert nur anderen'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336157
+    m_Localized: 'Norbert: Ich mach dir einen Vorschlag:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336158
+    m_Localized: 'Norbert: Wenn du mit mir aussteigst'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336159
+    m_Localized: 'Norbert: dann zeig ich dir was du dir entgehen lasst'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336160
+    m_Localized: 'Norbert: zahlen tu ich dir eh auch was'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336161
+    m_Localized: 'Bystander: Ja was is jetzt? Mach doch was'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336162
+    m_Localized: 'Bystander: Wennst dich schon so anziehst ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336163
+    m_Localized: "Bystander: Ich w\xFCrd mir sowas nicht gefallen lassen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336164
+    m_Localized: 'Em_Past: Geh weg, das ist ekelhaft!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336165
+    m_Localized: 'Em_Past: Wieso hilft mir denn keiner? Seht ihr nicht, was passiert?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336166
+    m_Localized: 'Em_Past: Nimm deine Drecksfinger von mir du notgeiler Arsch!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336167
+    m_Localized: "Announcer: N\xE4chster Halt, next Stop: !?=\"/%?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336168
+    m_Localized: 'Em_Past: Ich bin doch erst 15'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336169
+    m_Localized: 'Em_Past: Ich bin doch erst 15'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336170
+    m_Localized: 'Bystander: Was stellt die sich jetzt so an?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336171
+    m_Localized: 'Bystander: Heute darfst ja echt nix mehr sagen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336172
+    m_Localized: 'Bystander: Muss die sich auch so anziehen?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336173
+    m_Localized: 'Bystander: Um die Zeit noch alleine unterwegs sein, was denkt die
+      sich auch dabei ...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336174
+    m_Localized: 'Mama: Schreib mir, wenn du daheim bist, ok?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336175
+    m_Localized: "Em_Present: Sowas w\xFCrde ich mir nie gefallen lassen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336176
+    m_Localized: "Em_Present: Ich bin Herrin \xFCber meinen K\xF6rper, aber da war
+      ich es nicht."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336177
+    m_Localized: 'Em_Present: Wie soll ich diesen Knochen je wieder vertrauen?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336178
+    m_Localized: "Em_Present: Ich wei\xDF es ist nicht meine Schuld aber-"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336179
+    m_Localized: 'Em_Present: So schwach werde ich nie wieder sein.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336180
+    m_Localized: 'Em_Present: Meine Mutter hat gefragt, wie es mir geht.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336181
+    m_Localized: 'Em_Present: "Gut," habe ich geantwortet.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152647336182
+    m_Localized: "Em_Present: F\xFCr alles andere hab ich mich zu sehr gesch\xE4mt."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

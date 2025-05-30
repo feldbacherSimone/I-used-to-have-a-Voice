@@ -1,14 +1,14 @@
-title: SC2_Act1_Conv1
+﻿title: SC2_Act1_Conv1
 tags:
 ---
 
-University: ... wirklich bemerkenswerte Arbeiten.
+University: ... wirklich bemerkenswerte Arbeiten. #line:05d7028 
 <<nextBox ComicBoxView University>>
-University: Natürlich darf ich Ihnen noch nichts versprechen,
-University: aber mit so einer Bewerbung ...
+University: Natürlich darf ich Ihnen noch nichts versprechen, #line:0f7af2f 
+University: aber mit so einer Bewerbung ... #line:05c7dad 
 <<nextBox ComicBoxView University>>
 <<nextBookmark ScrollRect>>
-University: ... wird die Akademie Sie mit offenen Armen begrüßen.
+University: ... wird die Akademie Sie mit offenen Armen begrüßen. #line:0db6e6f 
 
 
 ===
@@ -17,15 +17,15 @@ title: SC2_Act1_Conv2
 tags:
 ---
 
-Friend: Erzähl, wie war das Gespräch?
-Em_Past: Ganz gut glaub ich
+Friend: Erzähl, wie war das Gespräch? #line:0bd2931 
+Em_Past: Ganz gut glaub ich #line:0ac67b0 
 <<nextBox ComicBoxView Em_Past>>
--> Em_Past: Sie waren richtig begeistert, das klappt sicher
-    Em_Past: Sie waren richtig begeistert, das klappt sicher
--> Em_Past: Aber ich will mich nicht zu früh freuen
-    Em_Past: Aber ich will mich nicht zu früh freuen
+-> Em_Past: Sie waren richtig begeistert, das klappt sicher #line:0ce06ba 
+    Em_Past: Sie waren richtig begeistert, das klappt sicher #line:060f62b 
+-> Em_Past: Aber ich will mich nicht zu früh freuen #line:0d9b24e 
+    Em_Past: Aber ich will mich nicht zu früh freuen #line:0818084 
 <<nextBox ComicBoxView Em_Past>>
-Em_Past: Erzähl dir alles, wenn wir uns wieder sehen
+Em_Past: Erzähl dir alles, wenn wir uns wieder sehen #line:0879dba 
 
 ===
 
@@ -33,7 +33,7 @@ title: SC2_Act1_Conv3
 tags:
 ---
 
-Announcer: Regionalexpress R75, Bahnsteig 7 A-C, fährt ein.
+Announcer: Regionalexpress R75, Bahnsteig 7 A-C, fährt ein. #line:0f4081e 
 
 ===
 
@@ -41,17 +41,17 @@ title: SC2_Act2_Conv1
 tags:
 ---
 
-Friend: Ich bin stolz!
+Friend: Ich bin stolz! #line:075310a 
 <<nextBox ComicBoxView Friend>>
-Friend: Klar schaffst du das,
+Friend: Klar schaffst du das, #line:0fa25f0 
 <<nextBox ComicBoxView Friend>>
-Friend: da bin ich mir sicher
-Em_Past: ...
+Friend: da bin ich mir sicher #line:0f3248d 
+Em_Past: ... #line:0c5c877 
 <<nextBox ComicBoxView Em_Past>>
--> Em_Past: Danke <3
-    Em_Past: Danke <3
--> Em_Past: Wenn du das sagst ^^
-    Em_Past: Wenn du das sagst ^^
+-> Em_Past: Danke <3 #line:09f80c1 
+    Em_Past: Danke <3 #line:0b8dd9a 
+-> Em_Past: Wenn du das sagst ^^ #line:00bed2a 
+    Em_Past: Wenn du das sagst ^^ #line:0c838b0 
 
 ===
 
@@ -59,8 +59,8 @@ title: SC2_Act2_Conv2
 tags:
 ---
 
-Announcer: Nächster Halt, next Stop:
-Announcer: -&?%=?-dorf
+Announcer: Nächster Halt, next Stop: #line:0a05434 
+Announcer: -&?%=?-dorf #line:0a95e86 
 
 ===
 
@@ -68,13 +68,13 @@ title: SC2_Act2_Conv3
 tags:
 ---
 
-Halunken: Jetzt schau dass du heimkommst, sonst kommst morgen nicht auf!
+Halunken: Jetzt schau dass du heimkommst, sonst kommst morgen nicht auf! #line:066e4e5 
 <<nextBox ComicBoxView Halunken>>
-Halunken: Schönheitsschlaf würd dir eh nicht schaden.
+Halunken: Schönheitsschlaf würd dir eh nicht schaden. #line:0ef459f 
 <<nextBookmark ScrollRect>>
 <<forceScrollToEndpoint ScrollRect>>
 <<nextBox ComicBoxView Halunken>>
-Halunken: Grüß deine Alte von mir!
+Halunken: Grüß deine Alte von mir! #line:0d74823 
 
 ===
 
@@ -82,34 +82,34 @@ title: SC2_Act3_Conv1
 tags:
 ---
 
-Norbert: Da is eh frei, oder
+Norbert: Da is eh frei, oder #line:049d387 
 <<nextBox ComicBoxView Norbert>>
 <<nextBookmark ScrollRect>>
 <<forceScrollAndLock ScrollRect>>
 <<finishState GameManager SC2_TriggerNorbert>>
-Norbert: Wo musst denn du so spät noch hin?
-Em_Past: Nach Hause
-Norbert: Vom Fortgehen? Das hab ich in deinem Alter auch immer gemacht
+Norbert: Wo musst denn du so spät noch hin? #line:0b677fe 
+Em_Past: Nach Hause #line:00d487a 
+Norbert: Vom Fortgehen? Das hab ich in deinem Alter auch immer gemacht #line:0d4b498 
 <<nextBox ComicBoxView Norbert>>
--> Em_Past: Achso nein, heute nicht
-    Em_Past: Achso nein, heute nicht
--> Em_Past: Das klingt schön
-    Em_Past: Das klingt schön
+-> Em_Past: Achso nein, heute nicht #line:0584f27 
+    Em_Past: Achso nein, heute nicht #line:0fd047c 
+-> Em_Past: Das klingt schön #line:04a8623 
+    Em_Past: Das klingt schön #line:0005069 
 
-Norbert: Eine junge Dame wie du muss die Zeit schon genießen.
+Norbert: Eine junge Dame wie du muss die Zeit schon genießen. #line:08f33f0 
 <<nextBox ComicBoxView Norbert>>
 <<nextBox ComicBoxView Em_Past>>
-Em_Past: Ich bemüh mich
+Em_Past: Ich bemüh mich #line:0f2501f 
 
--> Em_Past: ...
-    Em_Past: ...
-    Norbert: Musst nicht schüchtern sein
-    Norbert: Ich bin ein ganz Netter
--> Em_Past: Ich geh nicht so gern fort
-    Em_Past: Ich geh nicht so gern fort
-    Norbert: So eine Brave, das sieht man heute nicht mehr so oft
+-> Em_Past: ... #line:0cc7a7f 
+    Em_Past: ... #line:086bd0e 
+    Norbert: Musst nicht schüchtern sein #line:0f78c0f 
+    Norbert: Ich bin ein ganz Netter #line:062cd1e 
+-> Em_Past: Ich geh nicht so gern fort #line:0658b0c 
+    Em_Past: Ich geh nicht so gern fort #line:0c1f0ce 
+    Norbert: So eine Brave, das sieht man heute nicht mehr so oft #line:0ca9b9e 
 <<nextBox ComicBoxView Norbert>>
-Norbert: Ich bin der Norbert
+Norbert: Ich bin der Norbert #line:0e02883 
 
 ===
 
@@ -118,24 +118,24 @@ title: SC2_Act3_Conv2
 tags:
 ---
 
-Norbert: Und wer bist du?
+Norbert: Und wer bist du? #line:0a6de4a 
 <<nextBox ComicBoxView Norbert>>
--> Em_Past: Emilia
-    Em_Past: Emilia
-    Norbert: Emilia, ein schöner Name
--> Em_Past: Bianca
-    Em_Past: Bianca
-    Norbert: Bianca, ein schöner Name
+-> Em_Past: Emilia #line:06917e2 
+    Em_Past: Emilia #line:091f548 
+    Norbert: Emilia, ein schöner Name #line:0d7ec00 
+-> Em_Past: Bianca #line:0c5971c 
+    Em_Past: Bianca #line:0a8024f 
+    Norbert: Bianca, ein schöner Name #line:0bb5a3b 
 <<nextBox ComicBoxView Norbert>>
-Norbert: Weißt du, ich wär gern auch wieder so jung
-Em_Past: Wirklich?
-Norbert: Du kannst dich noch richtig ausleben, ohne Verpflichtungen
-Norbert: Dein Freund hat echt Glück, das muss man schon sagen
+Norbert: Weißt du, ich wär gern auch wieder so jung #line:0ab9198 
+Em_Past: Wirklich? #line:06ee31d 
+Norbert: Du kannst dich noch richtig ausleben, ohne Verpflichtungen #line:00d86e7 
+Norbert: Dein Freund hat echt Glück, das muss man schon sagen #line:0912c21 
 
-Em_Past: Freund? Ich hab k-
+Em_Past: Freund? Ich hab k- #line:064e26a 
 
-Norbert: Was?
-Norbert: Das glaub ich ja gar nicht!
+Norbert: Was? #line:0b411a2 
+Norbert: Das glaub ich ja gar nicht! #line:090ca4a 
 
 ===
 
@@ -143,23 +143,23 @@ title: SC2_Act3_Conv3
 tags:
 ---
 
-Em_Present: Lass das
-Norbert: Du bist so eine fesche Maus
+Em_Present: Lass das #line:06d380e 
+Norbert: Du bist so eine fesche Maus #line:004264c 
 <<nextBox ComicBoxView Em_Present>>
 <<triggerAnimation PanelMask Reveal>>
 
-Em_Present: Bitte nicht ich
-Norbert: Sehen das die jungen Burschen nicht?
+Em_Present: Bitte nicht ich #line:07355aa 
+Norbert: Sehen das die jungen Burschen nicht? #line:0f5efb1 
 <<nextBox ComicBoxView all>>
 <<triggerAnimation PanelMask Reveal>>
 
-Em_Present: Sowas passiert nur anderen
-Norbert: Ich mach dir einen Vorschlag:
+Em_Present: Sowas passiert nur anderen #line:0c0be40 
+Norbert: Ich mach dir einen Vorschlag: #line:08c4192 
 <<triggerAnimation PanelMask Reveal>>
-Norbert: Wenn du mit mir aussteigst
+Norbert: Wenn du mit mir aussteigst #line:0816326 
 <<nextBox ComicBoxView Norbert>>
-Norbert: dann zeig ich dir was du dir entgehen lasst
-Norbert: zahlen tu ich dir eh auch was
+Norbert: dann zeig ich dir was du dir entgehen lasst #line:0847c08 
+Norbert: zahlen tu ich dir eh auch was #line:03d1796 
 
 ===
 
@@ -168,16 +168,16 @@ title: SC2_Act3_Conv4
 tags:
 ---
 
-Bystander: Ja was is jetzt? Mach doch was
+Bystander: Ja was is jetzt? Mach doch was #line:0f3b7b5 
 <<nextBox ComicBoxView Bystander>>
-Bystander: Wennst dich schon so anziehst ...
+Bystander: Wennst dich schon so anziehst ... #line:0e5fd1a 
 <<nextBox ComicBoxView Bystander>>
-Bystander: Ich würd mir sowas nicht gefallen lassen
+Bystander: Ich würd mir sowas nicht gefallen lassen #line:007d5d1 
 
 <<nextBox ComicBoxView Bystander>>
-->Em_Past: Geh weg, das ist ekelhaft!
-->Em_Past: Wieso hilft mir denn keiner? Seht ihr nicht, was passiert?
-->Em_Past: Nimm deine Drecksfinger von mir du notgeiler Arsch!
+->Em_Past: Geh weg, das ist ekelhaft! #line:026aa0e 
+->Em_Past: Wieso hilft mir denn keiner? Seht ihr nicht, was passiert? #line:03f0b69 
+->Em_Past: Nimm deine Drecksfinger von mir du notgeiler Arsch! #line:0a7f4b2 
 
 
 ===
@@ -186,20 +186,20 @@ title: SC2_Act3_Conv5
 tags:
 ---
 
-Announcer: Nächster Halt, next Stop: !?="/%?
+Announcer: Nächster Halt, next Stop: !?="/%? #line:056107b 
 <<nextBox ComicBoxView Announcer>>
--> Em_Past: Ich bin doch erst 15
+-> Em_Past: Ich bin doch erst 15 #line:0a6621d 
     <<nextBookmark ScrollRect>>
     <<forceScrollToEndpoint ScrollRect>>
-    Em_Past: Ich bin doch erst 15
+    Em_Past: Ich bin doch erst 15 #line:00647e1 
 
-Bystander: Was stellt die sich jetzt so an?
+Bystander: Was stellt die sich jetzt so an? #line:0d5b896 
 <<nextBox ComicBoxView Bystander>>
-Bystander: Heute darfst ja echt nix mehr sagen.
+Bystander: Heute darfst ja echt nix mehr sagen. #line:0c93603 
 <<nextBox ComicBoxView Bystander>>
-Bystander: Muss die sich auch so anziehen?
+Bystander: Muss die sich auch so anziehen? #line:0c0069a 
 <<nextBox ComicBoxView Bystander>>
-Bystander: Um die Zeit noch alleine unterwegs sein, was denkt die sich auch dabei ...
+Bystander: Um die Zeit noch alleine unterwegs sein, was denkt die sich auch dabei ... #line:0862dbd 
 
 ===
 
@@ -207,7 +207,7 @@ title: SC2_Act4_Conv1
 tags:
 ---
 
-Mama: Schreib mir, wenn du daheim bist, ok?
+Mama: Schreib mir, wenn du daheim bist, ok? #line:04552da 
 
 ===
 
@@ -215,16 +215,16 @@ title: SC2_Act4_Conv2
 tags:
 ---
 
-Em_Present: Sowas würde ich mir nie gefallen lassen.
-Em_Present: Ich bin Herrin über meinen Körper, aber da war ich es nicht.
-Em_Present: Wie soll ich diesen Knochen je wieder vertrauen?
+Em_Present: Sowas würde ich mir nie gefallen lassen. #line:071e787 
+Em_Present: Ich bin Herrin über meinen Körper, aber da war ich es nicht. #line:0f0e0e2 
+Em_Present: Wie soll ich diesen Knochen je wieder vertrauen? #line:065462a 
 <<nextBox ComicBoxView Em_Present>>
-Em_Present: Ich weiß es ist nicht meine Schuld aber-
-Em_Present: So schwach werde ich nie wieder sein.
+Em_Present: Ich weiß es ist nicht meine Schuld aber- #line:0195a5d 
+Em_Present: So schwach werde ich nie wieder sein. #line:0acbd8f 
 <<nextBox ComicBoxView Em_Present>>
-Em_Present: Meine Mutter hat gefragt, wie es mir geht.
-Em_Present: "Gut," habe ich geantwortet.
-Em_Present: Für alles andere hab ich mich zu sehr geschämt.
+Em_Present: Meine Mutter hat gefragt, wie es mir geht. #line:08e215e 
+Em_Present: "Gut," habe ich geantwortet. #line:03cff3c 
+Em_Present: Für alles andere hab ich mich zu sehr geschämt. #line:06f2448 
 
 //Editors note: "So schwach werde ich nie wieder sein" find ich passender als letzten Satz
 //damit würden wir andeuten, Em bereut ihre Mutter angeolgen zu haben und möchte sich trauen

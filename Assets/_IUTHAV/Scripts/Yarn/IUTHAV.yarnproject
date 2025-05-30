@@ -6,7 +6,9 @@
   "excludeFiles": [
     "**/*~/*"
   ],
-  "localisation": {},
-  "baseLanguage": "en",
+  "localisation": {
+    "en": {}
+  },
+  "baseLanguage": "de",
   "compilerOptions": {}
 }
