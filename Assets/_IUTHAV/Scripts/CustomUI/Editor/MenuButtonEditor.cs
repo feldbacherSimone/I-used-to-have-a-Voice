@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace _IUTHAV.Scripts.CustomUI.Editor
 {
-    [CustomEditor(typeof(MenuButton))]
+    [CustomEditor(typeof(MenuLevelSelection))]
     public class MenuButtonEditor : ButtonEditor
     {
         private SerializedProperty selectionAction;

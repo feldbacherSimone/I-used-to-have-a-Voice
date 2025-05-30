@@ -9,7 +9,7 @@ using UnityEngine.UI;
 namespace _IUTHAV.Scripts.CustomUI
 {
     [Serializable]
-    public class MenuButton : Button
+    public class MenuLevelSelection : Button
     {
         public UnityEvent selectionAction; 
         public UnityEvent deselectionAction;

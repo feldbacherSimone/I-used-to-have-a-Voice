@@ -158,6 +158,10 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
+  - guid: 61b46dba58ea0364db6b2f3c7e1d7573
+    name: v_ambient
+  - guid: bb80fb2108c32ca4fa0a8ebe19363e50
+    name: v_dialogue
   - guid: dcbaeff7d704d654aa834bf5ee434d53
     name: masterechodelay
   - guid: b86b79094b61c4247acc7fe26cc7d3b0
@@ -166,6 +170,10 @@ AudioMixerController:
     name: masterlowpassresonance
   - guid: af4881788189ab84f9e5b259b5eefa89
     name: masterlowpasscutofffreq
+  - guid: e6b39c47feda30e45848252f16b767ca
+    name: v_music
+  - guid: 18aae71390f9f9f4e97711f75f8dbaa7
+    name: v_sfx
   m_AudioMixerGroupViews:
   - guids:
     - 57099b3f49ab6964682e39d60dd431e9
