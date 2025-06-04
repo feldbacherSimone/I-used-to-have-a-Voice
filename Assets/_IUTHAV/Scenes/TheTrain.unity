@@ -327,7 +327,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 58609019}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1281205878}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bec29c0a230741bdac901dba8da47ee, type: 3}
@@ -619,6 +619,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7545569452688597077, guid: d439a44882bcd8d4382366bffe9deadc,
         type: 3}
+    - target: {fileID: 5171933303218874907, guid: df1f6baaf63d0084e9c4246ab204ed49,
+        type: 3}
+      propertyPath: lineProvider
+      value: 
+      objectReference: {fileID: 1281205880}
     - target: {fileID: 5171933303218874907, guid: df1f6baaf63d0084e9c4246ab204ed49,
         type: 3}
       propertyPath: startAutomatically
@@ -3276,6 +3281,10 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1815724964}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7284539471316663593, guid: df1f6baaf63d0084e9c4246ab204ed49,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1281205880}
     - targetCorrespondingSourceObject: {fileID: 2975243541445327552, guid: df1f6baaf63d0084e9c4246ab204ed49,
         type: 3}
       insertIndex: -1
@@ -4098,7 +4107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: 0
-  sound: 9
+  soundType: 0
   delay: 0
 --- !u!1 &111618144
 GameObject:
@@ -5457,7 +5466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: 0
-  sound: 6
+  soundType: 0
   delay: 1
 --- !u!1001 &192621047
 PrefabInstance:
@@ -6959,7 +6968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: 0
-  sound: 8
+  soundType: 0
   delay: 0
 --- !u!1 &366656814
 GameObject:
@@ -16047,7 +16056,7 @@ PrefabInstance:
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -7.1835476e-12
+      value: -7.1819464e-12
       objectReference: {fileID: 0}
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -16057,7 +16066,7 @@ PrefabInstance:
     - target: {fileID: 1595727216328062231, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -5.257628e-11
+      value: -5.256456e-11
       objectReference: {fileID: 0}
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -16067,7 +16076,7 @@ PrefabInstance:
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -7.1835476e-12
+      value: -7.1819464e-12
       objectReference: {fileID: 0}
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -16077,7 +16086,7 @@ PrefabInstance:
     - target: {fileID: 1842711356450253606, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -5.257628e-11
+      value: -5.256456e-11
       objectReference: {fileID: 0}
     - target: {fileID: 4102648885915324208, guid: 689505d0251489c4897c416cc82b7a5b,
         type: 3}
@@ -20703,6 +20712,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1281205878 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7284539471316663593, guid: df1f6baaf63d0084e9c4246ab204ed49,
+    type: 3}
+  m_PrefabInstance: {fileID: 58609019}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1281205880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281205878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c1f487b798d402db42bc11cee5b810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stringsTable:
+    m_TableReference:
+      m_TableCollectionName: GUID:262b28c9957ef034e8c517f2cdf8dec2
+  assetTable:
+    m_TableReference:
+      m_TableCollectionName: 
+  AutomaticallyUnloadUnusedLineAssets: 1
 --- !u!1001 &1312972218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32846,40 +32880,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundAudioClips:
-  - sound: 5
-    audioClip:
+  - soundType: 0
+    audioClips:
     - {fileID: 8300000, guid: 32990d6178d453e458b1e4655abc1bfa, type: 3}
     volume: 0.5
-  - sound: 7
-    audioClip:
+  - soundType: 0
+    audioClips:
     - {fileID: 8300000, guid: 07411757e5e48014498bca8ea51b6485, type: 3}
     volume: 0.5
-  - sound: 6
-    audioClip:
+  - soundType: 0
+    audioClips:
     - {fileID: 8300000, guid: 6c3bc37e8ad9277438b056bf03fa0bb5, type: 3}
     volume: 0.5
-  - sound: 2
-    audioClip:
+  - soundType: 0
+    audioClips:
     - {fileID: 8300000, guid: dc8bdcdbf6d9bcf458ad552f2cf3d589, type: 3}
     volume: 0.5
-  - sound: 4
-    audioClip:
+  - soundType: 0
+    audioClips:
     - {fileID: 8300000, guid: 35fc851a2211ccf429e32988cca1b905, type: 3}
     volume: 0.5
-  - sound: 9
-    audioClip:
+  - soundType: 0
+    audioClips:
     - {fileID: 8300000, guid: c730a2ed07678d7489b564f95c12e976, type: 3}
     volume: 0.5
-  - sound: 8
-    audioClip:
+  - soundType: 0
+    audioClips:
     - {fileID: 8300000, guid: 5ac2f0658d05c9645bcb5c0bbbeef66b, type: 3}
     volume: 0.5
-  - sound: 3
-    audioClip:
+  - soundType: 0
+    audioClips:
     - {fileID: 8300000, guid: 6a7edb5ca6abf8647a9752986cf7a8fb, type: 3}
     volume: 0.5
-  - sound: 10
-    audioClip:
+  - soundType: 0
+    audioClips:
     - {fileID: 8300000, guid: d140ba610c5715b469d13d26b24f260d, type: 3}
     volume: 0.5
 --- !u!1001 &1825126911
@@ -35885,7 +35919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: 0
-  sound: 7
+  soundType: 0
   delay: 0
 --- !u!1 &1969585292
 GameObject:
