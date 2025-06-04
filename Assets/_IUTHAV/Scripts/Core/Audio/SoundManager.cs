@@ -81,6 +81,11 @@ namespace _IUTHAV.Scripts.Core.Audio
            Debug.Log($"Setup: Setup finished");
         }
 
+
+        public static void ClearObjectPool()
+        {
+            ObjectPool.Clear();
+        }
         public static void PlaySound(SoundType soundType, Mixer mixer)
         {
             OneShotHandler currentOneShotHandler = GetOneShotHandler();
@@ -116,6 +121,7 @@ namespace _IUTHAV.Scripts.Core.Audio
         }
         private static void CreateObjectPool(int? oneShotObjectCount)
         {
+            ClearObjectPool();
             oneShotSourceParent = new GameObject("OneShotParent");
 
             int objectCount = oneShotObjectCount ?? defaultOneShotObjectCount;
@@ -169,7 +175,7 @@ namespace _IUTHAV.Scripts.Core.Audio
 
         private static void AssignMixer(Mixer mixer, AudioSource source)
         {
-            if (audioMixer != null)
+            if ( audioMixer != null)
                 source.outputAudioMixerGroup = audioMixer.FindMatchingGroups(mixer.ToString())[0]; 
             else
                 Debug.LogError("You Dumb Fuck, there is no Mixer to Accesess");
