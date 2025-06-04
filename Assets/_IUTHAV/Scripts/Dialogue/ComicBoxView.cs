@@ -792,7 +792,7 @@ namespace _IUTHAV.Scripts.Dialogue {
         }
 
         private CharacterBox GetCurrentBox() {
-
+            
             if (_mConversations == null ||
             _mCurrentIndex > _mConversations.Count || 
             _mCurrentIndex < 0 || 
